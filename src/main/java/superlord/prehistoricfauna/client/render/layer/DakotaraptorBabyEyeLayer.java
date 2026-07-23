@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotarapto
 
 public class DakotaraptorBabyEyeLayer extends RenderLayer<Dakotaraptor, EntityModel<Dakotaraptor>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_baby_eyeglow.png"));
 	private final RenderLayerParent<Dakotaraptor, EntityModel<Dakotaraptor>> dakotaraptorRenderer;
 	
 	public DakotaraptorBabyEyeLayer(RenderLayerParent<Dakotaraptor, EntityModel<Dakotaraptor>> rendererIn) {

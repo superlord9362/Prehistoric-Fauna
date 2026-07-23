@@ -11,12 +11,21 @@
 	},
 	"result": {
 		"item": "prehistoricfauna:chalk_pillar",
-		"count": 1
+		"count": 2
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "stone_pillar"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					  "type": "quark:flag",
+					  "flag": "stone_pillar"
+				}
+			]
 		}
 	]
 }

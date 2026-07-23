@@ -1,0 +1,37 @@
+Found In: Shaximiao
+
+Drops: 0-2 Polistodon Hides, 1 
+Small Raw Synapsid
+
+Diet: Herbivore
+
+Breeding Item: Sphenopteris
+
+Max Health: 4
+
+Max Hunger: 10
+
+Temperaments: Polistodon has 
+a 75% chance of being skittish, 
+and a 25% chance of being passive.
+
+Sleep Cycle: Crepuscular
+
+
+<image><drawings_ankylosaurus.png 26 4 155 175 16 11 8.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: If fed Taeniopteris,
+Polistodon will begin to dig
+tubers out of the ground.

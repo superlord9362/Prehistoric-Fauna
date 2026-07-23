@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Protopsephurus;
 
 public class ProtopsephurusRenderer extends MobRenderer<Protopsephurus, ProtopsephurusModel> {
 
-	private static final ResourceLocation PROTOPSEPHURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/protopsephurus.png");
+	private static final ResourceLocation PROTOPSEPHURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/protopsephurus.png");
 
 	public ProtopsephurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ProtopsephurusModel(renderManagerIn.bakeLayer(ClientEvents.PROTOPSEPHURUS)), 0);

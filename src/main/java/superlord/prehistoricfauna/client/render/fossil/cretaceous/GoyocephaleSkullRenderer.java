@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.GoyocephaleSku
 
 public class GoyocephaleSkullRenderer extends MobRenderer<GoyocephaleSkull, GoyocephaleSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/goyocephale_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/goyocephale_skeleton.png");
 
 	public GoyocephaleSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GoyocephaleSkullModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE_SKULL)), 0);

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Sarahsaurus;
 
 public class SarahsaurusEyeLayer extends RenderLayer<Sarahsaurus, SarahsaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/sarahsaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/sarahsaurus_eyeglow.png"));
 	private final RenderLayerParent<Sarahsaurus, SarahsaurusModel> sarahsaurusRenderer;
 	
 	public SarahsaurusEyeLayer(RenderLayerParent<Sarahsaurus, SarahsaurusModel> rendererIn) {

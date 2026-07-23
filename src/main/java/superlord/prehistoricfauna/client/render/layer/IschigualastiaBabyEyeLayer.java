@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigual
 
 public class IschigualastiaBabyEyeLayer extends RenderLayer<Ischigualastia, EntityModel<Ischigualastia>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia_baby_eyeglow.png"));
 	private final RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer;
 	
 	public IschigualastiaBabyEyeLayer(RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> rendererIn) {

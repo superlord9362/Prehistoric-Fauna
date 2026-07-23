@@ -1,21 +1,26 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"#"
-	],
-	"key": {
-		"#": {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "prehistoricfauna:henostone_vertical_slab"
 		}
-	},
+	],
 	"result": {
-		"item": "prehistoricfauna:henostone_slab",
-		"count": 1
+		"item": "prehistoricfauna:henostone_slab"
 	},
-  "conditions": [
-    {
-      "type": "prehistoricfauna:quark_flag",
-      "flag": "vertical_slabs"
-    }
-  ]
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

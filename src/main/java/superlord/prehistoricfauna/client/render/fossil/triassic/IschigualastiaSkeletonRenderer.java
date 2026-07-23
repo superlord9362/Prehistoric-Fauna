@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.IschigualastiaSk
 
 public class IschigualastiaSkeletonRenderer extends MobRenderer<IschigualastiaSkeleton, EntityModel<IschigualastiaSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ischigualastia_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/ischigualastia_skeleton.png");
     private static IschigualastiaSkeletonModel IDLE;
     private static IschigualastiaSkeletonStretchingModel STRETCHING;
 
@@ -25,11 +25,10 @@ public class IschigualastiaSkeletonRenderer extends MobRenderer<IschigualastiaSk
 	}
 	
 	protected void scale(IschigualastiaSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isStretching()) {
-			model = STRETCHING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "STRETCHING" -> STRETCHING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

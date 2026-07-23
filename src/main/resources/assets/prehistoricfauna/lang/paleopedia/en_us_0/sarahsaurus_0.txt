@@ -33,4 +33,10 @@ Sleep Cycle: Cathemeral
 
 
 
-Behavior: Investigation underway!
+Sarahsaurus can be tamed with 
+Otozamites. Once tamed, the player 
+can decorate them with carpets 
+and add chests to make them carry 
+items. Tamed Sarahsaurus will 
+follow a leaded Sarahsaurus, 
+creating caravans

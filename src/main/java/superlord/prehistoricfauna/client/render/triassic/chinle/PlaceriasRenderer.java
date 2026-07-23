@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Placerias;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class PlaceriasRenderer extends MobRenderer<Placerias, PlaceriasModel> {
-	private static final ResourceLocation PLACERIAS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/placerias.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/melanistic.png");
-	private static final ResourceLocation PLACERIAS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/placerias_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/melanistic_sleeping.png");
+	private static final ResourceLocation PLACERIAS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/placerias.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/melanistic.png");
+	private static final ResourceLocation PLACERIAS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/placerias_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/melanistic_sleeping.png");
 
 	public PlaceriasRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PlaceriasModel(renderManagerIn.bakeLayer(ClientEvents.PLACERIAS)), 1F);

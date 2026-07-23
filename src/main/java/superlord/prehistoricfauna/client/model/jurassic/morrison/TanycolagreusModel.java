@@ -92,6 +92,7 @@ public class TanycolagreusModel extends EntityModel<Tanycolagreus> {
 		float partialTick = ageInTicks - entity.tickCount;
 		float attackProgress =  entity.getMeleeProgress(partialTick);
 		float sleepProgress = entity.getSleepProgress(partialTick);
+		float sitProgress = entity.getSitProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
@@ -125,6 +126,38 @@ public class TanycolagreusModel extends EntityModel<Tanycolagreus> {
 				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.46914448828868976F);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 			} else sleepPose();
+		} else if (entity.isTameSitting()) {
+			if (sitProgress != 0 && entity.getEntityData().get(Tanycolagreus.SIT_TICK) > 0) {
+				this.Body.y = Mth.lerp(sitProgress, 0, 10);
+				this.RightThigh.y = Mth.lerp(sitProgress, 0, 10.9F);
+				this.RightThigh.z = Mth.lerp(sitProgress, 0, 1);
+				this.RightLeg.y = Mth.lerp(sitProgress, 7, 6.8F);
+				this.RightLeg.z = Mth.lerp(sitProgress, 2, 1.6F);
+				this.LeftThigh.y = Mth.lerp(sitProgress, 0, 10.9F);
+				this.LeftThigh.z = Mth.lerp(sitProgress, 0, 1);
+				this.LeftLeg.y = Mth.lerp(sitProgress, 7, 6.8F);
+				this.LeftLeg.z = Mth.lerp(sitProgress, 2, 1.6F);
+				this.LeftLeg.xRot = Mth.lerp(sitProgress, 0, -0.3979350561389017F);
+				this.LeftLeg.yRot = Mth.lerp(sitProgress, 0, -0.0781907508222411F);
+				this.LeftLeg.zRot = Mth.lerp(sitProgress, 0, -0.27366763203903305F);
+				this.RightThigh.xRot = Mth.lerp(sitProgress, 0, -1.1728612040769677F);
+				this.RightThigh.yRot = Mth.lerp(sitProgress, 0, -0.46914448828868976F);
+				this.LeftArm.zRot = Mth.lerp(sitProgress, 0, 1.3292428222347474F);
+				this.LeftFoot.xRot = Mth.lerp(sitProgress, 0, 1.5707963267948966F);
+				this.RightArm.zRot = Mth.lerp(sitProgress, 0, -1.3264502315156905F);
+				this.RightLeg.xRot = Mth.lerp(sitProgress, 0, -0.3979350561389017F);
+				this.RightLeg.yRot = Mth.lerp(sitProgress, 0, 0.0781907508222411F);
+				this.RightLeg.zRot = Mth.lerp(sitProgress, 0, 0.27366763203903305F);
+				this.LeftThigh.xRot = Mth.lerp(sitProgress, 0, -1.1728612040769677F);
+				this.LeftThigh.yRot = Mth.lerp(sitProgress, 0, 0.46914448828868976F);
+				this.RightFoot.xRot = Mth.lerp(sitProgress, 0, 1.5707963267948966F);
+			} else sitPose();
+			this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+			this.Tail2.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+			this.Tail1.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+			this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+			this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
+			this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Body.y = Mth.lerp(sleepProgress, 10, 0);
@@ -156,6 +189,36 @@ public class TanycolagreusModel extends EntityModel<Tanycolagreus> {
 				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -1.1728612040769677F, 0);
 				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.46914448828868976F, 0);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
+			} else if (sitProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
+				this.Body.y = Mth.lerp(sitProgress, 10, 0);
+				this.RightThigh.y = Mth.lerp(sitProgress, 10.9F, 0);
+				this.RightThigh.z = Mth.lerp(sitProgress, 1, 0);
+				this.RightLeg.y = Mth.lerp(sitProgress, 6.8F, 7);
+				this.RightLeg.z = Mth.lerp(sitProgress, 1.6F, 2);
+				this.LeftThigh.y = Mth.lerp(sitProgress, 10.9F, 0);
+				this.LeftThigh.z = Mth.lerp(sitProgress, 1, 0);
+				this.LeftLeg.y = Mth.lerp(sitProgress, 6.8F, 7);
+				this.LeftLeg.z = Mth.lerp(sitProgress, 1.6F, 2);
+				this.LeftLeg.xRot = Mth.lerp(sitProgress, -0.3979350561389017F, 0);
+				this.LeftLeg.yRot = Mth.lerp(sitProgress, -0.0781907508222411F, 0);
+				this.LeftLeg.zRot = Mth.lerp(sitProgress, -0.27366763203903305F, 0);
+				this.RightThigh.xRot = Mth.lerp(sitProgress, -1.1728612040769677F, 0);
+				this.RightThigh.yRot = Mth.lerp(sitProgress, -0.46914448828868976F, 0);
+				this.LeftArm.zRot = Mth.lerp(sitProgress, 1.3292428222347474F, 0);
+				this.LeftFoot.xRot = Mth.lerp(sitProgress, 1.5707963267948966F, 0);
+				this.RightArm.zRot = Mth.lerp(sitProgress, -1.3264502315156905F, 0);
+				this.RightLeg.xRot = Mth.lerp(sitProgress, -0.3979350561389017F, 0);
+				this.RightLeg.yRot = Mth.lerp(sitProgress, 0.0781907508222411F, 0);
+				this.RightLeg.zRot = Mth.lerp(sitProgress, 0.27366763203903305F, 0);
+				this.LeftThigh.xRot = Mth.lerp(sitProgress, -1.1728612040769677F, 0);
+				this.LeftThigh.yRot = Mth.lerp(sitProgress, 0.46914448828868976F, 0);
+				this.RightFoot.xRot = Mth.lerp(sitProgress, 1.5707963267948966F, 0);
+				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail2.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
+				this.Tail1.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
+				this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
+				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
 			} else {
 				this.RightThigh.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 				this.LeftThigh.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
@@ -243,6 +306,32 @@ public class TanycolagreusModel extends EntityModel<Tanycolagreus> {
 		this.LeftArm.zRot = 1.3292428222347474F;
 		this.Tail2.xRot = 0.01728612207217244F;
 		this.Tail2.yRot = 0.7037167490777915F;
+		this.LeftFoot.xRot = 1.5707963267948966F;
+		this.RightArm.zRot = -1.3264502315156905F;
+		this.RightLeg.xRot = -0.3979350561389017F;
+		this.RightLeg.yRot = 0.0781907508222411F;
+		this.RightLeg.zRot = 0.27366763203903305F;
+		this.LeftThigh.xRot = -1.1728612040769677F;
+		this.LeftThigh.yRot = 0.46914448828868976F;
+		this.RightFoot.xRot = 1.5707963267948966F;
+	}
+	
+	public void sitPose() {
+		this.Body.y = 10;
+		this.RightThigh.y = 10.9F;
+		this.RightThigh.z = 1;
+		this.RightLeg.y = 6.8F;
+		this.RightLeg.z = 1.6F;
+		this.LeftThigh.y = 10.9F;
+		this.LeftThigh.z = 1;
+		this.LeftLeg.y = 6.8F;
+		this.LeftLeg.z = 1.6F;
+		this.LeftLeg.xRot = -0.3979350561389017F;
+		this.LeftLeg.yRot = -0.0781907508222411F;
+		this.LeftLeg.zRot = -0.27366763203903305F;
+		this.RightThigh.xRot = -1.1728612040769677F;
+		this.RightThigh.yRot = -0.46914448828868976F;
+		this.LeftArm.zRot = 1.3292428222347474F;
 		this.LeftFoot.xRot = 1.5707963267948966F;
 		this.RightArm.zRot = -1.3264502315156905F;
 		this.RightLeg.xRot = -0.3979350561389017F;

@@ -1,6 +1,7 @@
 Found In: Kayenta
 
-Drops: 1-2 Large Raw Theropod
+Drops: 1-2 Large Raw Theropod,
+0-1 Dilophosaurus Crest
 
 Diet: Carnivore
 
@@ -33,5 +34,8 @@ Sleep Cycle: Cathemeral
 
 
 
-
-Behavior: Investigation underway!
+Behavior: When killed, Dilophosaurus 
+can drop one of its crests. These 
+crests can be blown into to 
+produce a sound, causing smaller 
+animals to begin to panic.

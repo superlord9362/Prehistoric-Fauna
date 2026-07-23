@@ -1,7 +1,7 @@
 Found In: Shaximiao
 
 Drops: 0-2 Feathers, 2-4 Small Raw 
-Ornithischian
+Ornithopod
 
 Diet: Herbivore
 
@@ -17,7 +17,7 @@ Temperaments: Yandusaurus has a
 
 Sleep Cycle: Diurnal
 
-<image><drawings_ankylosaurus.png 32 3 153 234 20 18 7>
+<image><drawings_ankylosaurus.png 32 3 153 255 20 18 7>
 
 
 
@@ -34,4 +34,6 @@ Sleep Cycle: Diurnal
 
 
 
-Behavior: Investigation underway!
+Behavior: If fed Taeniopteris,
+Yandusaurus will begin to dig
+tubers out of the ground.

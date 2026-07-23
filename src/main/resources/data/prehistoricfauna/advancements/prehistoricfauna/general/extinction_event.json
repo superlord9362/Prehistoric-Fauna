@@ -19,187 +19,83 @@
     "experience": 100
   },
   "criteria": {
-    "prehistoricfauna:thescelosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:thescelosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:triceratops": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:triceratops"
-        }
-      }
-    },
-    "prehistoricfauna:ankylosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:ankylosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:tyrannosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:tyrannosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:basilemys": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:basilemys"
-        }
-      }
-    },
-    "prehistoricfauna:dakotaraptor": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:dakotaraptor"
-        }
-      }
-    },
-    "prehistoricfauna:didelphodon": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:didelphodon"
-        }
-      }
-    },
-    "prehistoricfauna:allosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:allosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:stegosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:stegosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:ceratosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:ceratosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:dryosaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:dryosaurus"
-        }
-      }
-    },
-    "prehistoricfauna:hesperornithoides": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:hesperornithoides"
-        }
-      }
-    },
-    "prehistoricfauna:eilenodon": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:eilenodon"
-        }
-      }
-    },
-    "prehistoricfauna:camarasaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:camarasaurus"
-        }
-      }
-    },
-    "prehistoricfauna:exaeretodon": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:exaeretodon"
-        }
-      }
-    },
-    "prehistoricfauna:chromogisaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:chromogisaurus"
-        }
-      }
-    },
-    "prehistoricfauna:herrerasaurus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:herrerasaurus"
-        }
-      }
-    },
-    "prehistoricfauna:hyperodapedon": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:hyperodapedon"
-        }
-      }
-    },
-    "prehistoricfauna:sillosuchus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:sillosuchus"
-        }
-      }
-    },
-    "prehistoricfauna:saurosuchus": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:saurosuchus"
-        }
-      }
-    },
-    "prehistoricfauna:ischigualastia": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:ischigualastia"
-        }
-      }
-    },
-    "velociraptor": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:velociraptor"
-        }
-      }
-    },
     "aepyornithomimus": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "entity": {
           "type": "prehistoricfauna:aepyornithomimus"
+        }
+      }
+    },
+	"byronosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:byronosaurus"
+			}
+		}
+	},
+    "citipati": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:citipati"
+        }
+      }
+    },
+	"goyocephale": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:goyocephale"
+			}
+		}
+	},
+	"halszkaraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:halszkaraptor"
+			}
+		}
+	},
+	"kol": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:kol"
+			}
+		}
+	},
+	"oviraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:oviraptor"
+			}
+		}
+	},
+	"plesiohadros": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:plesiohadros"
+			}
+		}
+	},
+	"pinacosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:pinacosaurus"
+			}
+		}
+	},
+    "protoceratops": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:protoceratops"
         }
       }
     },
@@ -211,35 +107,227 @@
         }
       }
     },
-    "citipati": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:citipati"
-        }
-      }
-    },
-    "protoceratops": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-        "entity": {
-          "type": "prehistoricfauna:protoceratops"
-        }
-      }
-    },
-	"pinacosaurus": {
+	"udanoceratops": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:pinacosaurus"
+				"type": "prehistoricfauna:udanoceratops"
 			}
 		}
 	},
-	"plesiohadros": {
+    "velociraptor": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:velociraptor"
+        }
+      }
+    },
+    "ankylosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ankylosaurus"
+        }
+      }
+    },
+	"anzu": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:plesiohadros"
+				"type": "prehistoricfauna:anzu"
+			}
+		}
+	},
+    "basilemys": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:basilemys"
+        }
+      }
+    },
+    "brachychampsa": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:brachychampsa"
+			}
+		}
+	},
+    "dakotaraptor": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:dakotaraptor"
+        }
+      }
+    },
+    "didelphodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:didelphodon"
+        }
+      }
+    },
+    "edmontosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:edmontosaurus"
+			}
+		}
+	},
+	"ornithomimus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:ornithomimus"
+			}
+		}
+	},
+	"pachycephalosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:pachycephalosaurus"
+			}
+		}
+	},
+	"palaeosaniwa": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:palaeosaniwa"
+			}
+		}
+	},
+    "thescelosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:thescelosaurus"
+        }
+      }
+    },
+    "triceratops": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:triceratops"
+        }
+      }
+    },
+    "tyrannosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:tyrannosaurus"
+        }
+      }
+    },
+	"beipiaosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:beipiaosaurus"
+			}
+		}
+	},
+	"changyuraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:changyuraptor"
+			}
+		}
+	},
+    "dilong": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:dilong"
+			}
+		}
+	},
+    "dongbeititan": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:dongbeititan"
+			}
+		}
+	},
+	"incisivosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:incisivosaurus"
+			}
+		}
+	},
+    "jinzhousaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:jinzhousaurus"
+			}
+		}
+	},
+	"liaoningosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:liaoningosaurus"
+			}
+		}
+	},
+	"psittacosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:psittacosaurus"
+			}
+		}
+	},
+    "repenomamus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:repenomamus"
+			}
+		}
+	},
+    "ruixinia": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:ruixinia"
+			}
+		}
+	},
+	"sinosauropteryx": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:sinosauropteryx"
+			}
+		}
+	},
+	"yutyrannus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:yutyrannus"
+			}
+		}
+	},
+    "zhenyuanlong": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:zhenyuanlong"
 			}
 		}
 	},
@@ -259,11 +347,27 @@
 			}
 		}
 	},
+    "kayentachelys": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:kayentachelys"
+			}
+		}
+	},
 	"kayentatherium": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
 				"type": "prehistoricfauna:kayentatherium"
+			}
+		}
+	},
+    "kayentavenator": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:kayentavenator"
 			}
 		}
 	},
@@ -296,6 +400,246 @@
 		"conditions": {
 			"entity": {
 				"type": "prehistoricfauna:scutellosaurus"
+			}
+		}
+	},
+    "alcovasaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:alcovasaurus"
+			}
+		}
+	},
+    "allosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:allosaurus"
+        }
+      }
+    },
+    "brontosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:brontosaurus"
+			}
+		}
+	},
+    "camarasaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:camarasaurus"
+        }
+      }
+    },
+    "camptosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:camptosaurus"
+			}
+		}
+	},
+    "ceratosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ceratosaurus"
+        }
+      }
+    },
+    "diablophis": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:diablophis"
+			}
+		}
+	},
+    "diplodocus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:diplodocus"
+			}
+		}
+	},
+    "dryosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:dryosaurus"
+        }
+      }
+    },
+    "eilenodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:eilenodon"
+        }
+      }
+    },
+    "gargoyleosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:gargoyleosaurus"
+			}
+		}
+	},
+    "hesperornithoides": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:hesperornithoides"
+        }
+      }
+    },
+    "macelognathus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:macelognathus"
+			}
+		}
+	},
+    "stegosaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:stegosaurus"
+        }
+      }
+    },
+    "suuwassea": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:suuwassea"
+			}
+		}
+	},
+    "tanycolagreus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:tanycolagreus"
+			}
+		}
+	},
+    "torvosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:torvosaurus"
+			}
+		}
+	},
+    "abrosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:abrosaurus"
+			}
+		}
+	},
+    "agilisaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:agilisaurus"
+			}
+		}
+	},
+    "bashanosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:bashanosaurus"
+			}
+		}
+	},
+    "chuandongocoelurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:chuandongocoelurus"
+			}
+		}
+	},
+    "gigantspinosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:gigantspinosaurus"
+			}
+		}
+	},
+    "huayangosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:huayangosaurus"
+			}
+		}
+	},
+    "omeisaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:omeisaurus"
+			}
+		}
+	},
+	"polistodon": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:polistodon"
+			}
+		}
+	},
+    "shunosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:shunosaurus"
+			}
+		}
+	},
+    "sinraptor": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:sinraptor"
+			}
+		}
+	},
+    "tuojiangosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:tuojiangosaurus"
+			}
+		}
+	},
+    "yandusaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:yandusaurus"
+			}
+		}
+	},
+    "yangchuanosaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:yangchuanosaurus"
 			}
 		}
 	},
@@ -355,206 +699,438 @@
 			}
 		}
 	},
-	"oviraptor": {
+    "chromogisaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:chromogisaurus"
+        }
+      }
+    },
+    "exaeretodon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:exaeretodon"
+        }
+      }
+    },
+    "herrerasaurus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:herrerasaurus"
+        }
+      }
+    },
+    "hyperodapedon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:hyperodapedon"
+        }
+      }
+    },
+    "ischigualastia": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:ischigualastia"
+        }
+      }
+    },
+    "saurosuchus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:saurosuchus"
+        }
+      }
+    },
+    "sillosuchus": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "prehistoricfauna:sillosuchus"
+        }
+      }
+    },
+    "aboilus": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:oviraptor"
+				"type": "prehistoricfauna:aboilus"
 			}
 		}
 	},
-	"palaeosaniwa": {
+    "apoclion": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:palaeosaniwa"
+				"type": "prehistoricfauna:apoclion"
 			}
 		}
 	},
-	"goyocephale": {
+    "cephaloleichnites": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:goyocephale"
+				"type": "prehistoricfauna:cephaloleichnites"
 			}
 		}
 	},
-	"halszkaraptor": {
+    "cicadocoris": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:halszkaraptor"
+				"type": "prehistoricfauna:cicadocoris"
 			}
 		}
 	},
-	"kol": {
+    "cretaraneus": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:kol"
+				"type": "prehistoricfauna:cretaraneus"
 			}
 		}
 	},
-	"udanoceratops": {
+    "cylindricum": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:udanoceratops"
+				"type": "prehistoricfauna:cylindricum"
 			}
 		}
 	},
-	"ornithomimus": {
+    "diplichnites": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:ornithomimus"
+				"type": "prehistoricfauna:diplichnites"
 			}
 		}
 	},
-	"pachycephalosaurus": {
+    "dermestid": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:pachycephalosaurus"
+				"type": "prehistoricfauna:dermestid_beetle"
 			}
 		}
 	},
-	"sinosauropteryx": {
+    "eopolis": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:sinosauropteryx"
+				"type": "prehistoricfauna:eopolis"
 			}
 		}
 	},
-	"psittacosaurus": {
+    "gobiulus": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:psittacosaurus"
+				"type": "prehistoricfauna:gobiulus"
 			}
 		}
 	},
-	"yutyrannus": {
+    "liaonemobius": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:yutyrannus"
+				"type": "prehistoricfauna:liaonemobius"
 			}
 		}
 	},
-	"incisivosaurus": {
+    "mesoforficula": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:incisivosaurus"
+				"type": "prehistoricfauna:mesoforficula"
 			}
 		}
 	},
-	"anzu": {
+    "octopodichnus": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:anzu"
+				"type": "prehistoricfauna:octopodichnus"
 			}
 		}
 	},
-	"changyuraptor": {
+    "paleohelcura": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:changyuraptor"
+				"type": "prehistoricfauna:paleohelcura"
 			}
 		}
 	},
-	"beipiaosaurus": {
+    "parapleurites": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:beipiaosaurus"
+				"type": "prehistoricfauna:parapleurites"
 			}
 		}
 	},
-	"liaoningosaurus": {
+    "rhipidoblattina": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:liaoningosaurus"
+				"type": "prehistoricfauna:rhipidoblattina"
 			}
 		}
 	},
-	"byronosaurus": {
+    "acipenser": {
 		"trigger": "minecraft:player_killed_entity",
 		"conditions": {
 			"entity": {
-				"type": "prehistoricfauna:byronosaurus"
+				"type": "prehistoricfauna:acipenser"
+			}
+		}
+	},
+    "arganodus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:arganodus"
+			}
+		}
+	},
+    "ceratodus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:ceratodus"
+			}
+		}
+	},
+    "chinlea": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:chinlea"
+			}
+		}
+	},
+    "chungkingichthys": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:chungkingichthys"
+			}
+		}
+	},
+    "cyclurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:cyclurus"
+			}
+		}
+	},
+    "lepisosteus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:gar"
+			}
+		}
+	},
+    "harenaichthys": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:harenaichthys"
+			}
+		}
+	},
+    "lepidotes": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:lepidotes"
+			}
+		}
+	},
+    "lonchidion": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:lonchidion"
+			}
+		}
+	},
+    "melvius": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:melvius"
+			}
+		}
+	},
+    "myledaphus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:myledaphus"
+			}
+		}
+	},
+    "mooreodontus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:mooreodontus"
+			}
+		}
+	},
+    "ophiopsis": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:ophiopsis"
+			}
+		}
+	},
+    "morrolepis": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:morrolepis"
+			}
+		}
+	},
+    "parapsephurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:parapsephurus"
+			}
+		}
+	},
+    "protopsephurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:protopsephurus"
+			}
+		}
+	},
+    "potamoceratodus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:potamoceratodus"
+			}
+		}
+	},
+    "saurichthys": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:saurichthys"
+			}
+		}
+	},
+    "sinamia": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:sinamia"
+			}
+		}
+	},
+    "toarcibatis": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:toarcibatis"
+			}
+		}
+	},
+    "yanosteus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:yanosteus"
+			}
+		}
+	},
+	"mamenchisaurus": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+			"entity": {
+				"type": "prehistoricfauna:mamenchisaurus"
 			}
 		}
 	}
   },
   "requirements": [
     [
-      "prehistoricfauna:thescelosaurus"
+      "thescelosaurus"
     ],
     [
-      "prehistoricfauna:triceratops"
+      "triceratops"
     ],
     [
-      "prehistoricfauna:ankylosaurus"
+      "ankylosaurus"
     ],
     [
-      "prehistoricfauna:tyrannosaurus"
+      "tyrannosaurus"
     ],
     [
-      "prehistoricfauna:basilemys"
+      "basilemys"
     ],
     [
-      "prehistoricfauna:dakotaraptor"
+      "dakotaraptor"
     ],
     [
-      "prehistoricfauna:didelphodon"
+      "didelphodon"
     ],
     [
-      "prehistoricfauna:allosaurus"
+      "allosaurus"
     ],
     [
-      "prehistoricfauna:stegosaurus"
+      "stegosaurus"
     ],
     [
-      "prehistoricfauna:ceratosaurus"
+      "ceratosaurus"
     ],
     [
-      "prehistoricfauna:dryosaurus"
+      "dryosaurus"
     ],
     [
-      "prehistoricfauna:hesperornithoides"
+      "hesperornithoides"
     ],
     [
-      "prehistoricfauna:eilenodon"
+      "eilenodon"
     ],
     [
-      "prehistoricfauna:camarasaurus"
+      "camarasaurus"
     ],
     [
-      "prehistoricfauna:exaeretodon"
+      "exaeretodon"
     ],
     [
-      "prehistoricfauna:chromogisaurus"
+      "chromogisaurus"
     ],
     [
-      "prehistoricfauna:herrerasaurus"
+      "herrerasaurus"
     ],
     [
-      "prehistoricfauna:hyperodapedon"
+      "hyperodapedon"
     ],
     [
-      "prehistoricfauna:sillosuchus"
+      "sillosuchus"
     ],
     [
-      "prehistoricfauna:saurosuchus"
+      "saurosuchus"
     ],
     [
-      "prehistoricfauna:ischigualastia"
+      "ischigualastia"
     ],
 	[
 		"velociraptor"
@@ -669,6 +1245,222 @@
 	],
 	[
 		"byronosaurus"
+	],
+	[
+		"brachychampsa"
+	],
+	[
+		"edmontosaurus"
+	],
+	[
+		"dilong"
+	],
+	[
+		"dongbeititan"
+	],
+	[
+		"jinzhousaurus"
+	],
+	[
+		"repenomamus"
+	],
+	[
+		"ruixinia"
+	],
+	[
+		"zhenyuanlong"
+	],
+	[
+		"kayentachelys"
+	],
+	[
+		"kayentavenator"
+	],
+	[
+		"alcovasaurus"
+	],
+	[
+		"brontosaurus"
+	],
+	[
+		"camptosaurus"
+	],
+	[
+		"diablophis"
+	],
+	[
+		"diplodocus"
+	],
+	[
+		"gargoyleosaurus"
+	],
+	[
+		"macelognathus"
+	],
+	[
+		"suuwassea"
+	],
+	[
+		"tanycolagreus"
+	],
+	[
+		"torvosaurus"
+	],
+	[
+		"abrosaurus"
+	],
+	[
+		"agilisaurus"
+	],
+	[
+		"bashanosaurus"
+	],
+	[
+		"chuandongocoelurus"
+	],
+	[
+		"gigantspinosaurus"
+	],
+	[
+		"huayangosaurus"
+	],
+	[
+		"omeisaurus"
+	],
+	[
+		"polistodon"	
+	],
+	[
+		"shunosaurus"
+	],
+	[
+		"sinraptor"
+	],
+	[
+		"tuojiangosaurus"
+	],
+	[
+		"yandusaurus"
+	],
+	[
+		"yangchuanosaurus"
+	],
+	[
+		"aboilus"
+	],
+	[
+		"apoclion"
+	],
+	[
+		"cephaloleichnites"
+	],
+	[
+		"cicadocoris"
+	],
+	[
+		"cretaraneus"
+	],
+	[
+		"cylindricum"
+	],
+	[
+		"diplichnites"
+	],
+	[
+		"dermestid"
+	],
+	[
+		"eopolis"
+	],
+	[
+		"gobiulus"
+	],
+	[
+		"liaonemobius"
+	],
+	[
+		"mesoforficula"
+	],
+	[
+		"octopodichnus"
+	],
+	[
+		"paleohelcura"
+	],
+	[
+		"parapleurites"
+	],
+	[
+		"rhipidoblattina"
+	],
+	[
+		"acipenser"
+	],
+	[
+		"arganodus"
+	],
+	[
+		"ceratodus"
+	],
+	[
+		"chinlea"
+	],
+	[
+		"chungkingichthys"
+	],
+	[
+		"cyclurus"
+	],
+	[
+		"lepisosteus"
+	],
+	[
+		"harenaichthys"
+	],
+	[
+		"lepidotes"
+	],
+	[
+		"lonchidion"
+	],
+	[
+		"melvius"
+	],
+	[
+		"myledaphus"
+	],
+	[
+		"mooreodontus"
+	],
+	[
+		"ophiopsis"
+	],
+	[
+		"morrolepis"
+	],
+	[
+		"parapsephurus"
+	],
+	[
+		"protopsephurus"
+	],
+	[
+		"sinamia"
+	],
+	[
+		"potamoceratodus"
+	],
+	[
+		"yanosteus"
+	],
+	[
+		"saurichthys"
+	],
+	[
+		"toarcibatis"
+	],
+	[
+		"mamenchisaurus"
 	]
   ]
 }

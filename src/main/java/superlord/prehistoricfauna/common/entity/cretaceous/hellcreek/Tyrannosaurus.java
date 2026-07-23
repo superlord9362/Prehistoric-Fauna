@@ -1,8 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -169,9 +172,14 @@ public class Tyrannosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TYRANNOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.TYRANNOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TYRANNOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.tyrannosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.tyrannosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -278,6 +286,7 @@ public class Tyrannosaurus extends DinosaurEntity {
 			this.setAggressive(true);
 		}
 		this.setCarnivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

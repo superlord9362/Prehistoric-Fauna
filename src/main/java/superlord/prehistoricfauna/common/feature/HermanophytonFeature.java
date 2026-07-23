@@ -10,6 +10,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import superlord.prehistoricfauna.common.blocks.HermanophytonBlock;
+import superlord.prehistoricfauna.common.blocks.HermanophytonTopBlock;
 import superlord.prehistoricfauna.common.feature.util.JohnstoniaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 
@@ -41,7 +42,7 @@ public class HermanophytonFeature extends Feature<JohnstoniaConfig> {
 				if (j <= y + height - 3) {
 					world.setBlock(pos, PFBlocks.HERMANOPHYTON.get().defaultBlockState(), 2);
 				} else if (j == y + height - 2) world.setBlock(pos, PFBlocks.HERMANOPHYTON.get().defaultBlockState().setValue(HermanophytonBlock.HAS_LEAVES, true), 2);
-				else world.setBlock(pos, PFBlocks.HERMANOPHYTON_TOP.get().defaultBlockState(), 2);
+				else world.setBlock(pos, PFBlocks.HERMANOPHYTON_TOP.get().defaultBlockState().setValue(HermanophytonTopBlock.PLAYER_PLACED, false), 2);
 				pos.move(Direction.UP);
 			}
 			i++;

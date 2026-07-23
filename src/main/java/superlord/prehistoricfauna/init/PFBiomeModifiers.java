@@ -40,7 +40,7 @@ public class PFBiomeModifiers {
 	public static final ResourceKey<BiomeModifier> ADD_PETRIFIED_TREES = register("add_petrified_trees");
 
 	public static void bootstrap(BootstapContext<BiomeModifier> bootstapContext) {
-		bootstapContext.register(ADD_OVERWORLD_FOSSILS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(getNonMountainOverworldBiomes(bootstapContext), getPlacedFeature(bootstapContext, PFPlacedFeatures.FOSSILIZED_CHALK, PFPlacedFeatures.FOSSILIZED_SANDSTONE, PFPlacedFeatures.FOSSILIZED_SILTSTONE), GenerationStep.Decoration.UNDERGROUND_ORES));
+		bootstapContext.register(ADD_OVERWORLD_FOSSILS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(getBiome(bootstapContext, BiomeTags.IS_OVERWORLD), getPlacedFeature(bootstapContext, PFPlacedFeatures.FOSSILIZED_CHALK, PFPlacedFeatures.FOSSILIZED_SANDSTONE, PFPlacedFeatures.FOSSILIZED_SILTSTONE), GenerationStep.Decoration.UNDERGROUND_ORES));
 		bootstapContext.register(ADD_CRETACEOUS_FOSSILS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(getBiome(bootstapContext, PFTags.IS_CRETACEOUS), getPlacedFeature(bootstapContext, PFPlacedFeatures.CRETACEOUS_FOSSILIZED_SANDSTONE, PFPlacedFeatures.CRETACEOUS_FOSSILIZED_SILTSTONE), GenerationStep.Decoration.UNDERGROUND_ORES));
 		bootstapContext.register(ADD_JURASSIC_FOSSILS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(getBiome(bootstapContext, PFTags.IS_JURASSIC), getPlacedFeature(bootstapContext, PFPlacedFeatures.JURASSIC_FOSSILIZED_SANDSTONE), GenerationStep.Decoration.UNDERGROUND_ORES));
 		bootstapContext.register(ADD_PETRIFIED_TREES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(getBiome(bootstapContext, BiomeTags.IS_BADLANDS), getPlacedFeature(bootstapContext, PFPlacedFeatures.PLACED_PETRIFIED_TREE), GenerationStep.Decoration.VEGETAL_DECORATION));
@@ -61,6 +61,7 @@ public class PFBiomeModifiers {
 		return bootstapContex.lookup(Registries.BIOME).getOrThrow(biome);
 	}
 
+	@SuppressWarnings("unused")
 	private static HolderSet<Biome> getNonMountainOverworldBiomes(BootstapContext<BiomeModifier> context) {
 		var biomeLookup = context.lookup(Registries.BIOME);
 		var overworldBiomes = biomeLookup.getOrThrow(BiomeTags.IS_OVERWORLD);

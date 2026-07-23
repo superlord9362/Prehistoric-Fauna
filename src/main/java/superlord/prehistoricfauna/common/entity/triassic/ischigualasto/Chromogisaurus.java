@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.triassic.ischigualasto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -112,9 +117,14 @@ public class Chromogisaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CHROMOGISAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.CHROMOGISAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CHROMOGISAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.chromogisaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.chromogisaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -130,6 +140,7 @@ public class Chromogisaurus extends DinosaurEntity {
 			this.setPassive(true);
 		}
 		this.setOmnivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

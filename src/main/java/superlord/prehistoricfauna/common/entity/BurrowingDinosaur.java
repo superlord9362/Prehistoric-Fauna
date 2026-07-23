@@ -35,6 +35,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.BurrowBlock;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFTags;
 
@@ -245,7 +246,7 @@ public class BurrowingDinosaur extends DinosaurEntity {
 
 		@Override
 		public boolean canUse() {
-			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL) && !BurrowingDinosaur.this.level().getBlockState(BurrowingDinosaur.this.getOnPos().above()).is(Blocks.WATER);
+			return BurrowingDinosaur.this.burrowPos == null && BurrowingDinosaur.this.wantsToEnterBurrow() && BurrowingDinosaur.this.getBlockStateOn().is(PFTags.SOIL) && BurrowingDinosaur.this.level().getBlockState(BurrowingDinosaur.this.getOnPos().above()).is(Blocks.AIR) && PrehistoricFaunaConfig.burrowing;
 		}
 		
 		@Override

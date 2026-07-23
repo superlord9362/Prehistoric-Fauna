@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scelidosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ScelidosaurusRenderer extends MobRenderer<Scelidosaurus, ScelidosaurusModel> {
-	private static final ResourceLocation SCELIDOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/scelidosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/melanistic.png");
-	private static final ResourceLocation SCELIDOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/scelidosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scelidosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation SCELIDOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/scelidosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/melanistic.png");
+	private static final ResourceLocation SCELIDOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/scelidosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scelidosaurus/melanistic_sleeping.png");
 
 	public ScelidosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ScelidosaurusModel(renderManagerIn.bakeLayer(ClientEvents.SCELIDOSAURUS)), 1F);

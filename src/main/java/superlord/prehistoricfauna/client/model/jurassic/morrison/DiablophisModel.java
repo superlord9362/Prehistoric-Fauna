@@ -83,6 +83,13 @@ public class DiablophisModel extends EntityModel<Diablophis> {
 		this.Tail2.yRot = -Mth.sin(limbSwing * 0.6F) * limbSwingAmount;
 		this.Head.xRot = -(headPitch * ((float)Math.PI / 180F));
 		this.Chest.xRot = (headPitch * ((float)Math.PI / 180F));
+		if (entity.isFlicking()) {
+			this.Tongue.z = -3F;
+			this.Tongue.xRot = 0.5F * Mth.cos(0.75F * ageInTicks);
+		} else {
+			this.Tongue.z = -1;
+			this.Tongue.xRot = 0;
+		}
 		if (entity.isInWater()) {
 			this.Tail1.yRot = 0.25F * Mth.sin(0.25F * ageInTicks / 1F);
 			this.Tail2.yRot = -0.25F * Mth.sin(0.25F * ageInTicks / 1F);

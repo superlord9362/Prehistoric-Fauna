@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class PostosuchusRenderer extends MobRenderer<Postosuchus, PostosuchusModel> {
-	private static final ResourceLocation POSTOSUCHUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/postosuchus.png");
-	private static final ResourceLocation POSTOSUCHUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/postosuchus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/melanistic_sleeping.png");
+	private static final ResourceLocation POSTOSUCHUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/postosuchus.png");
+	private static final ResourceLocation POSTOSUCHUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/postosuchus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/melanistic_sleeping.png");
 
 	public PostosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PostosuchusModel(renderManagerIn.bakeLayer(ClientEvents.POSTOSUCHUS)), 1F);

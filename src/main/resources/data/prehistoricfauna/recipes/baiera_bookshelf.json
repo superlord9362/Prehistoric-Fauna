@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "building",
+	"group": "wooden_bookshelf",
+	"pattern": [		
+		"###",
+		"XXX",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:baiera_planks"
+		},
+		"X": {
+			"item": "minecraft:book"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:baiera_bookshelf"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_bookshelves"
+				}
+			]
+		}
+	]
+}

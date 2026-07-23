@@ -11,7 +11,7 @@ import superlord.prehistoricfauna.common.entity.henos.CaveSentinel;
 
 public class CaveSentinelRenderer extends MobRenderer<CaveSentinel, CaveSentinelModel> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sentinel/sentinel_trilobite.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sentinel/sentinel_trilobite.png");
 
 	public CaveSentinelRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CaveSentinelModel(renderManagerIn.bakeLayer(ClientEvents.CAVE_SENTINEL)), 1.25F);

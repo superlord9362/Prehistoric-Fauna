@@ -1,17 +1,28 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "prehistoricfauna:agathoxylon_vertical_planks"
-    }
-  ],
-  "result": {
-    "item": "prehistoricfauna:agathoxylon_planks"
-  },
-  "conditions": [
-    {
-      "type": "prehistoricfauna:quark_flag",
-      "flag": "vertical_planks"
-    }
-  ]
+	"type": "minecraft:crafting_shapelss",
+	"category": "building",
+	"group": "wooden_planks",
+	"ingredients": [
+		{
+			"item": "prehistoricfauna:agathoxylon_vertical_planks"
+		}
+	],
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_planks"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_planks"
+				}
+			]
+		}
+	]
 }

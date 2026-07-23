@@ -10,8 +10,8 @@ import superlord.prehistoricfauna.common.entity.fish.Lonchidion;
 
 public class LonchidionRenderer extends MobRenderer<Lonchidion, LonchidionModel> {
 
-	private static final ResourceLocation LONCHIDION = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/lonchidion.png");
-	private static final ResourceLocation CHINLE_LONCHIDION = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/chinle_lonchidion.png");
+	private static final ResourceLocation LONCHIDION = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/lonchidion.png");
+	private static final ResourceLocation CHINLE_LONCHIDION = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/chinle_lonchidion.png");
 
 	public LonchidionRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LonchidionModel(renderManagerIn.bakeLayer(ClientEvents.LONCHIDION)), 0);

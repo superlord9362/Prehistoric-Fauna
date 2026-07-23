@@ -1,0 +1,28 @@
+{
+  "type": "prehistoricfauna:baiera_tree_1",
+  "config": {
+    "leaves_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:baiera_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "max_height": 3,
+    "min_height": 1,
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "prehistoricfauna:baiera_log",
+        "Properties": {
+          "axis": "y",
+          "leaves": "false"
+        }
+      }
+    }
+  }
+}

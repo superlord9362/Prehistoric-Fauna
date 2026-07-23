@@ -1,14 +1,27 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.google.common.primitives.Ints;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Containers;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,6 +39,7 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.BreathAirGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
@@ -37,13 +51,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathFinder;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
@@ -122,6 +140,7 @@ public class Kayentachelys extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new BreathAirGoal(this));
 		this.goalSelector.addGoal(5, new Kayentachelys.KayentachelysRandomStrollGoal(this, 1.0D, 100));
 		this.goalSelector.addGoal(3, new Kayentachelys.SwimGoal(this));
+		this.goalSelector.addGoal(4, new DiggingGoal(this));
 	}
 
 	public boolean isPushedByFluid() {
@@ -145,9 +164,14 @@ public class Kayentachelys extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.KAYENTACHELYS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.KAYENTACHELYS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.KAYENTACHELYS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.kayentachelys_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.kayentachelys_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -340,4 +364,85 @@ public class Kayentachelys extends DinosaurEntity {
 	protected PathNavigation createNavigation(Level level) {
 		return new Kayentachelys.KayentachelysPathNavigation(this, level);
 	}
+
+	static class DiggingGoal extends Goal {
+		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "gameplay/kayentachelys_digging");
+
+		private final Kayentachelys kayentachelys;
+		private int diggingTimer;
+		private int digTimer2;
+
+		public DiggingGoal(Kayentachelys entity) {
+			this.kayentachelys = entity;
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
+		}
+
+		@Override
+		public boolean canUse() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+				return false;
+			}
+			if (kayentachelys.getRandom().nextInt(kayentachelys.isBaby() ? 100 : 1000) != 0) {
+				return false;
+			} else {
+				BlockPos blockpos = kayentachelys.blockPosition();
+				BlockState state = kayentachelys.level().getBlockState(blockpos);
+				if (state.is(BlockTags.DIRT)) {
+					return true;
+				} else {
+					return kayentachelys.level().getBlockState(blockpos.below()).is(BlockTags.DIRT);
+				}
+			}
+		}
+
+		@Override
+		public void start() {
+			diggingTimer = 40;
+			digTimer2 = 6000;
+			kayentachelys.level().broadcastEntityEvent(kayentachelys, (byte) 10);
+			kayentachelys.getNavigation().stop();
+		}
+
+		@Override
+		public void stop() {
+			diggingTimer = 0;
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return diggingTimer > 0;
+		}
+
+		@Override
+		public void tick() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+			}
+			if (diggingTimer > 0) {
+				--diggingTimer;
+			}
+			if (diggingTimer == 25) {
+				BlockPos blockpos = kayentachelys.blockPosition();
+				BlockPos blockpos1 = blockpos.below();
+				if (kayentachelys.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = kayentachelys.level().getBlockState(blockpos1);
+					kayentachelys.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = kayentachelys.level().getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) kayentachelys.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(kayentachelys.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+			if (diggingTimer % 10 == 0) {
+				double d0 = (double)kayentachelys.blockPosition().getX() + kayentachelys.getRandom().nextDouble();
+				double d1 = (double)kayentachelys.blockPosition().getY();
+				double d2 = (double)kayentachelys.blockPosition().getZ() + kayentachelys.getRandom().nextDouble();
+				kayentachelys.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, kayentachelys.level().getBlockState(kayentachelys.blockPosition().below())), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+
 }

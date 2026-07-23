@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/metasequoia_log_top",
+		"side": "prehistoricfauna:block/metasequoia_log",
+		"inside": "prehistoricfauna:block/metasequoia_stripped_log"
+	}
+}

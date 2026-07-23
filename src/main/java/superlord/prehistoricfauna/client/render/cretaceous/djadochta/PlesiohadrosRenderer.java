@@ -14,20 +14,20 @@ import superlord.prehistoricfauna.client.render.layer.PlesiohadrosSaddleLayer;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadros;
 
 public class PlesiohadrosRenderer extends MobRenderer<Plesiohadros, EntityModel<Plesiohadros>> {
-	private static final ResourceLocation PLESIOHADROS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic.png");
-	private static final ResourceLocation DEOXIDATED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/deoxidated.png");
-	private static final ResourceLocation PLESIOHADROS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_sleeping.png");
-	private static final ResourceLocation DEOXIDATED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/deoxidated_sleeping.png");
-	private static final ResourceLocation PLESIOHADROS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_hatchling.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_hatchling.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_hatchling.png");
-	private static final ResourceLocation PLESIOHADROS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_hatchling_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/albino_hatchling_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/melanistic_hatchling_sleeping.png");
+	private static final ResourceLocation PLESIOHADROS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/plesiohadros.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/melanistic.png");
+	private static final ResourceLocation DEOXIDATED = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/deoxidated.png");
+	private static final ResourceLocation PLESIOHADROS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/plesiohadros_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/melanistic_sleeping.png");
+	private static final ResourceLocation DEOXIDATED_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/deoxidated_sleeping.png");
+	private static final ResourceLocation PLESIOHADROS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/plesiohadros_hatchling.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/albino_hatchling.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/melanistic_hatchling.png");
+	private static final ResourceLocation PLESIOHADROS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/plesiohadros_hatchling_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/albino_hatchling_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/melanistic_hatchling_sleeping.png");
 
 	private static PlesiohadrosModel PLESIOHADROS_MODEL;
 	private static PlesiohadrosBabyModel PLESIOHADROS_BABY_MODEL;

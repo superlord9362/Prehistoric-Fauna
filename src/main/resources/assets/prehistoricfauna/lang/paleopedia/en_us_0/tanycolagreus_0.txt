@@ -19,7 +19,7 @@ territorial.
 
 
 
-<image><drawings_ankylosaurus.png 30 3 127 296 23 18 7>
+<image><drawings_ankylosaurus.png 30 3 127 338 23 18 7>
 
 
 
@@ -36,6 +36,7 @@ territorial.
 
 Sleep Cycle: Diurnal
 
-Behavior: Hesperornithoides will 
-shed feathers occasionally when 
-taking dust baths.
+Behavior: Tanycolagreus can be 
+tamed using Small Raw Ornithischian, 
+and will fight to protect their 
+owner.

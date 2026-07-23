@@ -1,0 +1,14 @@
+{
+	"placement": {
+		"type": "minecraft:random_spread",
+		"salt": 592931203,
+		"separation": 44,
+		"spacing": 80
+	},
+	"structures": [
+		{
+			"structure": "prehistoricfauna:jurassic_maze",
+			"weight": 1
+		}
+	]
+}

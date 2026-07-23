@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodap
 
 public class HyperodapedonEyeLayer extends RenderLayer<Hyperodapedon, HyperodapedonModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/hyperodapedon_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/hyperodapedon_eyeglow.png"));
 	private final RenderLayerParent<Hyperodapedon, HyperodapedonModel> hyperodapedonRenderer;
 	
 	public HyperodapedonEyeLayer(RenderLayerParent<Hyperodapedon, HyperodapedonModel> rendererIn) {

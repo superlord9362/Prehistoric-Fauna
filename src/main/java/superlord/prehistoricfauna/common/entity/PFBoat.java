@@ -46,7 +46,7 @@ public class PFBoat extends Boat {
 	}
 
 	public double getPassengersRidingOffset() {
-		return this.getPFBoatType() == PFBoatTypes.NEOCALAMITES ? 0.25D : -0.1D;
+		return (this.getPFBoatType() == PFBoatTypes.NEOCALAMITES || this.getPFBoatType() == PFBoatTypes.BAIERA) ? 0.25D : -0.1D;
 	}
 
 	@Override
@@ -136,6 +136,10 @@ public class PFBoat extends Boat {
 			return PFItems.PHOENICOPSIS_BOAT.get();
 		case FRENELOPSIS:
 			return PFItems.FRENELOPSIS_BOAT.get();
+		case BAIERA:
+			return PFItems.BAIERA_BOAT.get();
+		case NEOCALAMITES:
+			return PFItems.NEOCALAMITES_BOAT.get();
 		}
 	}
 
@@ -165,7 +169,8 @@ public class PFBoat extends Boat {
 		ELATIDES(PFBlocks.ELATIDES_PLANKS.get(), "elatides"),
 		PHOENICOPSIS(PFBlocks.PHOENICOPSIS_PLANKS.get(), "phoenicopsis"),
 		FRENELOPSIS(PFBlocks.FRENELOPSIS_PLANKS.get(), "frenelopsis"),
-		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites");
+		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites"),
+		BAIERA(PFBlocks.BAIERA_PLANKS.get(), "baiera");
 
 		private final String name;
 		private final Block planks;

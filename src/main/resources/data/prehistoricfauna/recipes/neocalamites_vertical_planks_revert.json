@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shapelss",
+	"category": "building",
+	"group": "wooden_planks",
+	"ingredients": [
+		{
+			"item": "prehistoricfauna:neocalamites_vertical_planks"
+		}
+	],
+	"result": {
+		"item": "prehistoricfauna:neocalamites_planks"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_planks"
+				}
+			]
+		}
+	]
+}

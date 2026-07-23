@@ -21,7 +21,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.YutyrannusSkel
 
 public class YutyrannusSkeletonRenderer extends MobRenderer<YutyrannusSkeleton, EntityModel<YutyrannusSkeleton>> {
 
-	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/yutyrannus_skeleton.png");
+	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/yutyrannus_skeleton.png");
 	private static YutyrannusSkeletonModel IDLE;
 	private static YutyrannusSkeletonSaunterModel SAUNTER;
 	private static YutyrannusSkeletonRompModel ROMP;
@@ -46,25 +46,17 @@ public class YutyrannusSkeletonRenderer extends MobRenderer<YutyrannusSkeleton, 
 	}
 
 	protected void scale(YutyrannusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isSaunter()) {
-			model = SAUNTER;
-		} else if (entityIn.isRomp()) {
-			model = ROMP;
-		} else if (entityIn.isFrolic()) {
-			model = FROLIC;
-		} else if (entityIn.isJP()) {
-			model = JP;
-		} else if (entityIn.isLeap()) {
-			model = LEAP;
-		} else if (entityIn.isSubdued()) {
-			model = SUBDUED;
-		} else if (entityIn.isSleep()) {
-			model = SLEEP;
-		} else if (entityIn.isCarcass()) {
-			model = CARCASS;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "SAUNTER" -> SAUNTER;
+		case "ROMP" -> ROMP;
+		case "FROLIC" -> FROLIC;
+		case "JP" -> JP;
+		case "LEAP" -> LEAP;
+		case "SUBDUED" -> SUBDUED;
+		case "SLEEP" -> SLEEP;
+		case "CARCASS" -> CARCASS;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

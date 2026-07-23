@@ -28,15 +28,20 @@ public class ArchaefructusFeature extends Feature<JohnstoniaConfig> {
 		for (int j = 0; j < 15; ++j) {
 			int k = rand.nextInt(8) - rand.nextInt(8);
 			int l = rand.nextInt(8) - rand.nextInt(8);
-			int i1 = world.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX() + k, pos.getZ() + l);
+			int i1 = world.getHeight(Heightmap.Types.OCEAN_FLOOR, pos.getX() + k, pos.getZ() + l);
 			BlockPos blockpos = new BlockPos(pos.getX() + k, i1, pos.getZ() + l);
-			if (world.getBlockState(blockpos.below()).getBlock() == Blocks.WATER && world.getBlockState(blockpos).getBlock() == Blocks.AIR && (world.getBlockState(blockpos.below(2)).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(blockpos.below(2)).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(blockpos.below(2)).getBlock() == PFBlocks.SILT.get() || world.getBlockState(blockpos.below(2)).getBlock() == Blocks.SAND)) {
-				world.setBlock(blockpos.below(), PFBlocks.ARCHAEFRUCTUS.get().defaultBlockState().setValue(ArchaefructusBlock.WATERLOGGED, true), l);
+			if (world.getBlockState(blockpos).getBlock() == Blocks.WATER && world.getBlockState(blockpos.above()).getBlock() == Blocks.AIR) {
+				world.setBlock(blockpos, PFBlocks.ARCHAEFRUCTUS.get().defaultBlockState().setValue(ArchaefructusBlock.WATERLOGGED, true), 2);
+				++i;
 			}
-			if (world.getBlockState(blockpos.below()).getBlock() == Blocks.WATER && world.getBlockState(blockpos.below(2)).getBlock() == Blocks.WATER && world.getBlockState(blockpos).getBlock() == Blocks.AIR && (world.getBlockState(blockpos.below(3)).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(blockpos.below(3)).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(blockpos.below(3)).getBlock() == PFBlocks.SILT.get() || world.getBlockState(blockpos.below(3)).getBlock() == Blocks.SAND)) {
-				world.setBlock(blockpos.below(2), PFBlocks.ARCHAEFRUCTUS.get().defaultBlockState().setValue(ArchaefructusBlock.WATERLOGGED, true), l);
-			}
-			++i;
+//			if (world.getBlockState(blockpos.below()).getBlock() == Blocks.WATER && world.getBlockState(blockpos).getBlock() == Blocks.AIR && (world.getBlockState(blockpos.below(2)).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(blockpos.below(2)).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(blockpos.below(2)).getBlock() == PFBlocks.SILT.get() || world.getBlockState(blockpos.below(2)).getBlock() == Blocks.SAND || world.getBlockState(blockpos.below(2)).getBlock() == Blocks.DIRT || world.getBlockState(blockpos.below(2)).getBlock() == Blocks.MUD || world.getBlockState(blockpos.below(2)).getBlock() == Blocks.RED_SAND)) {
+//				world.setBlock(blockpos.below(), PFBlocks.ARCHAEFRUCTUS.get().defaultBlockState().setValue(ArchaefructusBlock.WATERLOGGED, true), 2);
+//				++i;
+//			}
+//			if (world.getBlockState(blockpos.below()).getBlock() == Blocks.WATER && world.getBlockState(blockpos.below(2)).getBlock() == Blocks.WATER && world.getBlockState(blockpos).getBlock() == Blocks.AIR && (world.getBlockState(blockpos.below(3)).getBlock() == Blocks.COARSE_DIRT || world.getBlockState(blockpos.below(3)).getBlock() == PFBlocks.PACKED_LOAM.get() || world.getBlockState(blockpos.below(3)).getBlock() == PFBlocks.SILT.get() || world.getBlockState(blockpos.below(3)).getBlock() == Blocks.SAND || world.getBlockState(blockpos.below(3)).get)Block() == Blocks.DIRT || world.getBlockState(blockpos.below(3)).getBlock() == Blocks.MUD || world.getBlockState(blockpos.below(3)).getBlock() == Blocks.RED_SAND)) {
+//				world.setBlock(blockpos.below(2), PFBlocks.ARCHAEFRUCTUS.get().defaultBlockState().setValue(ArchaefructusBlock.WATERLOGGED, true), 2);
+//				++i;
+//			}
 		}
 		return i > 0;
 	}

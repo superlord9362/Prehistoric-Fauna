@@ -81,7 +81,8 @@
       "prehistoricfauna:placed_small_ginkgo_trees",
       "prehistoricfauna:placed_phoenicopsis_trees",
       "prehistoricfauna:placed_podozamites_trees",
-      "prehistoricfauna:placed_rare_zamites"
+      "prehistoricfauna:placed_rare_zamites",
+      "prehistoricfauna:placed_baiera_trees"
     ]
   ],
   "has_precipitation": true,
@@ -148,6 +149,18 @@
       {
         "type": "prehistoricfauna:huayangosaurus",
         "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      },
+      {
+        "type": "prehistoricfauna:omeisaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:polistodon",
+        "maxCount": 2,
         "minCount": 1,
         "weight": 7
       },

@@ -175,6 +175,38 @@
 				}
 			]
 		}
+	},
+	"morrison_ruined_settlement": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+				{
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"location": {
+							"structure": "prehistoricfauna:morrison_ruined_settlement"	
+						}
+					}
+				}
+			]
+		}
+	},
+	"shaximiao_hut": {
+		"trigger": "minecraft:location",
+		"conditions": {
+			"player": [
+				{
+					"condition": "minecraft:entity_properties",
+					"entity": "this",
+					"predicate": {
+						"location": {
+							"structure": "prehistoricfauna:shaximiao_hut"	
+						}
+					}
+				}
+			]
+		}
 	}
   },
   "requirements": [
@@ -188,7 +220,9 @@
 		"yixian_hut",
 		"yixian_ruined_settlement",
 		"hell_creek_ruined_settlement",
-		"djadochta_ruined_settlement"
+		"djadochta_ruined_settlement",
+		"morrison_ruined_settlement",
+		"shaximiao_hut"
     ]
   ]
 }

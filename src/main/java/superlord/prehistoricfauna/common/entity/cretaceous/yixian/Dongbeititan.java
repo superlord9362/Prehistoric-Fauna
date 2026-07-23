@@ -1,10 +1,13 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -201,9 +204,14 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DONGBEITITAN.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.DONGBEITITAN.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DONGBEITITAN.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.dongbeititan_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.dongbeititan_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

@@ -11,18 +11,18 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.DryosaurusModel
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Dryosaurus;
 
 public class DryosaurusRenderer extends MobRenderer<Dryosaurus, DryosaurusModel> {
-	private static final ResourceLocation DRYOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus.png");
-    private static final ResourceLocation DRYOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus_baby.png");
-    private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino.png");
-    private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino_baby.png");
-    private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic.png");
-    private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_baby.png");
-    private static final ResourceLocation DRYOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus_sleeping.png");
-    private static final ResourceLocation DRYOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/dryosaurus_baby_sleeping.png");
-    private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino_sleeping.png");
-    private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/albino_baby_sleeping.png");
-    private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_sleeping.png");
-    private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dryosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation DRYOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/dryosaurus.png");
+    private static final ResourceLocation DRYOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/dryosaurus_baby.png");
+    private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/albino.png");
+    private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/albino_baby.png");
+    private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/melanistic.png");
+    private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/melanistic_baby.png");
+    private static final ResourceLocation DRYOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/dryosaurus_sleeping.png");
+    private static final ResourceLocation DRYOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/dryosaurus_baby_sleeping.png");
+    private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/albino_sleeping.png");
+    private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/albino_baby_sleeping.png");
+    private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/melanistic_sleeping.png");
+    private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dryosaurus/melanistic_baby_sleeping.png");
 
 	public DryosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DryosaurusModel(renderManagerIn.bakeLayer(ClientEvents.DRYOSAURUS)), 0.375F);

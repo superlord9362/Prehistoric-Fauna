@@ -1,7 +1,7 @@
 Found In: Kayenta
 
-Drops: 0-2 Osteoderms, 2-4 Small 
-Raw Thyreophoran
+Drops: 0-2 Small Osteoderms, 2-4 
+Small Raw Thyreophoran
 
 Diet: Herbivore
 
@@ -34,4 +34,7 @@ Sleep Cycle: Cathmeral
 
 
 
-Behavior: Investigation underway!
+Behavior: Scelidosaurus can switch 
+between being quadrepedal and 
+bipedal when scared, whether by 
+players or predators.

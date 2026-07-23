@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -258,9 +263,14 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		Item item = itemstack.getItem();
 
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PLESIOHADROS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.PLESIOHADROS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PLESIOHADROS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.plesiohadros_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.plesiohadros_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

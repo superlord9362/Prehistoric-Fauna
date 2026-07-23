@@ -1,7 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"group": "frenelopsis_chest",
-	"pattern": [
+	"category": "misc",
+	"group": "wooden_chest",
+	"pattern": [		
 		"###",
 		"# #",
 		"###"
@@ -12,13 +13,21 @@
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:frenelopsis_chest",
-		"count": 1
+		"item": "prehistoricfauna:frenelopsis_chest"
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "variant_chests"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_chests"
+				}
+			]
 		}
 	]
 }

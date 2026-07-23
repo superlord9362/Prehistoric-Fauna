@@ -39,6 +39,18 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
+                    "biome": "prehistoricfauna:kayenta_canyons"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_dunes"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
                     "biome": "prehistoricfauna:morrison_savanna"
                   }
                 },
@@ -70,6 +82,54 @@
             }
           ]
         },
+        {
+			"type": "minecraft:item",
+			"name": "prehistoricfauna:raw_toarcibatis",
+			"weight": 40,
+			"conditions": [
+				{
+					"condition": "minecraft:any_of",
+					"terms": [
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:kayenta_buttes"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:kayenta_desert"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:kayenta_dry_forest"
+							}
+						},
+						{
+							"condition": "minecraft:location_check",
+							"predicate": {
+								"biome": "prehistoricfauna:kayenta_river"
+							}
+						},
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_canyons"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_dunes"
+                  }
+                }
+					]
+				}
+			]
+		},
         {
           "type": "minecraft:item",
           "name": "prehistoricfauna:raw_ceratodus",
@@ -124,6 +184,18 @@
                   "condition": "minecraft:location_check",
                   "predicate": {
                     "biome": "prehistoricfauna:kayenta_river"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_canyons"
+                  }
+                },
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "biome": "prehistoricfauna:kayenta_dunes"
                   }
                 },
                 {

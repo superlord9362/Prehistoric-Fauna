@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log",
+	"textures": {
+		"end": "prehistoricfauna:block/liriodendrites_log_top",
+		"side": "prehistoricfauna:block/liriodendrites_log",
+		"inside": "prehistoricfauna:block/stripped_liriodendrites_log"
+	}
+}

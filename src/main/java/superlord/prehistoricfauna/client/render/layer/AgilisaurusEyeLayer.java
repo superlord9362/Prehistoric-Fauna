@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Agilisaurus;
 
 public class AgilisaurusEyeLayer extends RenderLayer<Agilisaurus, AgilisaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/agilisaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/agilisaurus_eyeglow.png"));
 	private final RenderLayerParent<Agilisaurus, AgilisaurusModel> agilisaurusRenderer;
 	
 	public AgilisaurusEyeLayer(RenderLayerParent<Agilisaurus, AgilisaurusModel> rendererIn) {

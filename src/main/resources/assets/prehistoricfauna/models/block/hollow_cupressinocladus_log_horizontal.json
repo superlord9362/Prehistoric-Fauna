@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/cupressinocladus_log_top",
+		"side": "prehistoricfauna:block/cupressinocladus_log",
+		"inside": "prehistoricfauna:block/stripped_cupressinocladus_log"
+	}
+}

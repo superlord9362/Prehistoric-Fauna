@@ -17,18 +17,18 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigual
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class IschigualastiaRenderer extends MobRenderer<Ischigualastia, EntityModel<Ischigualastia>> {
-	private static final ResourceLocation ISCHIGUALASTIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic.png");
-	private static final ResourceLocation ISCHIGUALASTIA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_sleeping.png");
-	private static final ResourceLocation ISCHIGUALASTIA_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_baby.png");
-	private static final ResourceLocation ISCHIGUALASTIA_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ISCHIGUALASTIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/melanistic.png");
+	private static final ResourceLocation ISCHIGUALASTIA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/melanistic_sleeping.png");
+	private static final ResourceLocation ISCHIGUALASTIA_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/melanistic_baby.png");
+	private static final ResourceLocation ISCHIGUALASTIA_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/melanistic_baby_sleeping.png");
 
 	private static IschigualastiaModel ISCHIGUALASTIA_MODEL;
 	private static IschigualastiaBabyModel BABY_ISCHIGUALASTIA_MODEL;

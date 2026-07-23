@@ -1097,6 +1097,50 @@
 			}
 		]
 	},
+	"toarcibatis_hurt": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.toarcibatisHurt",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
+	"toarcibatis_death": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.toarcibatisDeath",
+		"sounds": [
+			{
+				"name": "entity/fish/hurt1",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt2",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt3",
+				"stream": true
+			},
+			{
+				"name": "entity/fish/hurt4",
+				"stream": true
+			}
+		]
+	},
 	"gar_hurt": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.garHurt",
@@ -2023,6 +2067,16 @@
             }
         ]
     },
+    "dilophosaurus_conch": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.dilophosaurusConch",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/dilophosaurus/dilophosaurus_conch",
+				"stream": true
+			}
+		]
+	},
 	"megapnosaurus_idle": {
         "category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.megapnosaurusIdle",
@@ -4235,6 +4289,26 @@
 			}
 		]
 	},
+	"agilisaurus_small_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.agilisaurusSmallWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/agilisaurus/agilisaurus_warning_2",
+				"stream": true
+			}
+		]
+	},
+	"agilisaurus_big_warn": {
+		"category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.agilisaurusBigWarning",
+		"sounds": [
+			{
+				"name": "prehistoricfauna:prehistoric/agilisaurus/agilisaurus_warning_1",
+				"stream": true
+			}
+		]
+	},
 	"gigantspinosaurus_idle": {
 		"category": "neutral",
 		"subtitle": "prehistoricfauna.subtitle.gigantspinosaurusIdle",
@@ -4519,40 +4593,6 @@
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/kayentachelys/kayentachelys_hurt",
-				"stream": true
-			}
-		]
-	},
-	"kayentasuchus_idle": {
-		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.kayentasuchusIdle",
-		"sounds": [
-			{
-				"name": "prehistoricfauna:prehistoric/kayentasuchus/kayentasuchus_idle1",
-				"stream": true
-			},
-			{
-				"name": "prehistoricfauna:prehistoric/kayentasuchus/kayentasuchus_idle2",
-				"stream": true
-			}
-		]
-	},
-	"kayentasuchus_hurt": {
-		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.kayentasuchusHurt",
-		"sounds": [
-			{
-				"name": "prehistoricfauna:prehistoric/kayentasuchus/kayentasuchus_hurt",
-				"stream": true
-			}
-		]
-	},
-	"kayentasuchus_death": {
-		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.kayentasuchusDeath",
-		"sounds": [
-			{
-				"name": "prehistoricfauna:prehistoric/kayentasuchus/kayentasuchus_hurt",
 				"stream": true
 			}
 		]
@@ -4915,53 +4955,53 @@
 	 		}
 	 	]
 	 },
-	 "maraapunisaurus_idle": {
+	 "suuwassea_idle": {
 	     "category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusIdle",
+		"subtitle": "prehistoricfauna.subtitle.suuwasseaIdle",
 	     "sounds": [
 	         {
-	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_idle1",
+	             "name": "prehistoricfauna:prehistoric/suuwassea/suuwassea_idle1",
 	             "stream": true
 	         },
 			{
-	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_idle2",
+	             "name": "prehistoricfauna:prehistoric/suuwassea/suuwassea_idle2",
 				"stream": true
 			}
 	     ]
 	 },
-	"maraapunisaurus_hurt": {
+	"suuwassea_hurt": {
 	     "category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusHurt",
+		"subtitle": "prehistoricfauna.subtitle.suuwasseaHurt",
 	     "sounds": [
 	         {
-	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_hurt",
+	             "name": "prehistoricfauna:prehistoric/suuwassea/suuwassea_hurt",
 	             "stream": true
 	         }
 	     ]
 	 },
-	 "maraapunisaurus_warn": {
+	 "suuwassea_warn": {
 	     "category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusWarning",
+		"subtitle": "prehistoricfauna.subtitle.suuwasseaWarning",
 	     "sounds": [
 	         {
-	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_warning",
+	             "name": "prehistoricfauna:prehistoric/suuwassea/suuwassea_warning",
 	             "stream": true
 	         }
 	     ]
 	 },
-	"maraapunisaurus_death": {
+	"suuwassea_death": {
 	     "category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusDeath",
+		"subtitle": "prehistoricfauna.subtitle.suuwasseaDeath",
 	     "sounds": [
 	         {
-	             "name": "prehistoricfauna:prehistoric/maraapunisaurus/maraapunisaurus_hurt",
+	             "name": "prehistoricfauna:prehistoric/suuwassea/suuwassea_hurt",
 	             "stream": true
 	         }
 	     ]
 	 },
-	"maraapunisaurus_snores": {
+	"suuwassea_snores": {
 		"category": "neutral",
-		"subtitle": "prehistoricfauna.subtitle.maraapunisaurusSnores",
+		"subtitle": "prehistoricfauna.subtitle.suuwasseaSnores",
 		"sounds": [
 			{
 				"name": "prehistoricfauna:prehistoric/snoring/large_snoring",
@@ -5387,6 +5427,40 @@
 	     "sounds": [
 	         {
 	             "name": "prehistoricfauna:prehistoric/tuojiangosaurus/tuojiangosaurus_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	 "polistodon_idle": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.polistodonIdle",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/polistodon/polistodon_idle1",
+	             "stream": true
+	         },
+			{
+	             "name": "prehistoricfauna:prehistoric/polistodon/polistodon_idle2",
+				"stream": true
+			}
+	     ]
+	 },
+	"polistodon_hurt": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.polistodonHurt",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/polistodon/polistodon_hurt",
+	             "stream": true
+	         }
+	     ]
+	 },
+	"polistodon_death": {
+	     "category": "neutral",
+		"subtitle": "prehistoricfauna.subtitle.polistodonDeath",
+	     "sounds": [
+	         {
+	             "name": "prehistoricfauna:prehistoric/polistodon/polistodon_hurt",
 	             "stream": true
 	         }
 	     ]

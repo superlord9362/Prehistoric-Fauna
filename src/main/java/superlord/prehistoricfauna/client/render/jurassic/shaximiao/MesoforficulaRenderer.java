@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.shaximiao.MesoforficulaM
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Mesoforficula;
 
 public class MesoforficulaRenderer extends MobRenderer<Mesoforficula, MesoforficulaModel<Mesoforficula>> {
-	private static final ResourceLocation MESOFORFICULA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/mesoforficula.png");
+	private static final ResourceLocation MESOFORFICULA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/mesoforficula.png");
 
 	public MesoforficulaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MesoforficulaModel<>(renderManagerIn.bakeLayer(ClientEvents.MESOFORFICULA)), 0F);

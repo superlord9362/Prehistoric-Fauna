@@ -313,6 +313,7 @@ public class TyrannosaurusModel extends EntityModel<Tyrannosaurus> {
 		this.RightLeg1.z = -1;
 		this.RightLeg2.y = 26;
 		this.RightLeg2.z = 9;
+		this.Body1.yRot = 0;
 	}
 
 	public void sleepPose() {

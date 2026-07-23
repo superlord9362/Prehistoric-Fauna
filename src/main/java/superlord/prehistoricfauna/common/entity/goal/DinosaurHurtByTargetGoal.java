@@ -13,7 +13,9 @@ public class DinosaurHurtByTargetGoal extends HurtByTargetGoal {
 	}
 	
 	public boolean canUse() {
-		return super.canUse() && (!dinosaur.isPassive() || !dinosaur.isSkittish());
+		if (dinosaur.getLastHurtByMob() != null)  {
+		return super.canUse() && (!dinosaur.isPassive() || !dinosaur.isSkittish()) && (dinosaur.getLastHurtByMob().getHealth() <= (dinosaur.getMaxHealth() * 2));
+		} else return false;
 	}
 
 	/**

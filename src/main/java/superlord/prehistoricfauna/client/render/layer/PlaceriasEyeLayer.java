@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Placerias;
 
 public class PlaceriasEyeLayer extends RenderLayer<Placerias, PlaceriasModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/placerias/placerias_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/placerias/placerias_eyeglow.png"));
 	private final RenderLayerParent<Placerias, PlaceriasModel> coelophysisRenderer;
 	
 	public PlaceriasEyeLayer(RenderLayerParent<Placerias, PlaceriasModel> rendererIn) {

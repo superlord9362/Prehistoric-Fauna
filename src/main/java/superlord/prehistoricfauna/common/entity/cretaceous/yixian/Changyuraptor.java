@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -34,6 +40,7 @@ import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -47,6 +54,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraftforge.common.Tags;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -142,7 +150,14 @@ public class Changyuraptor extends DinosaurEntity {
 			} else if (f < 0.2F) {
 				itemstack = new ItemStack(PFItems.TIME_GEM_SHARD.get());
 			} else if (f < 0.4F) {
-				itemstack = p_218171_.nextBoolean() ? new ItemStack(PFItems.DEAD_HOPPER.get()) : new ItemStack(PFItems.DEAD_BEETLE.get());
+				int bug = random.nextInt(3);
+				if (bug == 0) {
+					itemstack = new ItemStack(PFItems.DEAD_HOPPER.get());
+				} else if (bug == 1) {
+					itemstack = new ItemStack(PFItems.DEAD_BEETLE.get());
+				} else {
+					itemstack = new ItemStack(PFItems.DEAD_SPIDER.get());
+				}
 			} else if (f < 0.6F) {
 				itemstack = new ItemStack(PFItems.TUBER.get());
 			} else if (f < 0.8F) {
@@ -368,9 +383,14 @@ public class Changyuraptor extends DinosaurEntity {
 		}
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CHANGYURAPTOR.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.CHANGYURAPTOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CHANGYURAPTOR.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.changyuraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.changyuraptor_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -423,4 +443,7 @@ public class Changyuraptor extends DinosaurEntity {
 		this.setStealing(compound.getBoolean("Stealing"));
 	}
 
+	public static boolean canChangyuraptorSpawn(EntityType<? extends Animal> animal, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource random) {
+		return (worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(BlockTags.LEAVES) || worldIn.getBlockState(pos.below()).is(PFBlocks.SALT.get()) || worldIn.getBlockState(pos.below()).is(Tags.Blocks.SAND)) && worldIn.getRawBrightness(pos, 0) > 8;
+	}
 }

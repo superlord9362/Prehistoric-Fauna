@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.init;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import superlord.prehistoricfauna.PrehistoricFauna;
@@ -33,7 +35,9 @@ public class PFWoodTypes {
 	public static final BlockSetType ELATIDES_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "elatides").toString()));
 	public static final BlockSetType PHOENICOPSIS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "phoenicopsis").toString()));
 	public static final BlockSetType FRENELOPSIS_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "frenelopsis").toString()));
-
+	public static final BlockSetType BAIERA_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "baiera").toString()));
+	public static final BlockSetType HENOSTONE_TYPE = BlockSetType.register(new BlockSetType(new ResourceLocation(PrehistoricFauna.MOD_ID, "henostone").toString(), false, SoundType.STONE, SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN, SoundEvents.STONE_PRESSURE_PLATE_CLICK_OFF, SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON));
+	
 	public static WoodType METASEQUOIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "metasequoia").toString(), METASEQUOIA_TYPE));
 	public static WoodType ARAUCARIA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "araucaria").toString(), ARAUCARIA_TYPE));
 	public static WoodType PROTOPICEOXYLON = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "protopiceoxylon").toString(), PROTOPICEOXYLON_TYPE));
@@ -60,5 +64,6 @@ public class PFWoodTypes {
 	public static WoodType ELATIDES = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "elatides").toString(), ELATIDES_TYPE));
 	public static WoodType PHOENICOPSIS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "phoenicopsis").toString(), PHOENICOPSIS_TYPE));
 	public static WoodType FRENELOPSIS = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "frenelopsis").toString(), FRENELOPSIS_TYPE));
+	public static WoodType BAIERA = WoodType.register(new WoodType(new ResourceLocation(PrehistoricFauna.MOD_ID, "baiera").toString(), BAIERA_TYPE));
 	
 }

@@ -18,8 +18,7 @@ a 10% chance of being protective,
 and a 5% chance of being skittish.
 
 
-<image><drawings_ankylosaurus.png 32 3 105 3 19 18 7>
-
+<image><drawings_ankylosaurus.png 32 2 105 3 19 18 7>
 
 
 
@@ -36,4 +35,8 @@ and a 5% chance of being skittish.
 
 Sleep Cycle: Cathemeral
 
-Behavior: Investigation underway!
+Behavior: Calsoyasuchus can
+randomly fish up items. Feeding
+Calsoyasuchus any fish will cause 
+them to release the item they are 
+holding.

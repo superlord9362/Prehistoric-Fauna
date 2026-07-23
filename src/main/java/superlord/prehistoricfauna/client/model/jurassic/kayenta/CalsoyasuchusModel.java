@@ -2,7 +2,9 @@ package superlord.prehistoricfauna.client.model.jurassic.kayenta;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 
+import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,11 +14,12 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.HumanoidArm;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 
 @SuppressWarnings("unused")
-public class CalsoyasuchusModel extends EntityModel<Calsoyasuchus> {
+public class CalsoyasuchusModel extends EntityModel<Calsoyasuchus> implements ArmedModel {
 	private final ModelPart Root;
 	private final ModelPart Body;
 	private final ModelPart Tail;
@@ -218,5 +221,19 @@ public class CalsoyasuchusModel extends EntityModel<Calsoyasuchus> {
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		Root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	@Override
+	public void translateToHand(HumanoidArm sideIn, PoseStack matrixStackIn) {
+		float f = sideIn == HumanoidArm.RIGHT ? 1.0F : -1.0F;
+		ModelPart modelrenderer = this.getArmForSide(sideIn);
+		modelrenderer.x += f;
+		modelrenderer.translateAndRotate(matrixStackIn);
+		modelrenderer.x -= f;
+		matrixStackIn.translate(0, 0.7, 0);
+	}
+	
+	protected ModelPart getArmForSide(HumanoidArm side) {
+		return side == HumanoidArm.LEFT ? this.Head : this.Head;
 	}
 }

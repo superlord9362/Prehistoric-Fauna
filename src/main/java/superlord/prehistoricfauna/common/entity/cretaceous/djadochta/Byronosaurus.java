@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -39,18 +44,19 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
-import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.NocturnalSleepGoal;
+import superlord.prehistoricfauna.common.entity.goal.OmnivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistBabyHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.OpportunistHuntingGoal;
@@ -89,7 +95,7 @@ public class Byronosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
-		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new OmnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.BYRONOSAURUS_HUNTING);
 		}));
@@ -119,6 +125,7 @@ public class Byronosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(2, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new ByronosaurusDigBurrowGoal(1, 8, 1));
+		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -149,9 +156,14 @@ public class Byronosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.BYRONOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.BYRONOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.BYRONOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.byronosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.byronosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.triassic.chinle.TrilophosaurusMod
 import superlord.prehistoricfauna.common.entity.triassic.chinle.Trilophosaurus;
 
 public class TrilophosaurusRenderer extends MobRenderer<Trilophosaurus, TrilophosaurusModel> {
-	private static final ResourceLocation TRILOPHOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/trilophosaurus.png");
-	private static final ResourceLocation TRILOPHOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/trilophosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/trilophosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation TRILOPHOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/trilophosaurus.png");
+	private static final ResourceLocation TRILOPHOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/trilophosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/trilophosaurus/melanistic_sleeping.png");
 
 	public TrilophosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TrilophosaurusModel(renderManagerIn.bakeLayer(ClientEvents.TRILOPHOSAURUS)), 0.5F);

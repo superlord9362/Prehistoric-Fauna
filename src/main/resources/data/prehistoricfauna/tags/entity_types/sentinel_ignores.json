@@ -49,6 +49,13 @@
 		"prehistoricfauna:herrerasaurus_skeleton",
 		"prehistoricfauna:ischigualastia_skeleton",
 		"prehistoricfauna:saurosuchus_skeleton",
-		"minecraft:creeper"
+		"minecraft:creeper",
+		"prehistoricfauna:brachiosaurus_skull",
+		"prehistoricfauna:chuandongocoelurus_skull",
+		"prehistoricfauna:kayentavenator_skull",
+		"prehistoricfauna:kayentavenator_skeleton",
+		"prehistoricfauna:chuandongocoelurus_skeleton",
+		"prehistoricfauna:yangchuanosaurus_skull",
+		"prehistoricfauna:yangchuanosaurus_skeleton"
 	]
 }

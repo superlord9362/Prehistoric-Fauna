@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.jurassic.shaximiao.YandusaurusMod
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Yandusaurus;
 
 public class YandusaurusRenderer extends MobRenderer<Yandusaurus, YandusaurusModel> {
-	private static final ResourceLocation YANDUSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/yandusaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/melanistic.png");
-	private static final ResourceLocation YANDUSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/yandusaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yandusaurus/melanistic_sleeping.png");
+	private static final ResourceLocation YANDUSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/yandusaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/melanistic.png");
+	private static final ResourceLocation YANDUSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/yandusaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yandusaurus/melanistic_sleeping.png");
 
 	public YandusaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new YandusaurusModel(renderManagerIn.bakeLayer(ClientEvents.YANDUSAURUS)), 0.625F);

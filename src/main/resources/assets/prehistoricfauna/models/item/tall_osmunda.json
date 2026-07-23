@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "prehistoricfauna:block/double_osmunda_top"
+        "layer0": "prehistoricfauna:item/tall_osmunda"
     }
 }

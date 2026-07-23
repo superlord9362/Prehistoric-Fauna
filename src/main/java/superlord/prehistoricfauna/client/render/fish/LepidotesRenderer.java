@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Lepidotes;
 
 public class LepidotesRenderer extends MobRenderer<Lepidotes, LepidotesModel> {
 
-	private static final ResourceLocation LEPIDOTES = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/lepidotes.png");
+	private static final ResourceLocation LEPIDOTES = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/lepidotes.png");
 
 	public LepidotesRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LepidotesModel(renderManagerIn.bakeLayer(ClientEvents.LEPIDOTES)), 0);

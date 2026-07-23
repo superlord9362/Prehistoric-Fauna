@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Gar;
 
 public class GarRenderer extends MobRenderer<Gar, GarModel> {
 
-	private static final ResourceLocation GAR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/gar.png");
+	private static final ResourceLocation GAR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/gar.png");
 
 	public GarRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GarModel(renderManagerIn.bakeLayer(ClientEvents.GAR)), 0);

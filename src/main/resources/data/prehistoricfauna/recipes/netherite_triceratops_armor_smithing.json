@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "prehistoricfauna:diamond_triceratops_armor"
+  },
+  "result": {
+    "item": "prehistoricfauna:netherite_triceratops_armor"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

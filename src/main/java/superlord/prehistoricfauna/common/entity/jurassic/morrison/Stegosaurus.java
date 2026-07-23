@@ -1,10 +1,19 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -20,6 +29,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -39,7 +49,6 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -63,8 +72,12 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Stegosaurus extends DinosaurEntity {
+	private static final EntityDataAccessor<Boolean> BIPEDAL = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> BIPEDAL_TICK = SynchedEntityData.defineId(Stegosaurus.class, EntityDataSerializers.INT);
 	private int maxHunger = 200;
 	private int warningSoundTicks;
+	private float bipedalProgress = 0.0F;
+	private float prevBipedalProgress = 0.0F;
 
 	public Stegosaurus(EntityType<? extends Stegosaurus> type, Level levelIn) {
 		super(type, levelIn);
@@ -75,6 +88,31 @@ public class Stegosaurus extends DinosaurEntity {
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		if (this.isBaby()) return 1.125F;
 		else return 2.25F;
+	}
+	
+	public boolean isBipedal() {
+		return this.entityData.get(BIPEDAL);
+	}
+
+	private void setBipedal(boolean isBipedal) {
+		this.entityData.set(BIPEDAL_TICK, 15);
+		this.entityData.set(BIPEDAL, isBipedal);
+	}
+
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(BIPEDAL, false);
+		this.entityData.define(BIPEDAL_TICK, 0);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("IsBipedal", this.isBipedal());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setBipedal(compound.getBoolean("IsBipedal"));
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -101,7 +139,7 @@ public class Stegosaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+		this.goalSelector.addGoal(8, new BipedalAvoidEntityGoal(this, this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.STEGOSAURUS_AVOIDING);
 		}));
 	}
@@ -110,11 +148,16 @@ public class Stegosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.STEGOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.STEGOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.STEGOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.stegosaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			} else return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.stegosaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -129,6 +172,7 @@ public class Stegosaurus extends DinosaurEntity {
 			this.setAggressive(true);
 		}
 		this.setHerbivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
@@ -186,6 +230,21 @@ public class Stegosaurus extends DinosaurEntity {
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
+		prevBipedalProgress = bipedalProgress;
+		if (this.entityData.get(BIPEDAL_TICK) > 0) {
+			this.entityData.set(BIPEDAL_TICK, this.entityData.get(BIPEDAL_TICK) - 1);
+			if (bipedalProgress < 1.0F) {
+				bipedalProgress = Math.min(bipedalProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (bipedalProgress > 0F) {
+				bipedalProgress = Math.max(bipedalProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getBipedalProgress(float partialTick) {
+		return prevBipedalProgress + (bipedalProgress - prevBipedalProgress) * partialTick;
 	}
 
 	public boolean onAttackAnimationFinish(Entity entityIn) {
@@ -268,5 +327,65 @@ public class Stegosaurus extends DinosaurEntity {
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.STEGOSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}
+	
+	@SuppressWarnings("rawtypes")
+	class BipedalAvoidEntityGoal extends AvoidEntityGoal {
+		Stegosaurus stegosaurus;
+
+		@SuppressWarnings("unchecked")
+		public BipedalAvoidEntityGoal(Stegosaurus stegosaurus, PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn, Predicate<LivingEntity> predicate) {
+			super(entityIn, classToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn, predicate);
+			this.stegosaurus = stegosaurus;
+		}
+
+		public void start() {
+			super.start();
+			stegosaurus.setBipedal(true);
+		}
+		
+		public void tick() {
+			super.tick();
+			if (!stegosaurus.isBipedal()) {
+				stegosaurus.setBipedal(true);
+			}
+		}
+
+		public void stop() {
+			stegosaurus.setBipedal(false);
+			super.stop();
+		}
+
+	}
+	
+	public class BabyPanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+		Stegosaurus dinosaur;
+		
+		public BabyPanicGoal(Stegosaurus dinosaur) {
+			super(dinosaur, 2.0D);
+			this.dinosaur = dinosaur;
+		}
+
+		public boolean canUse() {
+			return !dinosaur.isBaby() && !dinosaur.isOnFire() ? false : super.canUse();
+		}
+		
+		public void start() {
+			super.start();
+			dinosaur.setBipedal(true);
+		}
+		
+		public void tick() {
+			super.tick();
+			if (!dinosaur.isBipedal()) {
+				dinosaur.setBipedal(true);
+			}
+		}
+
+		public void stop() {
+			dinosaur.setBipedal(false);
+			super.stop();
+		}
+	}
+
 
 }

@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.AnkylosaurusSk
 
 public class AnkylosaurusSkullRenderer extends MobRenderer<AnkylosaurusSkull, AnkylosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ankylosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/ankylosaurus_skeleton.png");
 
 	public AnkylosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AnkylosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.ANKYLOSAURUS_SKULL)), 0);

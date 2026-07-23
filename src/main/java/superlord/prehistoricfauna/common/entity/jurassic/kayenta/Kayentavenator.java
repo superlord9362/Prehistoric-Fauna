@@ -1,12 +1,19 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.google.common.primitives.Ints;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,10 +33,12 @@ import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
@@ -60,17 +69,18 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Kayentavenator extends DinosaurEntity {
 	private int maxHunger = 50;
 	private int warningSoundTicks;
-	
+	private int sneezeTicks;
+
 	public Kayentavenator(EntityType<? extends Kayentavenator> type, Level levelIn) {
 		super(type, levelIn);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
-	
+
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFItems.RAW_SMALL_SAUROPOD_MEAT.get();
 	}
-	
+
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -103,20 +113,35 @@ public class Kayentavenator extends DinosaurEntity {
 			return p_213487_1_.getType().is(PFTags.KAYENTAVENATOR_BABY_HUNTING);
 		}));
 	}
-	
+
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.KAYENTAVENATOR.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.KAYENTAVENATOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.KAYENTAVENATOR.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.kayentavenator_added"), true);
 				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.kayentavenator_already_added"), true);
+				return InteractionResult.SUCCESS;
 			}
+		}
+		if (item.equals(Items.FEATHER)) {
+			Vec3 vec3 = this.getDeltaMovement();
+			this.playSound(PFSounds.KAYENTAVENATOR_SNEEZE.get(), 1, 1);
+			this.level().addParticle(ParticleTypes.SNEEZE, this.getX() - (double)(this.getBbWidth() + 1.0F) * 0.5D * (double)Mth.sin(this.yBodyRot * ((float)Math.PI / 180F)), this.getEyeY() - (double)0.1F, this.getZ() + (double)(this.getBbWidth() + 1.0F) * 0.5D * (double)Mth.cos(this.yBodyRot * ((float)Math.PI / 180F)), vec3.x, 0.0D, vec3.z);
+			this.spawnAtLocation(Items.SLIME_BALL);
+			sneezeTicks = 250;
+			this.setTarget(player);
+			System.out.println("Hi");
+			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}
-	
+
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 85) {
@@ -128,7 +153,19 @@ public class Kayentavenator extends DinosaurEntity {
 		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
-	
+
+	public void aiStep() {
+		super.aiStep();
+		Vec3 vec3 = this.getDeltaMovement();
+		if (this.sneezeTicks != 0) sneezeTicks--;
+		if (sneezeTicks == 0 && this.getRandom().nextInt(100) == 40 && this.isEffectiveAi() && !this.isAsleep()) {
+			this.playSound(PFSounds.KAYENTAVENATOR_SNEEZE.get(), 1, 1);
+			this.level().addParticle(ParticleTypes.SNEEZE, this.getX() - (double)(this.getBbWidth() + 1.0F) * 0.5D * (double)Mth.sin(this.yBodyRot * ((float)Math.PI / 180F)), this.getEyeY() - (double)0.1F, this.getZ() + (double)(this.getBbWidth() + 1.0F) * 0.5D * (double)Mth.cos(this.yBodyRot * ((float)Math.PI / 180F)), vec3.x, 0.0D, vec3.z);
+			this.spawnAtLocation(Items.SLIME_BALL);
+			sneezeTicks = 1200;
+		}
+	}
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -138,11 +175,11 @@ public class Kayentavenator extends DinosaurEntity {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
 		}
 	}
-	
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.FOLLOW_RANGE, 20.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.25D);
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return this.isAsleep() ? null : PFSounds.KAYENTAVENATOR_IDLE.get();
 	}
@@ -220,16 +257,16 @@ public class Kayentavenator extends DinosaurEntity {
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
 	}
-	
+
 	@Override
 	public ItemStack getPickedResult(HitResult target) {
 		return new ItemStack(PFItems.KAYENTAVENATOR_SPAWN_EGG.get());
 	}
-	
+
 	public Item getEggItem() {
 		return PFItems.KAYENTAVENATOR_EGG.get();
 	}
-    
+
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.KAYENTAVENATOR_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
 	}

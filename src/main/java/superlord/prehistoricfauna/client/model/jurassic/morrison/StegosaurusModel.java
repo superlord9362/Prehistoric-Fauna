@@ -97,8 +97,8 @@ public class StegosaurusModel extends EntityModel<Stegosaurus> {
 
 		PartDefinition InsideLeftTail1Plates = LeftTail1Plates.addOrReplaceChild("InsideLeftTail1Plates", CubeListBuilder.create().texOffs(172, 25).mirror().addBox(0.0F, -20.0F, 0.0F, 0.0F, 20.0F, 24.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.1F, 0.0F, 0.0F));
 
-		PartDefinition RightTail1Plates = Tail1.addOrReplaceChild("RightTail1Plates", CubeListBuilder.create().texOffs(88, 87).addBox(0.0F, -19.0F, -5.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -6.0F, 1.0F, 0.0F, 0.0F, 0.1396F));
-
+		PartDefinition RightTail1Plates = Tail1.addOrReplaceChild("RightTail1Plates", CubeListBuilder.create().texOffs(85, 87).addBox(0.0F, -19.0F, -2.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, -6.0F, 1.0F, 0.0F, 0.0F, 0.1396F));
+		
 		PartDefinition InsideRightTail1Plates = RightTail1Plates.addOrReplaceChild("InsideRightTail1Plates", CubeListBuilder.create().texOffs(85, 107).addBox(0.0F, -19.0F, 0.0F, 0.0F, 19.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.1F, 0.0F, 0.0F));
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(94, 7).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 7.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 33.0F, -0.0698F, 0.0F, 0.0F));

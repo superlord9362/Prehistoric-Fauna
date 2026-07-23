@@ -37,18 +37,18 @@ import superlord.prehistoricfauna.init.PFRenderTypes;
 @OnlyIn(Dist.CLIENT)
 public class HenosRenderer extends MobRenderer<Henos, EntityModel<Henos>> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos.png");
-	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_summoned.png");
-	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/brass_monkey.png");
-	private static final ResourceLocation TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_lit.png");
-	private static final ResourceLocation SUMMONED_TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_summoned_lit.png");
-	private static final ResourceLocation FUNKY_MONKEY_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/brass_monkey_lit.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos.png");
+	private static final ResourceLocation SUMMONED_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos_summoned.png");
+	private static final ResourceLocation FUNKY_MONKEY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/brass_monkey.png");
+	private static final ResourceLocation TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos_lit.png");
+	private static final ResourceLocation SUMMONED_TEXTURE_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos_summoned_lit.png");
+	private static final ResourceLocation FUNKY_MONKEY_LIT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/brass_monkey_lit.png");
 	private static HenosModel HENOS;
 	private static HenosModel HENOS_HEALING;
 	private static HenosSummonedModel SUMMONED;
 	private static HenosSummonedModel SUMMONED_HEALING;
 
-	private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/beam.png");
+	private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/beam.png");
 	private static final RenderType BEAM_RENDER_TYPE = PFRenderTypes.getBossBeam(BEAM_TEXTURE);
 
 	public HenosRenderer(EntityRendererProvider.Context renderManagerIn) {

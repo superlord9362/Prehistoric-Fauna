@@ -11,9 +11,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -23,7 +25,7 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
 
-public class NelumboRootsBlock extends BushBlock {
+public class NelumboRootsBlock extends BushBlock implements BonemealableBlock {
 	
 	public NelumboRootsBlock(Properties p_49795_) {
 		super(p_49795_);
@@ -73,6 +75,22 @@ public class NelumboRootsBlock extends BushBlock {
 	
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
 		return new ItemStack(PFItems.NELUMBO.get().asItem());
+	}
+
+	@Override
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean p_50900_) {
+		return world.getBlockState(pos.above()).is(Blocks.WATER) || world.getBlockState(pos.above()).is(Blocks.AIR);
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level p_220878_, RandomSource p_220879_, BlockPos p_220880_, BlockState p_220881_) {
+		return true;
+	}
+
+	@Override
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+		if (level.getBlockState(pos.above()).is(Blocks.AIR)) level.setBlock(pos.above(), PFBlocks.NELUMBO_PAD.get().defaultBlockState(), 2);
+		else level.setBlock(pos.above(), PFBlocks.NELUMBO_STEM.get().defaultBlockState(), 2);
 	}
 
 }

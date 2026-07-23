@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -29,6 +34,7 @@ import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -118,11 +124,34 @@ public class Ceratosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CERATOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.CERATOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CERATOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.ceratosaurus_added"), true);
 				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.ceratosaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
 			}
+		}
+		if (itemstack.is(PFTags.FISH_2_HUNGER)) {
+			if (this.getCurrentHunger() + 2 >= this.maxHunger) {
+				this.setHunger(this.maxHunger);
+			} else {
+				this.setHunger(this.getCurrentHunger() + 2);
+			}
+			if (this.getRandom().nextInt() == 0) this.spawnAtLocation(Items.BONE_MEAL);
+			if (!player.isCreative()) itemstack.shrink(1);
+		}
+		if (itemstack.is(PFTags.FISH_4_HUNGER)) {
+			if (this.getCurrentHunger() + 4 >= this.maxHunger) {
+				this.setHunger(this.maxHunger);
+			} else {
+				this.setHunger(this.getCurrentHunger() + 4);
+			}
+			if (this.getRandom().nextInt() == 0) this.spawnAtLocation(Items.BONE_MEAL);
+			if (!player.isCreative()) itemstack.shrink(1);
 		}
 		return super.mobInteract(player, hand);
 	}

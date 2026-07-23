@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_beehive",
+	"pattern": [		
+		"PPP",
+		"HHH",
+		"PPP"
+	],
+	"key": {
+		"P": {
+			"item": "prehistoricfauna:baiera_planks"
+		},
+		"H": {
+			"item": "minecraft:honeycomb"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:baiera_beehive"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_beehives"
+				}
+			]
+		}
+	]
+}

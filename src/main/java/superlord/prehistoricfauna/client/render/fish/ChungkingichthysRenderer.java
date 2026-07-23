@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Chungkingichthys;
 
 public class ChungkingichthysRenderer extends MobRenderer<Chungkingichthys, ChungkingichthysModel> {
 
-	private static final ResourceLocation CHUNGKINGICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/chungkingichthys.png");
+	private static final ResourceLocation CHUNGKINGICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/chungkingichthys.png");
 
 	public ChungkingichthysRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ChungkingichthysModel(renderManagerIn.bakeLayer(ClientEvents.CHUNGKINGICHTHYS)), 0);

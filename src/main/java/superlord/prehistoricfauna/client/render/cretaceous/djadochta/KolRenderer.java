@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Kol;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class KolRenderer extends MobRenderer<Kol, KolModel> {
-	private static final ResourceLocation KOL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/kol.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/melanistic.png");
-	private static final ResourceLocation KOL_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/kol_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/melanistic_sleeping.png");
+	private static final ResourceLocation KOL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/kol.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/melanistic.png");
+	private static final ResourceLocation KOL_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/kol_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/melanistic_sleeping.png");
 
 	public KolRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new KolModel(renderManagerIn.bakeLayer(ClientEvents.KOL)), 0.5F);

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Bashanosaurus
 
 public class BashanosaurusEyeLayer extends RenderLayer<Bashanosaurus, BashanosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/bashanosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/bashanosaurus_eyeglow.png"));
 	private final RenderLayerParent<Bashanosaurus, BashanosaurusModel> bashanosaurusRenderer;
 	
 	public BashanosaurusEyeLayer(RenderLayerParent<Bashanosaurus, BashanosaurusModel> rendererIn) {

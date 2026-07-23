@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.DongbeititanSk
 
 public class DongbeititanSkullRenderer extends MobRenderer<DongbeititanSkull, DongbeititanSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/dongbeititan_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/dongbeititan_skeleton.png");
 
 	public DongbeititanSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DongbeititanSkullModel(renderManagerIn.bakeLayer(ClientEvents.DONGBEITITAN_SKULL)), 0);

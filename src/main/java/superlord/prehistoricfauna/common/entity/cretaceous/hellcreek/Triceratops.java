@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -9,6 +10,7 @@ import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -29,6 +31,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -40,12 +43,14 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -65,6 +70,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -82,6 +88,7 @@ import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
+import superlord.prehistoricfauna.common.items.TriceratopsArmorItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -91,6 +98,7 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Triceratops extends AbstractChestedHorse  {
+	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("d96789ae-c7cd-42b5-bd2d-d3506bae8e37");
 	private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_DIGGING = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.BOOLEAN);
@@ -220,7 +228,56 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	@Override
 	protected void randomizeAttributes(RandomSource p_218803_) {
-		
+
+	}
+
+	public boolean canWearArmor() {
+		return true;
+	}
+
+	public boolean isArmor(ItemStack p_30645_) {
+		return p_30645_.getItem() instanceof TriceratopsArmorItem;
+	}
+
+	private void setArmorEquipment(ItemStack p_30735_) {
+		this.setArmor(p_30735_);
+		if (!this.level().isClientSide()) {
+			this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
+			if (this.isArmor(p_30735_)) {
+				int i = ((HorseArmorItem)p_30735_.getItem()).getProtection();
+				if (i != 0) {
+					this.getAttribute(Attributes.ARMOR).addTransientModifier(new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double)i, AttributeModifier.Operation.ADDITION));
+				}
+			}
+		}
+
+	}
+
+	protected void updateContainerEquipment() {
+		if (!this.level().isClientSide()) {
+			super.updateContainerEquipment();
+			this.setArmorEquipment(this.inventory.getItem(1));
+			this.setDropChance(EquipmentSlot.CHEST, 0.0F);
+		}
+	}
+
+	public ItemStack getArmor() {
+		return this.getItemBySlot(EquipmentSlot.CHEST);
+	}
+
+	public void containerChanged(Container p_30696_) {
+		ItemStack itemstack = this.getArmor();
+		super.containerChanged(p_30696_);
+		ItemStack itemstack1 = this.getArmor();
+		if (this.tickCount > 20 && this.isArmor(itemstack1) && itemstack != itemstack1) {
+			this.playSound(SoundEvents.HORSE_ARMOR, 0.5F, 1.0F);
+		}
+
+	}
+
+	private void setArmor(ItemStack p_30733_) {
+		this.setItemSlot(EquipmentSlot.CHEST, p_30733_);
+		this.setDropChance(EquipmentSlot.CHEST, 0.0F);
 	}
 
 	public boolean isEating() {
@@ -398,6 +455,9 @@ public class Triceratops extends AbstractChestedHorse  {
 				listtag.add(NbtUtils.createUUID(uuid));
 			}
 		}
+		if (!this.inventory.getItem(1).isEmpty()) {
+			compound.put("ArmorItem", this.inventory.getItem(1).save(new CompoundTag()));
+		}
 		compound.put("Trusted", listtag);
 		compound.putBoolean("HasEgg", this.hasEgg());
 		compound.putBoolean("IsAlbino", this.isAlbino());
@@ -429,6 +489,14 @@ public class Triceratops extends AbstractChestedHorse  {
 		this.setProtective(compound.getBoolean("IsProtective"));
 		this.setTerritorial(compound.getBoolean("IsTerritorial"));
 		this.setAggressive(compound.getBoolean("IsAggressive"));
+		if (compound.contains("ArmorItem", 10)) {
+			ItemStack itemstack = ItemStack.of(compound.getCompound("ArmorItem"));
+			if (!itemstack.isEmpty() && this.isArmor(itemstack)) {
+				this.inventory.setItem(1, itemstack);
+			}
+		}
+
+		this.updateContainerEquipment();
 	}
 
 	@Nullable
@@ -465,9 +533,14 @@ public class Triceratops extends AbstractChestedHorse  {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TRICERATOPS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.TRICERATOPS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TRICERATOPS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.triceratops_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.triceratops_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -962,7 +1035,7 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		}
 	}
-	
+
 	public boolean doHurtTarget(Entity entityIn) {
 		this.entityData.set(ATTACK_TICK, 7);
 		return true;

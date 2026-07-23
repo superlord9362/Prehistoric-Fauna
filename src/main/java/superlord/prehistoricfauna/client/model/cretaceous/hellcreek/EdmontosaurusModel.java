@@ -59,8 +59,9 @@ public class EdmontosaurusModel extends EntityModel<Edmontosaurus> {
 
 		PartDefinition Neck = Chest.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(0, 0).addBox(-5.5F, -8.0F, -21.0F, 11.0F, 16.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -22.0F));
 
-		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(0, 37).addBox(-6.5F, -5.0F, -7.0F, 13.0F, 11.0F, 12.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, -3.0F, -20.0F));
-
+		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(0, 37).addBox(-6.5F, -5.0F, -7.0F, 13.0F, 11.0F, 12.0F, new CubeDeformation(0.01F))
+				.texOffs(80, 0).addBox(-2.5F, -8.0F, -4.0F, 5.0F, 3.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -3.0F, -20.0F));
+		
 		PartDefinition Snout = Head.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(72, 176).addBox(-3.5F, -4.0F, -14.0F, 7.0F, 9.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -7.0F));
 
 		PartDefinition Beak = Snout.addOrReplaceChild("Beak", CubeListBuilder.create().texOffs(180, 122).addBox(-10.0F, -7.0F, -1.0F, 11.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(4.75F, 7.0F, -14.0F));

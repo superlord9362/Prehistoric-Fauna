@@ -1,25 +1,36 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "misc",
+	"group": "hedge",
+	"pattern": [		
 		"L",
 		"W"
 	],
 	"key": {
 		"L": {
-			"item": "prehistoricfauna:phoenicopsis_leaves"
+			"item": "prehistoricfauna:agathoxylon_leaves"
 		},
 		"W": {
-			"tag": "prehistoricfauna:phoenicopsis_logs"
+			"tag": "prehistoricfauna:agathoxylon_logs"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:phoenicopsis_hedge",
+		"item": "prehistoricfauna:agathoxylon_hedge",
 		"count": 2
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "hedges"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hedges"
+				}
+			]
 		}
 	]
 }

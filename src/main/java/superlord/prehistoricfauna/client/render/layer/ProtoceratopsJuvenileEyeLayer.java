@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Protocerato
 
 public class ProtoceratopsJuvenileEyeLayer extends RenderLayer<Protoceratops, EntityModel<Protoceratops>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratopsjuv_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/protoceratopsjuv_eyeglow.png"));
 	private final RenderLayerParent<Protoceratops, EntityModel<Protoceratops>> protoceratopsRenderer;
 	
 	public ProtoceratopsJuvenileEyeLayer(RenderLayerParent<Protoceratops, EntityModel<Protoceratops>> rendererIn) {

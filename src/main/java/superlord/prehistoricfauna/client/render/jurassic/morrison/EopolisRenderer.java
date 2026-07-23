@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.EopolisModel;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eopolis;
 
 public class EopolisRenderer extends MobRenderer<Eopolis, EopolisModel<Eopolis>> {
-	private static final ResourceLocation EOPOLIS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/eopolis.png");
+	private static final ResourceLocation EOPOLIS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/eopolis.png");
 
 	public EopolisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new EopolisModel<>(renderManagerIn.bakeLayer(ClientEvents.EOPOLIS)), 0F);

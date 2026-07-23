@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Huayangosauru
 
 public class HuayangosaurusEyeLayer extends RenderLayer<Huayangosaurus, HuayangosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/huayangosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/huayangosaurus_eyeglow.png"));
 	private final RenderLayerParent<Huayangosaurus, HuayangosaurusModel> huayangosaurusRenderer;
 	
 	public HuayangosaurusEyeLayer(RenderLayerParent<Huayangosaurus, HuayangosaurusModel> rendererIn) {

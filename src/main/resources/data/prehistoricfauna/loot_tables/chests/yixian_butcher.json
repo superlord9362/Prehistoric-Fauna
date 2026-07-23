@@ -1,0 +1,148 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "prehistoricfauna:raw_large_theropod_meat",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "prehistoricfauna:raw_small_theropod_meat",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "prehistoricfauna:raw_large_sauropod_meat",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_small_marginocephalian_meat",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_large_ornithischian_meat",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:raw_small_synapsid_meat",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 2
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:rotten_flesh",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:repenomamus_hide",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:tyrannosaur_tooth",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:thyreophoran_scute",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shears",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lead",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:paper",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 10
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8,
+        "min": 2
+      }
+    }
+  ],
+  "random_sequence": "prehistoricfauna:chests/yixian_butcher"
+}

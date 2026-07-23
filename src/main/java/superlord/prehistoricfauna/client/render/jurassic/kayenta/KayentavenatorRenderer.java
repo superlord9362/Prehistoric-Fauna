@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentavenator;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class KayentavenatorRenderer extends MobRenderer<Kayentavenator, KayentavenatorModel> {
-	private static final ResourceLocation KAYENTAVENATOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/kayentavenator.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/melanistic.png");
-	private static final ResourceLocation KAYENTAVENATOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/kayentavenator_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentavenator/melanistic_sleeping.png");
+	private static final ResourceLocation KAYENTAVENATOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/kayentavenator.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/melanistic.png");
+	private static final ResourceLocation KAYENTAVENATOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/kayentavenator_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentavenator/melanistic_sleeping.png");
 
 	public KayentavenatorRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new KayentavenatorModel(renderManagerIn.bakeLayer(ClientEvents.KAYENTAVENATOR)), 0.6875F);

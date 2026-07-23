@@ -31,6 +31,8 @@ public class PFTags {
 	public static final TagKey<Block> SOFT_SHELL_EGG_BLOCKS = registerBlockTag("soft_shell_eggs");
 	public static final TagKey<Block> BURROW_BLOCKS = registerBlockTag("burrows");
 	public static final TagKey<Block> SOIL = registerBlockTag("soils");
+	public static final TagKey<Block> MINEABLE_WITH_HAMMER = registerBlockTag("mineable_with_hammer");
+	public static final TagKey<Block> FERNS = registerBlockTag("ferns");
 	public static final TagKey<Item> PLANTS_2_HUNGER_ITEM = registerItemTag("two_hunger_plants");
 	public static final TagKey<Item> INSECTS_2_HUNGER_ITEM = registerItemTag("two_hunger_insects");
 	public static final TagKey<Item> PLANTS_4_HUNGER_ITEM = registerItemTag("four_hunger_plants");
@@ -43,6 +45,7 @@ public class PFTags {
 	public static final TagKey<Item> PLANTS_25_HUNGER_ITEM = registerItemTag("twenty_five_hunger_plants");
 	public static final TagKey<Item> PLANTS_30_HUNGER_ITEM = registerItemTag("thirty_hunger_plants");
 	public static final TagKey<Item> SOFT_SHELL_EGGS = registerItemTag("soft_shell_eggs");
+	public static final TagKey<Item> FERNS_ITEMS = registerItemTag("ferns");
 	public static final TagKey<EntityType<?>> FISH_3_HUNGER = registerEntityTag("three_hunger_fish");
 	public static final TagKey<EntityType<?>> ANIMALS_3_HUNGER = registerEntityTag("three_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_4_HUNGER = registerEntityTag("four_hunger_animals");
@@ -57,6 +60,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> ANIMALS_80_HUNGER = registerEntityTag("eighty_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_100_HUNGER = registerEntityTag("one_hundred_hunger_animals");
 	public static final TagKey<EntityType<?>> ANIMALS_200_HUNGER = registerEntityTag("two_hundreed_hunger_animals");
+	public static final TagKey<EntityType<?>> ANIMALS_300_HUNGER = registerEntityTag("three_hundred_hunger_animals");
 	public static final TagKey<EntityType<?>> INSECTS_2_HUNGER = registerEntityTag("two_hunger_insects");
 
 	public static final TagKey<EntityType<?>> CITIPATI_HUNTING = registerEntityTag("citipati_hunting");
@@ -205,10 +209,12 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> DRYOSAURUS_AVOIDING = registerEntityTag("dryosaurus_avoiding");
 	public static final TagKey<EntityType<?>> EILENODON_AVOIDING = registerEntityTag("eilenodon_avoiding");
 	public static final TagKey<EntityType<?>> GARGOYLEOSAURUS_AVOIDING = registerEntityTag("gargoyleosaurus_avoiding");
+	public static final TagKey<EntityType<?>> GARGOYLEOSAURUS_ATTACK = registerEntityTag("gargoyleosaurus_attacking");
 	public static final TagKey<EntityType<?>> HESPERORNITHOIDES_AVOIDING = registerEntityTag("hesperornithoides_avoiding");
 	public static final TagKey<EntityType<?>> MACELOGNATHUS_AVOIDING = registerEntityTag("macelognathus_avoiding");
 	public static final TagKey<EntityType<?>> MARAAPUNISAURUS_AVOIDING = registerEntityTag("maraapunisaurus_avoiding");
 	public static final TagKey<EntityType<?>> STEGOSAURUS_AVOIDING = registerEntityTag("stegosaurus_avoiding");
+	public static final TagKey<EntityType<?>> SUUWASSEA_AVOIDING = registerEntityTag("suuwassea_avoiding");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_AVOIDING = registerEntityTag("tanycolagreus_avoiding");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_HUNTING = registerEntityTag("tanycolagreus_hunting");
 	public static final TagKey<EntityType<?>> TANYCOLAGREUS_BABY_HUNTING = registerEntityTag("tanycolagreus_baby_hunting");
@@ -226,6 +232,7 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> HUAYANGOSAURUS_AVOIDING = registerEntityTag("huayangosaurus_avoiding");
 	public static final TagKey<EntityType<?>> MAMENCHISAURUS_AVOIDING = registerEntityTag("mamenchisaurus_avoiding");
 	public static final TagKey<EntityType<?>> OMEISAURUS_AVOIDING = registerEntityTag("omeisaurus_avoiding");
+	public static final TagKey<EntityType<?>> POLISTODON_AVOIDING = registerEntityTag("polistodon_avoiding");
 	public static final TagKey<EntityType<?>> SINRAPTOR_AVOIDING = registerEntityTag("sinraptor_avoiding");
 	public static final TagKey<EntityType<?>> SINRAPTOR_HUNTING = registerEntityTag("sinraptor_hunting");
 	public static final TagKey<EntityType<?>> SINRAPTOR_BABY_HUNTING = registerEntityTag("sinraptor_baby_hunting");
@@ -275,6 +282,8 @@ public class PFTags {
 	
 	public static final TagKey<EntityType<?>> BURROWERS = registerEntityTag("burrowers");
 	
+	public static final TagKey<EntityType<?>> SKELETAL_MOUNTS = registerEntityTag("skeletal_mounts");
+	
 	public static final TagKey<EntityType<?>> SENTINEL_IGNORES = registerEntityTag("sentinel_ignores");
 	
 	public static final TagKey<EntityType<?>> CRETACEOUS_BOSS_CONVERTERS = registerEntityTag("can_become_cretaceous_boss");
@@ -306,6 +315,7 @@ public class PFTags {
 	public static final TagKey<Biome> HAS_MORRISON_HUT = registerBiomeTag("has_structure/morrison_hut");
 	public static final TagKey<Biome> HAS_TIME_TEMPLE = registerBiomeTag("has_structure/time_temple");
 	public static final TagKey<Biome> HAS_YIXIAN_HUT = registerBiomeTag("has_structure/yixian_hut");
+	public static final TagKey<Biome> HAS_SHAXIMIAO_HUT = registerBiomeTag("has_structure/shaximiao_hut");
 
 	public static final TagKey<Structure> ON_TIME_TEMPLE_MAPS = registerStructureTag("on_time_temple_maps");
 

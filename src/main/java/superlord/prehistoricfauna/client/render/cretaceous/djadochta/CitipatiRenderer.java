@@ -12,14 +12,14 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.CitipatiMode
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Citipati;
 
 public class CitipatiRenderer extends MobRenderer<Citipati, CitipatiModel> {
-	private static final ResourceLocation CITIPATI = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/citipati.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/melanistic.png");
-	private static final ResourceLocation PALEOCRAFT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/paleocraft.png");
-	private static final ResourceLocation CITIPATI_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/citipati_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/melanistic_sleeping.png");
-	private static final ResourceLocation PALEOCRAFT_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/citipati/paleocraft_sleeping.png");
+	private static final ResourceLocation CITIPATI = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/citipati.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/melanistic.png");
+	private static final ResourceLocation PALEOCRAFT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/paleocraft.png");
+	private static final ResourceLocation CITIPATI_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/citipati_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/melanistic_sleeping.png");
+	private static final ResourceLocation PALEOCRAFT_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/citipati/paleocraft_sleeping.png");
 
 	public CitipatiRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CitipatiModel(renderManagerIn.bakeLayer(ClientEvents.CITIPATI)), 0.5625F);

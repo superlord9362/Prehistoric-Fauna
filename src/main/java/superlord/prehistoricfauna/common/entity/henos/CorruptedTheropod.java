@@ -833,9 +833,10 @@ public class CorruptedTheropod extends Animal {
 		if (part == this.head1 || part == this.snout1P1 || part == this.snout1P2) {
 			if (!isHeadOneDead()) {
 				if (this.getHeadOneHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadOneHealth();
 					this.setHeadOneHealth(0);
 					this.setHeadOneDead(true);
-					return hurt(source, damage - this.getHeadOneHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadOneHealth(this.getHeadOneHealth() - (int) damage);
 					return hurt(source, damage);
@@ -844,9 +845,10 @@ public class CorruptedTheropod extends Animal {
 		} else if (part == this.head2 || part == this.snout2P1 || part == this.snout2P2 || part == this.snout2P3) {
 			if (!isHeadTwoDead()) {
 				if (this.getHeadTwoHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadTwoHealth();
 					this.setHeadTwoHealth(0);
 					this.setHeadTwoDead(true);
-					return hurt(source, damage - this.getHeadTwoHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadTwoHealth(this.getHeadTwoHealth() - (int) damage);
 					return hurt(source, damage);
@@ -855,9 +857,10 @@ public class CorruptedTheropod extends Animal {
 		} else if (part == this.head3 || part == this.snout3P1 || part == this.snout3P2) {
 			if (!isHeadThreeDead()) {
 				if (this.getHeadThreeHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadThreeHealth();
 					this.setHeadThreeHealth(0);
 					this.setHeadThreeDead(true);
-					return hurt(source, damage - this.getHeadThreeHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadThreeHealth(this.getHeadThreeHealth() - (int) damage);
 					return hurt(source, damage);
@@ -866,9 +869,10 @@ public class CorruptedTheropod extends Animal {
 		} else if (part == this.head4 || part == this.snout4P1 || part == this.snout4P2) {
 			if (!isHeadFourDead()) {
 				if (this.getHeadFourHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadFourHealth();
 					this.setHeadFourHealth(0);
 					this.setHeadFourDead(true);
-					return hurt(source, damage - this.getHeadFourHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadFourHealth(this.getHeadFourHealth() - (int) damage);
 					return hurt(source, damage);
@@ -877,9 +881,10 @@ public class CorruptedTheropod extends Animal {
 		} else if (part == this.head5 || part == this.snout5P1) {
 			if (!isHeadFiveDead()) {
 				if (this.getHeadFiveHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadFiveHealth();
 					this.setHeadFiveHealth(0);
 					this.setHeadFiveDead(true);
-					return hurt(source, damage - this.getHeadFiveHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadFiveHealth(this.getHeadFiveHealth() - (int) damage);
 					return hurt(source, damage);
@@ -888,9 +893,10 @@ public class CorruptedTheropod extends Animal {
 		} else if (part == this.head6 || part == this.snout6P1 || part == this.snout6P2) {
 			if (!isHeadSixDead()) {
 				if (this.getHeadSixHealth() - (int) damage < 0) {
+					float overflow = damage - this.getHeadSixHealth();
 					this.setHeadSixHealth(0);
 					this.setHeadSixDead(true);
-					return hurt(source, damage - this.getHeadSixHealth());
+					return hurt(source, overflow);
 				} else {
 					this.setHeadSixHealth(this.getHeadSixHealth() - (int) damage);
 					return hurt(source, damage);
@@ -964,7 +970,7 @@ public class CorruptedTheropod extends Animal {
 				chargeAttackCooldown = 500;
 			}
 			if (this.canStartAttacking()) {
-				int attack = random.nextInt(6);
+				int attack = random.nextInt(7);
 				if (attack == 0) {
 					if (allHeadAttackCooldown == 0 && !isHeadOneDead() && !isHeadTwoDead() && !isHeadThreeDead() && !isHeadFourDead() && !isHeadFiveDead() && !isHeadSixDead()) {
 						setDoingAllHeadAttack(true);
@@ -992,12 +998,18 @@ public class CorruptedTheropod extends Animal {
 						this.setStartAttacking(false);
 					} else attack = 4;
 				} else if (attack == 4) {
-					if (headFiveAttackCooldown == 0 && !isHeadFiveDead()) {
-						setDoingHeadFiveAttack(true);
+					if (headFourAttackCooldown == 0 && !isHeadFourDead()) {
+						setDoingHeadFourAttack(true);
 						attackTimer = 25;
 						this.setStartAttacking(false);
 					} else attack = 5;
 				} else if (attack == 5) {
+					if (headFiveAttackCooldown == 0 && !isHeadFiveDead()) {
+						setDoingHeadFiveAttack(true);
+						attackTimer = 25;
+						this.setStartAttacking(false);
+					} else attack = 6;
+				} else if (attack == 6) {
 					if (headSixAttackCooldown == 0 && !isHeadSixDead()) {
 						setDoingHeadSixAttack(true);
 						attackTimer = 25;
@@ -1084,7 +1096,7 @@ public class CorruptedTheropod extends Animal {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
-				CorruptedTheropod.this.playSound(PFSounds.ALLOSAURUS_BITE.get(), 1.0F, CorruptedTheropod.this.getVoicePitch());
+				CorruptedTheropod.this.playSound(PFSounds.BOSS_BITE.get(), 1.0F, CorruptedTheropod.this.getVoicePitch());
 				this.mob.doHurtTarget(enemy);
 				CorruptedTheropod.this.setDoingHeadTwoAttack(false);
 				enemy.addEffect(new MobEffectInstance(PFEffects.BLEEDING.get(), 300, 0, true, false));
@@ -1157,7 +1169,7 @@ public class CorruptedTheropod extends Animal {
 						this.setTransititionToPose();
 					} else {
 					}
-				} else if (getTarget() != null && targetDistance <= 90 || getTarget() != null && targetDistance <= 90) {
+				} else if (getTarget() != null && targetDistance <= 90) {
 					setAwake(true);
 					this.setTransititionToPose();
 				}
@@ -1243,7 +1255,7 @@ public class CorruptedTheropod extends Animal {
 			super(CorruptedTheropod.this, 1.25D, true);
 		}
 
-		protected void CheckAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
+		protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
 			double d0 = this.getAttackReachSqr(enemy);
 			if (distToEnemySqr <= d0 && this.isTimeToAttack()) {
 				this.resetAttackCooldown();
@@ -1272,7 +1284,7 @@ public class CorruptedTheropod extends Animal {
 
 		public void tick() {
 			super.tick();
-			if (mob.getTarget().getBbWidth() < 2 && !mob.isVehicle()) {
+			if (mob.getTarget() != null && mob.getTarget().getBbWidth() < 2 && !mob.isVehicle() && mob.distanceTo(mob.getTarget()) < 4) {
 				mob.getTarget().startRiding(mob);
 			}
 		}
@@ -1509,6 +1521,7 @@ public class CorruptedTheropod extends Animal {
 		public void stop() {
 			CorruptedTheropod.this.setDoingChargeAttack(false);
 			CorruptedTheropod.this.chargeAttackCooldown = 500;
+			chargeAttackLength = 100;
 			CorruptedTheropod.this.getNavigation().setSpeedModifier(1D);
 		}
 	}

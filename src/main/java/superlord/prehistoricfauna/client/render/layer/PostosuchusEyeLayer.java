@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Postosuchus;
 
 public class PostosuchusEyeLayer extends RenderLayer<Postosuchus, PostosuchusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/postosuchus/postosuchus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/postosuchus/postosuchus_eyeglow.png"));
 	private final RenderLayerParent<Postosuchus, PostosuchusModel> postosuchusRenderer;
 	
 	public PostosuchusEyeLayer(RenderLayerParent<Postosuchus, PostosuchusModel> rendererIn) {

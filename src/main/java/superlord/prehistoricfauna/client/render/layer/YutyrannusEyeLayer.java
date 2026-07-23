@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Yutyrannus;
 
 public class YutyrannusEyeLayer extends RenderLayer<Yutyrannus, EntityModel<Yutyrannus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/yutyrannus_eyeglow.png"));
 	private final RenderLayerParent<Yutyrannus, EntityModel<Yutyrannus>> yutyrannusRenderer;
 	
 	public YutyrannusEyeLayer(RenderLayerParent<Yutyrannus, EntityModel<Yutyrannus>> rendererIn) {

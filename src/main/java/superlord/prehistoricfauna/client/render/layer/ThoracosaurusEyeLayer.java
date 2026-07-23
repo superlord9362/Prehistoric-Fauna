@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Thoracosaur
 
 public class ThoracosaurusEyeLayer extends RenderLayer<Thoracosaurus, ThoracosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thoracosaurus/thoracosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thoracosaurus/thoracosaurus_eyeglow.png"));
 	private final RenderLayerParent<Thoracosaurus, ThoracosaurusModel> dakotaraptorRenderer;
 	
 	public ThoracosaurusEyeLayer(RenderLayerParent<Thoracosaurus, ThoracosaurusModel> rendererIn) {

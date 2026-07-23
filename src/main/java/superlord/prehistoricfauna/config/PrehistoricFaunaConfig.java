@@ -173,12 +173,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonSavannaSpawnWeight = 2;
 	public static int hesperornithoidesMorrisonSavannaSpawnWeight = 7;
 	public static int macelognathusMorrisonSavannaSpawnWeight = 1;
-	public static int maraapunisaurusMorrisonSavannaSpawnWeight = 1;
 	public static int morrolepisMorrisonSavannaSpawnWeight = 4;
 	public static int ophiopsisMorrisonSavannaSpawnWeight = 2;
 	public static int parapleuritesMorrisonSavannaSpawnWeight = 2;
 	public static int potamoceratodusMorrisonSavannaSpawnWeight = 3;
 	public static int stegosaurusMorrisonSavannaSpawnWeight = 10;
+	public static int suuwasseaMorrisonSavannaSpawnWeight = 6;
 	public static int tanycolagreusMorrisonSavannaSpawnWeight = 2;
 	public static int torvosaurusMorrisonSavannaSpawnWeight = 2;
 	public static int caveSentinelMorrisonSavannaSpawnWeight = 5;
@@ -202,12 +202,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int hesperornithoidesMorrisonSaltFlatsSpawnWeight = 0;
 	public static int macelognathusMorrisonSaltFlatsSpawnWeight = 0;
-	public static int maraapunisaurusMorrisonSaltFlatsSpawnWeight = 2;
 	public static int morrolepisMorrisonSaltFlatsSpawnWeight = 0;
 	public static int ophiopsisMorrisonSaltFlatsSpawnWeight = 0;
 	public static int parapleuritesMorrisonSaltFlatsSpawnWeight = 0;
 	public static int potamoceratodusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int stegosaurusMorrisonSaltFlatsSpawnWeight = 0;
+	public static int suuwasseaMorrisonSaltFlatsSpawnWeight = 0;
 	public static int tanycolagreusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int torvosaurusMorrisonSaltFlatsSpawnWeight = 0;
 	public static int caveSentinelMorrisonSaltFlatsSpawnWeight = 5;
@@ -231,12 +231,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonSparseForestSpawnWeight = 4;
 	public static int hesperornithoidesMorrisonSparseForestSpawnWeight = 7;
 	public static int macelognathusMorrisonSparseForestSpawnWeight = 1;
-	public static int maraapunisaurusMorrisonSparseForestSpawnWeight = 1;
 	public static int morrolepisMorrisonSparseForestSpawnWeight = 4;
 	public static int ophiopsisMorrisonSparseForestSpawnWeight = 2;
 	public static int parapleuritesMorrisonSparseForestSpawnWeight = 3;
 	public static int potamoceratodusMorrisonSparseForestSpawnWeight = 3;
 	public static int stegosaurusMorrisonSparseForestSpawnWeight = 8;
+	public static int suuwasseaMorrisonSparseForestSpawnWeight = 7;
 	public static int tanycolagreusMorrisonSparseForestSpawnWeight = 4;
 	public static int torvosaurusMorrisonSparseForestSpawnWeight = 2;
 	public static int caveSentinelMorrisonSparseForestSpawnWeight = 5;
@@ -260,12 +260,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonGalleryForestSpawnWeight = 7;
 	public static int hesperornithoidesMorrisonGalleryForestSpawnWeight = 5;
 	public static int macelognathusMorrisonGalleryForestSpawnWeight = 4;
-	public static int maraapunisaurusMorrisonGalleryForestSpawnWeight = 0;
 	public static int morrolepisMorrisonGalleryForestSpawnWeight = 4;
 	public static int ophiopsisMorrisonGalleryForestSpawnWeight = 2;
 	public static int parapleuritesMorrisonGalleryForestSpawnWeight = 5;
 	public static int potamoceratodusMorrisonGalleryForestSpawnWeight = 4;
 	public static int stegosaurusMorrisonGalleryForestSpawnWeight = 7;
+	public static int suuwasseaMorrisonGalleryForestSpawnWeight = 3;
 	public static int tanycolagreusMorrisonGalleryForestSpawnWeight = 6;
 	public static int torvosaurusMorrisonGalleryForestSpawnWeight = 2;
 	public static int caveSentinelMorrisonGalleryForestSpawnWeight = 5;
@@ -289,12 +289,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonUplandForestSpawnWeight = 6;
 	public static int hesperornithoidesMorrisonUplandForestSpawnWeight = 5;
 	public static int macelognathusMorrisonUplandForestSpawnWeight = 7;
-	public static int maraapunisaurusMorrisonUplandForestSpawnWeight = 0;
 	public static int morrolepisMorrisonUplandForestSpawnWeight = 0;
 	public static int ophiopsisMorrisonUplandForestSpawnWeight = 0;
 	public static int parapleuritesMorrisonUplandForestSpawnWeight = 5;
 	public static int potamoceratodusMorrisonUplandForestSpawnWeight = 4;
 	public static int stegosaurusMorrisonUplandForestSpawnWeight = 3;
+	public static int suuwasseaMorrisonUplandForestSpawnWeight = 2;
 	public static int tanycolagreusMorrisonUplandForestSpawnWeight = 5;
 	public static int torvosaurusMorrisonUplandForestSpawnWeight = 1;
 	public static int caveSentinelMorrisonUplandForestSpawnWeight = 5;
@@ -318,12 +318,12 @@ public class PrehistoricFaunaConfig {
 	public static int gargoyleosaurusMorrisonRiverSpawnWeight = 0;
 	public static int hesperornithoidesMorrisonRiverSpawnWeight = 0;
 	public static int macelognathusMorrisonRiverSpawnWeight = 0;
-	public static int maraapunisaurusMorrisonRiverSpawnWeight = 0;
 	public static int morrolepisMorrisonRiverSpawnWeight = 7;
 	public static int ophiopsisMorrisonRiverSpawnWeight = 4;
 	public static int parapleuritesMorrisonRiverSpawnWeight = 0;
 	public static int potamoceratodusMorrisonRiverSpawnWeight = 5;
 	public static int stegosaurusMorrisonRiverSpawnWeight = 0;
+	public static int suuwasseaMorrisonRiverSpawnWeight = 0;
 	public static int tanycolagreusMorrisonRiverSpawnWeight = 0;
 	public static int torvosaurusMorrisonRiverSpawnWeight = 0;
 	public static int caveSentinelMorrisonRiverSpawnWeight = 5;
@@ -377,7 +377,7 @@ public class PrehistoricFaunaConfig {
 	public static int velociraptorDjadochtaArroyoSpawnWeight = 3;
 	public static int plesiohadrosDjadochtaArroyoSpawnWeight = 8;
 	public static int pinacosaurusDjadochtaArroyoSpawnWeight = 7;
-	public static int telmasaurusDjadochtaArroyoSpawnWeight = 2;
+	public static int telmasaurusDjadochtaArroyoSpawnWeight = 4;
 	public static int aepyornithomimusDjadochtaArroyoSpawnWeight = 12;
 	public static int citipatiDjadochtaArroyoSpawnWeight = 5;
 	public static int oviraptorDjadochtaArroyoSpawnWeight = 7;
@@ -440,11 +440,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaButtesSpawnWeight = 1;
 	public static int calsoyasuchusKayentaButtesSpawnWeight = 0;
 	public static int kayentachelysKayentaButtesSpawnWeight = 0;
-	public static int kayentasuchusKayentaButtesSpawnWeight = 2;
+//	public static int kayentasuchusKayentaButtesSpawnWeight = 2;
 	public static int kayentavenatorKayentaButtesSpawnWeight = 4;
 	public static int diplichnitesKayentaButtesSpawnWeight = 2;
 	public static int octopodichnusKayentaButtesSpawnWeight = 1;
 	public static int paleohelcuraKayentaButtesSpawnWeight = 4;
+	public static int toarcibatisKayentaButtesSpawnWeight = 2;
 	public static int caveSentinelKayentaButtesSpawnWeight = 5;
 	public static int landSentinelKayentaButtesSpawnWeight = 2;
 	//Kayenta Desert
@@ -458,11 +459,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaDesertSpawnWeight = 2;
 	public static int calsoyasuchusKayentaDesertSpawnWeight = 0;
 	public static int kayentachelysKayentaDesertSpawnWeight = 0;
-	public static int kayentasuchusKayentaDesertSpawnWeight = 3;
+//	public static int kayentasuchusKayentaDesertSpawnWeight = 3;
 	public static int kayentavenatorKayentaDesertSpawnWeight = 5;
 	public static int diplichnitesKayentaDesertSpawnWeight = 3;
 	public static int octopodichnusKayentaDesertSpawnWeight = 0;
 	public static int paleohelcuraKayentaDesertSpawnWeight = 4;
+	public static int toarcibatisKayentaDesertSpawnWeight = 2;
 	public static int caveSentinelKayentaDesertSpawnWeight = 5;
 	public static int landSentinelKayentaDesertSpawnWeight = 2;
 	//Kayenta Dry Forest
@@ -476,11 +478,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaDryForestSpawnWeight = 7;
 	public static int calsoyasuchusKayentaDryForestSpawnWeight = 5;
 	public static int kayentachelysKayentaDryForestSpawnWeight = 8;
-	public static int kayentasuchusKayentaDryForestSpawnWeight = 4;
+//	public static int kayentasuchusKayentaDryForestSpawnWeight = 4;
 	public static int kayentavenatorKayentaDryForestSpawnWeight = 6;
 	public static int diplichnitesKayentaDryForestSpawnWeight = 3;
 	public static int octopodichnusKayentaDryForestSpawnWeight = 4;
 	public static int paleohelcuraKayentaDryForestSpawnWeight = 1;
+	public static int toarcibatisKayentaDryForestSpawnWeight = 2;
 	public static int caveSentinelKayentaDryForestSpawnWeight = 5;
 	public static int landSentinelKayentaDryForestSpawnWeight = 2;
 	//Kayenta River
@@ -494,11 +497,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaRiverSpawnWeight = 1;
 	public static int calsoyasuchusKayentaRiverSpawnWeight = 3;
 	public static int kayentachelysKayentaRiverSpawnWeight = 6;
-	public static int kayentasuchusKayentaRiverSpawnWeight = 0;
+//	public static int kayentasuchusKayentaRiverSpawnWeight = 0;
 	public static int kayentavenatorKayentaRiverSpawnWeight = 0;
 	public static int diplichnitesKayentaRiverSpawnWeight = 0;
 	public static int octopodichnusKayentaRiverSpawnWeight = 0;
 	public static int paleohelcuraKayentaRiverSpawnWeight = 0;
+	public static int toarcibatisKayentaRiverSpawnWeight = 2;
 	public static int caveSentinelKayentaRiverSpawnWeight = 5;
 	public static int landSentinelKayentaRiverSpawnWeight = 2;
 	//Kayenta Dunes
@@ -512,11 +516,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaDunesSpawnWeight = 2;
 	public static int calsoyasuchusKayentaDunesSpawnWeight = 0;
 	public static int kayentachelysKayentaDunesSpawnWeight = 0;
-	public static int kayentasuchusKayentaDunesSpawnWeight = 2;
+//	public static int kayentasuchusKayentaDunesSpawnWeight = 2;
 	public static int kayentavenatorKayentaDunesSpawnWeight = 5;
 	public static int diplichnitesKayentaDunesSpawnWeight = 2;
 	public static int octopodichnusKayentaDunesSpawnWeight = 1;
 	public static int paleohelcuraKayentaDunesSpawnWeight = 4;
+	public static int toarcibatisKayentaDunesSpawnWeight = 2;
 	public static int caveSentinelKayentaDunesSpawnWeight = 5;
 	public static int landSentinelKayentaDunesSpawnWeight = 2;
 	//Kayenta Canyons
@@ -530,11 +535,12 @@ public class PrehistoricFaunaConfig {
 	public static int kayentatheriumKayentaCanyonsSpawnWeight = 2;
 	public static int calsoyasuchusKayentaCanyonsSpawnWeight = 1;
 	public static int kayentachelysKayentaCanyonsSpawnWeight = 0;
-	public static int kayentasuchusKayentaCanyonsSpawnWeight = 2;
+//	public static int kayentasuchusKayentaCanyonsSpawnWeight = 2;
 	public static int kayentavenatorKayentaCanyonsSpawnWeight = 5;
 	public static int diplichnitesKayentaCanyonsSpawnWeight = 1;
 	public static int octopodichnusKayentaCanyonsSpawnWeight = 1;
 	public static int paleohelcuraKayentaCanyonsSpawnWeight = 2;
+	public static int toarcibatisKayentaCanyonsSpawnWeight = 2;
 	public static int caveSentinelKayentaCanyonsSpawnWeight = 5;
 	public static int landSentinelKayentaCanyonsSpawnWeight = 2;
 	//Chinle Swamp
@@ -745,6 +751,7 @@ public class PrehistoricFaunaConfig {
 	public static int mamenchisaurusShaximiaoAridLakesSpawnWeight = 4;//
 	public static int mesoforficulaShaximiaoAridLakesSpawnWeight = 1;
 	public static int omeisaurusShaximiaoAridLakesSpawnWeight = 5;//
+	public static int polistodonShaximiaoAridLakesSpawnWeight = 0;
 	public static int rhipidoblattinaShaximiaoAridLakesSpawnWeight = 2;
 	public static int sinraptorShaximiaoAridLakesSpawnWeight = 2;//
 	public static int shunosaurusShaximiaoAridLakesSpawnWeight = 0;
@@ -769,6 +776,7 @@ public class PrehistoricFaunaConfig {
 	public static int mamenchisaurusShaximiaoDeltaPlainsSpawnWeight = 0;
 	public static int mesoforficulaShaximiaoDeltaPlainsSpawnWeight = 1;
 	public static int omeisaurusShaximiaoDeltaPlainsSpawnWeight = 3;//
+	public static int polistodonShaximiaoDeltaPlainsSpawnWeight = 5;
 	public static int rhipidoblattinaShaximiaoDeltaPlainsSpawnWeight = 1;
 	public static int sinraptorShaximiaoDeltaPlainsSpawnWeight = 0;
 	public static int shunosaurusShaximiaoDeltaPlainsSpawnWeight = 6;//
@@ -790,9 +798,10 @@ public class PrehistoricFaunaConfig {
 	public static int huayangosaurusShaximiaoDryForestSpawnWeight = 0;
 //	public static int hybodusShaximiaoDryForestSpawnWeight = 0;
 	public static int lepidotesShaximiaoDryForestSpawnWeight = 0;
-	public static int mamenchisaurusShaximiaoDryForestSpawnWeight = 2;//
+	public static int mamenchisaurusShaximiaoDryForestSpawnWeight = 4;//
 	public static int mesoforficulaShaximiaoDryForestSpawnWeight = 3;
 	public static int omeisaurusShaximiaoDryForestSpawnWeight = 3;//
+	public static int polistodonShaximiaoDryForestSpawnWeight = 0;
 	public static int rhipidoblattinaShaximiaoDryForestSpawnWeight = 3;
 	public static int sinraptorShaximiaoDryForestSpawnWeight = 4;//
 	public static int shunosaurusShaximiaoDryForestSpawnWeight = 0;
@@ -817,6 +826,7 @@ public class PrehistoricFaunaConfig {
 	public static int mamenchisaurusShaximiaoGalleryForestSpawnWeight = 0;
 	public static int mesoforficulaShaximiaoGalleryForestSpawnWeight = 3;
 	public static int omeisaurusShaximiaoGalleryForestSpawnWeight = 3;//
+	public static int polistodonShaximiaoGalleryForestSpawnWeight = 7;
 	public static int rhipidoblattinaShaximiaoGalleryForestSpawnWeight = 3;
 	public static int sinraptorShaximiaoGalleryForestSpawnWeight = 0;
 	public static int shunosaurusShaximiaoGalleryForestSpawnWeight = 6;//
@@ -841,6 +851,7 @@ public class PrehistoricFaunaConfig {
 	public static int mamenchisaurusShaximiaoLakesSpawnWeight = 0;
 	public static int mesoforficulaShaximiaoLakesSpawnWeight = 1;
 	public static int omeisaurusShaximiaoLakesSpawnWeight = 4;//
+	public static int polistodonShaximiaoLakesSpawnWeight = 4;
 	public static int rhipidoblattinaShaximiaoLakesSpawnWeight  = 2;
 	public static int sinraptorShaximiaoLakesSpawnWeight = 0;
 	public static int shunosaurusShaximiaoLakesSpawnWeight = 7;//
@@ -862,9 +873,10 @@ public class PrehistoricFaunaConfig {
 	public static int huayangosaurusShaximiaoMountainsSpawnWeight = 0;
 //	public static int hybodusShaximiaoMountainsSpawnWeight = 0;
 	public static int lepidotesShaximiaoMountainsSpawnWeight = 0;
-	public static int mamenchisaurusShaximiaoMountainsSpawnWeight = 1;//
+	public static int mamenchisaurusShaximiaoMountainsSpawnWeight = 2;//
 	public static int mesoforficulaShaximiaoMountainsSpawnWeight = 2;
 	public static int omeisaurusShaximiaoMountainsSpawnWeight = 3;//
+	public static int polistodonShaximiaoMountainsSpawnWeight = 0;
 	public static int rhipidoblattinaShaximiaoMountainsSpawnWeight = 3;
 	public static int sinraptorShaximiaoMountainsSpawnWeight = 2;//
 	public static int shunosaurusShaximiaoMountainsSpawnWeight = 0;
@@ -894,6 +906,8 @@ public class PrehistoricFaunaConfig {
 	public static int chinleHutMaxDistance = 60;
 	public static int yixianHutMinDistance = 40;
 	public static int yixianHutMaxDistance = 60;
+	public static int shaximiaoHutMinDistance = 40;
+	public static int shaximiaoHutMaxDistance = 60;
 	public static int geologistCampMinDistance = 25;
 	public static int geologistCampMaxDistance = 50;
 	public static int timeTempleMinDistance = 75;
@@ -907,6 +921,7 @@ public class PrehistoricFaunaConfig {
 	public static boolean giveAncientJournalOnStartup = true;
 	
 	public static boolean sleeping = true;
+	public static boolean burrowing = true;
 	public static boolean advancedHunger = true;
 	public static boolean hungerDamage = false;
 	public static boolean naturalEggBlockLaying = true;
@@ -1120,12 +1135,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonSavannaSpawnWeight.get();
 			hesperornithoidesMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonSavannaSpawnWeight.get();
 			macelognathusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSavannaSpawnWeight.get();
-			maraapunisaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSavannaSpawnWeight.get();
 			morrolepisMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSavannaSpawnWeight.get();
 			ophiopsisMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSavannaSpawnWeight.get();
 			parapleuritesMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSavannaSpawnWeight.get();
 			potamoceratodusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSavannaSpawnWeight.get();
 			stegosaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSavannaSpawnWeight.get();
+			suuwasseaMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonSavannaSpawnWeight.get();
 			tanycolagreusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonSavannaSpawnWeight.get();
 			torvosaurusMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonSavannaSpawnWeight.get();
 			caveSentinelMorrisonSavannaSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonSavannaSpawnWeight.get();
@@ -1149,12 +1164,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonSaltFlatsSpawnWeight.get();
 			hesperornithoidesMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonSaltFlatsSpawnWeight.get();
 			macelognathusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSaltFlatsSpawnWeight.get();
-			maraapunisaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSaltFlatsSpawnWeight.get();
 			morrolepisMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSaltFlatsSpawnWeight.get();
 			ophiopsisMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSaltFlatsSpawnWeight.get();
 			parapleuritesMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSaltFlatsSpawnWeight.get();
 			potamoceratodusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSaltFlatsSpawnWeight.get();
 			stegosaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSaltFlatsSpawnWeight.get();
+			suuwasseaMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonSaltFlatsSpawnWeight.get();
 			tanycolagreusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonSaltFlatsSpawnWeight.get();
 			torvosaurusMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonSaltFlatsSpawnWeight.get();
 			caveSentinelMorrisonSaltFlatsSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonSaltFlatsSpawnWeight.get();
@@ -1178,12 +1193,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonSparseForestSpawnWeight.get();
 			hesperornithoidesMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonSparseForestSpawnWeight.get();
 			macelognathusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonSparseForestSpawnWeight.get();
-			maraapunisaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonSparseForestSpawnWeight.get();
 			morrolepisMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonSparseForestSpawnWeight.get();
 			ophiopsisMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonSparseForestSpawnWeight.get();
 			parapleuritesMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonSparseForestSpawnWeight.get();
 			potamoceratodusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonSparseForestSpawnWeight.get();
 			stegosaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonSparseForestSpawnWeight.get();
+			suuwasseaMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonSparseForestSpawnWeight.get();
 			tanycolagreusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonSparseForestSpawnWeight.get();
 			torvosaurusMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonSparseForestSpawnWeight.get();
 			caveSentinelMorrisonSparseForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonSparseForestSpawnWeight.get();
@@ -1207,12 +1222,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonGalleryForestSpawnWeight.get();
 			hesperornithoidesMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonGalleryForestSpawnWeight.get();
 			macelognathusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonGalleryForestSpawnWeight.get();
-			maraapunisaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonGalleryForestSpawnWeight.get();
 			morrolepisMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonGalleryForestSpawnWeight.get();
 			ophiopsisMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonGalleryForestSpawnWeight.get();
 			parapleuritesMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonGalleryForestSpawnWeight.get();
 			potamoceratodusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonGalleryForestSpawnWeight.get();
 			stegosaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonGalleryForestSpawnWeight.get();
+			suuwasseaMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonGalleryForestSpawnWeight.get();
 			tanycolagreusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonGalleryForestSpawnWeight.get();
 			torvosaurusMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonGalleryForestSpawnWeight.get();
 			caveSentinelMorrisonGalleryForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonGalleryForestSpawnWeight.get();
@@ -1236,12 +1251,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonUplandForestSpawnWeight.get();
 			hesperornithoidesMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonUplandForestSpawnWeight.get();
 			macelognathusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonUplandForestSpawnWeight.get();
-			maraapunisaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonUplandForestSpawnWeight.get();
 			morrolepisMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonUplandForestSpawnWeight.get();
 			ophiopsisMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonUplandForestSpawnWeight.get();
 			parapleuritesMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonUplandForestSpawnWeight.get();
 			potamoceratodusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonUplandForestSpawnWeight.get();
 			stegosaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonUplandForestSpawnWeight.get();
+			suuwasseaMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonUplandForestSpawnWeight.get();
 			tanycolagreusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonUplandForestSpawnWeight.get();
 			torvosaurusMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonUplandForestSpawnWeight.get();
 			caveSentinelMorrisonUplandForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonUplandForestSpawnWeight.get();
@@ -1265,12 +1280,12 @@ public class PrehistoricFaunaConfig {
 			gargoyleosaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.gargoyleosaurusMorrisonRiverSpawnWeight.get();
 			hesperornithoidesMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.hesperornithoidesMorrisonRiverSpawnWeight.get();
 			macelognathusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.macelognathusMorrisonRiverSpawnWeight.get();
-			maraapunisaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.maraapunisaurusMorrisonRiverSpawnWeight.get();
 			morrolepisMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.morrolepisMorrisonRiverSpawnWeight.get();
 			ophiopsisMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.ophiopsisMorrisonRiverSpawnWeight.get();
 			parapleuritesMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.parapleuritesMorrisonRiverSpawnWeight.get();
 			potamoceratodusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.potamoceratodusMorrisonRiverSpawnWeight.get();
 			stegosaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.stegosaurusMorrisonRiverSpawnWeight.get();
+			suuwasseaMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.suuwasseaMorrisonRiverSpawnWeight.get();
 			tanycolagreusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.tanycolagreusMorrisonRiverSpawnWeight.get();
 			torvosaurusMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.torvosaurusMorrisonRiverSpawnWeight.get();
 			caveSentinelMorrisonRiverSpawnWeight = PFConfigHolder.SERVER.caveSentinelMorrisonRiverSpawnWeight.get();
@@ -1386,12 +1401,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaButtesSpawnWeight.get();
 			kayentatheriumKayentaButtesSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaButtesSpawnWeight.get();
 			calsoyasuchusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaButtesSpawnWeight.get();
-			kayentasuchusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaButtesSpawnWeight.get();
+//			kayentasuchusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaButtesSpawnWeight.get();
 			kayentachelysKayentaButtesSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaButtesSpawnWeight.get();
 			kayentavenatorKayentaButtesSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaButtesSpawnWeight.get();
 			diplichnitesKayentaButtesSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaButtesSpawnWeight.get();
 			octopodichnusKayentaButtesSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaButtesSpawnWeight.get();
 			paleohelcuraKayentaButtesSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaButtesSpawnWeight.get();
+			toarcibatisKayentaButtesSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaButtesSpawnWeight.get();
 			caveSentinelKayentaButtesSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaButtesSpawnWeight.get();
 			landSentinelKayentaButtesSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaButtesSpawnWeight.get();
 			//Kayenta Desert
@@ -1404,12 +1420,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaDesertSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaDesertSpawnWeight.get();
 			kayentatheriumKayentaDesertSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaDesertSpawnWeight.get();
 			calsoyasuchusKayentaDesertSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaDesertSpawnWeight.get();
-			kayentasuchusKayentaDesertSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDesertSpawnWeight.get();
+//			kayentasuchusKayentaDesertSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDesertSpawnWeight.get();
 			kayentachelysKayentaDesertSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaDesertSpawnWeight.get();
 			kayentavenatorKayentaDesertSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaDesertSpawnWeight.get();
 			diplichnitesKayentaDesertSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaDesertSpawnWeight.get();
 			octopodichnusKayentaDesertSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaDesertSpawnWeight.get();
 			paleohelcuraKayentaDesertSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaDesertSpawnWeight.get();
+			toarcibatisKayentaDesertSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaDesertSpawnWeight.get();
 			caveSentinelKayentaDesertSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaDesertSpawnWeight.get();
 			landSentinelKayentaDesertSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaDesertSpawnWeight.get();
 			//Kayenta Dry Forest
@@ -1422,12 +1439,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaDryForestSpawnWeight.get();
 			kayentatheriumKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaDryForestSpawnWeight.get();
 			calsoyasuchusKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaDryForestSpawnWeight.get();
-			kayentasuchusKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDryForestSpawnWeight.get();
+//			kayentasuchusKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDryForestSpawnWeight.get();
 			kayentachelysKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaDryForestSpawnWeight.get();
 			kayentavenatorKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaDryForestSpawnWeight.get();
 			diplichnitesKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaDryForestSpawnWeight.get();
 			octopodichnusKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaDryForestSpawnWeight.get();
 			paleohelcuraKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaDryForestSpawnWeight.get();
+			toarcibatisKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaDryForestSpawnWeight.get();
 			caveSentinelKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaDryForestSpawnWeight.get();
 			landSentinelKayentaDryForestSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaDryForestSpawnWeight.get();
 			//Kayenta River
@@ -1440,12 +1458,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaRiverSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaRiverSpawnWeight.get();
 			kayentatheriumKayentaRiverSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaRiverSpawnWeight.get();
 			calsoyasuchusKayentaRiverSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaRiverSpawnWeight.get();
-			kayentasuchusKayentaRiverSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaRiverSpawnWeight.get();
+//			kayentasuchusKayentaRiverSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaRiverSpawnWeight.get();
 			kayentachelysKayentaRiverSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaRiverSpawnWeight.get();
 			kayentavenatorKayentaRiverSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaRiverSpawnWeight.get();
 			diplichnitesKayentaRiverSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaRiverSpawnWeight.get();
 			octopodichnusKayentaRiverSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaRiverSpawnWeight.get();
 			paleohelcuraKayentaRiverSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaRiverSpawnWeight.get();
+			toarcibatisKayentaRiverSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaRiverSpawnWeight.get();
 			caveSentinelKayentaRiverSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaRiverSpawnWeight.get();
 			landSentinelKayentaRiverSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaRiverSpawnWeight.get();
 			//Kayenta Canyons
@@ -1458,12 +1477,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaCanyonsSpawnWeight.get();
 			kayentatheriumKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaCanyonsSpawnWeight.get();
 			calsoyasuchusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaCanyonsSpawnWeight.get();
-			kayentasuchusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaCanyonsSpawnWeight.get();
+//			kayentasuchusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaCanyonsSpawnWeight.get();
 			kayentachelysKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaCanyonsSpawnWeight.get();
 			kayentavenatorKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaCanyonsSpawnWeight.get();
-			diplichnitesKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaButtesSpawnWeight.get();
-			octopodichnusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaButtesSpawnWeight.get();
-			paleohelcuraKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaButtesSpawnWeight.get();
+			diplichnitesKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaCanyonsSpawnWeight.get();
+			octopodichnusKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaCanyonsSpawnWeight.get();
+			paleohelcuraKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaCanyonsSpawnWeight.get();
+			toarcibatisKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaCanyonsSpawnWeight.get();
 			caveSentinelKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaCanyonsSpawnWeight.get();
 			landSentinelKayentaCanyonsSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaCanyonsSpawnWeight.get();
 			//Kayenta Dunes
@@ -1476,12 +1496,13 @@ public class PrehistoricFaunaConfig {
 			megapnosaurusKayentaDunesSpawnWeight = PFConfigHolder.SERVER.megapnosaurusKayentaDunesSpawnWeight.get();
 			kayentatheriumKayentaDunesSpawnWeight = PFConfigHolder.SERVER.kayentatheriumKayentaDunesSpawnWeight.get();
 			calsoyasuchusKayentaDunesSpawnWeight = PFConfigHolder.SERVER.calsoyasuchusKayentaDunesSpawnWeight.get();
-			kayentasuchusKayentaDunesSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDunesSpawnWeight.get();
+//			kayentasuchusKayentaDunesSpawnWeight = PFConfigHolder.SERVER.kayentasuchusKayentaDunesSpawnWeight.get();
 			kayentachelysKayentaDunesSpawnWeight = PFConfigHolder.SERVER.kayentachelysKayentaDunesSpawnWeight.get();
 			kayentavenatorKayentaDunesSpawnWeight = PFConfigHolder.SERVER.kayentavenatorKayentaDunesSpawnWeight.get();
 			diplichnitesKayentaDunesSpawnWeight = PFConfigHolder.SERVER.diplichnitesKayentaDunesSpawnWeight.get();
 			octopodichnusKayentaDunesSpawnWeight = PFConfigHolder.SERVER.octopodichnusKayentaDunesSpawnWeight.get();
 			paleohelcuraKayentaDunesSpawnWeight = PFConfigHolder.SERVER.paleohelcuraKayentaDunesSpawnWeight.get();
+			toarcibatisKayentaDunesSpawnWeight = PFConfigHolder.SERVER.toarcibatisKayentaDunesSpawnWeight.get();
 			caveSentinelKayentaDunesSpawnWeight = PFConfigHolder.SERVER.caveSentinelKayentaDunesSpawnWeight.get();
 			landSentinelKayentaDunesSpawnWeight = PFConfigHolder.SERVER.landSentinelKayentaDunesSpawnWeight.get();
 			//Chinle Swamp
@@ -1691,6 +1712,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoAridLakesSpawnWeight.get();
 			mesoforficulaShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoAridLakesSpawnWeight.get();
 			omeisaurusShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoAridLakesSpawnWeight.get();
+			polistodonShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoAridLakesSpawnWeight.get();
 			rhipidoblattinaShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoAridLakesSpawnWeight.get();
 			sinraptorShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoAridLakesSpawnWeight.get();
 			shunosaurusShaximiaoAridLakesSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoAridLakesSpawnWeight.get();
@@ -1714,6 +1736,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoDeltaPlainsSpawnWeight.get();
 			mesoforficulaShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoDeltaPlainsSpawnWeight.get();
 			omeisaurusShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoDeltaPlainsSpawnWeight.get();
+			polistodonShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoDeltaPlainsSpawnWeight.get();
 			rhipidoblattinaShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoDeltaPlainsSpawnWeight.get();
 			sinraptorShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoDeltaPlainsSpawnWeight.get();
 			shunosaurusShaximiaoDeltaPlainsSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoDeltaPlainsSpawnWeight.get();
@@ -1737,6 +1760,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoDryForestSpawnWeight.get();
 			mesoforficulaShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoDryForestSpawnWeight.get();
 			omeisaurusShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoDryForestSpawnWeight.get();
+			polistodonShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoDryForestSpawnWeight.get();
 			rhipidoblattinaShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoDryForestSpawnWeight.get();
 			sinraptorShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoDryForestSpawnWeight.get();
 			shunosaurusShaximiaoDryForestSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoDryForestSpawnWeight.get();
@@ -1760,6 +1784,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoGalleryForestSpawnWeight.get();
 			mesoforficulaShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoGalleryForestSpawnWeight.get();
 			omeisaurusShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoGalleryForestSpawnWeight.get();
+			polistodonShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoGalleryForestSpawnWeight.get();
 			rhipidoblattinaShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoGalleryForestSpawnWeight.get();
 			sinraptorShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoGalleryForestSpawnWeight.get();
 			shunosaurusShaximiaoGalleryForestSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoGalleryForestSpawnWeight.get();
@@ -1783,6 +1808,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoLakesSpawnWeight.get();
 			mesoforficulaShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoLakesSpawnWeight.get();
 			omeisaurusShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoLakesSpawnWeight.get();
+			polistodonShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoLakesSpawnWeight.get();
 			rhipidoblattinaShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoLakesSpawnWeight.get();
 			sinraptorShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoLakesSpawnWeight.get();
 			shunosaurusShaximiaoLakesSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoLakesSpawnWeight.get();
@@ -1806,6 +1832,7 @@ public class PrehistoricFaunaConfig {
 			mamenchisaurusShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.mamenchisaurusShaximiaoMountainsSpawnWeight.get();
 			mesoforficulaShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.mesoforficulaShaximiaoMountainsSpawnWeight.get();
 			omeisaurusShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.omeisaurusShaximiaoMountainsSpawnWeight.get();
+			polistodonShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.polistodonShaximiaoMountainsSpawnWeight.get();
 			rhipidoblattinaShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.rhipidoblattinaShaximiaoMountainsSpawnWeight.get();
 			sinraptorShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.sinraptorShaximiaoMountainsSpawnWeight.get();
 			shunosaurusShaximiaoMountainsSpawnWeight = PFConfigHolder.SERVER.shunosaurusShaximiaoMountainsSpawnWeight.get();
@@ -1836,6 +1863,8 @@ public class PrehistoricFaunaConfig {
 			chinleHutMaxDistance = PFConfigHolder.SERVER.chinleHutMaxDistance.get();
 			yixianHutMinDistance = PFConfigHolder.SERVER.yixianHutMinDistance.get();
 			yixianHutMaxDistance = PFConfigHolder.SERVER.yixianHutMaxDistance.get();
+			shaximiaoHutMinDistance = PFConfigHolder.SERVER.shaximiaoHutMinDistance.get();
+			shaximiaoHutMaxDistance = PFConfigHolder.SERVER.shaximiaoHutMaxDistance.get();
 			geologistCampMinDistance = PFConfigHolder.SERVER.geologistCampMinDistance.get();
 			geologistCampMaxDistance = PFConfigHolder.SERVER.geologistCampMaxDistance.get();
 			timeTempleMinDistance = PFConfigHolder.SERVER.timeTempleMinDistance.get();
@@ -1847,6 +1876,7 @@ public class PrehistoricFaunaConfig {
 			baseStoneWeight = PFConfigHolder.SERVER.baseStoneWeight.get();
 			fossilWeight = PFConfigHolder.SERVER.fossilWeight.get();
 			sleeping = PFConfigHolder.SERVER.sleeping.get();
+			burrowing = PFConfigHolder.SERVER.burrowing.get();
 			advancedHunger = PFConfigHolder.SERVER.advancedHunger.get();
 			hungerDamage = PFConfigHolder.SERVER.hungerDamage.get();
 			naturalEggBlockLaying = PFConfigHolder.SERVER.naturalEggBlockLaying.get();

@@ -17,20 +17,20 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class StegosaurusRenderer extends MobRenderer<Stegosaurus, EntityModel<Stegosaurus>> {
-	private static final ResourceLocation STEGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic.png");
-	private static final ResourceLocation STEGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation ZOO_TYCOON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_ztc.png");
-	private static final ResourceLocation ZOO_TYCOON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_ztc_sleeping.png");
-	private static final ResourceLocation STEGOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_hatchling.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino_hatchling.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic_hatchling.png");
-	private static final ResourceLocation STEGOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_hatchling_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/albino_hatchling_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/melanistic_hatchling_sleeping.png");
+	private static final ResourceLocation STEGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/melanistic.png");
+	private static final ResourceLocation STEGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ZOO_TYCOON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_ztc.png");
+	private static final ResourceLocation ZOO_TYCOON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_ztc_sleeping.png");
+	private static final ResourceLocation STEGOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_hatchling.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/albino_hatchling.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/melanistic_hatchling.png");
+	private static final ResourceLocation STEGOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_hatchling_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/albino_hatchling_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/melanistic_hatchling_sleeping.png");
 
 	private static StegosaurusModel STEGOSAURUS_MODEL;
 	private static StegosaurusBabyModel STEGOSAURUS_BABY_MODEL;

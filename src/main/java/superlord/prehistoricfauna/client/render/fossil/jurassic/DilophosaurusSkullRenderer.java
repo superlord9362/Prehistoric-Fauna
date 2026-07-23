@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.DilophosaurusSku
 
 public class DilophosaurusSkullRenderer extends MobRenderer<DilophosaurusSkull, DilophosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/dilophosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/dilophosaurus_skeleton.png");
 
 	public DilophosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DilophosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.DILOPHOSAURUS_SKULL)), 0);

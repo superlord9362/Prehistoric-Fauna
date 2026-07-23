@@ -17,12 +17,16 @@ Animals:
 --Plesiohadros
 --Protoceratops
 --Udanoceratops
+
 --Velociraptor
+
 -Lizards:
 --Telmasaurus
+
 -Bugs:
 --Dermestid Beetle
 --Gobiulus
+
 -Fish:
 --Harenaichthys
 
@@ -30,11 +34,7 @@ Plants:
 -Water Plants:
 --Cobbania
 --Quereuxia
+
 -Land Plants:
---Dead Cycads
 --Ephedra
 --Horsetails
--Trees:
---Ginkgo
---Metasquoia
---Trochodendroides

@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuch
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class SaurosuchusRenderer extends MobRenderer<Saurosuchus, EntityModel<Saurosuchus>> {
-	private static final ResourceLocation SAUROSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus.png");
-	private static final ResourceLocation SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_sleeping.png");
-	private static final ResourceLocation SAUROSUCHUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus_baby.png");
-	private static final ResourceLocation SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/albino_baby.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation SAUROSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/saurosuchus.png");
+	private static final ResourceLocation SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/saurosuchus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/melanistic_sleeping.png");
+	private static final ResourceLocation SAUROSUCHUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/saurosuchus_baby.png");
+	private static final ResourceLocation SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/saurosuchus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/albino_baby.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/melanistic_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/melanistic_baby_sleeping.png");
 
 	private static SaurosuchusModel SAUROSUCHUS_MODEL;
 	private static SaurosuchusBabyModel BABY_SAUROSUCHUS_MODEL;

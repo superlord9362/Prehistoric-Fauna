@@ -3,6 +3,7 @@ package superlord.prehistoricfauna.common.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,6 +34,12 @@ public class SabalitesSaplingBlock extends BushBlock implements BonemealableBloc
 		return SHAPE;
 	}
 
+	@Override
+	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+		Block block = state.getBlock();
+		return super.canSurvive(state, worldIn, pos) || block == PFBlocks.HARDENED_SILT.get() || block == PFBlocks.SILT.get() || worldIn.getBlockState(pos).is(BlockTags.SAND);
+	}
+
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState p_56003_, ServerLevel p_56004_, BlockPos p_56005_, RandomSource p_56006_) {
 		if (p_56004_.getMaxLocalRawBrightness(p_56005_.above()) >= 9 && p_56006_.nextInt(7) == 0) {
@@ -41,7 +48,7 @@ public class SabalitesSaplingBlock extends BushBlock implements BonemealableBloc
 		}
 
 	}
-	
+
 	public static boolean isAir(LevelSimulatedReader worldgenlevel, BlockPos pos) {
 		if (worldgenlevel instanceof BlockGetter) // FORGE: Redirect to state method when possible
 			return worldgenlevel.isStateAtPosition(pos, state -> state.isAir());
@@ -277,6 +284,12 @@ public class SabalitesSaplingBlock extends BushBlock implements BonemealableBloc
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_56001_) {
 		p_56001_.add(STAGE);
+	}
+
+	@Override
+	protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
+		Block block = state.getBlock();
+		return super.mayPlaceOn(state, worldIn, pos) || block == PFBlocks.HARDENED_SILT.get() || block == PFBlocks.SILT.get() || worldIn.getBlockState(pos).is(BlockTags.SAND);
 	}
 
 }

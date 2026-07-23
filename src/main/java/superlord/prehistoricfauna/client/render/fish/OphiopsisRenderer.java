@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Ophiopsis;
 
 public class OphiopsisRenderer extends MobRenderer<Ophiopsis, OphiopsisModel> {
 
-	private static final ResourceLocation OPHIOPSIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/ophiopsis.png");
+	private static final ResourceLocation OPHIOPSIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/ophiopsis.png");
 
 	public OphiopsisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new OphiopsisModel(renderManagerIn.bakeLayer(ClientEvents.OPHIOPSIS)), 0);

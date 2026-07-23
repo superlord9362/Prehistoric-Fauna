@@ -17,7 +17,7 @@ and a 15% chance of being
 territorial.
 
 Sleep Cycle: Diurnal 
-<image><drawings_ankylosaurus.png 35 3 152 169 23 20 6.25>
+<image><drawings_ankylosaurus.png 37 2 152 190 23 20 6>
 
 
 
@@ -32,10 +32,11 @@ Sleep Cycle: Diurnal
 
 
 
-
-Behavior: Shunosaurus can crush 
-certain items that land below their 
-feet, such as Henostone. These 
-items have a chance to be 
-crushed into a different item 
-under their weight.
+Behavior: Shunosaurus can be 
+tamed with Cupressinocladus 
+Leaves. Once tamed, it can be 
+saddled, and can allow up to four 
+players to ride at once. 
+Alternatively, it can have chests, 
+with a maximum of two chests and 
+two players.

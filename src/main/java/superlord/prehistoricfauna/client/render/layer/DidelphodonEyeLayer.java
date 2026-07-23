@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon
 
 public class DidelphodonEyeLayer extends RenderLayer<Didelphodon, DidelphodonModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/didelphodon_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/didelphodon_eyeglow.png"));
 	private final RenderLayerParent<Didelphodon, DidelphodonModel> dakotaraptorRenderer;
 	
 	public DidelphodonEyeLayer(RenderLayerParent<Didelphodon, DidelphodonModel> rendererIn) {

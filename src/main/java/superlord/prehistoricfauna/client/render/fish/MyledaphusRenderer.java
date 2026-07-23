@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Myledaphus;
 
 public class MyledaphusRenderer extends MobRenderer<Myledaphus, MyledaphusModel> {
 
-	private static final ResourceLocation MYLEDAPHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/myledaphus.png");
+	private static final ResourceLocation MYLEDAPHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/myledaphus.png");
 
 	public MyledaphusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MyledaphusModel(renderManagerIn.bakeLayer(ClientEvents.MYLEDAPHUS)), 0);

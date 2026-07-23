@@ -2,7 +2,7 @@
     "parent": "block/cube_bottom_top",
     "textures": {
         "bottom": "prehistoricfauna:block/fossil_crate_bottom",
-        "top": "prehistoricfauna:block/fossil_crate_top",
+        "top": "prehistoricfauna:block/fossil_crate_top_white",
         "side": "prehistoricfauna:block/kayentavenator_skeleton"
     }
 }

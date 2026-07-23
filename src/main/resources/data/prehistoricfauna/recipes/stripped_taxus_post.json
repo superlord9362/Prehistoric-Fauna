@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "misc",
+	"group": "wooden_post",
+	"pattern": [		
 		"F",
 		"F",
 		"F"
@@ -10,14 +12,23 @@
 			"item": "prehistoricfauna:stripped_taxus_wood"
 		}
 	},
-  	"result": {
+	"result": {
 		"item": "prehistoricfauna:stripped_taxus_post",
 		"count": 8
-  	},
+	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "wooden_posts"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "wooden_posts"
+				}
+			]
 		}
 	]
 }

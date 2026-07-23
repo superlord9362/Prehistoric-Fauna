@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Ischigual
 
 public class IschigualastiaSaddleLayer extends RenderLayer<Ischigualastia, EntityModel<Ischigualastia>> {
 	
-	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ischigualastia/ischigualastia_saddle_layer.png"));
+	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ischigualastia/ischigualastia_saddle_layer.png"));
 	private final RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer;
 	
 	public IschigualastiaSaddleLayer(RenderLayerParent<Ischigualastia, EntityModel<Ischigualastia>> ischigualastiaRenderer) {

@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:anzu_skull"
+    },
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:anzu_skeleton"
+  },
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "fossil"
+		}
+	]
+}

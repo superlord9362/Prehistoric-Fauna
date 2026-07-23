@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Torvosaurus;
 
 public class TorvosaurusEyeLayer extends RenderLayer<Torvosaurus, EntityModel<Torvosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/torvosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/torvosaurus_eyeglow.png"));
 	private final RenderLayerParent<Torvosaurus, EntityModel<Torvosaurus>> torvosaurusRenderer;
 	
 	public TorvosaurusEyeLayer(RenderLayerParent<Torvosaurus, EntityModel<Torvosaurus>> rendererIn) {

@@ -1,6 +1,6 @@
 Found In: Morrison
 
-Drops: 1-2 Large Raw Ornithischian
+Drops: 1-2 Large Raw Ornithopod
 
 Diet: Herbivore
 
@@ -33,5 +33,9 @@ Sleep Cycle: Diurnal
 
 
 
-
-Behavior: Investigation underway!
+Behavior: Camptosaurus can be 
+tamed by feeding it Cladophlebis. 
+Once tamed, it can be saddled, 
+chested, and ridden. Other tamed 
+Camptosaurus will follow any 
+Camptosaurus that is being ridden.

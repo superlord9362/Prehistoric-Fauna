@@ -14,26 +14,26 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.DongbeititanMod
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
 
 public class DongbeititanRenderer extends MobRenderer<Dongbeititan, EntityModel<Dongbeititan>> {
-	private static final ResourceLocation DONGBEITITAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic.png");
-	private static final ResourceLocation DONGBEITITAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_sleeping.png");
+	private static final ResourceLocation DONGBEITITAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic.png");
+	private static final ResourceLocation DONGBEITITAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic_sleeping.png");
 
-	private static final ResourceLocation DONGBEITITAN_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_juvenile.png");
-	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_juvenile.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_juvenile.png");
-	private static final ResourceLocation DONGBEITITAN_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_juvenile_sleeping.png");
-	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_juvenile_sleeping.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_juvenile_sleeping.png");
+	private static final ResourceLocation DONGBEITITAN_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan_juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic_juvenile.png");
+	private static final ResourceLocation DONGBEITITAN_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan_juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic_juvenile_sleeping.png");
 
-	private static final ResourceLocation DONGBEITITAN_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_baby.png");
-	private static final ResourceLocation DONGBEITITAN_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/dongbeititan_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dongbeititan/melanistic_baby_sleeping.png");
+	private static final ResourceLocation DONGBEITITAN_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic_baby.png");
+	private static final ResourceLocation DONGBEITITAN_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/dongbeititan_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dongbeititan/melanistic_baby_sleeping.png");
 
 	private static DongbeititanModel DONGBEITITAN_MODEL;
 	private static DongbeititanJuvenileModel JUVENILE_MODEL;

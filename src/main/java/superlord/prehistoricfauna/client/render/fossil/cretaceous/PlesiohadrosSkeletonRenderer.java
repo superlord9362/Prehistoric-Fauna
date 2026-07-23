@@ -19,7 +19,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.PlesiohadrosSk
 
 public class PlesiohadrosSkeletonRenderer extends MobRenderer<PlesiohadrosSkeleton, EntityModel<PlesiohadrosSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/plesiohadros_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/plesiohadros_skeleton.png");
     private static PlesiohadrosSkeletonModel IDLE;
     private static PlesiohadrosSkeletonChargeModel CHARGE;
     private static PlesiohadrosSkeletonDashLeftModel DASH_LEFT;
@@ -40,21 +40,15 @@ public class PlesiohadrosSkeletonRenderer extends MobRenderer<PlesiohadrosSkelet
 	}
 	
 	protected void scale(PlesiohadrosSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isCharging()) {
-			model = CHARGE;
-		} else if (entityIn.isDashingLeft()) {
-			model = DASH_LEFT;
-		} else if (entityIn.isDashingRight()) {
-			model = DASH_RIGHT;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else if (entityIn.isWalking()) {
-			model = WALKING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "CHARGING" -> CHARGE;
+		case "SITTING" -> SITTING;
+		case "DASHING_LEFT" -> DASH_LEFT;
+		case "DASHING_RIGHT" -> DASH_RIGHT;
+		case "SLEEPING" -> SLEEPING;
+		case "WALKING" -> WALKING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

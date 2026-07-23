@@ -70,7 +70,6 @@
       "prehistoricfauna:placed_small_araucaria_trees",
       "prehistoricfauna:placed_brachyphyllum_trees",
       "prehistoricfauna:placed_elatides_trees",
-      "prehistoricfauna:placed_podozamites_trees",
       "prehistoricfauna:placed_protopiceoxylon_trees",
       "prehistoricfauna:placed_rare_zamites",
       "prehistoricfauna:placed_dayvaultia"
@@ -175,6 +174,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:suuwassea",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
       },
       {
         "type": "prehistoricfauna:torvosaurus",

@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.kayenta.OctopodichnusMod
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Octopodichnus;
 
 public class OctopodichnusRenderer extends MobRenderer<Octopodichnus, OctopodichnusModel<Octopodichnus>> {
-	private static final ResourceLocation OCTOPODICHNUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/octopodichnus.png");
+	private static final ResourceLocation OCTOPODICHNUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/octopodichnus.png");
 
 	public OctopodichnusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new OctopodichnusModel<>(renderManagerIn.bakeLayer(ClientEvents.OCTOPODICHNUS)), 0F);

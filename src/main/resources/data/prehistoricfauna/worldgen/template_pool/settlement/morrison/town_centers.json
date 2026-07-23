@@ -1,0 +1,51 @@
+{
+	"name": "prehistoricfauna:settlement/morrison/town_centers",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/town_centers/morrison_center_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/town_centers/morrison_center_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/town_centers/morrison_center_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/town_centers/morrison_center_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/town_centers/morrison_center_5",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

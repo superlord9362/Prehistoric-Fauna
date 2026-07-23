@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretod
 
 public class ExaeretodonEyeLayer extends RenderLayer<Exaeretodon, ExaeretodonModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/exaeretodon_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/exaeretodon_eyeglow.png"));
 	private final RenderLayerParent<Exaeretodon, ExaeretodonModel> exaeretodonRenderer;
 	
 	public ExaeretodonEyeLayer(RenderLayerParent<Exaeretodon, ExaeretodonModel> rendererIn) {

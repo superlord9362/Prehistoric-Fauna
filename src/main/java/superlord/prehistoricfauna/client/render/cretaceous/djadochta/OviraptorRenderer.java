@@ -12,14 +12,14 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Oviraptor;
 
 public class OviraptorRenderer extends MobRenderer<Oviraptor, OviraptorModel> {
 
-	private static final ResourceLocation OVIRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/oviraptor.png");
-	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/oviraptor_baby.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/melanistic.png");
-	private static final ResourceLocation OVIRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/oviraptor_sleeping.png");
-	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/oviraptor_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/oviraptor/melanistic_sleeping.png");
+	private static final ResourceLocation OVIRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/oviraptor.png");
+	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/oviraptor_baby.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/melanistic.png");
+	private static final ResourceLocation OVIRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/oviraptor_sleeping.png");
+	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/oviraptor_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/oviraptor/melanistic_sleeping.png");
 	
 	public OviraptorRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new OviraptorModel(renderManagerIn.bakeLayer(ClientEvents.OVIRAPTOR)), 0.5F);

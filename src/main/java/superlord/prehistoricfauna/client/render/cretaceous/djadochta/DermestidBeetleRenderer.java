@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.DermestidBee
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.DermestidBeetle;
 
 public class DermestidBeetleRenderer extends MobRenderer<DermestidBeetle, DermestidBeetleModel> {
-	private static final ResourceLocation DERMESTID_BEETLE_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/dermestid_beetle.png");
+	private static final ResourceLocation DERMESTID_BEETLE_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/dermestid_beetle.png");
 
 	public DermestidBeetleRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DermestidBeetleModel(renderManagerIn.bakeLayer(ClientEvents.DERMESTID_BEETLE)), 0F);

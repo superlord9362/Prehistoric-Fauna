@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.github.teamfossilsarcheology.fossil.food.FoodMappingsManager;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -28,12 +29,14 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -72,11 +75,14 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.*;
 import superlord.prehistoricfauna.common.events.GeologicalHammerEvents;
 import superlord.prehistoricfauna.common.network.KeyInputMessage;
 import superlord.prehistoricfauna.common.recipes.PaleontologyTableRecipeS2C;
+import superlord.prehistoricfauna.common.util.MultipleCraftingCondition;
 import superlord.prehistoricfauna.common.util.RegistryHelper;
+import superlord.prehistoricfauna.compat.FACompat;
 import superlord.prehistoricfauna.config.PFConfigHolder;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.datagen.PFFeatureAndBiomeGenerator;
 import superlord.prehistoricfauna.init.*;
+import superlord.prehistoricfauna.init.PFItems.PFItemProperties;
 import superlord.prehistoricfauna.init.PFStructures.PFStructurePieceType;
 import superlord.prehistoricfauna.init.PFStructures.PFStructureType;
 
@@ -142,6 +148,7 @@ public class PrehistoricFauna {
 		biomeModifiers.register("pf_entity_spawns", PFMobSpawnsModifier::makeCodec);
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, PFConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, PFConfigHolder.SERVER_SPEC);
+		CraftingHelper.register(new MultipleCraftingCondition.Serializer());
 
 		bus.addListener(this::gatherData);
 
@@ -189,6 +196,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.PLESIOHADROS_SKULL.get(), PlesiohadrosSkull.createAttributes().build());
 		event.put(PFEntities.YUTYRANNUS_SKULL.get(), YutyrannusSkull.createAttributes().build());
 		event.put(PFEntities.PROTOCERATOPS_SKULL.get(), ProtoceratopsSkull.createAttributes().build());
+		event.put(PFEntities.YANGCHUANOSAURUS_SKULL.get(), YangchuanosaurusSkull.createAttributes().build());
 		event.put(PFEntities.ANKYLOSAURUS_SKELETON.get(), AnkylosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.TRICERATOPS_SKELETON.get(), TriceratopsSkeleton.createAttributes().build());
 		event.put(PFEntities.TYRANNOSAURUS_SKELETON.get(), TyrannosaurusSkeleton.createAttributes().build());
@@ -215,6 +223,11 @@ public class PrehistoricFauna {
 		event.put(PFEntities.DONGBEITITAN_SKELETON.get(), DongbeititanSkeleton.createAttributes().build());
 		event.put(PFEntities.DONGBEITITAN_SKULL.get(), DongbeititanSkull.createAttributes().build());
 		event.put(PFEntities.BRACHIOSAURUS_SKULL.get(), BrachiosaurusSkull.createAttributes().build());
+		event.put(PFEntities.CHUANDONGOCOELURUS_SKULL.get(), ChuandongocoelurusSkull.createAttributes().build());
+		event.put(PFEntities.KAYENTAVENATOR_SKULL.get(), KayentavenatorSkull.createAttributes().build());
+		event.put(PFEntities.KAYENTAVENATOR_SKELETON.get(), KayentavenatorSkeleton.createAttributes().build());
+		event.put(PFEntities.CHUANDONGOCOELURUS_SKELETON.get(), ChuandongocoelurusSkeleton.createAttributes().build());
+		event.put(PFEntities.YANGCHUANOSAURUS_SKELETON.get(), YangchuanosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.HENOS.get(), Henos.createAttributes().build());
 		event.put(PFEntities.ARGANODUS.get(), Arganodus.createAttributes().build());
 		event.put(PFEntities.CERATODUS.get(), Ceratodus.createAttributes().build());
@@ -329,7 +342,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.TANYCOLAGREUS.get(), Tanycolagreus.createAttributes().build());
 		event.put(PFEntities.MORROLEPIS.get(), Morrolepis.createAttributes().build());
 		event.put(PFEntities.KAYENTACHELYS.get(), Kayentachelys.createAttributes().build());
-		event.put(PFEntities.KAYENTASUCHUS.get(), Kayentasuchus.createAttributes().build());
+//		event.put(PFEntities.KAYENTASUCHUS.get(), Kayentasuchus.createAttributes().build());
 		event.put(PFEntities.KAYENTAVENATOR.get(), Kayentavenator.createAttributes().build());
 		event.put(PFEntities.OPHIOPSIS.get(), Ophiopsis.createAttributes().build());
 		event.put(PFEntities.DIPLICHNITES.get(), Diplichnites.createAttributes().build());
@@ -343,28 +356,31 @@ public class PrehistoricFauna {
 		event.put(PFEntities.MESOFORFICULA.get(), Mesoforficula.createAttributes().build());
 		event.put(PFEntities.RHIPIDOBLATTINA.get(), Rhipidoblattina.createAttributes().build());
 		event.put(PFEntities.ALCOVASAURUS.get(), Alcovasaurus.createAttributes().build());
-//		event.put(PFEntities.BRACHIOSAURUS.get(), Brachiosaurus.createAttributes().build());
-//		event.put(PFEntities.BRONTOSAURUS.get(), Brontosaurus.createAttributes().build());
+		event.put(PFEntities.BRACHIOSAURUS.get(), Brachiosaurus.createAttributes().build());
+		event.put(PFEntities.BRONTOSAURUS.get(), Brontosaurus.createAttributes().build());
 		event.put(PFEntities.CAMPTOSAURUS.get(), Camptosaurus.createAttributes().build());
-//		event.put(PFEntities.DIPLODOCUS.get(), Diplodocus.createAttributes().build());
+		event.put(PFEntities.DIPLODOCUS.get(), Diplodocus.createAttributes().build());
 		event.put(PFEntities.GARGOYLEOSAURUS.get(), Gargoyleosaurus.createAttributes().build());
-//		event.put(PFEntities.MARAAPUNISAURUS.get(), Maraapunisaurus.createAttributes().build());
+		event.put(PFEntities.SUUWASSEA.get(), Suuwassea.createAttributes().build());
 		event.put(PFEntities.TORVOSAURUS.get(), Torvosaurus.createAttributes().build());
 		event.put(PFEntities.ABROSAURUS.get(), Abrosaurus.createAttributes().build());
 		event.put(PFEntities.HUAYANGOSAURUS.get(), Huayangosaurus.createAttributes().build());
-//		event.put(PFEntities.MAMENCHISAURUS.get(), Mamenchisaurus.createAttributes().build());
-//		event.put(PFEntities.OMEISAURUS.get(), Omeisaurus.createAttributes().build());
+		event.put(PFEntities.MAMENCHISAURUS.get(), Mamenchisaurus.createAttributes().build());
+		event.put(PFEntities.OMEISAURUS.get(), Omeisaurus.createAttributes().build());
 		event.put(PFEntities.SINRAPTOR.get(), Sinraptor.createAttributes().build());
 		event.put(PFEntities.SHUNOSAURUS.get(), Shunosaurus.createAttributes().build());
 		event.put(PFEntities.TUOJIANGOSAURUS.get(), Tuojiangosaurus.createAttributes().build());
+		event.put(PFEntities.POLISTODON.get(), Polistodon.createAttributes().build());
+		event.put(PFEntities.TOARCIBATIS.get(), Toarcibatis.createAttributes().build());
+		event.put(PFEntities.PYRINOS.get(), Pyrinos.createAttributes().build());
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-//			if (PrehistoricFaunaConfig.customMenuBackground) trySetRandomPanorama();
 			CALLBACKS.forEach(Runnable::run);
 			CALLBACKS.clear();
 		});
+		PFItemProperties.init();
 	}
 
 	@SuppressWarnings({ "deprecation" })
@@ -396,7 +412,11 @@ public class PrehistoricFauna {
 			WoodType.register(PFWoodTypes.ELATIDES);
 			WoodType.register(PFWoodTypes.PHOENICOPSIS);
 			WoodType.register(PFWoodTypes.FRENELOPSIS);
+			WoodType.register(PFWoodTypes.BAIERA);
 		});
+		if (ModList.get().isLoaded("fossil")) {
+            FoodMappingsManager.INSTANCE.listen(FACompat::register);
+        }
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdatePaleoscribe.class, MessageUpdatePaleoscribe::write, MessageUpdatePaleoscribe::read, MessageHandler.handle(MessageUpdatePaleoscribe.Handler::handle));
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, KeyInputMessage.class, KeyInputMessage::encode, KeyInputMessage::decode, KeyInputMessage::handle);
 		NETWORK_WRAPPER.registerMessage(packetsRegistered++, PaleontologyTableRecipeS2C.class, PaleontologyTableRecipeS2C::encode, PaleontologyTableRecipeS2C::decode, PaleontologyTableRecipeS2C::onPacketReceived);
@@ -473,7 +493,7 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.BEIPIAOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.ANZU.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.LIAONINGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-		SpawnPlacements.register(PFEntities.CHANGYURAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.CHANGYURAPTOR.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, Changyuraptor::canChangyuraptorSpawn);
 		SpawnPlacements.register(PFEntities.BYRONOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.REPENOMAMUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.RUIXINIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
@@ -505,8 +525,9 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.TANYCOLAGREUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.MORROLEPIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Morrolepis::checkAncientFishSpawnRules);
 		SpawnPlacements.register(PFEntities.OPHIOPSIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Ophiopsis::checkAncientFishSpawnRules);
+		SpawnPlacements.register(PFEntities.TOARCIBATIS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Toarcibatis::checkAncientFishSpawnRules);
 		SpawnPlacements.register(PFEntities.KAYENTACHELYS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-		SpawnPlacements.register(PFEntities.KAYENTASUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+//		SpawnPlacements.register(PFEntities.KAYENTASUCHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.KAYENTAVENATOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.ABOILUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Aboilus::canBugSpawn);
 		SpawnPlacements.register(PFEntities.CICADOCORIS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Cicadocoris::canBugSpawn);
@@ -519,20 +540,21 @@ public class PrehistoricFauna {
 		SpawnPlacements.register(PFEntities.OCTOPODICHNUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Octopodichnus::canBugSpawn);
 		SpawnPlacements.register(PFEntities.PALEOHELCURA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Paleohelcura::canBugSpawn);
 		SpawnPlacements.register(PFEntities.ALCOVASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.BRACHIOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.BRONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.BRACHIOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.BRONTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.CAMPTOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.DIPLODOCUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.DIPLODOCUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.GARGOYLEOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.MARAAPUNISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.SUUWASSEA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.TORVOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.ABROSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.HUAYANGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.MAMENCHISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
-//		SpawnPlacements.register(PFEntities.OMEISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.MAMENCHISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.OMEISAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SINRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.SHUNOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		SpawnPlacements.register(PFEntities.TUOJIANGOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
+		SpawnPlacements.register(PFEntities.POLISTODON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DinosaurEntity::canDinosaurSpawn);
 		GeologicalHammerEvents.init();
 		event.enqueueWork(() -> {
 			PFPotDecorations.expandVanillaDefinitions();

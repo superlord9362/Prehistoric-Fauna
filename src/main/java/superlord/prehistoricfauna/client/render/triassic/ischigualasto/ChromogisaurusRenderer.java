@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Chromogis
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ChromogisaurusRenderer extends MobRenderer<Chromogisaurus, ChromogisaurusModel> {
-	private static final ResourceLocation CHROMOGISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/chromogisaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/melanistic.png");
-	private static final ResourceLocation CHROMOGISAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/chromogisaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/melanistic_sleeping.png");
+	private static final ResourceLocation CHROMOGISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/chromogisaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/melanistic.png");
+	private static final ResourceLocation CHROMOGISAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/chromogisaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/melanistic_sleeping.png");
 
 	public ChromogisaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ChromogisaurusModel(renderManagerIn.bakeLayer(ClientEvents.CHROMOGISAURUS)), 0.375F);

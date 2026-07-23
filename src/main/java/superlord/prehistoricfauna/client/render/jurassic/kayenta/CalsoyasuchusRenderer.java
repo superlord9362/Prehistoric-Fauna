@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
@@ -13,15 +14,16 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CalsoyasuchusRenderer extends MobRenderer<Calsoyasuchus, CalsoyasuchusModel> {
-	private static final ResourceLocation CALSOYASUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/calsoyasuchus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/melanistic.png");
-	private static final ResourceLocation CALSOYASUCHUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/calsoyasuchus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/melanistic_sleeping.png");
+	private static final ResourceLocation CALSOYASUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/calsoyasuchus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/melanistic.png");
+	private static final ResourceLocation CALSOYASUCHUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/calsoyasuchus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/melanistic_sleeping.png");
 
 	public CalsoyasuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CalsoyasuchusModel(renderManagerIn.bakeLayer(ClientEvents.CALSOYASUCHUS)), 0.5F);
+		this.addLayer(new ItemInHandLayer<>(this, renderManagerIn.getItemInHandRenderer()));
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new CalsoyasuchusEyeLayer(this));
 		}

@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -146,9 +151,14 @@ public class Dryosaurus extends DinosaurEntity {
 			return InteractionResult.SUCCESS;
 		}
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DRYOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.DRYOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DRYOSAURUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dryosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dryosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

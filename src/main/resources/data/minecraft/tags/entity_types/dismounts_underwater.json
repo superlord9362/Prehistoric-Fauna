@@ -1,0 +1,11 @@
+{
+	"replace": false,
+  "values": [
+    "prehistoricfauna:pinacosaurus",
+    "prehistoricfauna:plesiohadros",
+    "prehistoricfauna:shunosaurus",
+    "prehistoricfauna:triceratops",
+    "prehistoricfauna:ischigualastia",
+    "prehistoricfauna:camptosaurus"
+  ]
+}

@@ -40,7 +40,7 @@ public class PFRaft extends Boat {
 	}
 
 	public double getPassengersRidingOffset() {
-		return this.getPFRaftType() == PFRaftTypes.NEOCALAMITES ? 0.25D : -0.1D;
+		return (this.getPFRaftType() == PFRaftTypes.NEOCALAMITES || this.getPFRaftType() == PFRaftTypes.BAIERA) ? 0.25D : -0.1D;
 	}
 
 	@Override
@@ -88,11 +88,14 @@ public class PFRaft extends Boat {
 		case NEOCALAMITES:
 		default:
 			return PFItems.NEOCALAMITES_BOAT.get();
+		case BAIERA:
+			return PFItems.BAIERA_BOAT.get();
 		}
 	}
 
 	public enum PFRaftTypes {
-		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites");
+		NEOCALAMITES(PFBlocks.NEOCALAMITES_PLANKS.get(), "neocalamites"),
+		BAIERA(PFBlocks.BAIERA_PLANKS.get(), "baiera");
 
 		private final String name;
 		private final Block planks;

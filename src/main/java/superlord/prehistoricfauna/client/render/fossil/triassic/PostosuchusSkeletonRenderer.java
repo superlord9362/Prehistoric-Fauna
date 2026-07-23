@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.PostosuchusSkele
 
 public class PostosuchusSkeletonRenderer extends MobRenderer<PostosuchusSkeleton, EntityModel<PostosuchusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/postosuchus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/postosuchus_skeleton.png");
     private static PostosuchusSkeletonModel IDLE;
     private static PostosuchusSkeletonAttackModel ATTACK;
     private static PostosuchusSkeletonAttackLeftModel ATTACK_LEFT;
@@ -37,19 +37,14 @@ public class PostosuchusSkeletonRenderer extends MobRenderer<PostosuchusSkeleton
 	}
 	
 	protected void scale(PostosuchusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isAttackingLeft()) {
-			model = ATTACK_LEFT;
-		} else if (entityIn.isAttackingRight()) {
-			model = ATTACK;
-		} else if (entityIn.isCurious()) {
-			model = CURIOUS;
-		} else if (entityIn.isWalking()) {
-			model = WALKING;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "ATTACKING_RIGHT" -> ATTACK;
+		case "ATTACKING_LEFT" -> ATTACK_LEFT;
+		case "WALKING" -> WALKING;
+		case "CURIOUS" -> CURIOUS;
+		case "SLEEPING" -> SLEEPING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.BasilemysMod
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Basilemys;
 
 public class BasilemysRenderer extends MobRenderer<Basilemys, BasilemysModel> {
-	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic.png");
-	private static final ResourceLocation BASILEMYS_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/basilemys_shell.png");
-	private static final ResourceLocation ALBINO_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/albino_shell.png");
-	private static final ResourceLocation MELANISTIC_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/basilemys/melanistic_shell.png");
+	private static final ResourceLocation BASILEMYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/basilemys.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/melanistic.png");
+	private static final ResourceLocation BASILEMYS_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/basilemys_shell.png");
+	private static final ResourceLocation ALBINO_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/albino_shell.png");
+	private static final ResourceLocation MELANISTIC_SHELL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/basilemys/melanistic_shell.png");
 
 	public BasilemysRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BasilemysModel(renderManagerIn.bakeLayer(ClientEvents.BASILEMYS)), 0.75F);

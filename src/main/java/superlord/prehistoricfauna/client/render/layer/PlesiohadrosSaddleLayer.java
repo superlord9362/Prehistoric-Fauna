@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Plesiohadro
 	
 public class PlesiohadrosSaddleLayer extends RenderLayer<Plesiohadros, EntityModel<Plesiohadros>> {
 	
-	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/plesiohadros/plesiohadros_saddle_layer.png"));
+	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/plesiohadros/plesiohadros_saddle_layer.png"));
 	private final RenderLayerParent<Plesiohadros, EntityModel<Plesiohadros>> plesiohadrosRenderer;
 	
 	public PlesiohadrosSaddleLayer(RenderLayerParent<Plesiohadros, EntityModel<Plesiohadros>> plesiohadrosRenderer) {

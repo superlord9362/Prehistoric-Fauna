@@ -1,12 +1,26 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.google.common.primitives.Ints;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.Containers;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,14 +36,19 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.HitResult;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
@@ -53,6 +72,7 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Yandusaurus extends DinosaurEntity {
+	private static final EntityDataAccessor<Boolean> DIGGING_ROOTS = SynchedEntityData.defineId(Yandusaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 38;
 
 	public Yandusaurus(EntityType<? extends Yandusaurus> p_21803_, Level p_21804_) {
@@ -63,6 +83,14 @@ public class Yandusaurus extends DinosaurEntity {
 	
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem() == PFBlocks.PTEROPHYLLUM.get().asItem();
+	}
+
+	public boolean isDiggingForRoots() {
+		return this.entityData.get(DIGGING_ROOTS);
+	}
+
+	private void setDiggingForRoots(boolean isDiggingForRoots) {
+		this.entityData.set(DIGGING_ROOTS, isDiggingForRoots);
 	}
 	
 	@Override
@@ -86,6 +114,7 @@ public class Yandusaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
+		this.goalSelector.addGoal(5, new DiggingGoal(this));
 	}
 	
 	protected SoundEvent getAmbientSound() {
@@ -105,6 +134,21 @@ public class Yandusaurus extends DinosaurEntity {
 		super.customServerAiStep();
 	}
 	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DIGGING_ROOTS, false);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("DiggingRoots", this.isDiggingForRoots());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setDiggingForRoots(compound.getBoolean("DiggingRoots"));
+	}
+	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 75) {
@@ -120,10 +164,22 @@ public class Yandusaurus extends DinosaurEntity {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
+		if (item == PFBlocks.TAENIOPTERIS.get().asItem()) {
+			if (!p_230254_1_.isCreative()) {
+				itemstack.shrink(1);
+			}
+			this.setDiggingForRoots(true);
+			return InteractionResult.SUCCESS;
+		}
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.YANDUSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.YANDUSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.YANDUSAURUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.yandusaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.yandusaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -162,6 +218,76 @@ public class Yandusaurus extends DinosaurEntity {
 
 	public BlockState getEggBlock(Level world, BlockPos pos) {
 		return PFBlocks.YANDUSAURUS_EGG.get().defaultBlockState().setValue(DinosaurEggBlock.EGGS, Integer.valueOf(this.random.nextInt(4) + 1));
+	}
+	
+	static class DiggingGoal extends Goal {
+		private static final ResourceLocation DIGGING_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "entities/yandusaurus_digging");
+
+		private final Yandusaurus yandusaurus;
+		private int diggingTimer;
+		private int digTimer2;
+
+		public DiggingGoal(Yandusaurus entity) {
+			this.yandusaurus = entity;
+			setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));
+		}
+
+		@Override
+		public boolean canUse() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+				return false;
+			}
+			BlockPos blockpos = yandusaurus.blockPosition();
+			BlockState state = yandusaurus.level().getBlockState(blockpos);
+			if (state.is(BlockTags.DIRT) && yandusaurus.isDiggingForRoots()) {
+				return true;
+			} else {
+				return yandusaurus.level().getBlockState(blockpos.below()).is(BlockTags.DIRT)&& yandusaurus.isDiggingForRoots();
+			}
+		}
+
+		@Override
+		public void start() {
+			diggingTimer = 40;
+			digTimer2 = 6000;
+			yandusaurus.level().broadcastEntityEvent(yandusaurus, (byte) 10);
+			yandusaurus.getNavigation().stop();
+		}
+
+		@Override
+		public void stop() {
+			diggingTimer = 0;
+			yandusaurus.setDiggingForRoots(false);
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return diggingTimer > 0;
+		}
+
+		@Override
+		public void tick() {
+			if (digTimer2 > 0) {
+				--digTimer2;
+			}
+			if (diggingTimer > 0) {
+				--diggingTimer;
+			}
+			if (diggingTimer == 25) {
+				BlockPos blockpos = yandusaurus.blockPosition();
+				BlockPos blockpos1 = blockpos.below();
+				if (yandusaurus.level().getBlockState(blockpos1).is(BlockTags.DIRT)) {
+					BlockState state = yandusaurus.level().getBlockState(blockpos1);
+					yandusaurus.level().levelEvent(2001, blockpos1, Block.getId(state));
+					MinecraftServer server = yandusaurus.level().getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootData().getLootTable(DIGGING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) yandusaurus.level()).create(LootContextParamSets.EMPTY));
+						Containers.dropContents(yandusaurus.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+		}
 	}
 
 }

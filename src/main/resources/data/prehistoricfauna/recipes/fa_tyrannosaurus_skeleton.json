@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:tyrannosaurus_skull"
+    },
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:tyrannosaurus_skeleton"
+  },
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "fossil"
+		}
+	]
+}

@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Melvius;
 
 public class MelviusRenderer extends MobRenderer<Melvius, MelviusModel> {
 
-	private static final ResourceLocation MELVIUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/melvius.png");
+	private static final ResourceLocation MELVIUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/melvius.png");
 
 	public MelviusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MelviusModel(renderManagerIn.bakeLayer(ClientEvents.MELVIUS)), 0);

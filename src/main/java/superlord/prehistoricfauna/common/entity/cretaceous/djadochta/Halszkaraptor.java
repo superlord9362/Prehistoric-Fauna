@@ -1,9 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -119,6 +122,7 @@ public class Halszkaraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(0, new PiscivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
+		this.goalSelector.addGoal(5, new FishingGoal(this));
 		this.goalSelector.addGoal(1, new Halszkaraptor.MeleeAttackGoal());
 		this.goalSelector.addGoal(3, new Halszkaraptor.HalszkaraptorGoToWaterGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
@@ -317,9 +321,14 @@ public class Halszkaraptor extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.HALSZKARAPTOR.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.HALSZKARAPTOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.HALSZKARAPTOR.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.halszkaraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.halszkaraptor_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "hedge",
+	"pattern": [		
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:baiera_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:baiera_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:baiera_hedge",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hedges"
+				}
+			]
+		}
+	]
+}

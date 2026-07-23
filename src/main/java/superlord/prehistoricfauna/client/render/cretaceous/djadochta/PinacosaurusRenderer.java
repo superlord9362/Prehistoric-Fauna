@@ -13,18 +13,18 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.Pinacosaurus
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Pinacosaurus;
 
 public class PinacosaurusRenderer extends MobRenderer<Pinacosaurus, EntityModel<Pinacosaurus>> {
-	private static final ResourceLocation PINACOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/pinacosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/melanistic.png");
-	private static final ResourceLocation PINACOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/pinacosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation PINACOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/pinacosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/melanistic_baby.png");
-	private static final ResourceLocation PINACOSAURUS_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/pinacosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pinacosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation PINACOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/pinacosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/melanistic.png");
+	private static final ResourceLocation PINACOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/pinacosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation PINACOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/pinacosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/melanistic_baby.png");
+	private static final ResourceLocation PINACOSAURUS_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/pinacosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pinacosaurus/melanistic_baby_sleeping.png");
 
 	private static PinacosaurusModel PINACOSAURUS_MODEL;
 	private static PinacosaurusBabyModel BABY_PINACOSAURUS_MODEL;

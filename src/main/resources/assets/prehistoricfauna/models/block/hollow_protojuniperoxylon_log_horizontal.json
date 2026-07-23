@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/protojuniper_log_top",
+		"side": "prehistoricfauna:block/protojuniper_log",
+		"inside": "prehistoricfauna:block/stripped_protojuniper_log"
+	}
+}

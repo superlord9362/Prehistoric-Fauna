@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TyrannosaurusS
 
 public class TyrannosaurusSkullRenderer extends MobRenderer<TyrannosaurusSkull, TyrannosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/tyrannosaurus.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/tyrannosaurus.png");
 
 	public TyrannosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TyrannosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.TYRANNOSAURUS_SKULL)), 0);

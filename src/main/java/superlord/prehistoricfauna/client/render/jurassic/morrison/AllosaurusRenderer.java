@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class AllosaurusRenderer extends MobRenderer<Allosaurus, EntityModel<Allosaurus>> {
-	private static final ResourceLocation ALLOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic.png");
-	private static final ResourceLocation ALLOSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation ALLOSAURUS_BABY_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic_baby.png");
-	private static final ResourceLocation ALLOSAURUS_BABY_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ALLOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/allosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/melanistic.png");
+	private static final ResourceLocation ALLOSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/allosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ALLOSAURUS_BABY_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/allosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/melanistic_baby.png");
+	private static final ResourceLocation ALLOSAURUS_BABY_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/allosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/melanistic_baby_sleeping.png");
 
 	private static AllosaurusModel ALLOSAURUS_MODEL;
 	private static AllosaurusBabyModel BABY_ALLOSAURUS_MODEL;

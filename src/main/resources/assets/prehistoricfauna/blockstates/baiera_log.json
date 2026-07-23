@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "axis=y,leaves=false":  { "model": "prehistoricfauna:block/baiera_log" },
+        "axis=z,leaves=false":   { "model": "prehistoricfauna:block/baiera_log", "x": 90 },
+        "axis=x,leaves=false":   { "model": "prehistoricfauna:block/baiera_log", "x": 90, "y": 90 },
+        "axis=y,leaves=true":  { "model": "prehistoricfauna:block/baiera_branched_log" },
+        "axis=z,leaves=true":   { "model": "prehistoricfauna:block/baiera_branched_log", "x": 90 },
+        "axis=x,leaves=true":   { "model": "prehistoricfauna:block/baiera_branched_log", "x": 90, "y": 90 }
+    }
+}

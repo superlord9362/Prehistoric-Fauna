@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "hollow_log",
+	"pattern": [
+		" L ",
+		"L L",
+		" L "
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:trochodendroides_log"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:hollow_trochodendroides_log",
+		"count": 4
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hollow_logs"
+				}
+			]
+		}
+	]
+}

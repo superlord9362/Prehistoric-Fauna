@@ -35,4 +35,7 @@ Sleep Cycle: Crepuscular
 
 
 
-Behavior: Investigation underway!
+Behavior: Agilisaurus will make 
+different noises when animals it 
+avoids are nearby depending on 
+their size.

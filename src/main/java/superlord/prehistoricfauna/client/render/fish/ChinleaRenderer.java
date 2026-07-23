@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Chinlea;
 
 public class ChinleaRenderer extends MobRenderer<Chinlea, ChinleaModel> {
 
-	private static final ResourceLocation CHINLEA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/chinlea.png");
+	private static final ResourceLocation CHINLEA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/chinlea.png");
 
 	public ChinleaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ChinleaModel(renderManagerIn.bakeLayer(ClientEvents.CHINLEA)), 0);

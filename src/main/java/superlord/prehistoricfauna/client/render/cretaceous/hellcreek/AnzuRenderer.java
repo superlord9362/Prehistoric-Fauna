@@ -16,19 +16,19 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Anzu;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class AnzuRenderer extends MobRenderer<Anzu, EntityModel<Anzu>> {
-	private static final ResourceLocation ANZU = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/anzu.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/melanistic.png");
-	private static final ResourceLocation ANZU_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/anzu_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/melanistic_sleeping.png");
+	private static final ResourceLocation ANZU = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/anzu.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/melanistic.png");
+	private static final ResourceLocation ANZU_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/anzu_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/melanistic_sleeping.png");
 
-	private static final ResourceLocation ANZU_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/anzu_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/melanistic_baby.png");
-	private static final ResourceLocation ANZU_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/anzu_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ANZU_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/anzu_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/melanistic_baby.png");
+	private static final ResourceLocation ANZU_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/anzu_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/melanistic_baby_sleeping.png");
 
 	public static AnzuModel ANZU_MODEL;
 	private static AnzuBabyModel BABY_ANZU_MODEL;

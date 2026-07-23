@@ -1,0 +1,40 @@
+Found In: Shaximiao
+
+Drops: 6-8 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Elatides Leaves
+
+Max Health: 300
+
+Max Hunger: 750
+
+Temperaments: Mamenchisaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 32 3 151 127 24 20 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Mamenchisaurus, due to 
+its large size, crushes many 
+animals smaller than it under its 
+immense weight.

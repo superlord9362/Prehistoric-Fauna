@@ -1,5 +1,7 @@
 {
-	"type": "minecraft:crafting_shapeless",
+	"type": "minecraft:crafting_shapelss",
+	"category": "redstone",
+	"group": "wooden_trapped_chest",
 	"ingredients": [
 		{
 			"item": "prehistoricfauna:schilderia_chest"
@@ -13,8 +15,17 @@
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "variant_chests"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"flag": "wooden_chests"
+				}
+			]
 		}
 	]
 }

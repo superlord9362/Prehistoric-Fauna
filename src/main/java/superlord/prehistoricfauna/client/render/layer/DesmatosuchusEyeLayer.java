@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Desmatosuchus;
 
 public class DesmatosuchusEyeLayer extends RenderLayer<Desmatosuchus, DesmatosuchusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/desmatosuchus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/desmatosuchus_eyeglow.png"));
 	private final RenderLayerParent<Desmatosuchus, DesmatosuchusModel> desmatosuchusRenderer;
 	
 	public DesmatosuchusEyeLayer(RenderLayerParent<Desmatosuchus, DesmatosuchusModel> rendererIn) {

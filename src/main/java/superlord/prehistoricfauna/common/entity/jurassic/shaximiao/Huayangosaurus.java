@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -103,11 +108,16 @@ public class Huayangosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.HUAYANGOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.HUAYANGOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.HUAYANGOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.huayangosaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			} else return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.huayangosaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -120,6 +130,7 @@ public class Huayangosaurus extends DinosaurEntity {
 			this.setTerritorial(true);
 		}
 		this.setHerbivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

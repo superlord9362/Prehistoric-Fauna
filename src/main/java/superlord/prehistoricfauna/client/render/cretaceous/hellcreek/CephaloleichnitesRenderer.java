@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Cephaloleich
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Cephaloleichnites;
 
 public class CephaloleichnitesRenderer extends MobRenderer<Cephaloleichnites, CephaloleichnitesModel> {
-	private static final ResourceLocation CEPHALOLEICHNITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cephaloleichnites.png");
+	private static final ResourceLocation CEPHALOLEICHNITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/cephaloleichnites.png");
 
 	public CephaloleichnitesRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CephaloleichnitesModel(renderManagerIn.bakeLayer(ClientEvents.CEPHALOLEICHNITES)), 0F);

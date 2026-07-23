@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.IncisivosaurusM
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Incisivosaurus;
 
 public class IncisivosaurusRenderer extends MobRenderer<Incisivosaurus, IncisivosaurusModel> {
-	private static final ResourceLocation INCISIVOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/incisivosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/melanistic.png");
-	private static final ResourceLocation INCISIVOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/incisivosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/incisivosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation INCISIVOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/incisivosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/melanistic.png");
+	private static final ResourceLocation INCISIVOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/incisivosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/incisivosaurus/melanistic_sleeping.png");
 
 	public IncisivosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new IncisivosaurusModel(renderManagerIn.bakeLayer(ClientEvents.INCISIVOSAURUS)), 0.3125F);

@@ -1,25 +1,36 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "PPP",
-    "HHH",
-    "PPP"
-  ],
-  "key": {
-    "P": {
-      "item": "prehistoricfauna:frenelopsis_planks"
-    },
-    "H": {
-      "item": "minecraft:honeycomb"
-    }
-  },
-  "result": {
-    "item": "prehistoricfauna:frenelopsis_beehive"
-  },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "buzzier_bees"
-    }
-  ]
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_beehive",
+	"pattern": [		
+		"PPP",
+		"HHH",
+		"PPP"
+	],
+	"key": {
+		"P": {
+			"item": "prehistoricfauna:frenelopsis_planks"
+		},
+		"H": {
+			"item": "minecraft:honeycomb"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:frenelopsis_beehive"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_beehives"
+				}
+			]
+		}
+	]
 }

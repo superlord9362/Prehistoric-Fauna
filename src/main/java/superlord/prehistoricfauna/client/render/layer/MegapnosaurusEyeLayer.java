@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
 
 public class MegapnosaurusEyeLayer extends RenderLayer<Megapnosaurus, MegapnosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/megapnosaurus_eyeglow.png"));
 	private final RenderLayerParent<Megapnosaurus, MegapnosaurusModel> megapnosaurusRenderer;
 	
 	public MegapnosaurusEyeLayer(RenderLayerParent<Megapnosaurus, MegapnosaurusModel> rendererIn) {

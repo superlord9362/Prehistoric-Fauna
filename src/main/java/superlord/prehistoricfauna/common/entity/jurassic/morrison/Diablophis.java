@@ -1,10 +1,18 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -57,12 +65,21 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Diablophis extends DinosaurEntity {
+	private static final EntityDataAccessor<Boolean> TONGUE = SynchedEntityData.defineId(Diablophis.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 10;
 
 	public Diablophis(EntityType<? extends Diablophis> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
+	}
+
+	public boolean isFlicking() {
+		return this.entityData.get(TONGUE);
+	}
+
+	private void setFlicking(boolean isFlicking) {
+		this.entityData.set(TONGUE, isFlicking);
 	}
 	
 	public boolean isFood(ItemStack stack) {
@@ -103,9 +120,14 @@ public class Diablophis extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DIABLOPHIS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.DIABLOPHIS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DIABLOPHIS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.diablophis_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.diablophis_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -132,6 +154,22 @@ public class Diablophis extends DinosaurEntity {
 		} else if(this.getAge() >= 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(4);
 		}
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+		if (!this.isAsleep() && !this.isInWater() && this.getRandom().nextInt(500) == 0 && !this.isFlicking()) {
+			this.setFlicking(true);
+		}
+		if (this.isFlicking() && this.getRandom().nextInt(20) == 0) {
+			this.setFlicking(false);
+		}
+		if (this.isFlicking() && (this.isInWater() || this.isAsleep())) this.setFlicking(false);
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TONGUE, false);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

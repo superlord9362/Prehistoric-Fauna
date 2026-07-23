@@ -17,7 +17,7 @@ a 15% chance of being protective,
 and a 5% chance of being 
 aggressive.
 
-<image><drawings_ankylosaurus.png 40 3 126 316 24 20 5.5>
+<image><drawings_ankylosaurus.png 40 3 126 295 24 20 5.5>
 
 
 

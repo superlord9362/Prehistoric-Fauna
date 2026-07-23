@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Sinraptor;
 
 public class SinraptorEyeLayer extends RenderLayer<Sinraptor, EntityModel<Sinraptor>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/sinraptor_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/sinraptor_eyeglow.png"));
 	private final RenderLayerParent<Sinraptor, EntityModel<Sinraptor>> sinraptorRenderer;
 	
 	public SinraptorEyeLayer(RenderLayerParent<Sinraptor, EntityModel<Sinraptor>> rendererIn) {

@@ -24,6 +24,14 @@
         }
       }
     },
+    "toarcibatis": {
+      "trigger": "minecraft:fishing_rod_hooked",
+      "conditions": {
+        "item": {
+          "item": "prehistoricfauna:raw_toarcibatis"
+        }
+      }
+    },
 	"ceratodus": {
 		"trigger": "minecraft:fishing_rod_hooked",
 		"conditions": {
@@ -87,6 +95,102 @@
 				"item": "prehistoricfauna:raw_mooreodontus"
 			}
 		}
+	},
+	"melvius": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_melvius"
+			}
+		}
+	},
+	"lonchidion": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_lonchidion"
+			}
+		}
+	},
+	"acipenser": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_acipenser"
+			}
+		}
+	},
+	"harenaichthys": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_harenaichthys"
+			}
+		}
+	},
+	"protopsephurus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_protopsephurus"
+			}
+		}
+	},
+	"sinamia": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_sinamia"
+			}
+		}
+	},
+	"yanosteus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_yanosteus"
+			}
+		}
+	},
+	"parapsephurus": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_parapspehurus"
+			}
+		}
+	},
+	"chungkingichthys": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_chungkingichthys"
+			}
+		}
+	},
+	"lepidotes": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_lepidotes"
+			}
+		}
+	},
+	"morrolepis": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_morrolepis"
+			}
+		}
+	},
+	"ophiopsis": {
+		"trigger": "minecraft:fishing_rod_hooked",
+		"conditions": {
+			"item": {
+				"item": "prehistoricfauna:raw_ophiopsis"
+			}
+		}
 	}
   },
   "requirements": [
@@ -99,7 +203,20 @@
 		"chinlea",
 		"saurichthys",
 		"arganodus",
-		"mooreodontus"
+		"mooreodontus",
+		"melvius",
+		"lonchidion",
+		"acipenser",
+		"harenaichthys",
+		"protopsephurus",
+		"sinamia",
+		"yanosteus",
+		"parapsephurus",
+		"chungkingichthys",
+		"lepidotes",
+		"morrolepis",
+		"ophiopsis",
+		"toarcibatis"
     ]
   ]
 }

@@ -9,6 +9,7 @@ Plants:
 --Cobbania
 --Nelumbo
 --Quereuxia
+--Stoneworts
 
 -Land Plants:
 --Bisonia
@@ -16,15 +17,17 @@ Plants:
 --Horsetails
 --Humulus
 --Liverwort
---Marmarthia
 
+--Marmarthia
 --Moss
 --Osmunda
 --Zingiberopsis
 
-–Trees
+–Trees:
 --Araucaria
+--Cupressinocladus
 --Dryophyllum
+--Elatides
 --Ginkgo
 --Liriodendrites
 --Metasequoia
@@ -34,7 +37,3 @@ Plants:
 --Trochodendroides
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Day 4:
-
-I discovered the gateway. Upon

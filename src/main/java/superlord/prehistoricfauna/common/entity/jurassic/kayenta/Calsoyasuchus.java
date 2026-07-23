@@ -1,18 +1,27 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import com.google.common.primitives.Ints;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,6 +30,7 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -33,6 +43,7 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.BreathAirGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
@@ -40,17 +51,22 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator;
 import net.minecraft.world.level.pathfinder.PathFinder;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
@@ -87,7 +103,11 @@ import superlord.prehistoricfauna.init.PFTags;
 public class Calsoyasuchus extends DinosaurEntity {
 	private int maxHunger = 15;
 	private int warningSoundTicks;
-
+	public int ticksSinceEaten;
+	static final Predicate<ItemEntity> ALLOWED_ITEMS = (p_289438_) -> {
+		return !p_289438_.hasPickUpDelay() && p_289438_.isAlive() &&  (p_289438_.getItem().is(PFTags.FISH_2_HUNGER) || p_289438_.getItem().is(PFTags.FISH_4_HUNGER));
+	};
+	
 	public Calsoyasuchus(EntityType<? extends DinosaurEntity> type, Level worldIn) {
 		super(type, worldIn);
 		this.moveControl = new Calsoyasuchus.CalsoyasuchusMoveControl(this);
@@ -163,6 +183,8 @@ public class Calsoyasuchus extends DinosaurEntity {
 		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
 		this.goalSelector.addGoal(0, new PiscivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(3, new Calsoyasuchus.SwimGoal(this));
+		this.goalSelector.addGoal(3, new FishingGoal(this));
+		this.goalSelector.addGoal(4, new FindItemsGoal());
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.CALSOYASUCHUS_AVOIDING);
 		}));
@@ -187,15 +209,34 @@ public class Calsoyasuchus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CALSOYASUCHUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.CALSOYASUCHUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CALSOYASUCHUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.calsoyasuchus_added"), true);
 				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.calsoyasuchus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		if (this.canEatItem(itemstack) && this.isAlive() && this.hasItemInSlot(EquipmentSlot.MAINHAND)) {
+			ItemStack calsoyasuchusItem = this.getMainHandItem();
+			itemstack.shrink(1);
+			int dropChance = this.random.nextInt(2);
+			if(dropChance == 0) {
+				this.spawnItem(calsoyasuchusItem);
+				this.setItemInHand(InteractionHand.MAIN_HAND, itemstack);
 			}
 		}
 		return super.mobInteract(player, hand);
 	}
-
+	
+	@Override
+	public boolean canPickUpLoot() {
+		return !this.hasItemInSlot(EquipmentSlot.MAINHAND);
+	}
+	
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		int temperment = random.nextInt(100);
 		if (temperment < 75) {
@@ -208,6 +249,7 @@ public class Calsoyasuchus extends DinosaurEntity {
 			this.setSkittish(true);
 		}
 		this.setPiscivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
@@ -485,6 +527,189 @@ public class Calsoyasuchus extends DinosaurEntity {
 	
 	protected PathNavigation createNavigation(Level level) {
 		return new Calsoyasuchus.CalsoyasuchusPathNavigation(this, level);
+	}
+	
+	static class FishingGoal extends Goal {
+		private static final ResourceLocation FISHING_LOOT = new ResourceLocation("gameplay/fishing");
+		private static final BlockStatePredicate IS_WATER = BlockStatePredicate.forBlock(Blocks.WATER);
+
+		private final Calsoyasuchus entity;
+		private int fishingTimer;
+		private int fishTimer;
+
+		public FishingGoal(Calsoyasuchus entity) {
+			this.entity = entity;
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+		}
+
+		@Override
+		public boolean canUse() {
+			if (fishTimer > 0) {
+				--fishTimer;
+				return false;
+			}
+			if (entity.getRandom().nextInt(entity.isBaby() ? 100 : 1000) != 0) {
+				return false;
+			} else {
+				BlockPos blockpos = entity.blockPosition();
+				if (IS_WATER.test(entity.level().getBlockState(blockpos))) {
+					return true;
+				} else {
+					return entity.level().getBlockState(blockpos.below()).is(Blocks.WATER);
+				}
+			}
+		}
+
+		@Override
+		public void start() {
+			fishingTimer = 40;
+			fishTimer = 6000;
+			entity.level().broadcastEntityEvent(entity, (byte) 10);
+			entity.getNavigation().stop();
+		}
+
+		@Override
+		public void stop() {
+			fishingTimer = 0;
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			return fishingTimer > 0;
+		}
+
+		@Override
+		public void tick() {
+			if (fishTimer > 0) {
+				--fishTimer;
+			}
+			if (fishingTimer > 0) {
+				--fishingTimer;
+			}
+			if (fishingTimer == 25) {
+				BlockPos blockpos = entity.blockPosition();
+				BlockPos blockpos1 = blockpos.below();
+				if (entity.level().getBlockState(blockpos1).is(Blocks.WATER)) {
+					MinecraftServer server = entity.level().getServer();
+					if (server != null) {
+						List<ItemStack> items = server.getLootData().getLootTable(FISHING_LOOT).getRandomItems(new LootParams.Builder((ServerLevel) entity.level()).create(LootContextParamSet.builder().build()));
+						Containers.dropContents(entity.level(), blockpos, NonNullList.of(ItemStack.EMPTY, items.toArray(new ItemStack[0])));
+					}
+				}
+			}
+		}
+	}
+	
+	private void spawnItem(ItemStack stack) {
+		ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+		this.level().addFreshEntity(itemEntity);
+	}
+	
+	public void aiStep() {
+		if (!this.level().isClientSide() && this.isAlive() && this.isEffectiveAi()) {
+			++this.ticksSinceEaten;
+			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
+			if (this.canEatItem(itemstack)) {
+				if (this.ticksSinceEaten > 100) {
+					ItemStack itemstack1 = itemstack.finishUsingItem(this.level(), this);
+					if (!itemstack1.isEmpty()) {
+						this.setItemSlot(EquipmentSlot.MAINHAND, itemstack1);
+					}
+					this.ticksSinceEaten = 0;
+					itemstack.shrink(1);
+				}
+			} else {
+				if (!itemstack.isEmpty()) {
+					if (this.ticksSinceEaten > 100) {
+						this.spawnItem(itemstack);
+						this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.AIR));
+						this.ticksSinceEaten = 0;
+						itemstack.shrink(1);
+					}
+				}
+			}
+
+		}
+		super.aiStep();
+	}
+
+	private boolean canEatItem(ItemStack itemStackIn) {
+		return (itemStackIn.is(PFTags.FISH_2_HUNGER) || itemStackIn.is(PFTags.FISH_4_HUNGER));
+	}
+
+	public boolean canEquipItem(ItemStack stack) {
+		ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
+		return itemstack.isEmpty() && !this.isSleeping();
+	}
+	
+	@Override
+	@SuppressWarnings("deprecation")
+	public boolean wantsToPickUp(ItemStack stack) {
+		return (stack.isEdible() && stack.getItem().getFoodProperties().isMeat()) || stack.is(PFTags.FISH_2_HUNGER) || stack.is(PFTags.FISH_4_HUNGER);
+	}
+	
+	protected void pickUpItem(ItemEntity itemEntity) {
+		ItemStack itemstack = itemEntity.getItem();
+		if (this.canHoldItem(itemstack)) {
+			int i = itemstack.getCount();
+			if (i > 1) {
+				this.spawnItem(itemstack.split(i - 1));
+			}
+			this.spitOutItem(this.getItemBySlot(EquipmentSlot.MAINHAND));
+			this.onItemPickup(itemEntity);
+			this.setItemSlot(EquipmentSlot.MAINHAND, itemstack.split(1));
+			this.handDropChances[EquipmentSlot.MAINHAND.getIndex()] = 2.0F;
+			this.take(itemEntity, itemstack.getCount());
+			itemEntity.discard();
+			this.ticksSinceEaten = 0;
+		}
+
+	}
+
+	private void spitOutItem(ItemStack p_28602_) {
+		if (!p_28602_.isEmpty() && !this.level().isClientSide) {
+			ItemEntity itementity = new ItemEntity(this.level(), this.getX() + this.getLookAngle().x, this.getY() + 1.0D, this.getZ() + this.getLookAngle().z, p_28602_);
+			itementity.setPickUpDelay(40);
+			itementity.setThrower(this.getUUID());
+			this.level().addFreshEntity(itementity);
+		}
+	}
+
+	class FindItemsGoal extends Goal {
+		public FindItemsGoal() {
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		}
+
+		public boolean canUse() {
+			if (!Calsoyasuchus.this.getItemBySlot(EquipmentSlot.MAINHAND).isEmpty()) {
+				return false;
+			} else if (Calsoyasuchus.this.getTarget() == null && Calsoyasuchus.this.getLastHurtByMob() == null) {
+				if (Calsoyasuchus.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
+					return false;
+				} else {
+					List<ItemEntity> list = Calsoyasuchus.this.level().getEntitiesOfClass(ItemEntity.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Calsoyasuchus.ALLOWED_ITEMS);
+					return !list.isEmpty() && Calsoyasuchus.this.getItemBySlot(EquipmentSlot.MAINHAND).isEmpty();
+				}
+			} else {
+				return false;
+			}
+		}
+
+
+		public void tick() {
+			List<ItemEntity> list = Calsoyasuchus.this.level().getEntitiesOfClass(ItemEntity.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Calsoyasuchus.ALLOWED_ITEMS);
+			ItemStack itemstack = Calsoyasuchus.this.getItemBySlot(EquipmentSlot.MAINHAND);
+			if (itemstack.isEmpty() && !list.isEmpty()) {
+				Calsoyasuchus.this.getNavigation().moveTo(list.get(0), (double)1.2F);
+			}
+		}
+
+		public void start() {
+			List<ItemEntity> list = Calsoyasuchus.this.level().getEntitiesOfClass(ItemEntity.class, Calsoyasuchus.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Calsoyasuchus.ALLOWED_ITEMS);
+			if (!list.isEmpty()) {
+				Calsoyasuchus.this.getNavigation().moveTo(list.get(0), (double)1.2F);
+			}
+		}
 	}
 
 }

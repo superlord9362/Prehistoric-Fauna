@@ -13,23 +13,23 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ThescelosaurusRenderer extends MobRenderer<Thescelosaurus, ThescelosaurusModel> {
 
-	private static final ResourceLocation THESCELOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus.png");
-	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_baby.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic_baby.png");
-	private static final ResourceLocation THESCELOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_sleeping.png");
-	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation THESCELOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus.png");
+	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus_baby.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic_baby.png");
+	private static final ResourceLocation THESCELOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus_sleeping.png");
+	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic_baby_sleeping.png");
 
-	private static final ResourceLocation THESCELOSAURUS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_s.png");
-	private static final ResourceLocation THESCELOSAURUS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/thescelosaurus_s_sleeping.png");
-	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/albino_s.png");
-	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/albino_s_sleeping.png");
-	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic_s.png");
-	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/thescelosaurus/melanistic_s_sleeping.png");
+	private static final ResourceLocation THESCELOSAURUS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus_s.png");
+	private static final ResourceLocation THESCELOSAURUS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/thescelosaurus_s_sleeping.png");
+	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/albino_s.png");
+	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/albino_s_sleeping.png");
+	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic_s.png");
+	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/thescelosaurus/melanistic_s_sleeping.png");
 
 	public ThescelosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ThescelosaurusModel(renderManagerIn.bakeLayer(ClientEvents.THESCELOSAURUS)), 0.55F);

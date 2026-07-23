@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velocirapto
 
 public class VelociraptorEyeLayer extends RenderLayer<Velociraptor, VelociraptorModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/velociraptor_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/velociraptor_eyeglow.png"));
 	private final RenderLayerParent<Velociraptor, VelociraptorModel> velociraptorRenderer;
 	
 	public VelociraptorEyeLayer(RenderLayerParent<Velociraptor, VelociraptorModel> rendererIn) {

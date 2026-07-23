@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.henos.Henos;
 
 public class HenosLaserGlowLayer extends RenderLayer<Henos, EntityModel<Henos>> {
 
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_lit_glow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos_lit_glow.png"));
 	private final RenderLayerParent<Henos, EntityModel<Henos>> henosRenderer;
 
 	public HenosLaserGlowLayer(RenderLayerParent<Henos, EntityModel<Henos>> rendererIn) {

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:pink_dye_from_callianthus"
+    ]
+  },
+  "criteria": {
+    "has_dye_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:callianthus"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:pink_dye_from_callianthus"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dye_plant",
+      "has_the_recipe"
+    ]
+  ]
+}

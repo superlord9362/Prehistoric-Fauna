@@ -54,16 +54,20 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition Hips = partdefinition.addOrReplaceChild("Hips", CubeListBuilder.create().texOffs(64, 0).addBox(-9.0F, -11.0F, -1.0F, 10.0F, 20.0F, 19.0F, new CubeDeformation(0.0F))
-		.texOffs(83, 34).addBox(-4.0F, -12.0F, -1.0F, 0.0F, 1.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, 0.0F, -8.0F));
+		.texOffs(82, 34).addBox(-4.0F, -12.0F, -1.0F, 0.0F, 1.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(4.0F, 0.0F, -8.0F));
 
 		PartDefinition Chest = Hips.addOrReplaceChild("Chest", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -7.0F, -16.0F, 14.0F, 17.0F, 18.0F, new CubeDeformation(0.0F))
 		.texOffs(83, 35).addBox(0.0F, -8.0F, -16.0F, 0.0F, 1.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.0F, -2.0F, -1.0F));
 
 		PartDefinition Neck = Chest.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(0, 36).addBox(-2.0F, -11.0F, -7.0F, 4.0F, 14.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -16.0F));
 
-		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(103, 7).addBox(-2.5F, -1.01F, -6.0F, 5.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-				.texOffs(46, 0).addBox(-1.5F, -0.01F, -11.0F, 3.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -10.0F, -5.0F));
-		
+		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(103, 7).addBox(-2.5F, -3.01F, -6.0F, 5.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+		.texOffs(46, 0).addBox(-1.5F, -2.01F, -11.0F, 3.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.0F, -5.0F));
+
+		PartDefinition bone = Head.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(82, 35).addBox(0.0F, 0.0F, 0.0F, 0.0F, 6.0F, 23.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.2F, 0.4F, -2.0F, -0.0045F, 0.1878F, -0.9756F));
+
+		PartDefinition bone2 = Head.addOrReplaceChild("bone2", CubeListBuilder.create().texOffs(82, 35).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 6.0F, 23.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.2F, 0.4F, -2.0F, -0.0045F, -0.1878F, 0.9756F));
+
 		PartDefinition RightArm = Chest.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(64, 0).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, 7.0F, -10.0F));
 
 		PartDefinition LeftArm = Chest.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(64, 0).mirror().addBox(-1.0F, -1.0F, -3.0F, 3.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-7.0F, 6.0F, -9.0F));
@@ -86,11 +90,19 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(51, 50).addBox(-1.5F, -3.0F, -1.0F, 3.0F, 6.0F, 25.0F, new CubeDeformation(0.0F))
 		.texOffs(51, 58).addBox(0.0F, -4.0F, 0.0F, 0.0F, 1.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 21.0F));
 
-		return LayerDefinition.create(meshdefinition, 125, 100);
+		PartDefinition Saddle = Hips.addOrReplaceChild("Saddle", CubeListBuilder.create().texOffs(36, 96).addBox(-11.5F, -12.25F, -1.75F, 15.0F, 12.0F, 20.0F, new CubeDeformation(0.0F))
+		.texOffs(58, 84).addBox(-14.0F, -17.0F, 11.0F, 20.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
+		.texOffs(1, 106).addBox(3.0F, -8.0F, -10.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F))
+		.texOffs(1, 106).mirror().addBox(-17.0F, -8.0F, -10.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 128, 128);
+
 	}
 
 	@Override
 	public void setupAnim(Camptosaurus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		float speed = 0.9f;
+		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float sleepProgress = entity.getSleepProgress(partialTick);
 		resetModel();
@@ -150,11 +162,12 @@ public class CamptosaurusModel extends EntityModel<Camptosaurus> {
 			} else {
 				this.LeftThigh.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 				this.RightThigh.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-				this.Tail2.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5);
-				this.Tail1.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-				this.Tail2.xRot = -Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5));
-				this.Neck.xRot = (headPitch * ((float)Math.PI / 180F)) + (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3)));
+				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
+				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5)) + (Mth.cos(limbSwing * speed * 0.15F) * degree * 0.35F * limbSwingAmount);
+				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount - 0.15F);
+				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
+				this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F);
+				this.Hips.xRot = (Math.abs(-0.0125F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount);
 				this.RightArm.zRot = Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
 				this.LeftArm.zRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3));
 				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);

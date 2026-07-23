@@ -1,0 +1,358 @@
+{
+  "parent": "prehistoricfauna:prehistoricfauna/general/cool_river_monsters",
+  "display": {
+    "icon": {
+      "item": "prehistoricfauna:arganodus_bucket"
+    },
+    "title": {
+      "translate": "advancements.prehistoricfauna.final_episode.title"
+    },
+    "description": {
+      "translate": "advancements.prehistoricfauna.final_episode.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+	  "experience": 100
+  },
+  "criteria": {
+    "myledaphus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:myledaphus_bucket"
+          	]
+          }
+        ]
+      }
+    },
+    "toarcibatis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:toarcibatis_bucket"
+          	]
+          }
+        ]
+      }
+    },
+	"gar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:gar_bucket"
+          	]
+          }
+        ]
+      }
+    },
+	"cyclurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:cyclurus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"ceratodus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:ceratodus_bucket"
+          	]
+          }
+        ]
+      }
+    },
+	"potamoceratodus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:potamoceratodus_bucket"
+          	]
+          }
+        ]
+      }
+    },
+	"saurichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:saurichthys_bucket"
+					]
+				}
+			]
+		}
+	},
+	"chinlea": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:chinlea_bucket"
+					]
+				}
+			]
+		}
+	},
+	"arganodus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:arganodus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"mooreodontus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:mooreodontus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"harenaichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:harenaichthys_bucket"
+					]
+				}
+			]
+		}
+	},
+	"acipenser": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:acipenser_bucket"
+					]
+				}
+			]
+		}
+	},
+	"lonchidion": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:lonchidion_bucket"
+					]
+				}
+			]
+		}
+	},
+	"melvius": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:melvius_bucket"
+					]
+				}
+			]
+		}
+	},
+	"parapsephurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:parapsephurus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"protopsephurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:protopsephurus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"sinamia": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:sinamia_bucket"
+					]
+				}
+			]
+		}
+	},
+	"yanosteus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:yanosteus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"chungkingichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:chungkingichthys_bucket"
+					]
+				}
+			]
+		}
+	},
+	"lepidotes": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:lepidotes_bucket"
+					]
+				}
+			]
+		}
+	},
+	"morrolepis": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:morrolepis_bucket"
+					]
+				}
+			]
+		}
+	},
+	"ophiopsis": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:ophiopsis_bucket"
+					]
+				}
+			]
+		}
+	}
+  },
+  "requirements": [
+    [
+      "myledaphus"
+    ],
+    [
+		"gar"
+	],
+	[
+		"cyclurus"
+	],
+	[
+		"potamoceratodus"
+	],
+	[
+		"ceratodus"
+	],
+	[
+		"chinlea"
+	],
+	[
+		"arganodus"
+	],
+	[
+		"mooreodontus"
+	],
+	[
+		"saurichthys"
+	],
+	[
+		"harenaichthys"
+	],
+	[
+		"acipenser"
+	],
+	[
+		"lonchidion"
+	],
+	[
+		"melvius"
+	],
+	[
+		"parapsephurus"
+	],
+	[
+		"parapsephurus"
+	],
+	[
+		"protopsephurus"
+	],
+	[
+		"sinamia"
+	],
+	[
+		"yanosteus"
+	],
+	[
+		"chungkingichthys"
+	],
+	[
+		"morrolepis"
+	],
+	[
+		"ophiopsis"
+	],
+	[
+		"lepidotes"
+	],
+	[
+		"toarcibatis"
+	]
+  ]
+}

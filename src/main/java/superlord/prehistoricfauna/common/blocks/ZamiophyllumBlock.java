@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import superlord.prehistoricfauna.init.PFBlocks;
@@ -27,6 +28,12 @@ public class ZamiophyllumBlock extends Block implements BonemealableBlock, net.m
 
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return BASE_SHAPE;
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		Vec3 vector3d = state.getOffset(world, pos);
+		return BASE_SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
 	}
 
 	public boolean isSoilBlock(LevelReader world, BlockPos pos) {
@@ -56,10 +63,8 @@ public class ZamiophyllumBlock extends Block implements BonemealableBlock, net.m
 		return !p_51032_.canSurvive(p_51035_, p_51036_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51032_, p_51033_, p_51034_, p_51035_, p_51036_, p_51037_);
 	}
 
-
-
 	public boolean propagatesSkylightDown(BlockState p_51039_, BlockGetter p_51040_, BlockPos p_51041_) {
-		return p_51039_.getFluidState().isEmpty();
+		return true;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -73,5 +78,25 @@ public class ZamiophyllumBlock extends Block implements BonemealableBlock, net.m
 		if (state.getBlock() != this) return defaultBlockState();
 		return state;
 	}
+	
+	@Override
+	public boolean useShapeForLightOcclusion(BlockState state) {
+	    return true;
+	}
+
+	@Override
+	public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+	    return false;
+	}
+
+	@Override
+	public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+	    return BASE_SHAPE;
+	}
+
+    public VoxelShape getVisualShape(BlockGetter p_60772_, BlockPos p_60773_, CollisionContext p_60774_) {
+       return BASE_SHAPE;
+    }
+
 
 }

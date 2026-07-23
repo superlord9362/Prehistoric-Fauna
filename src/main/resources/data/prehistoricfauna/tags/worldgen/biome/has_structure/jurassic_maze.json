@@ -1,0 +1,16 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:shaximiao_arid_lakes",
+		"prehistoricfauna:shaximiao_dry_forest",
+		"prehistoricfauna:shaximiao_gallery_forest",
+		"prehistoricfauna:shaximiao_mountains",
+		"prehistoricfauna:morrison_savanna",
+		"prehistoricfauna:morrison_sparse_forest",
+		"prehistoricfauna:morrison_gallery_forest",
+		"prehistoricfauna:morrison_upland_forest",
+		"prehistoricfauna:kayenta_buttes",
+		"prehistoricfauna:kayenta_desert",
+		"prehistoricfauna:kayenta_dry_forest"
+	]
+}

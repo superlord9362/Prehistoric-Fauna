@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.LiaonemobiusMod
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaonemobius;
 
 public class LiaonemobiusRenderer extends MobRenderer<Liaonemobius, LiaonemobiusModel> {
-	private static final ResourceLocation LIAONEMOBIUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/liaonemobius.png");
+	private static final ResourceLocation LIAONEMOBIUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/liaonemobius.png");
 
 	public LiaonemobiusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LiaonemobiusModel(renderManagerIn.bakeLayer(ClientEvents.LIAONEMOBIUS)), 0F);

@@ -18,29 +18,29 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ProtoceratopsRenderer extends MobRenderer<Protoceratops, EntityModel<Protoceratops>> {
 
-	private static final ResourceLocation PROTOCERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic.png");
-	private static final ResourceLocation PALEOCRAFT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft.png");
-	private static final ResourceLocation PROTOCERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_sleeping.png");
-	private static final ResourceLocation PALEOCRAFT_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft_sleeping.png");
-	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/juvenile.png");
-	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_juvenile.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_juvenile.png");
-	private static final ResourceLocation PALEOCRAFT_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft_juvenile.png");
-	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/juvenile_sleeping.png");
-	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_juvenile_sleeping.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_juvenile_sleeping.png");
-	private static final ResourceLocation PALEOCRAFT_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/paleocraft_juvenile_sleeping.png");
+	private static final ResourceLocation PROTOCERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/protoceratops.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic.png");
+	private static final ResourceLocation PALEOCRAFT = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/paleocraft.png");
+	private static final ResourceLocation PROTOCERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/protoceratops_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic_sleeping.png");
+	private static final ResourceLocation PALEOCRAFT_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/paleocraft_sleeping.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic_juvenile.png");
+	private static final ResourceLocation PALEOCRAFT_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/paleocraft_juvenile.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic_juvenile_sleeping.png");
+	private static final ResourceLocation PALEOCRAFT_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/paleocraft_juvenile_sleeping.png");
 
-	private static final ResourceLocation PROTOCERATOPS_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops_f.png");
-	private static final ResourceLocation PROTOCERATOPS_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/protoceratops_f_sleeping.png");
-	private static final ResourceLocation ALBINO_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_f.png");
-	private static final ResourceLocation ALBINO_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/albino_f_sleeping.png");
-	private static final ResourceLocation MELANISTIC_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_f.png");
-	private static final ResourceLocation MELANISTIC_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/protoceratops/melanistic_f_sleeping.png");
+	private static final ResourceLocation PROTOCERATOPS_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/protoceratops_f.png");
+	private static final ResourceLocation PROTOCERATOPS_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/protoceratops_f_sleeping.png");
+	private static final ResourceLocation ALBINO_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino_f.png");
+	private static final ResourceLocation ALBINO_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/albino_f_sleeping.png");
+	private static final ResourceLocation MELANISTIC_F = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic_f.png");
+	private static final ResourceLocation MELANISTIC_F_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/protoceratops/melanistic_f_sleeping.png");
 
 	private static ProtoceratopsModel PROTOCERATOPS_MODEL;
 	private static ProtoceratopsJuvenileModel BABY_PROTOCERATOPS_MODEL;

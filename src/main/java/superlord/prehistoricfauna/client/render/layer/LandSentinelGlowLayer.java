@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.henos.LandSentinel;
 
 @OnlyIn(Dist.CLIENT)
 public class LandSentinelGlowLayer extends AbstractHenosGlowLayer<LandSentinel, LandSentinelModel> {
-	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sentinel/land_sentinel_glow.png"));
+	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sentinel/land_sentinel_glow.png"));
 
 	public LandSentinelGlowLayer(RenderLayerParent<LandSentinel, LandSentinelModel> rendererIn) {
 		super(rendererIn);

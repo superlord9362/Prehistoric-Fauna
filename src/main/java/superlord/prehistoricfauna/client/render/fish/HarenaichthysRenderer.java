@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Harenaichthys;
 
 public class HarenaichthysRenderer extends MobRenderer<Harenaichthys, HarenaichthysModel> {
 
-	private static final ResourceLocation HARENAICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/harenaichthys.png");
+	private static final ResourceLocation HARENAICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/harenaichthys.png");
 
 	public HarenaichthysRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new HarenaichthysModel(renderManagerIn.bakeLayer(ClientEvents.HARENAICHTHYS)), 0);

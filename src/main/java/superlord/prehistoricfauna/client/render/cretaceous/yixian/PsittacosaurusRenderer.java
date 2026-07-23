@@ -12,18 +12,18 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.PsittacosaurusM
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Psittacosaurus;
 
 public class PsittacosaurusRenderer extends MobRenderer<Psittacosaurus, PsittacosaurusModel> {
-	private static final ResourceLocation PSITTACOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/psittacosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/melanistic.png");
-	private static final ResourceLocation PSITTACOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/psittacosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation PSITTACOSAURUS_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/psycho.png");
-	private static final ResourceLocation ALBINO_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/albino_psycho.png");
-	private static final ResourceLocation MELANISTIC_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/melanistic_psycho.png");
-	private static final ResourceLocation PSITTACOSAURUS_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/psycho_sleeping.png");
-	private static final ResourceLocation ALBINO_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/albino_psycho_sleeping.png");
-	private static final ResourceLocation MELANISTIC_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/melanistic_psycho_sleeping.png");
+	private static final ResourceLocation PSITTACOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/psittacosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/melanistic.png");
+	private static final ResourceLocation PSITTACOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/psittacosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation PSITTACOSAURUS_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/psycho.png");
+	private static final ResourceLocation ALBINO_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/albino_psycho.png");
+	private static final ResourceLocation MELANISTIC_PSYCHO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/melanistic_psycho.png");
+	private static final ResourceLocation PSITTACOSAURUS_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/psycho_sleeping.png");
+	private static final ResourceLocation ALBINO_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/albino_psycho_sleeping.png");
+	private static final ResourceLocation MELANISTIC_PSYCHO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/melanistic_psycho_sleeping.png");
 
 	public PsittacosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PsittacosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PSITTACOSAURUS)), 0.5F);

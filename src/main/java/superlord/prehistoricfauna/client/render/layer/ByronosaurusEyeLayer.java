@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Byronosauru
 
 public class ByronosaurusEyeLayer extends RenderLayer<Byronosaurus, ByronosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/byronosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/byronosaurus_eyeglow.png"));
 	private final RenderLayerParent<Byronosaurus, ByronosaurusModel> byronosaurusRenderer;
 	
 	public ByronosaurusEyeLayer(RenderLayerParent<Byronosaurus, ByronosaurusModel> rendererIn) {

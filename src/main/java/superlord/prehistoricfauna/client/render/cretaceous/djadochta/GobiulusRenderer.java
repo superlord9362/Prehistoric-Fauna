@@ -8,7 +8,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.GobiulusMode
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Gobiulus;
 
 public class GobiulusRenderer extends MobRenderer<Gobiulus, GobiulusModel> {
-	private static final ResourceLocation GOBIULUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/gobiulus.png");
+	private static final ResourceLocation GOBIULUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/gobiulus.png");
 
 	public GobiulusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GobiulusModel(renderManagerIn.bakeLayer(ClientEvents.GOBIULUS)), 0F);

@@ -1,41 +1,36 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "hedge",
+	"pattern": [		
+		"L",
+		"W"
+	],
+	"key": {
+		"L": {
+			"item": "prehistoricfauna:agathoxylon_leaves"
+		},
+		"W": {
+			"tag": "prehistoricfauna:agathoxylon_logs"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_hedge",
+		"count": 2
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "quark"
-						},
-						{
-							"type": "quark:flag",
-							"flag": "hedges"
-						}
-					]
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hedges"
 				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"pattern": [
-					"L",
-					"W"
-				],
-				  "key": {
-				    "L": {
-				      "item": "prehistoricfauna:agathoxylon_leaves"
-				    },
-				    "W": {
-				      "tag": "prehistoricfauna:agathoxylon_logs"
-				    }
-				  },
-				  "result": {
-				    "item": "prehistoricfauna:agathoxylon_hedge",
-					"count": 2
-				  }
-			}
+			]
 		}
 	]
 }

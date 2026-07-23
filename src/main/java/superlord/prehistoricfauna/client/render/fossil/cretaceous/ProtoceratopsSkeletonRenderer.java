@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.ProtoceratopsS
 
 public class ProtoceratopsSkeletonRenderer extends MobRenderer<ProtoceratopsSkeleton, EntityModel<ProtoceratopsSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/protoceratops_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/protoceratops_skeleton.png");
     private static ProtoceratopsSkeletonModel IDLE;
     private static ProtoceratopsSkeletonDisplayModel DISPLAY;
     private static ProtoceratopsSkeletonLayingModel LAYING;
@@ -34,17 +34,13 @@ public class ProtoceratopsSkeletonRenderer extends MobRenderer<ProtoceratopsSkel
 	}
 	
 	protected void scale(ProtoceratopsSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isDisplaying()) {
-			model = DISPLAY;
-		} else if (entityIn.isLaying()) {
-			model = LAYING;
-		} else if (entityIn.isRunning()) {
-			model = RUNNING;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "DISPLAYING" -> DISPLAY;
+		case "LAYING" -> LAYING;
+		case "RUNNING" -> RUNNING;
+		case "SITTING" -> SITTING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

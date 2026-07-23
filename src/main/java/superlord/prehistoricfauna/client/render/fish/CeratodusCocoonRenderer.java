@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.fish.LungfishCocoonModel;
 import superlord.prehistoricfauna.common.entity.fish.CeratodusCocoon;
 
 public class CeratodusCocoonRenderer extends MobRenderer<CeratodusCocoon, EntityModel<CeratodusCocoon>> {
-	private static final ResourceLocation LUNGFISH = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/lungfish.png");
+	private static final ResourceLocation LUNGFISH = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/lungfish.png");
 	
 	public CeratodusCocoonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LungfishCocoonModel<CeratodusCocoon>(renderManagerIn.bakeLayer(ClientEvents.LUNGFISH_COCOON)), 0F);

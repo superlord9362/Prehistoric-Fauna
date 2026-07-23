@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.triassic.ischigualasto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -114,6 +119,7 @@ public class Sillosuchus extends DinosaurEntity {
 			this.setProtective(true);
 		}
 		this.setHerbivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
@@ -230,9 +236,14 @@ public class Sillosuchus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SILLOSUCHUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.SILLOSUCHUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SILLOSUCHUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.sillosuchus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.sillosuchus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

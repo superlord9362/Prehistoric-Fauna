@@ -34,4 +34,7 @@ Sleep Cycle: Crepuscular
 
 
 
-Behavior: Investigation underway!
+Behavior: Ceratosaurus can be 
+fed fish, and has a chance of 
+dropping Bonemeal when eating 
+them.

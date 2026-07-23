@@ -24,7 +24,7 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 			return null;
 		})).apply(p_48644_, p_48644_.stable(TriassicBiomeSource::new));
 	});
-	private final FastNoise climateNoise;
+	private final FastNoise timelineNoise, temperatureNoise, hillinessNoise, humidityNoise, caveNoise;
 	private long lastSeed = -1;
 
 	private final Holder<Biome> chinleRiver, chinleFlats, chinleSwamp, chinleWoodedMountains, ischigualastoRiver, ischigualastoForest, ischigualastoClearing, ischigualastoHills, prehistoricDripstoneCave, henostoneCave;
@@ -35,6 +35,18 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	
 	protected Stream<Holder<Biome>> collectPossibleBiomes() {
 		return Stream.of(this.chinleFlats, this.chinleRiver, this.chinleSwamp, this.chinleWoodedMountains, this.ischigualastoClearing, this.ischigualastoForest, this.ischigualastoHills, this.ischigualastoRiver, this.prehistoricDripstoneCave, this.henostoneCave);
+	}
+	
+	public void setSeed(long seed) {
+	    if (lastSeed != seed) {
+	        int s = (int)(seed & 0xFFFFFFFFL);
+	        timelineNoise.SetSeed(s);
+	        temperatureNoise.SetSeed(s + 1);
+	        hillinessNoise.SetSeed(s + 2);
+	        humidityNoise.SetSeed(s + 3);
+	        caveNoise.SetSeed(s + 4);
+	        lastSeed = seed;
+	    }
 	}
 
 	public double noiseValue;
@@ -50,35 +62,23 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 		this.ischigualastoClearing = ischigualastoClearing;
 		this.prehistoricDripstoneCave = prehistoricDripstoneCave;
 		this.henostoneCave = henostoneCave;
-		this.climateNoise = new FastNoise(0); 
-		this.climateNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.timelineNoise = new FastNoise(0);
+		this.timelineNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.temperatureNoise = new FastNoise(1);
+		this.temperatureNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.hillinessNoise = new FastNoise(2);
+		this.hillinessNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.humidityNoise = new FastNoise(3);
+		this.humidityNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.caveNoise = new FastNoise(4);
+		this.caveNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
 	}
 
 	@Override
 	protected Codec<? extends BiomeSource> codec() {
 		return CODEC;
 	}
-
-	public double timeLineNoise(int x, int y, int z) { 
-		return getNoise().GetNoise(x * 0.1F, z * 0.1F); 
-	} 
-
-	public double tempNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.2F, z * 0.2F); 
-	} 
-
-	public double hillinessNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.4F, z * 0.4F);
-	} 
-
-	public double humidityNoise(int x, int y, int z) { 
-		return getNoise().GetNoise(x * 0.7F, z * 0.7F); 
-	} 
-
-	public double caveTimeLineNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.3F, y * 0.3F, z * 0.3F); 
-	}
-
+	
 	public Climate.TargetPoint sampleCustomClimate(int x, int y, int z) {
 		// Use your existing noise functions to generate climate-like parameters
 		float temperature = (float) tempNoise(x, y, z);
@@ -98,18 +98,27 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 				climate.erosion(), climate.depth(), climate.weirdness(), y
 				);
 	} 
-
-	public void updateNoise(long seed) {
-		if (lastSeed != seed) {
-			climateNoise.SetSeed((int) (seed & 0xFFFFFFFFL));
-			lastSeed = seed;
-		}
+	
+	public double timeLineNoise(int x, int y, int z) {
+	    return timelineNoise.GetNoise(x * 0.1F, z * 0.1F);
 	}
 
-	public FastNoise getNoise() {
-		return climateNoise;
+	public double tempNoise(int x, int y, int z) {
+	    return temperatureNoise.GetNoise(x * 0.2F, z * 0.2F);
 	}
 
+	public double hillinessNoise(int x, int y, int z) {
+	    return hillinessNoise.GetNoise(x * 0.4F, z * 0.4F);
+	}
+
+	public double humidityNoise(int x, int y, int z) {
+	    return humidityNoise.GetNoise(x * 0.7F, z * 0.7F);
+	}
+
+	public double caveTimeLineNoise(int x, int y, int z) {
+	    return caveNoise.GetNoise(x * 0.3F, y * 0.3F, z * 0.3F);
+	}
+	
 	public double getNoiseValue() {
 		return noiseValue;
 	}
@@ -131,8 +140,6 @@ public class TriassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 			return ischigualastoForest;
 		} else return ischigualastoRiver;
 	}
-	
-
 
 	@Override
 	public Holder<Biome> getNoiseBiome(int x, int y, int z) {

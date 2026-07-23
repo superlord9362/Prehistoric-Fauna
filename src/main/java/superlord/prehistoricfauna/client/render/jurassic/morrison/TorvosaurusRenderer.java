@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Torvosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TorvosaurusRenderer extends MobRenderer<Torvosaurus, EntityModel<Torvosaurus>> {
-	private static final ResourceLocation TORVOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/torvosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/melanistic.png");
-	private static final ResourceLocation TORVOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/torvosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation TORVOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/torvosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/melanistic_baby.png");
-	private static final ResourceLocation TORVOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/torvosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/torvosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation TORVOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/torvosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/melanistic.png");
+	private static final ResourceLocation TORVOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/torvosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation TORVOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/torvosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/melanistic_baby.png");
+	private static final ResourceLocation TORVOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/torvosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/torvosaurus/melanistic_baby_sleeping.png");
 
 	private static TorvosaurusModel TORVOSAURUS_MODEL;
 	private static TorvosaurusBabyModel BABY_TORVOSAURUS_MODEL;

@@ -1,10 +1,18 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -55,6 +63,7 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Palaeosaniwa extends BurrowingDinosaur {
+	private static final EntityDataAccessor<Boolean> TONGUE = SynchedEntityData.defineId(Palaeosaniwa.class, EntityDataSerializers.BOOLEAN);
 
 	private int maxHunger = 38;
 	private int warningSoundTicks;
@@ -67,6 +76,14 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
+	}
+
+	public boolean isFlicking() {
+		return this.entityData.get(TONGUE);
+	}
+
+	private void setFlicking(boolean isFlicking) {
+		this.entityData.set(TONGUE, isFlicking);
 	}
 	
 	protected void playWarningSound() {
@@ -124,9 +141,14 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.PALAEOSANIWA.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.PALAEOSANIWA.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.PALAEOSANIWA.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.palaeosaniwa_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.palaeosaniwa_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -157,6 +179,22 @@ public class Palaeosaniwa extends BurrowingDinosaur {
 		this.setCarnivorous(true);
 		this.setCrepuscular(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+		if (!this.isAsleep() && !this.isInWater() && this.getRandom().nextInt(500) == 0 && !this.isFlicking()) {
+			this.setFlicking(true);
+		}
+		if (this.isFlicking() && this.getRandom().nextInt(20) == 0) {
+			this.setFlicking(false);
+		}
+		if (this.isFlicking() && (this.isInWater() || this.isAsleep())) this.setFlicking(false);
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TONGUE, false);
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {

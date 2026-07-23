@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Tuojiangosaur
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TuojiangosaurusRenderer extends MobRenderer<Tuojiangosaurus, EntityModel<Tuojiangosaurus>> {
-	private static final ResourceLocation TUOJIANGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/tuojiangosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/melanistic.png");
-	private static final ResourceLocation TUOJIANGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/tuojiangosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation TUOJIANGOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/tuojiangosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/melanistic_baby.png");
-	private static final ResourceLocation TUOJIANGOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/tuojiangosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation TUOJIANGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/tuojiangosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/melanistic.png");
+	private static final ResourceLocation TUOJIANGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/tuojiangosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation TUOJIANGOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/tuojiangosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/melanistic_baby.png");
+	private static final ResourceLocation TUOJIANGOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/tuojiangosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/melanistic_baby_sleeping.png");
 
 	private static TuojiangosaurusModel TUOJIANGOSAURUS_MODEL;
 	private static TuojiangosaurusBabyModel TUOJIANGOSAURUS_BABY_MODEL;

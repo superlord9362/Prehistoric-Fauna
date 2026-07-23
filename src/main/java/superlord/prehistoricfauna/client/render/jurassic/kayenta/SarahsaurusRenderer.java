@@ -9,25 +9,29 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.jurassic.kayenta.SarahsaurusModel;
+import superlord.prehistoricfauna.client.render.layer.SarahsaurusCarpetLayer;
+import superlord.prehistoricfauna.client.render.layer.SarahsaurusChestLayer;
 import superlord.prehistoricfauna.client.render.layer.SarahsaurusEyeLayer;
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Sarahsaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class SarahsaurusRenderer extends MobRenderer<Sarahsaurus, SarahsaurusModel> {
-	private static final ResourceLocation SARAHSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/sarahsaurus.png");
-	private static final ResourceLocation FLINSTONES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/sarahsaurus_flintstones.png");
-	private static final ResourceLocation FLINSTONES_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/sarahsaurus_flintstones_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/melanistic.png");
-	private static final ResourceLocation SARAHSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/sarahsaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sarahsaurus/melanistic_sleeping.png");
+	private static final ResourceLocation SARAHSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/sarahsaurus.png");
+	private static final ResourceLocation FLINSTONES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/sarahsaurus_flintstones.png");
+	private static final ResourceLocation FLINSTONES_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/sarahsaurus_flintstones_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/melanistic.png");
+	private static final ResourceLocation SARAHSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/sarahsaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sarahsaurus/melanistic_sleeping.png");
 
 	public SarahsaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new SarahsaurusModel(renderManagerIn.bakeLayer(ClientEvents.SARAHSAURUS)), 1F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new SarahsaurusEyeLayer(this));
 		}
+		this.addLayer(new SarahsaurusCarpetLayer(this));
+		this.addLayer(new SarahsaurusChestLayer(this));
 	}
 
 	protected void scale(Sarahsaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

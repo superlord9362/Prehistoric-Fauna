@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.triassic.ischigualasto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -163,6 +168,7 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 			this.setTerritorial(true);
 		}
 		this.setHerbivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -224,9 +230,14 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 		boolean flag = this.isFood(player.getItemInHand(hand));
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ISCHIGUALASTIA.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.ISCHIGUALASTIA.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ISCHIGUALASTIA.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.ischigualastia_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.ischigualastia_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

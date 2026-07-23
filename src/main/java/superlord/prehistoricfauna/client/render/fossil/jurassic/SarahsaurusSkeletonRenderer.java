@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.SarahsaurusSkele
 
 public class SarahsaurusSkeletonRenderer extends MobRenderer<SarahsaurusSkeleton, EntityModel<SarahsaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/sarahsaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/sarahsaurus_skeleton.png");
     private static SarahsaurusSkeletonModel IDLE;
     private static SarahsaurusSkeletonEatingModel EATING;
     private static SarahsaurusSkeletonWalkingModel WALKING;
@@ -31,15 +31,12 @@ public class SarahsaurusSkeletonRenderer extends MobRenderer<SarahsaurusSkeleton
 	}
 	
 	protected void scale(SarahsaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isEating()) {
-			model = EATING;
-		} else if (entityIn.isWalking()) {
-			model = WALKING;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "EATING" -> EATING;
+		case "WALKING" -> WALKING;
+		case "SITTING" -> SITTING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

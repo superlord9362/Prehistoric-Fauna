@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:spiky_javelin"
+    ]
+  },
+  "criteria": {
+    "has_drop": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:spiky_spine"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:spiky_javelin"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_drop",
+      "has_the_recipe"
+    ]
+  ]
+}

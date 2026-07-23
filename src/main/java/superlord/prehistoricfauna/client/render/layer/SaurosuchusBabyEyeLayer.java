@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Saurosuch
 
 public class SaurosuchusBabyEyeLayer extends RenderLayer<Saurosuchus, EntityModel<Saurosuchus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/saurosuchus/saurosuchus_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/saurosuchus/saurosuchus_baby_eyeglow.png"));
 	private final RenderLayerParent<Saurosuchus, EntityModel<Saurosuchus>> saurosuchusRenderer;
 	
 	public SaurosuchusBabyEyeLayer(RenderLayerParent<Saurosuchus, EntityModel<Saurosuchus>> rendererIn) {

@@ -8,23 +8,25 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.SinosauropteryxModel;
+import superlord.prehistoricfauna.client.render.layer.SinosauropteryxArmorLayer;
 import superlord.prehistoricfauna.client.render.layer.SinosauropteryxEyeLayer;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Sinosauropteryx;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class SinosauropteryxRenderer extends MobRenderer<Sinosauropteryx, SinosauropteryxModel> {
-	private static final ResourceLocation SINOSAUROPTERYX = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/sinosauropteryx.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/melanistic.png");
-	private static final ResourceLocation SINOSAUROPTERYX_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/sinosauropteryx_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/melanistic_sleeping.png");
+	private static final ResourceLocation SINOSAUROPTERYX = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/sinosauropteryx.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/melanistic.png");
+	private static final ResourceLocation SINOSAUROPTERYX_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/sinosauropteryx_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/melanistic_sleeping.png");
 
 	public SinosauropteryxRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new SinosauropteryxModel(renderManagerIn.bakeLayer(ClientEvents.SINOSAUROPTERYX)), 0.25F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new SinosauropteryxEyeLayer(this));
 		}
+		this.addLayer(new SinosauropteryxArmorLayer(this));
 	}
 
 	protected void scale(Sinosauropteryx sinosauropteryx, PoseStack matrixStackIn, float partialTickTime) {

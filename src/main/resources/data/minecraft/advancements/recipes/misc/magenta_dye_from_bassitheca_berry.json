@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:magenta_dye_from_bassitheca"
+    ]
+  },
+  "criteria": {
+    "has_dye_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:bassitheca_berries"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:magenta_dye_from_bassitheca"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dye_plant",
+      "has_the_recipe"
+    ]
+  ]
+}

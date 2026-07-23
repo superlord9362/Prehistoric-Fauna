@@ -1,8 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -85,7 +88,7 @@ public class Abrosaurus extends AgedHerdDinosaurEntity {
 		return this.entityData.get(IS_JUVENILE);
 	}
 
-	private void setJuvenile(boolean isJuvenile) {
+	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
 	}
 
@@ -137,9 +140,14 @@ public class Abrosaurus extends AgedHerdDinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ABROSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.ABROSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ABROSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.abrosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.abrosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

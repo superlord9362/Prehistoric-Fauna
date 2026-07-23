@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.SaurosuchusSkele
 
 public class SaurosuchusSkeletonRenderer extends MobRenderer<SaurosuchusSkeleton, EntityModel<SaurosuchusSkeleton>> {
 
-	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/saurosuchus_skeleton.png");
+	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/saurosuchus_skeleton.png");
 	private static SaurosuchusSkeletonModel IDLE;
 	private static SaurosuchusSkeletonActionRightModel ACTION_RIGHT;
 	private static SaurosuchusSkeletonActionLeftModel ACTION_LEFT;
@@ -31,15 +31,12 @@ public class SaurosuchusSkeletonRenderer extends MobRenderer<SaurosuchusSkeleton
 	}
 
 	protected void scale(SaurosuchusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isActionLeft()) {
-			model = ACTION_LEFT;
-		} else if (entityIn.isActionRight()) {
-			model = ACTION_RIGHT;
-		} else if (entityIn.isResting()) {
-			model = SLEEPING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "ATTACK_LEFT" -> ACTION_LEFT;
+		case "ATTACK_RIGHT" -> ACTION_RIGHT;
+		case "RESTING" -> SLEEPING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

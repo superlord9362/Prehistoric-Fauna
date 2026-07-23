@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Huayangosauru
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class HuayangosaurusRenderer extends MobRenderer<Huayangosaurus, HuayangosaurusModel> {
-	private static final ResourceLocation HUAYANGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/huayangosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/melanistic.png");
-	private static final ResourceLocation HUAYANGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/huayangosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/huayangosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation HUAYANGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/huayangosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/melanistic.png");
+	private static final ResourceLocation HUAYANGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/huayangosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/huayangosaurus/melanistic_sleeping.png");
 
 	public HuayangosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new HuayangosaurusModel(renderManagerIn.bakeLayer(ClientEvents.HUAYANGOSAURUS)), 0.75F);

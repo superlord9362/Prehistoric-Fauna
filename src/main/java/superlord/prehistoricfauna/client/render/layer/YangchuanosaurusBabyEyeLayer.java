@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Yangchuanosau
 
 public class YangchuanosaurusBabyEyeLayer extends RenderLayer<Yangchuanosaurus, EntityModel<Yangchuanosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/yangchuanosaurus_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/yangchuanosaurus_baby_eyeglow.png"));
 	private final RenderLayerParent<Yangchuanosaurus, EntityModel<Yangchuanosaurus>> yangchuanosaurusRenderer;
 	
 	public YangchuanosaurusBabyEyeLayer(RenderLayerParent<Yangchuanosaurus, EntityModel<Yangchuanosaurus>> rendererIn) {

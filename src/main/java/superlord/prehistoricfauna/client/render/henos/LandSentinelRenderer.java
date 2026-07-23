@@ -11,7 +11,7 @@ import superlord.prehistoricfauna.common.entity.henos.LandSentinel;
 
 public class LandSentinelRenderer extends MobRenderer<LandSentinel, LandSentinelModel> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sentinel/land_sentinel.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sentinel/land_sentinel.png");
 
 	public LandSentinelRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LandSentinelModel(renderManagerIn.bakeLayer(ClientEvents.LAND_SENTINEL)), 1.25F);

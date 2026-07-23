@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -103,11 +108,21 @@ public class Alcovasaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.ALCOVASAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.ALCOVASAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.ALCOVASAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.alcovasaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			} else return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.alcovasaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		if (itemstack.is(PFTags.FERNS_ITEMS)) {
+			if (this.getRandom().nextInt() == 0) this.spawnAtLocation(PFItems.FIDDLEHEAD_SPORES.get());
+			if (!player.isCreative()) itemstack.shrink(1);
+			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}

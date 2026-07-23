@@ -147,7 +147,8 @@ public class Paleopainting extends HangingEntity implements IEntityAdditionalSpa
         CRICHTONIAN(16, 16),
         ALLOSAURUS(32, 16),
         NOVOPANGEA(64, 48),
-        PANGEA(64, 48);
+        PANGEA(64, 48),
+        IMPACT(32, 48);
 
         public static final PaleopaintingType[] VALUES = values();
 

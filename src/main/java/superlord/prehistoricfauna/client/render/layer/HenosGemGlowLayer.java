@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.henos.Henos;
 
 @OnlyIn(Dist.CLIENT)
 public class HenosGemGlowLayer extends AbstractHenosGlowLayer<Henos, EntityModel<Henos>> {
-	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/henos/henos_gem_layer.png"));
+	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/henos/henos_gem_layer.png"));
 
 	public HenosGemGlowLayer(RenderLayerParent<Henos, EntityModel<Henos>> rendererIn) {
 		super(rendererIn);

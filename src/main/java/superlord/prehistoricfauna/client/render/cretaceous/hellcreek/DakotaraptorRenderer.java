@@ -17,24 +17,24 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Dakotarapto
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DakotaraptorRenderer extends MobRenderer<Dakotaraptor, EntityModel<Dakotaraptor>> {
-	private static final ResourceLocation DAKOTARAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor.png");
-	private static final ResourceLocation SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_sleeping.png");
-	private static final ResourceLocation SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_baby_sleeping.png");
-	private static final ResourceLocation DAKOTARAPTOR_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_baby.png");
-	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_baby.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_baby_sleeping.png");
-	private static final ResourceLocation MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_man.png");
-	private static final ResourceLocation SLEEPING_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/dakotaraptor_man_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_sleeping.png");
-	private static final ResourceLocation ALBINO_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_man.png");
-	private static final ResourceLocation ALBINO_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/albino_man_sleeping.png");
-	private static final ResourceLocation MELANISTIC_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_man.png");
-	private static final ResourceLocation MELANISTIC_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dakotaraptor/melanistic_man_sleeping.png");
+	private static final ResourceLocation DAKOTARAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor.png");
+	private static final ResourceLocation SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_sleeping.png");
+	private static final ResourceLocation SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_baby_sleeping.png");
+	private static final ResourceLocation DAKOTARAPTOR_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino_baby.png");
+	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic_baby.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic_baby_sleeping.png");
+	private static final ResourceLocation MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_man.png");
+	private static final ResourceLocation SLEEPING_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/dakotaraptor_man_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic_sleeping.png");
+	private static final ResourceLocation ALBINO_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino_man.png");
+	private static final ResourceLocation ALBINO_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/albino_man_sleeping.png");
+	private static final ResourceLocation MELANISTIC_MAN = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic_man.png");
+	private static final ResourceLocation MELANISTIC_MAN_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dakotaraptor/melanistic_man_sleeping.png");
 
 	private static DakotaraptorModel DAKOTARAPTOR_MODEL;
 	private static DakotaraptorBabyModel BABY_DAKOTARAPTOR_MODEL;

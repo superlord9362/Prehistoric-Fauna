@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
 
 public class CoelophysisEyeLayer extends RenderLayer<Coelophysis, CoelophysisModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/coelophysis_eyeglow.png"));
 	private final RenderLayerParent<Coelophysis, CoelophysisModel> coelophysisRenderer;
 	
 	public CoelophysisEyeLayer(RenderLayerParent<Coelophysis, CoelophysisModel> rendererIn) {

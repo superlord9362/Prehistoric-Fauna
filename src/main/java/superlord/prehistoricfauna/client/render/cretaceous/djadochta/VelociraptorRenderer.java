@@ -9,27 +9,29 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.djadochta.VelociraptorModel;
+import superlord.prehistoricfauna.client.render.layer.VelociraptorArmorLayer;
 import superlord.prehistoricfauna.client.render.layer.VelociraptorEyeLayer;
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Velociraptor;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class VelociraptorRenderer extends MobRenderer<Velociraptor, VelociraptorModel> {
-	private static final ResourceLocation VELOCIRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/velociraptor.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/melanistic.png");
-	private static final ResourceLocation VELOCIRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/velociraptor_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/melanistic_sleeping.png");
-	private static final ResourceLocation CROWBER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/crowber.png");
-	private static final ResourceLocation CROWBER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/crowber_sleeping.png");
-	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/retro.png");
-	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/velociraptor/retro_sleeping.png");
+	private static final ResourceLocation VELOCIRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/velociraptor.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/melanistic.png");
+	private static final ResourceLocation VELOCIRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/velociraptor_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/melanistic_sleeping.png");
+	private static final ResourceLocation CROWBER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/crowber.png");
+	private static final ResourceLocation CROWBER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/crowber_sleeping.png");
+	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/retro.png");
+	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/velociraptor/retro_sleeping.png");
 
 	public VelociraptorRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new VelociraptorModel(renderManagerIn.bakeLayer(ClientEvents.VELOCIRAPTOR)), 0.3125F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new VelociraptorEyeLayer(this));
 		}
+		this.addLayer(new VelociraptorArmorLayer(this));
 	}
 
 	protected void scale(Velociraptor thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {

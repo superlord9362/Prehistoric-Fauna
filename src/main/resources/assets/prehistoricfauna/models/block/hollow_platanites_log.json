@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log",
+	"textures": {
+		"end": "prehistoricfauna:block/platanites_log_top",
+		"side": "prehistoricfauna:block/platanites_log",
+		"inside": "prehistoricfauna:block/stripped_platanites_log"
+	}
+}

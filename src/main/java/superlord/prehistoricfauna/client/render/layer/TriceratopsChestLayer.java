@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops
 
 public class TriceratopsChestLayer extends RenderLayer<Triceratops, EntityModel<Triceratops>> {
 	
-	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_chest_layer.png"));
+	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_chest_layer.png"));
 	private final RenderLayerParent<Triceratops, EntityModel<Triceratops>> triceratopsRenderer;
 	
 	public TriceratopsChestLayer(RenderLayerParent<Triceratops, EntityModel<Triceratops>> triceratopsRenderer) {

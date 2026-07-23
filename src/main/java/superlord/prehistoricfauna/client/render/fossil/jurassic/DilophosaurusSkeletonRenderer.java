@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.DilophosaurusSke
 
 public class DilophosaurusSkeletonRenderer extends MobRenderer<DilophosaurusSkeleton, EntityModel<DilophosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/dilophosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/dilophosaurus_skeleton.png");
     private static DilophosaurusSkeletonModel IDLE;
     private static DilophosaurusSkeletonAttackModel ATTACK;
     private static DilophosaurusSkeletonGazeModel GAZE;
@@ -34,17 +34,13 @@ public class DilophosaurusSkeletonRenderer extends MobRenderer<DilophosaurusSkel
 	}
 	
 	protected void scale(DilophosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isAttacking()) {
-			model = ATTACK;
-		} else if (entityIn.isGazing()) {
-			model = GAZE;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else if (entityIn.isStrutting()) {
-			model = STRUT;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "STRUTTING" -> STRUT;
+		case "GAZING" -> GAZE;
+		case "ATTACKING" -> ATTACK;
+		case "SITTING" -> SITTING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

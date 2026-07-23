@@ -1,0 +1,32 @@
+{
+	"replace": false,
+	"values": [
+		"prehistoricfauna:goyocephale_skeleton",
+		"prehistoricfauna:plesiohadros_skeleton",
+		"prehistoricfauna:protoceratops_skeleton",
+		"prehistoricfauna:velociraptor_skeleton",
+		"prehistoricfauna:ankylosaurus_skeleton",
+		"prehistoricfauna:anzu_skeleton",
+		"prehistoricfauna:triceratops_skeleton",
+		"prehistoricfauna:tyrannosaurus_skeleton",
+		"prehistoricfauna:dongbeititan_skeleton",
+		"prehistoricfauna:liaoningosaurus_skeleton",
+		"prehistoricfauna:psittacosaurus_skeleton",
+		"prehistoricfauna:yutyrannus_skeleton",
+		"prehistoricfauna:dilophosaurus_skeleton",
+		"prehistoricfauna:kayentavenator_skeleton",
+		"prehistoricfauna:sarahsaurus_skeleton",
+		"prehistoricfauna:scelidosaurus_skeleton",
+		"prehistoricfauna:allosaurus_skeleton",
+		"prehistoricfauna:ceratosaurus_skeleton",
+		"prehistoricfauna:stegosaurus_skeleton",
+		"prehistoricfauna:chuandongocoelurus_skeleton",
+		"prehistoricfauna:yangchuanosaurus_skeleton",
+		"prehistoricfauna:coelophysis_skeleton",
+		"prehistoricfauna:desmatosuchus_skeleton",
+		"prehistoricfauna:postosuchus_skeleton",
+		"prehistoricfauna:herrerasaurus_skeleton",
+		"prehistoricfauna:ischigualastia_skeleton",
+		"prehistoricfauna:saurosuchus_skeleton"
+	]
+}

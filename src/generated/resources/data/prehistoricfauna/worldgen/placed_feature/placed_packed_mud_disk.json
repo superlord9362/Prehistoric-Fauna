@@ -1,5 +1,5 @@
 {
-  "feature": "prehistoricfauna:congigured_packed_mud_disk",
+  "feature": "prehistoricfauna:configured_packed_mud_disk",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",

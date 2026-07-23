@@ -12,16 +12,16 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Pachycephal
 
 public class PachycephalosaurusRenderer extends MobRenderer<Pachycephalosaurus, PachycephalosaurusModel> {
 
-	private static final ResourceLocation PACHYCEPHALOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/pachycephalosaurus.png");
-	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/pachycephalosaurus_baby.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/melanistic_baby.png");
-	private static final ResourceLocation PACHYCEPHALOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/pachycephalosaurus_sleeping.png");
-	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/pachycephalosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/pachycephalosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation PACHYCEPHALOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/pachycephalosaurus.png");
+	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/pachycephalosaurus_baby.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/melanistic_baby.png");
+	private static final ResourceLocation PACHYCEPHALOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/pachycephalosaurus_sleeping.png");
+	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/pachycephalosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/pachycephalosaurus/melanistic_baby_sleeping.png");
 
 	public PachycephalosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PachycephalosaurusModel(renderManagerIn.bakeLayer(ClientEvents.PACHYCEPHALOSAURUS)), 0.875F);

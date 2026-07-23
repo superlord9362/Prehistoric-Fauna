@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.Liaoningosauru
 
 public class LiaoningosaurusSkullRenderer extends MobRenderer<LiaoningosaurusSkull, LiaoningosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/liaoningosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/liaoningosaurus_skeleton.png");
 
 	public LiaoningosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LiaoningosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.LIAONINGOSAURUS_SKULL)), 0);

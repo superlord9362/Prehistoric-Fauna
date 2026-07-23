@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Calsoyasuchus;
 
 public class CalsoyasuchusEyeLayer extends RenderLayer<Calsoyasuchus, CalsoyasuchusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/calsoyasuchus/calsoyasuchus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/calsoyasuchus/calsoyasuchus_eyeglow.png"));
 	private final RenderLayerParent<Calsoyasuchus, CalsoyasuchusModel> calsoyasuchusRenderer;
 	
 	public CalsoyasuchusEyeLayer(RenderLayerParent<Calsoyasuchus, CalsoyasuchusModel> rendererIn) {

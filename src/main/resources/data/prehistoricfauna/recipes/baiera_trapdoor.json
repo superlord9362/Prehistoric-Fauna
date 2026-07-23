@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:baiera_planks"
+    }
+  },
+  "result": {
+    "item": "prehistoricfauna:baiera_trapdoor",
+    "count": 2
+  }
+}

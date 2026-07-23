@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Bashanosaurus
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class BashanosaurusRenderer extends MobRenderer<Bashanosaurus, BashanosaurusModel> {
-	private static final ResourceLocation BASHANOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/bashanosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/melanistic.png");
-	private static final ResourceLocation BASHANOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/bashanosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bashanosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation BASHANOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/bashanosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/melanistic.png");
+	private static final ResourceLocation BASHANOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/bashanosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bashanosaurus/melanistic_sleeping.png");
 
 	public BashanosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BashanosaurusModel(renderManagerIn.bakeLayer(ClientEvents.BASHANOSAURUS)), 0.75F);

@@ -1,0 +1,6 @@
+{
+	"parent": "prehistoricfauna:block/post",
+	"textures": {
+		"texture": "prehistoricfauna:block/stripped_baiera_log"
+	}
+}

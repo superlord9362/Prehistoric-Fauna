@@ -30,7 +30,7 @@ public class HermanophytonTopBlock extends Block implements IPlantable, Bonemeal
 
 	public HermanophytonTopBlock(Properties p_49795_) {
 		super(p_49795_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(PLAYER_PLACED, false).setValue(CAN_GROW, true));
+		this.registerDefaultState(this.stateDefinition.any().setValue(PLAYER_PLACED, true).setValue(CAN_GROW, true));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -70,7 +70,7 @@ public class HermanophytonTopBlock extends Block implements IPlantable, Bonemeal
     @Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
     	boolean growing = getNumHermanophytonBlocksBelow(world, pos) < random.nextInt(8) + 10;
-    	if (world.isEmptyBlock(pos.above()) && canGrow(state) && growing) {
+    	if (world.isEmptyBlock(pos.above()) && canGrow(state) && isPlayerPlaced(state) && growing) {
     		world.setBlock(pos, PFBlocks.HERMANOPHYTON.get().defaultBlockState().setValue(HermanophytonBlock.HAS_LEAVES, true), 2);
     		world.setBlock(pos.above(), this.defaultBlockState(), 2);
     		if (world.getBlockState(pos.below()).is(PFBlocks.HERMANOPHYTON.get())) {
@@ -81,6 +81,10 @@ public class HermanophytonTopBlock extends Block implements IPlantable, Bonemeal
     
     public boolean canGrow(BlockState state) {
     	return state.getValue(CAN_GROW);
+    }
+    
+    public boolean isPlayerPlaced(BlockState state) {
+    	return state.getValue(PLAYER_PLACED);
     }
     
     public BlockBehaviour.OffsetType getValueOffsetType() {

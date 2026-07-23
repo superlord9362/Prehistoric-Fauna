@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Allosaurus;
 
 public class AllosaurusEyeLayer extends RenderLayer<Allosaurus, EntityModel<Allosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/allosaurus/allosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/allosaurus/allosaurus_eyeglow.png"));
 	private final RenderLayerParent<Allosaurus, EntityModel<Allosaurus>> allosaurusRenderer;
 	
 	public AllosaurusEyeLayer(RenderLayerParent<Allosaurus, EntityModel<Allosaurus>> rendererIn) {

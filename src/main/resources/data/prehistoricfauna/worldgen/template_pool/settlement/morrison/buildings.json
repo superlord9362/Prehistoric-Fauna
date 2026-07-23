@@ -1,0 +1,114 @@
+{
+	"name": "prehistoricfauna:settlement/morrison/buildings",
+	"fallback": "prehistoricfauna:settlement/morrison/buildings",
+	"elements": [
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_bank",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_stable",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_saloon",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_trader",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_restaurant",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_5",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_6",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 6,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/buildings/morrison_house_7",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

@@ -1,37 +1,32 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "leaf_carpet",
+	"pattern": [		
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:agathoxylon_leaves"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_leaf_carpet",
+		"count": 3
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "quark"
-						},
-						{
-							"type": "quark:flag",
-							"flag": "leaf_carpet"
-						}
-					]
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "leaf_carpet"
 				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"pattern": [
-					"##",
-				],
-				  "key": {
-				    "#": {
-				      "item": "prehistoricfauna:agathoxylon_leaves"
-				    }
-				  },
-				  "result": {
-				    "item": "prehistoricfauna:agathoxylon_leaf_carpet",
-					"count": 3
-				  }
-			}
+			]
 		}
 	]
 }

@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.triassic.chinle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -100,9 +105,14 @@ public class Trilophosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TRILOPHOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.TRILOPHOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TRILOPHOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.trilophosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.trilophosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -166,7 +176,7 @@ public class Trilophosaurus extends DinosaurEntity {
 				BlockState blockstate2 = this.level().getBlockState(blockpos2);
 				BlockState blockstate3 = this.level().getBlockState(blockpos3);
 				BlockState blockstate4 = this.level().getBlockState(blockpos4);
-				if (blockstate1.is(PFBlocks.NEOCALAMITES.get()) || blockstate1.is(PFBlocks.NEOCALAMITES_TOP.get())|| blockstate2.is(PFBlocks.NEOCALAMITES.get()) || blockstate2.is(PFBlocks.NEOCALAMITES_TOP.get()) || blockstate3.is(PFBlocks.NEOCALAMITES.get()) || blockstate3.is(PFBlocks.NEOCALAMITES_TOP.get()) || blockstate4.is(PFBlocks.NEOCALAMITES.get()) || blockstate4.is(PFBlocks.NEOCALAMITES_TOP.get())) {
+				if (blockstate1.is(PFBlocks.NEOCALAMITES.get()) || blockstate2.is(PFBlocks.NEOCALAMITES.get()) || blockstate3.is(PFBlocks.NEOCALAMITES.get()) || blockstate4.is(PFBlocks.NEOCALAMITES.get())) {
 					logBlock = true;
 					if (climbingTickCooldown == 0 && climbingTicks < 600) {
 						this.setBesideClimbableBlock(logBlock);

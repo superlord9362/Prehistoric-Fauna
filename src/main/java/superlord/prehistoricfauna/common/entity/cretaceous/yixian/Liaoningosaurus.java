@@ -1,9 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -146,9 +149,14 @@ public class Liaoningosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.LIAONINGOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.LIAONINGOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.LIAONINGOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.liaoningosaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.liaoningosaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

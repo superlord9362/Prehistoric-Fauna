@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Diablophis;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DiablophisRenderer extends MobRenderer<Diablophis, DiablophisModel> {
-	private static final ResourceLocation DIABLOPHIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/diablophis.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/melanistic.png");
-	private static final ResourceLocation DIABLOPHIS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/diablophis_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/melanistic_sleeping.png");
+	private static final ResourceLocation DIABLOPHIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/diablophis.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/melanistic.png");
+	private static final ResourceLocation DIABLOPHIS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/diablophis_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/melanistic_sleeping.png");
 
 	public DiablophisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DiablophisModel(renderManagerIn.bakeLayer(ClientEvents.DIABLOPHIS)), 0.25F);

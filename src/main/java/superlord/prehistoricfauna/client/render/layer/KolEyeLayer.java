@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Kol;
 
 public class KolEyeLayer extends RenderLayer<Kol, KolModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kol/kol_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kol/kol_eyeglow.png"));
 	private final RenderLayerParent<Kol, KolModel> kolRenderer;
 	
 	public KolEyeLayer(RenderLayerParent<Kol, KolModel> rendererIn) {

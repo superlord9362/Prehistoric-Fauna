@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.AnzuSkeleton;
 
 public class AnzuSkeletonRenderer extends MobRenderer<AnzuSkeleton, EntityModel<AnzuSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/anzu_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/anzu_skeleton.png");
     private static AnzuSkeletonModel IDLE;
     private static AnzuSkeletonRearModel REAR;
     private static AnzuSkeletonRompModel ROMP;
@@ -40,27 +40,18 @@ public class AnzuSkeletonRenderer extends MobRenderer<AnzuSkeleton, EntityModel<
 	}
 	
 	protected void scale(AnzuSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isRear()) {
-			model = REAR;
-		} else if (entityIn.isRomp()) {
-			model = ROMP;
-		} else if (entityIn.isFlee()) {
-			model = FLEE;
-		} else if (entityIn.isSkulk()) {
-			model = SKULK;
-		} else if (entityIn.isDisplay()) {
-			model = DISPLAY;
-		} else if (entityIn.isBow()) {
-			model = BOW;
-		} else if (entityIn.isSit()) {
-			model = SIT;
-		} else if (entityIn.isSleep()) {
-			model = SLEEP;
-		} else if (entityIn.isDeath()) {
-			model = DEATH;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "REAR" -> REAR;
+		case "ROMP" -> ROMP;
+		case "FLEE" -> FLEE;
+		case "SKULK" -> SKULK;
+		case "DISPLAY" -> DISPLAY;
+		case "BOW" -> BOW;
+		case "SIT" -> SIT;
+		case "SLEEP" -> SLEEP;
+		case "DEATH" -> DEATH;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

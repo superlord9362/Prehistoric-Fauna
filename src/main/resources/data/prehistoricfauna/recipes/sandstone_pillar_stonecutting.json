@@ -1,5 +1,6 @@
 {
 	"type": "minecraft:stonecutting",
+	"category": "building",
 	"ingredient": {
 		"item": "prehistoricfauna:sandstone"
 	},
@@ -7,8 +8,17 @@
 	"count": 1,
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "stone_pillar"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "stone_pillar"
+				}
+			]
 		}
 	]
 }

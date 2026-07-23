@@ -20,35 +20,35 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TyrannosaurusRenderer extends MobRenderer<Tyrannosaurus, EntityModel<Tyrannosaurus>> {
 
-	private static final ResourceLocation TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex.png");
-	private static final ResourceLocation BABY_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino.png");
-	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic.png");
-	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby.png");
-	private static final ResourceLocation TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex_sleeping.png");
-	private static final ResourceLocation BABY_TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sleeping.png");
-	private static final ResourceLocation BABY_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation BABY_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby_sleeping.png");
-	private static final ResourceLocation SUB_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex_sub.png");
-	private static final ResourceLocation SUB_TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrex_sub_sleeping.png");
-	private static final ResourceLocation SUB_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub.png");
-	private static final ResourceLocation SUB_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_sub.png");
-	private static final ResourceLocation SUB_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_sub_sleeping.png");
-	private static final ResourceLocation SUB_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_sub_sleeping.png");
-	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro.png");
-	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/retro_sleeping.png");
-	private static final ResourceLocation MEGATRON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron.png");
-	private static final ResourceLocation MEGATRON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/megatron_sleeping.png");
+	private static final ResourceLocation TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurusrex.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurus_baby.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino.png");
+	private static final ResourceLocation BABY_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic.png");
+	private static final ResourceLocation BABY_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_baby.png");
+	private static final ResourceLocation TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurusrex_sleeping.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_sleeping.png");
+	private static final ResourceLocation BABY_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation BABY_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation SUB_TYRANNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurusrex_sub.png");
+	private static final ResourceLocation SUB_TYRANNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurusrex_sub_sleeping.png");
+	private static final ResourceLocation SUB_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_sub.png");
+	private static final ResourceLocation SUB_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_sub.png");
+	private static final ResourceLocation SUB_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_sub_sleeping.png");
+	private static final ResourceLocation SUB_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_sub_sleeping.png");
+	private static final ResourceLocation RETRO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/retro.png");
+	private static final ResourceLocation RETRO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/retro_sleeping.png");
+	private static final ResourceLocation MEGATRON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/megatron.png");
+	private static final ResourceLocation MEGATRON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/megatron_sleeping.png");
 
-	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby_feather.png");
-	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurus_baby_feather_sleeping.png");
-	private static final ResourceLocation BABY_ALBINO_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby_feather.png");
-	private static final ResourceLocation BABY_ALBINO_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/albino_baby_feather_sleeping.png");
-	private static final ResourceLocation BABY_MELANISTIC_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby_feather.png");
-	private static final ResourceLocation BABY_MELANISTIC_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/melanistic_baby_feather_sleeping.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurus_baby_feather.png");
+	private static final ResourceLocation BABY_TYRANNOSAURUS_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurus_baby_feather_sleeping.png");
+	private static final ResourceLocation BABY_ALBINO_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_baby_feather.png");
+	private static final ResourceLocation BABY_ALBINO_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/albino_baby_feather_sleeping.png");
+	private static final ResourceLocation BABY_MELANISTIC_FEATHER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_baby_feather.png");
+	private static final ResourceLocation BABY_MELANISTIC_FEATHER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/melanistic_baby_feather_sleeping.png");
 
 
 	private static TyrannosaurusModel TYRANNOSAURUS_MODEL;

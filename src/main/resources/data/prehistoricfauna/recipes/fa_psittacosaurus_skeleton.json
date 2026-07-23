@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:psittacosaurus_skull"
+    },
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:psittacosaurus_skeleton"
+  },
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "fossil"
+		}
+	]
+}

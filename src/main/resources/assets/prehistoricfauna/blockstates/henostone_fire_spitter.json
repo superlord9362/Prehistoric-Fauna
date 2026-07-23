@@ -1,0 +1,12 @@
+{
+    "variants": {
+		"facing=north,powered=false": { "model": "prehistoricfauna:block/henostone_fire_spitter_closed"},
+		"facing=east,powered=false": { "model": "prehistoricfauna:block/henostone_fire_spitter_closed", "y": 90 },
+		"facing=west,powered=false": { "model": "prehistoricfauna:block/henostone_fire_spitter_closed", "y": 270 },
+		"facing=south,powered=false": { "model": "prehistoricfauna:block/henostone_fire_spitter_closed", "y": 180 },
+		"facing=north,powered=true": { "model": "prehistoricfauna:block/henostone_fire_spitter_open"},
+		"facing=east,powered=true": { "model": "prehistoricfauna:block/henostone_fire_spitter_open", "y": 90 },
+		"facing=west,powered=true": { "model": "prehistoricfauna:block/henostone_fire_spitter_open", "y": 270 },
+		"facing=south,powered=true": { "model": "prehistoricfauna:block/henostone_fire_spitter_open", "y": 180 }
+	}
+}

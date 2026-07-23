@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ornithomimu
 
 public class OrnithomimusEyeLayer extends RenderLayer<Ornithomimus, EntityModel<Ornithomimus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/ornithomimus_eyeglow.png"));
 	private final RenderLayerParent<Ornithomimus, EntityModel<Ornithomimus>> ornithomimusRenderer;
 	
 	public OrnithomimusEyeLayer(RenderLayerParent<Ornithomimus, EntityModel<Ornithomimus>> rendererIn) {

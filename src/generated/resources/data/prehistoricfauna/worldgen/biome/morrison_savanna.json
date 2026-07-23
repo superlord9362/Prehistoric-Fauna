@@ -186,6 +186,30 @@
         "weight": 4
       },
       {
+        "type": "prehistoricfauna:brachiosaurus",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:brontosaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:diplodocus",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:suuwassea",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 6
+      },
+      {
         "type": "prehistoricfauna:torvosaurus",
         "maxCount": 2,
         "minCount": 1,

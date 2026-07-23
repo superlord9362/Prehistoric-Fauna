@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Macelognathus;
 
 public class MacelognathusEyeLayer extends RenderLayer<Macelognathus, MacelognathusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/macelognathus/macelognathus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/macelognathus/macelognathus_eyeglow.png"));
 	private final RenderLayerParent<Macelognathus, MacelognathusModel> macelognathusRenderer;
 	
 	public MacelognathusEyeLayer(RenderLayerParent<Macelognathus, MacelognathusModel> rendererIn) {

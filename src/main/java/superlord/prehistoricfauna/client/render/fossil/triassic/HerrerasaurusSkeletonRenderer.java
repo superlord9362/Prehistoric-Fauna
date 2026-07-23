@@ -15,7 +15,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.HerrerasaurusSke
 
 public class HerrerasaurusSkeletonRenderer extends MobRenderer<HerrerasaurusSkeleton, EntityModel<HerrerasaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/herrerasaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/herrerasaurus_skeleton.png");
     private static HerrerasaurusSkeletonModel IDLE;
     private static HerrerasaurusSkeletonActionModel ACTION;
     private static HerrerasaurusSkeletonRunningModel RUNNING;
@@ -28,13 +28,11 @@ public class HerrerasaurusSkeletonRenderer extends MobRenderer<HerrerasaurusSkel
 	}
 	
 	protected void scale(HerrerasaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isAction()) {
-			model = ACTION;
-		} else if (entityIn.isRunning()) {
-			model = RUNNING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "RUNNING" -> RUNNING;
+		case "ACTION" -> ACTION;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

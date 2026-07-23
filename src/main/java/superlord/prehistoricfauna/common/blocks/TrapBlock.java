@@ -1,13 +1,13 @@
 package superlord.prehistoricfauna.common.blocks;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -57,12 +57,13 @@ public class TrapBlock extends Block {
 		return facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}	
 
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
-		int i = this.getRedstoneStrength(state);
-		if (i > 0) {
-			this.updateState(worldIn, pos, state, i);
-		}
-	}	
+	@Override
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
+	    int i = this.getRedstoneStrength(state);
+	    if (i > 0) {
+	        this.updateState(worldIn, pos, state, i);
+	    }
+	}
 
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		//			if (!(entityIn instanceof TrilobiteSentinelEntity) || !(entityIn instanceof TimeGuardianEntity)) {

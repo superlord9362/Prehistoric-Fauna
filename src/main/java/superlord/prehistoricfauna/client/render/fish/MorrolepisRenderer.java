@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Morrolepis;
 
 public class MorrolepisRenderer extends MobRenderer<Morrolepis, MorrolepisModel> {
 
-	private static final ResourceLocation MORROLEPIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/morrolepis.png");
+	private static final ResourceLocation MORROLEPIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/morrolepis.png");
 
 	public MorrolepisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MorrolepisModel(renderManagerIn.bakeLayer(ClientEvents.MORROLEPIS)), 0);

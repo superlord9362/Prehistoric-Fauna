@@ -11,6 +11,7 @@ import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsBabyModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsJuvenileModel;
 import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.TriceratopsModel;
+import superlord.prehistoricfauna.client.render.layer.TriceratopsArmorLayer;
 import superlord.prehistoricfauna.client.render.layer.TriceratopsBabyEyeLayer;
 import superlord.prehistoricfauna.client.render.layer.TriceratopsChestLayer;
 import superlord.prehistoricfauna.client.render.layer.TriceratopsEyeLayer;
@@ -21,26 +22,26 @@ import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TriceratopsRenderer extends MobRenderer<Triceratops, EntityModel<Triceratops>> {
 
-	private static final ResourceLocation TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops.png");
-	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_baby.png");
-	private static final ResourceLocation JUVENILE_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_juvenile.png");
-	private static final ResourceLocation TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_sleeping.png");
-	private static final ResourceLocation BABY_TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_baby_sleeping.png");
-	private static final ResourceLocation JUVENILE_TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_juvenile_sleeping.png");
+	private static final ResourceLocation TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops.png");
+	private static final ResourceLocation BABY_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_baby.png");
+	private static final ResourceLocation JUVENILE_TRICERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_juvenile.png");
+	private static final ResourceLocation TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_sleeping.png");
+	private static final ResourceLocation BABY_TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_baby_sleeping.png");
+	private static final ResourceLocation JUVENILE_TRICERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_juvenile_sleeping.png");
 
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino.png");
-	private static final ResourceLocation JUVENILE_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_juv.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_sleeping.png");
-	private static final ResourceLocation JUVENILE_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_juv_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_baby.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/albino_baby_sleep.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino.png");
+	private static final ResourceLocation JUVENILE_ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino_juv.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino_sleeping.png");
+	private static final ResourceLocation JUVENILE_ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino_juv_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino_baby.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/albino_baby_sleeping.png");
 
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic.png");
-	private static final ResourceLocation JUVENILE_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_juv.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_sleeping.png");
-	private static final ResourceLocation JUVENILE_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_juv_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/melanistic_baby_sleep.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic.png");
+	private static final ResourceLocation JUVENILE_MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic_juv.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE_MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic_juv_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/melanistic_baby_sleep.png");
 
 	private static TriceratopsModel TRICERATOPS_MODEL;
 	private static TriceratopsJuvenileModel JUVENILE_TRICERATOPS_MODEL;
@@ -58,6 +59,7 @@ public class TriceratopsRenderer extends MobRenderer<Triceratops, EntityModel<Tr
 		}
 		this.addLayer(new TriceratopsSaddleLayer(this));
 		this.addLayer(new TriceratopsChestLayer(this));
+		this.addLayer(new TriceratopsArmorLayer(this));
 	}
 
 	protected void scale(Triceratops triceratops, PoseStack matrixStackIn, float partialTickTime) {

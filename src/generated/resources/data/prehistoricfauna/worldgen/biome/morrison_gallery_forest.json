@@ -176,6 +176,12 @@
         "weight": 5
       },
       {
+        "type": "prehistoricfauna:suuwassea",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
         "type": "prehistoricfauna:torvosaurus",
         "maxCount": 2,
         "minCount": 1,

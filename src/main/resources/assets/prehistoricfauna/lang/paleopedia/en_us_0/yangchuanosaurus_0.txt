@@ -17,7 +17,7 @@ being protective.
 
 Sleep Cycle: Cathemeral
 
-<image><drawings_ankylosaurus.png 30 3 152 254 23 19 7>
+<image><drawings_ankylosaurus.png 30 3 152 275 23 19 7>
 
 
 
@@ -34,4 +34,6 @@ Sleep Cycle: Cathemeral
 
 
 
-Behavior: Investigation underway!
+Behavior: Yangchuanosaurus is the 
+apex predator of the Shaximiao 
+formation.

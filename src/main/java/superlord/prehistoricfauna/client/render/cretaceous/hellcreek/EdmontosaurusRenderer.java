@@ -14,24 +14,24 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Edmontosauru
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
 
 public class EdmontosaurusRenderer extends MobRenderer<Edmontosaurus, EntityModel<Edmontosaurus>> {
-	private static final ResourceLocation EDMONTOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic.png");
-	private static final ResourceLocation EDMONTOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation EDMONTOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic_baby.png");
-	private static final ResourceLocation EDMONTOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic_baby_sleeping.png");
-	private static final ResourceLocation EDMONTOSAURUS_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus_juvenile.png");
-	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino_juvenile.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic_juvenile.png");
-	private static final ResourceLocation EDMONTOSAURUS_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/edmontosaurus_juvenile_sleeping.png");
-	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/albino_juvenile_sleeping.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/edmontosaurus/melanistic_juvenile_sleeping.png");
+	private static final ResourceLocation EDMONTOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic.png");
+	private static final ResourceLocation EDMONTOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation EDMONTOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic_baby.png");
+	private static final ResourceLocation EDMONTOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation EDMONTOSAURUS_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus_juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic_juvenile.png");
+	private static final ResourceLocation EDMONTOSAURUS_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/edmontosaurus_juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/edmontosaurus/melanistic_juvenile_sleeping.png");
 
 	private static EdmontosaurusModel EDMONTOSAURUS_MODEL;
 	private static EdmontosaurusJuvenileModel JUVENILE_MODEL;

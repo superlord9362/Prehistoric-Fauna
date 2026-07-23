@@ -1,0 +1,37 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_ladder",
+	"pattern": [		
+		"S S",
+		"SXS",
+		"S S"
+	],
+	"key": {
+		"X": {
+			"item": "prehistoricfauna:liriodendrites_planks"
+		},
+		"S": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:liriodendrites_ladder",
+		"count": 4
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "variant_ladders"
+				}
+			]
+		}
+	]
+}

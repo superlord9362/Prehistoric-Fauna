@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eilenodon;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class EilenodonRenderer extends MobRenderer<Eilenodon, EilenodonModel> {
-	private static final ResourceLocation EILENODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/eilenodon.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/melanistic.png");
-	private static final ResourceLocation EILENODON_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/eilenodon_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/melanistic_sleeping.png");
+	private static final ResourceLocation EILENODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/eilenodon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/melanistic.png");
+	private static final ResourceLocation EILENODON_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/eilenodon_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/melanistic_sleeping.png");
 
 	public EilenodonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new EilenodonModel(renderManagerIn.bakeLayer(ClientEvents.EILENODON)), 0.25F);

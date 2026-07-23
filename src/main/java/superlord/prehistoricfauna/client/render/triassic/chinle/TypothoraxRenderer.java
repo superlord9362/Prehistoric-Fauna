@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Typothorax;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TypothoraxRenderer extends MobRenderer<Typothorax, TypothoraxModel> {
-	private static final ResourceLocation TYPOTHORAX = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/typothorax.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/melanistic.png");
-	private static final ResourceLocation TYPOTHORAX_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/typothorax_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/melanistic_sleeping.png");
+	private static final ResourceLocation TYPOTHORAX = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/typothorax.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/melanistic.png");
+	private static final ResourceLocation TYPOTHORAX_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/typothorax_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/melanistic_sleeping.png");
 
 	public TypothoraxRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TypothoraxModel(renderManagerIn.bakeLayer(ClientEvents.TYPOTHORAX)), 1F);

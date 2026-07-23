@@ -50,11 +50,11 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition RightHindLeg1 = partdefinition.addOrReplaceChild("RightHindLeg1", CubeListBuilder.create().texOffs(190, 0).addBox(-4.0F, -5.0F, -8.0F, 8.0F, 25.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(11.0F, -10.0F, 10.0F));
+		PartDefinition RightHindLeg1 = partdefinition.addOrReplaceChild("RightHindLeg1", CubeListBuilder.create().texOffs(190, 0).mirror().addBox(-4.0F, -5.0F, -8.0F, 8.0F, 25.0F, 19.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(11.0F, -10.0F, 10.0F));
 
 		PartDefinition RightHindLeg2 = RightHindLeg1.addOrReplaceChild("RightHindLeg2", CubeListBuilder.create().texOffs(190, 50).addBox(-3.0F, -4.0F, -2.0F, 6.0F, 19.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 17.0F, 6.0F));
 
-		PartDefinition RightHindLeg3 = RightHindLeg2.addOrReplaceChild("RightHindLeg3", CubeListBuilder.create().texOffs(157, 0).addBox(-4.0F, 0.0F, -6.0F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 14.0F, 1.0F));
+		PartDefinition RightHindLeg3 = RightHindLeg2.addOrReplaceChild("RightHindLeg3", CubeListBuilder.create().texOffs(157, 0).addBox(-4.0F, 0.0F, -6.0F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 15.0F, 1.0F));
 
 		PartDefinition LeftHindLeg1 = partdefinition.addOrReplaceChild("LeftHindLeg1", CubeListBuilder.create().texOffs(190, 0).addBox(-4.0F, -5.0F, -8.0F, 8.0F, 25.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(-11.0F, -10.0F, 10.0F));
 
@@ -62,35 +62,47 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 
 		PartDefinition LeftHindLeg3 = LeftHindLeg2.addOrReplaceChild("LeftHindLeg3", CubeListBuilder.create().texOffs(157, 0).addBox(-4.0F, 0.0F, -6.0F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 14.0F, 1.0F));
 
-		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, -8.0F, -24.0F, 24.0F, 31.0F, 43.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -14.0F, 4.0F, 0.0221F, 0.0F, 0.0F));
+		PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-12.0F, -8.0F, -24.0F, 24.0F, 31.0F, 43.0F, new CubeDeformation(0.0F))
+		.texOffs(256, 0).addBox(-12.5F, -8.5F, -24.5F, 25.0F, 32.0F, 44.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -14.0F, 4.0F, 0.0221F, 0.0F, 0.0F));
 
 		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(98, 0).addBox(-5.0F, -5.0F, -16.0F, 10.0F, 19.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, -22.0F, 0.0721F, 0.0F, 0.0F));
 
-		PartDefinition Head1 = Neck.addOrReplaceChild("Head1", CubeListBuilder.create().texOffs(0, 130).addBox(-6.0F, -3.0F, -12.0F, 12.0F, 18.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, -16.0F, 0.4779F, 0.0F, 0.0F));
+		PartDefinition Head1 = Neck.addOrReplaceChild("Head1", CubeListBuilder.create().texOffs(0, 130).addBox(-6.0F, -3.0F, -12.0F, 12.0F, 18.0F, 12.0F, new CubeDeformation(0.0F))
+		.texOffs(256, 119).addBox(-6.5F, -3.5F, -12.5F, 13.0F, 19.0F, 13.0F, new CubeDeformation(0.0F))
+		.texOffs(335, 121).addBox(4.3F, -2.5F, -13.5F, 4.0F, 6.0F, 7.0F, new CubeDeformation(0.0F))
+		.texOffs(309, 121).addBox(-8.3F, -2.5F, -13.5F, 4.0F, 6.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, -16.0F, 0.4779F, 0.0F, 0.0F));
 
-		PartDefinition Crest = Head1.addOrReplaceChild("Crest", CubeListBuilder.create().texOffs(58, 127).addBox(-14.0F, -23.0F, -5.0F, 28.0F, 25.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 9.0F, -3.0F, -0.5918F, 0.0F, 0.0F));
+		PartDefinition Crest = Head1.addOrReplaceChild("Crest", CubeListBuilder.create().texOffs(58, 127).addBox(-14.0F, -23.0F, -5.0F, 28.0F, 25.0F, 5.0F, new CubeDeformation(0.0F))
+		.texOffs(256, 76).addBox(-14.5F, -23.5F, -5.5F, 29.0F, 26.0F, 17.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 9.0F, -3.0F, -0.5918F, 0.0F, 0.0F));
 
-		PartDefinition horn1 = Head1.addOrReplaceChild("horn1", CubeListBuilder.create().texOffs(60, 165).addBox(-1.0F, -4.0F, -20.0F, 3.0F, 4.0F, 25.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.9F, -1.0F, -12.0F, -0.7285F, 0.182F, 0.0F));
+		PartDefinition horn1 = Head1.addOrReplaceChild("horn1", CubeListBuilder.create().texOffs(60, 165).addBox(-1.0F, -4.0F, -20.0F, 3.0F, 4.0F, 25.0F, new CubeDeformation(0.0F))
+		.texOffs(348, 116).addBox(-1.5F, -4.5F, -29.5F, 4.0F, 5.0F, 35.0F, new CubeDeformation(0.0F))
+		.texOffs(311, 118).addBox(0.5F, -7.5F, -26.5F, 0.0F, 11.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.9F, -1.0F, -12.0F, -0.7285F, 0.182F, 0.0F));
 
-		PartDefinition Snout = Head1.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(0, 169).addBox(-4.0F, 0.0F, -14.0F, 8.0F, 13.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -12.0F));
+		PartDefinition Snout = Head1.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(0, 169).addBox(-4.0F, 0.0F, -14.0F, 8.0F, 13.0F, 14.0F, new CubeDeformation(0.0F))
+		.texOffs(256, 152).addBox(-4.5F, -0.5F, -14.5F, 9.0F, 14.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, -12.0F));
 
-		PartDefinition Beak = Snout.addOrReplaceChild("Beak", CubeListBuilder.create().texOffs(0, 204).addBox(-2.0F, 0.0F, -5.0F, 4.0F, 12.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 2.0F, -14.0F));
+		PartDefinition Beak = Snout.addOrReplaceChild("Beak", CubeListBuilder.create().texOffs(0, 204).addBox(-2.0F, 0.0F, -5.0F, 4.0F, 12.0F, 5.0F, new CubeDeformation(0.0F))
+		.texOffs(308, 146).addBox(-2.5F, -5.5F, -5.5F, 5.0F, 18.0F, 9.0F, new CubeDeformation(0.0F))
+		.texOffs(309, 175).addBox(-1.5F, -5.5F, -10.5F, 3.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 2.0F, -14.0F));
 
 		PartDefinition nasalhorn = Snout.addOrReplaceChild("nasalhorn", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -5.0F, -3.0F, 2.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, -12.0F, 0.6374F, 0.0F, 0.0F));
 
-		PartDefinition horn1_1 = Head1.addOrReplaceChild("horn1_1", CubeListBuilder.create().texOffs(60, 165).addBox(-2.0F, -4.0F, -20.0F, 3.0F, 4.0F, 25.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.9F, -1.0F, -12.0F, -0.7285F, -0.182F, 0.0F));
+		PartDefinition horn1_1 = Head1.addOrReplaceChild("horn1_1", CubeListBuilder.create().texOffs(60, 165).addBox(-2.0F, -4.0F, -20.0F, 3.0F, 4.0F, 25.0F, new CubeDeformation(0.0F))
+		.texOffs(348, 76).addBox(-2.5F, -4.5F, -29.5F, 4.0F, 5.0F, 35.0F, new CubeDeformation(0.0F))
+		.texOffs(396, 73).addBox(-0.5F, -7.5F, -26.5F, 0.0F, 11.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.9F, -1.0F, -12.0F, -0.7285F, -0.182F, 0.0F));
 
-		PartDefinition Saddle = Body.addOrReplaceChild("Saddle", CubeListBuilder.create().texOffs(112, 172).addBox(-12.0F, -8.0F, -24.0F, 24.0F, 31.0F, 43.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition Saddle = Body.addOrReplaceChild("Saddle", CubeListBuilder.create().texOffs(112, 172).addBox(-12.0F, -8.0F, -24.0F, 24.0F, 31.0F, 43.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition Chest3 = Saddle.addOrReplaceChild("Chest3", CubeListBuilder.create().texOffs(215, 163).mirror().addBox(-3.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -2.0F, -15.0F));
+		PartDefinition Chest3 = Saddle.addOrReplaceChild("Chest3", CubeListBuilder.create().texOffs(215, 163).mirror().addBox(-3.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-12.0F, -2.0F, -15.0F));
 
-		PartDefinition Chest4 = Saddle.addOrReplaceChild("Chest4", CubeListBuilder.create().texOffs(215, 163).addBox(0.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -2.0F, -15.0F));
+		PartDefinition Chest4 = Saddle.addOrReplaceChild("Chest4", CubeListBuilder.create().texOffs(215, 163).addBox(0.0F, 0.0F, -3.0F, 3.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(12.0F, -2.0F, -15.0F));
 
 		PartDefinition Saddle2 = Saddle.addOrReplaceChild("Saddle2", CubeListBuilder.create().texOffs(141, 143).addBox(-14.0F, -4.0F, -4.0F, 28.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, 14.0F));
 
-		PartDefinition Chest1 = Saddle.addOrReplaceChild("Chest1", CubeListBuilder.create().texOffs(207, 182).mirror().addBox(-6.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(-12.0F, -11.0F, 8.0F));
+		PartDefinition Chest1 = Saddle.addOrReplaceChild("Chest1", CubeListBuilder.create().texOffs(207, 182).mirror().addBox(-6.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-12.0F, -11.0F, 8.0F));
 
-		PartDefinition Chest2 = Saddle.addOrReplaceChild("Chest2", CubeListBuilder.create().texOffs(207, 182).addBox(0.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(12.0F, -11.0F, 8.0F));
+		PartDefinition Chest2 = Saddle.addOrReplaceChild("Chest2", CubeListBuilder.create().texOffs(207, 182).addBox(0.0F, 0.0F, -6.0F, 6.0F, 10.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(12.0F, -11.0F, 8.0F));
 
 		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(0, 77).addBox(-6.0F, -3.0F, -2.0F, 12.0F, 13.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 19.0F, -0.3302F, -0.1155F, 0.0F));
 
@@ -102,7 +114,7 @@ public class TriceratopsModel extends EntityModel<Triceratops> {
 
 		PartDefinition RightFrontLeg = partdefinition.addOrReplaceChild("RightFrontLeg", CubeListBuilder.create().texOffs(220, 75).mirror().addBox(-3.0F, 0.0F, -3.0F, 6.0F, 27.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(11.0F, -3.0F, -14.0F));
 
-		return LayerDefinition.create(meshdefinition, 256, 256);
+		return LayerDefinition.create(meshdefinition, 512, 256);
 	}
 
 	@Override

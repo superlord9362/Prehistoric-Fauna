@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#  ",
+		"###",
+		"# #"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:small_osteoderm"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:small_dinosaur_armor"
+	}
+}

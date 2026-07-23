@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
 
 public class PoposaurusEyeLayer extends RenderLayer<Poposaurus, PoposaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/poposaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/poposaurus_eyeglow.png"));
 	private final RenderLayerParent<Poposaurus, PoposaurusModel> poposaurusRenderer;
 	
 	public PoposaurusEyeLayer(RenderLayerParent<Poposaurus, PoposaurusModel> rendererIn) {

@@ -1,14 +1,25 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:polished_chalk_vertical_slab"
-  },
-  "result": "prehistoricfauna:polished_chalk_slab",
-  "count": 1,
-  "conditions": [
-    {
-      "type": "prehistoricfauna:quark_flag",
-      "flag": "vertical_slabs"
-    }
-  ]
+	"type": "minecraft:stonecutting",
+	"category": "building",
+	"group": "vertical_slab",
+	"ingredient": {
+		"item": "prehistoricfauna:polished_chalk_vertical_slab"
+	},
+	"result": "prehistoricfauna:polished_chalk_slab",
+	"count": 1,
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

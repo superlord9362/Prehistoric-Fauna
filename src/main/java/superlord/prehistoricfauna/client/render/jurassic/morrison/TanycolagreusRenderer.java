@@ -8,23 +8,25 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.jurassic.morrison.TanycolagreusModel;
+import superlord.prehistoricfauna.client.render.layer.TanycolagreusArmorLayer;
 import superlord.prehistoricfauna.client.render.layer.TanycolagreusEyeLayer;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Tanycolagreus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class TanycolagreusRenderer extends MobRenderer<Tanycolagreus, TanycolagreusModel> {
-	private static final ResourceLocation TANYCOLAGREUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/tanycolagreus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/melanistic.png");
-	private static final ResourceLocation TANYCOLAGREUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/tanycolagreus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/melanistic_sleeping.png");
+	private static final ResourceLocation TANYCOLAGREUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/tanycolagreus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/melanistic.png");
+	private static final ResourceLocation TANYCOLAGREUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/tanycolagreus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/melanistic_sleeping.png");
 
 	public TanycolagreusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TanycolagreusModel(renderManagerIn.bakeLayer(ClientEvents.TANYCOLAGREUS)), 0.5F);
 		if (PrehistoricFaunaConfig.eyeShine) {
 			this.addLayer(new TanycolagreusEyeLayer(this));
 		}
+		this.addLayer(new TanycolagreusArmorLayer(this));
 	}
 
 	protected void scale(Tanycolagreus tanycolagreus, PoseStack matrixStackIn, float partialTickTime) {

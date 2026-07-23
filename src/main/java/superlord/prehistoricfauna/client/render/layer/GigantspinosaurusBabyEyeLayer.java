@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Gigantspinosa
 
 public class GigantspinosaurusBabyEyeLayer extends RenderLayer<Gigantspinosaurus, EntityModel<Gigantspinosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/gigantspinosaurus_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/gigantspinosaurus_baby_eyeglow.png"));
 	private final RenderLayerParent<Gigantspinosaurus, EntityModel<Gigantspinosaurus>> gigantspinosaurusRenderer;
 	
 	public GigantspinosaurusBabyEyeLayer(RenderLayerParent<Gigantspinosaurus, EntityModel<Gigantspinosaurus>> rendererIn) {

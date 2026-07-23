@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.Liaoningosaurus
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Liaoningosaurus;
 
 public class LiaoningosaurusRenderer extends MobRenderer<Liaoningosaurus, LiaoningosaurusModel> {
-	private static final ResourceLocation LIAONINGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/liaoningosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/melanistic.png");
-	private static final ResourceLocation LIAONINGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/liaoningosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/liaoningosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation LIAONINGOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/liaoningosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/melanistic.png");
+	private static final ResourceLocation LIAONINGOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/liaoningosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/liaoningosaurus/melanistic_sleeping.png");
 
 	public LiaoningosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new LiaoningosaurusModel(renderManagerIn.bakeLayer(ClientEvents.LIAONINGOSAURUS)), 1F);

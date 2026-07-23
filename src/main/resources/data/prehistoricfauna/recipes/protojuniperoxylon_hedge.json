@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "misc",
+	"group": "hedge",
+	"pattern": [		
 		"L",
 		"W"
 	],
@@ -9,7 +11,7 @@
 			"item": "prehistoricfauna:protojuniperoxylon_leaves"
 		},
 		"W": {
-			"tag": "prehistoricfauna:protojuniper_logs"
+			"tag": "prehistoricfauna:protojuniperoxylon_logs"
 		}
 	},
 	"result": {
@@ -18,8 +20,17 @@
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "hedges"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hedges"
+				}
+			]
 		}
 	]
 }

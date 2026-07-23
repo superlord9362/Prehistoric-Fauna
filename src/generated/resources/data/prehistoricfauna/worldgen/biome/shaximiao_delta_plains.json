@@ -82,7 +82,8 @@
       "prehistoricfauna:placed_rare_small_ginkgo_trees",
       "prehistoricfauna:placed_sparse_phoenicopsis_trees",
       "prehistoricfauna:placed_rare_podozamites_trees",
-      "prehistoricfauna:placed_rare_zamites"
+      "prehistoricfauna:placed_rare_zamites",
+      "prehistoricfauna:placed_baiera_trees"
     ],
     [
       "prehistoricfauna:placed_mud_disk"
@@ -152,6 +153,18 @@
       {
         "type": "prehistoricfauna:huayangosaurus",
         "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "prehistoricfauna:omeisaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 3
+      },
+      {
+        "type": "prehistoricfauna:polistodon",
+        "maxCount": 2,
         "minCount": 1,
         "weight": 5
       },

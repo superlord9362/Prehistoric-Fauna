@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Psittacosaurus
 
 public class PsittacosaurusEyeLayer extends RenderLayer<Psittacosaurus, PsittacosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/psittacosaurus/psittacosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/psittacosaurus/psittacosaurus_eyeglow.png"));
 	private final RenderLayerParent<Psittacosaurus, PsittacosaurusModel> psittacosaurusRenderer;
 	
 	public PsittacosaurusEyeLayer(RenderLayerParent<Psittacosaurus, PsittacosaurusModel> rendererIn) {

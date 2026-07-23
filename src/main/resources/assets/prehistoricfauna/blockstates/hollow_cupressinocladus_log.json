@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "prehistoricfauna:block/hollow_cupressinocladus_log" },
+        "axis=z":   { "model": "prehistoricfauna:block/hollow_cupressinocladus_log_horizontal", "x": 90 },
+        "axis=x":   { "model": "prehistoricfauna:block/hollow_cupressinocladus_log_horizontal", "x": 90, "y": 90 }
+    }
+}

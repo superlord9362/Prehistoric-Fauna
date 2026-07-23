@@ -1,8 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -20,9 +24,11 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -43,6 +49,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -90,6 +97,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TAME_WANDER = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> ARMORED = SynchedEntityData.defineId(Sinosauropteryx.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> ARMOR_DAMAGE = SynchedEntityData.defineId(Sinosauropteryx	.class, EntityDataSerializers.INT);
 	private int maxHunger = 10;
 	private int warningSoundTicks;
 	private float sitProgress = 0.0F;
@@ -98,12 +107,14 @@ public class Sinosauropteryx extends DinosaurEntity {
 	public boolean isTameSitting() {
 		return this.entityData.get(TAME_SIT);
 	}
+	
+	
 
 	private void setTameSitting(boolean isTameSitting) {
 		this.entityData.set(SIT_TICK, 15);
 		this.entityData.set(TAME_SIT, isTameSitting);
 	}
-	
+
 	public boolean isSitting() {
 		return this.entityData.get(SITTING);
 	}
@@ -119,6 +130,22 @@ public class Sinosauropteryx extends DinosaurEntity {
 
 	private void setTameWandering(boolean isTameWandering) {
 		this.entityData.set(TAME_WANDER, isTameWandering);
+	}
+
+	public boolean isArmored() {
+		return this.entityData.get(ARMORED);
+	}
+
+	private void setArmored(boolean isArmored) {
+		this.entityData.set(ARMORED, isArmored);
+	}
+
+	public int getArmorDamage() {
+		return this.entityData.get(ARMOR_DAMAGE);
+	}
+
+	private void setArmorDamage(int armorDamage) {
+		this.entityData.set(ARMOR_DAMAGE, armorDamage);
 	}
 
 	public Sinosauropteryx(EntityType<? extends Sinosauropteryx> p_21803_, Level p_21804_) {
@@ -138,7 +165,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 		this.goalSelector.addGoal(1, new Sinosauropteryx.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new SinosauropteryxWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
@@ -182,6 +209,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 		compound.putBoolean("IsTamedSitting", this.isTameSitting());
 		compound.putBoolean("IsTamedWander", this.isTameWandering());
 		compound.putBoolean("IsSitting", this.isSitting());
+		compound.putBoolean("IsArmored", this.isArmored());
+		compound.putInt("ArmorDamage", this.getArmorDamage());
 	}
 
 	/**
@@ -192,6 +221,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 		this.setTameSitting(compound.getBoolean("IsTamedSitting"));
 		this.setTameWandering(compound.getBoolean("IsTamedWander"));
 		this.setSitting(compound.getBoolean("IsSitting"));
+		this.setArmored(compound.getBoolean("IsArmored"));
+		this.setArmorDamage(compound.getInt("ArmorDamage"));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -200,9 +231,14 @@ public class Sinosauropteryx extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SINOSAUROPTERYX.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.SINOSAUROPTERYX.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SINOSAUROPTERYX.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.sinosauropteryx_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.sinosauropteryx_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -211,70 +247,6 @@ public class Sinosauropteryx extends DinosaurEntity {
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
 			if (this.isTame()) {
-				if (this.getCurrentHunger() < this.maxHunger && (itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER))) {
-					if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
-						if (this.getCurrentHunger() + 2 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 2);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
-						if (this.getCurrentHunger() + 4 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 4);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
-						if (this.getCurrentHunger() + 6 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 6);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
-						if (this.getCurrentHunger() + 8 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 8);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
-						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 10);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
-						if (this.getCurrentHunger() + 12 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 12);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-				} else {
-					player.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
-				}
 				if (this.getOwner() == player) {
 					if (this.isFood(itemstack)) {
 						if (this.getHealth() < this.getMaxHealth()) {
@@ -291,6 +263,22 @@ public class Sinosauropteryx extends DinosaurEntity {
 								}
 							}
 						}
+					} else if (!this.isArmored() && item == PFItems.SMALL_DINOSAUR_ARMOR.get()) {
+						this.setArmored(true);
+						this.setArmorDamage(itemstack.getMaxDamage() - itemstack.getDamageValue());
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					} else if (this.isArmored() && item == Items.SHEARS) {
+						this.setArmored(false);
+						ItemStack armorStack = new ItemStack(PFItems.SMALL_DINOSAUR_ARMOR.get());
+						armorStack.setDamageValue(armorStack.getMaxDamage() - this.getArmorDamage());
+						this.spawnAtLocation(armorStack);
+						if (!player.isCreative()) {
+							itemstack.hurtAndBreak(1, player, (p_41007_) -> {
+								p_41007_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+							});
+						}
 					} else {
 						if (this.isTameSitting()) {
 							this.setTameSitting(false);
@@ -304,6 +292,66 @@ public class Sinosauropteryx extends DinosaurEntity {
 							player.displayClientMessage(Component.translatable("entity.prehistoricfauna.velociraptor.sitting"), true);
 						}
 					}
+				} else if ((itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER))) {
+					if (this.getCurrentHunger() < this.maxHunger) {
+						if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
+							if (this.getCurrentHunger() + 2 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 2);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
+							if (this.getCurrentHunger() + 4 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 4);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
+							if (this.getCurrentHunger() + 6 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 6);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
+							if (this.getCurrentHunger() + 8 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 8);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
+							if (this.getCurrentHunger() + 10 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 10);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
+							if (this.getCurrentHunger() + 12 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 12);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						}
+					} else {
+						player.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
+					} 
 				}
 			} else {
 				if (this.isFood(itemstack)) {
@@ -311,7 +359,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 						itemstack.shrink(1);
 					}
 
-					if (this.getRandom().nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+					if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
 						this.tame(player);
 						this.navigation.stop();
 						this.setTarget((LivingEntity)null);
@@ -324,8 +372,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 					return InteractionResult.SUCCESS;
 				}
 			}
-			return super.mobInteract(player, p_230254_2_);
 		}
+		return super.mobInteract(player, p_230254_2_);
 	}
 
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
@@ -348,6 +396,8 @@ public class Sinosauropteryx extends DinosaurEntity {
 		this.entityData.define(TAME_WANDER, false);
 		this.entityData.define(SITTING, false);
 		this.entityData.define(SIT_TICK, 0);
+		this.entityData.define(ARMORED, false);
+		this.entityData.define(ARMOR_DAMAGE, 64);
 	}
 
 	@Override
@@ -400,7 +450,7 @@ public class Sinosauropteryx extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	public float getSitProgress(float partialTick) {
 		return prevSitProgress + (sitProgress - prevSitProgress) * partialTick;
 	}
@@ -487,6 +537,33 @@ public class Sinosauropteryx extends DinosaurEntity {
 			return super.canUse() && !Sinosauropteryx.this.isTameSitting() && !Sinosauropteryx.this.isTameWandering();
 		}
 
+	}
+	
+	protected void dropEquipment() {
+		super.dropEquipment();
+		if (this.isArmored()) {
+			if (!this.level().isClientSide()) {
+				ItemStack armorStack = new ItemStack(PFItems.SMALL_DINOSAUR_ARMOR.get());
+				armorStack.setDamageValue(armorStack.getMaxDamage() - this.getArmorDamage());
+				this.spawnAtLocation(armorStack);
+			}
+		}
+	}
+	
+	@Override	
+	public boolean hurt(DamageSource dmg, float i) {
+		if (this.isArmored()) {
+			if (dmg.is(DamageTypes.DROWN) || dmg.is(DamageTypes.FREEZE) || dmg.is(DamageTypes.IN_WALL) || dmg.is(DamageTypes.MAGIC) || dmg.is(DamageTypes.INDIRECT_MAGIC) || dmg.is(DamageTypes.THORNS) || dmg.is(DamageTypes.WITHER) || dmg.is(DamageTypes.FELL_OUT_OF_WORLD) || dmg.is(DamageTypes.CRAMMING)) {
+				return super.hurt(dmg, i);
+			} else {
+				if (this.getArmorDamage() - i <= 0) {
+					this.setArmored(false); 
+				}
+				else this.setArmorDamage(this.getArmorDamage() - (int) i);
+				return super.hurt(dmg, 0);
+			}
+		}
+		return super.hurt(dmg, i);
 	}
 
 	class SitAndLookGoal extends Goal {
@@ -582,119 +659,141 @@ public class Sinosauropteryx extends DinosaurEntity {
 			return p_25142_.isEmptyBlock(p_25143_.above()) && p_25142_.getBlockState(p_25143_).is(BlockTags.BEDS);
 		}
 	}
-	
+
 	static class SinosauropteryxRelaxOnOwnerGoal extends Goal {
 		private static final ResourceLocation GIFT_LOOT = new ResourceLocation(PrehistoricFauna.MOD_ID, "gameplay/sinosauropteryx_gift");
 		private final Sinosauropteryx sinosauropteryx;
-	      @Nullable
-	      private Player ownerPlayer;
-	      @Nullable
-	      private BlockPos goalPos;
-	      private int onBedTicks;
+		@Nullable
+		private Player ownerPlayer;
+		@Nullable
+		private BlockPos goalPos;
+		private int onBedTicks;
 
-	      public SinosauropteryxRelaxOnOwnerGoal(Sinosauropteryx sinosauropteryx) {
-	         this.sinosauropteryx = sinosauropteryx;
-	      }
+		public SinosauropteryxRelaxOnOwnerGoal(Sinosauropteryx sinosauropteryx) {
+			this.sinosauropteryx = sinosauropteryx;
+		}
 
-	      public boolean canUse() {
-	         if (!this.sinosauropteryx.isTame()) {
-	            return false;
-	         } else if (this.sinosauropteryx.isOrderedToSit()) {
-	            return false;
-	         } else {
-	            LivingEntity livingentity = this.sinosauropteryx.getOwner();
-	            if (livingentity instanceof Player) {
-	               this.ownerPlayer = (Player)livingentity;
-	               if (!livingentity.isSleeping()) {
-	                  return false;
-	               }
+		public boolean canUse() {
+			if (!this.sinosauropteryx.isTame()) {
+				return false;
+			} else if (this.sinosauropteryx.isOrderedToSit()) {
+				return false;
+			} else {
+				LivingEntity livingentity = this.sinosauropteryx.getOwner();
+				if (livingentity instanceof Player) {
+					this.ownerPlayer = (Player)livingentity;
+					if (!livingentity.isSleeping()) {
+						return false;
+					}
 
-	               if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) > 100.0D) {
-	                  return false;
-	               }
+					if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) > 100.0D) {
+						return false;
+					}
 
-	               BlockPos blockpos = this.ownerPlayer.blockPosition();
-	               BlockState blockstate = this.sinosauropteryx.level().getBlockState(blockpos);
-	               if (blockstate.is(BlockTags.BEDS)) {
-	                  this.goalPos = blockstate.getOptionalValue(BedBlock.FACING).map((p_28209_) -> {
-	                     return blockpos.relative(p_28209_.getOpposite());
-	                  }).orElseGet(() -> {
-	                     return new BlockPos(blockpos);
-	                  });
-	                  return !this.spaceIsOccupied();
-	               }
-	            }
+					BlockPos blockpos = this.ownerPlayer.blockPosition();
+					BlockState blockstate = this.sinosauropteryx.level().getBlockState(blockpos);
+					if (blockstate.is(BlockTags.BEDS)) {
+						this.goalPos = blockstate.getOptionalValue(BedBlock.FACING).map((p_28209_) -> {
+							return blockpos.relative(p_28209_.getOpposite());
+						}).orElseGet(() -> {
+							return new BlockPos(blockpos);
+						});
+						return !this.spaceIsOccupied();
+					}
+				}
 
-	            return false;
-	         }
-	      }
+				return false;
+			}
+		}
 
-	      @SuppressWarnings("resource")
+		@SuppressWarnings("resource")
 		private boolean spaceIsOccupied() {
-	         for(Sinosauropteryx sinosauropteryx : this.sinosauropteryx.level().getEntitiesOfClass(Sinosauropteryx.class, (new AABB(this.goalPos)).inflate(2.0D))) {
-	            if (sinosauropteryx != this.sinosauropteryx && (sinosauropteryx.isSitting())) {
-	               return true;
-	            }
-	         }
+			for(Sinosauropteryx sinosauropteryx : this.sinosauropteryx.level().getEntitiesOfClass(Sinosauropteryx.class, (new AABB(this.goalPos)).inflate(2.0D))) {
+				if (sinosauropteryx != this.sinosauropteryx && (sinosauropteryx.isSitting())) {
+					return true;
+				}
+			}
 
-	         return false;
-	      }
+			return false;
+		}
 
-	      public boolean canContinueToUse() {
-	         return this.sinosauropteryx.isTame() && !this.sinosauropteryx.isOrderedToSit() && this.ownerPlayer != null && this.ownerPlayer.isSleeping() && this.goalPos != null && !this.spaceIsOccupied();
-	      }
+		public boolean canContinueToUse() {
+			return this.sinosauropteryx.isTame() && !this.sinosauropteryx.isOrderedToSit() && this.ownerPlayer != null && this.ownerPlayer.isSleeping() && this.goalPos != null && !this.spaceIsOccupied();
+		}
 
-	      public void start() {
-	         if (this.goalPos != null) {
-	            this.sinosauropteryx.setInSittingPose(false);
-	            this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
-	         }
+		public void start() {
+			if (this.goalPos != null) {
+				this.sinosauropteryx.setInSittingPose(false);
+				this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
+			}
 
-	      }
+		}
 
-	      public void stop() {
-	         this.sinosauropteryx.setSitting(false);
-	         float f = this.sinosauropteryx.level().getTimeOfDay(1.0F);
-	         if (this.ownerPlayer.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.sinosauropteryx.level().getRandom().nextFloat() < 0.7D) {
-	            this.giveMorningGift();
-	         }
+		public void stop() {
+			this.sinosauropteryx.setSitting(false);
+			float f = this.sinosauropteryx.level().getTimeOfDay(1.0F);
+			if (this.ownerPlayer.getSleepTimer() >= 100 && (double)f > 0.77D && (double)f < 0.8D && (double)this.sinosauropteryx.level().getRandom().nextFloat() < 0.7D) {
+				this.giveMorningGift();
+			}
 
-	         this.onBedTicks = 0;
-	         this.sinosauropteryx.getNavigation().stop();
-	      }
+			this.onBedTicks = 0;
+			this.sinosauropteryx.getNavigation().stop();
+		}
 
-	      private void giveMorningGift() {
-	         RandomSource randomsource = this.sinosauropteryx.getRandom();
-	         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-	         blockpos$mutableblockpos.set(this.sinosauropteryx.isLeashed() ? this.sinosauropteryx.getLeashHolder().blockPosition() : this.sinosauropteryx.blockPosition());
-	         this.sinosauropteryx.randomTeleport((double)(blockpos$mutableblockpos.getX() + randomsource.nextInt(11) - 5), (double)(blockpos$mutableblockpos.getY() + randomsource.nextInt(5) - 2), (double)(blockpos$mutableblockpos.getZ() + randomsource.nextInt(11) - 5), false);
-	         blockpos$mutableblockpos.set(this.sinosauropteryx.blockPosition());
-	         LootTable loottable = this.sinosauropteryx.level().getServer().getLootData().getLootTable(GIFT_LOOT);
-	         LootParams lootparams = (new LootParams.Builder((ServerLevel)this.sinosauropteryx.level())).withParameter(LootContextParams.ORIGIN, this.sinosauropteryx.position()).withParameter(LootContextParams.THIS_ENTITY, this.sinosauropteryx).create(LootContextParamSets.GIFT);
+		private void giveMorningGift() {
+			RandomSource randomsource = this.sinosauropteryx.getRandom();
+			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+			blockpos$mutableblockpos.set(this.sinosauropteryx.isLeashed() ? this.sinosauropteryx.getLeashHolder().blockPosition() : this.sinosauropteryx.blockPosition());
+			this.sinosauropteryx.randomTeleport((double)(blockpos$mutableblockpos.getX() + randomsource.nextInt(11) - 5), (double)(blockpos$mutableblockpos.getY() + randomsource.nextInt(5) - 2), (double)(blockpos$mutableblockpos.getZ() + randomsource.nextInt(11) - 5), false);
+			blockpos$mutableblockpos.set(this.sinosauropteryx.blockPosition());
+			LootTable loottable = this.sinosauropteryx.level().getServer().getLootData().getLootTable(GIFT_LOOT);
+			LootParams lootparams = (new LootParams.Builder((ServerLevel)this.sinosauropteryx.level())).withParameter(LootContextParams.ORIGIN, this.sinosauropteryx.position()).withParameter(LootContextParams.THIS_ENTITY, this.sinosauropteryx).create(LootContextParamSets.GIFT);
 
-	         for(ItemStack itemstack : loottable.getRandomItems(lootparams)) {
-	            this.sinosauropteryx.level().addFreshEntity(new ItemEntity(this.sinosauropteryx.level(), (double)blockpos$mutableblockpos.getX() - (double)Mth.sin(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), (double)blockpos$mutableblockpos.getY(), (double)blockpos$mutableblockpos.getZ() + (double)Mth.cos(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), itemstack));
-	         }
+			for(ItemStack itemstack : loottable.getRandomItems(lootparams)) {
+				this.sinosauropteryx.level().addFreshEntity(new ItemEntity(this.sinosauropteryx.level(), (double)blockpos$mutableblockpos.getX() - (double)Mth.sin(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), (double)blockpos$mutableblockpos.getY(), (double)blockpos$mutableblockpos.getZ() + (double)Mth.cos(this.sinosauropteryx.yBodyRot * ((float)Math.PI / 180F)), itemstack));
+			}
 
-	      }
+		}
 
-	      public void tick() {
-	         if (this.ownerPlayer != null && this.goalPos != null) {
-	            this.sinosauropteryx.setInSittingPose(false);
-	            this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
-	            if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) < 2.5D) {
-	               ++this.onBedTicks;
-	               if (this.onBedTicks > this.adjustedTickDelay(16)) {
-	                  this.sinosauropteryx.setSitting(true);
-	               } else {
-	                  this.sinosauropteryx.lookAt(this.ownerPlayer, 45.0F, 45.0F);
-	               }
-	            } else {
-	               this.sinosauropteryx.setSitting(false);
-	            }
-	         }
+		public void tick() {
+			if (this.ownerPlayer != null && this.goalPos != null) {
+				this.sinosauropteryx.setInSittingPose(false);
+				this.sinosauropteryx.getNavigation().moveTo((double)this.goalPos.getX(), (double)this.goalPos.getY(), (double)this.goalPos.getZ(), (double)1.1F);
+				if (this.sinosauropteryx.distanceToSqr(this.ownerPlayer) < 2.5D) {
+					++this.onBedTicks;
+					if (this.onBedTicks > this.adjustedTickDelay(16)) {
+						this.sinosauropteryx.setSitting(true);
+					} else {
+						this.sinosauropteryx.lookAt(this.ownerPlayer, 45.0F, 45.0F);
+					}
+				} else {
+					this.sinosauropteryx.setSitting(false);
+				}
+			}
 
-	      }
-	   }
+		}
+	}
+	
+	public class SinosauropteryxWaterAvoidingRandomStrollGoal extends DinosaurWaterAvoidingRandomStrollGoal {
+		Sinosauropteryx dinosaur;
+
+		public SinosauropteryxWaterAvoidingRandomStrollGoal(Sinosauropteryx p_25987_, double p_25988_) {
+			super(p_25987_, p_25988_);
+			this.dinosaur = p_25987_;
+		}
+		
+		public boolean canUse() {
+			return super.canUse() && !(dinosaur.isTameSitting());
+		}
+		
+		public boolean canContinueToUse() {
+			return super.canContinueToUse() && !(dinosaur.isTameSitting());
+		}
+		
+		public void tick() {
+			super.tick();
+			if (dinosaur.isTameSitting()) stop();
+		}
+	}
 
 }

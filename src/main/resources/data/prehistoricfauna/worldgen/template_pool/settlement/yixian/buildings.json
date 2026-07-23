@@ -93,6 +93,15 @@
 			}
 		},
 		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/yixian/buildings/yixian_butcher",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
 			"weight": 2,
 			"element": {
 				"element_type": "minecraft:single_pool_element",

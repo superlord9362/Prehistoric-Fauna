@@ -200,7 +200,7 @@ public class TorvosaurusModel extends EntityModel<Torvosaurus> {
 				this.Tail1.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5) + Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 0.6F * limbSwingAmount;
 				this.Tail2.yRot = -0.12F * Mth.sin(0.2F * ageInTicks / 5) + Mth.cos(limbSwing * walkSpeed * 0.15F) * walkDegree * 1.0F * limbSwingAmount;
 				this.Head.xRot = Mth.cos(-1.0F + limbSwing * walkSpeed * 0.3F) * walkDegree * 0.25F * limbSwingAmount - 0.2F + attackProgress * (float)Math.toRadians(-40F);
-				this.Jaw.xRot = attackProgress * (float) Math.toRadians(25F);
+				this.Jaw.xRot = -0.05F * Mth.cos(0.15F * ageInTicks / 3) + 0.05F + attackProgress * (float) Math.toRadians(30F);
 				this.Neck.zRot = attackProgress * leftOrRight * (float) Math.toRadians(15F);
 				this.Head.zRot = attackProgress * leftOrRight * (float) Math.toRadians(15F);
 				this.RightArm.xRot = -Math.abs(-0.05F * Mth.sin(0.15F * ageInTicks / 3)) + Mth.cos(limbSwing * walkSpeed * 0.3F) * walkDegree * 0.2F * limbSwingAmount + 0.15F;

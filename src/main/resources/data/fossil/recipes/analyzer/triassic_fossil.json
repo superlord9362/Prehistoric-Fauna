@@ -1,0 +1,39 @@
+{
+	"type": "fossil:analyzer",
+	"input": {
+		"item": "prehistoricfauna:triassic_fossil"
+	},
+	"outputs": [
+		{
+			"item": "prehistoricfauna:sandstone_regolith",
+			"weight": 35.0
+		},
+   		{
+      		"item": "fossil:henodus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:postosuchus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:ichthyosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+			"item": "minecraft:bone_meal",
+			"weight": 50.0
+		}
+	],
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "fossil"
+				}
+			]
+		}
+	]
+}

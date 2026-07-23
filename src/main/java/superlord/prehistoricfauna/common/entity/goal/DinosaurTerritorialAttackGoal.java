@@ -1,5 +1,6 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
@@ -23,7 +24,7 @@ public class DinosaurTerritorialAttackGoal extends NearestAttackableTargetGoal<P
 		} else {
 			if (super.canUse()) {
 				for(DinosaurEntity dinosaur : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(24.0D, 4.0D, 24.0D))) {
-					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && !dinosaur.isTame() && !dinosaur.isVehicle()) {
+					if (!dinosaur.trusts(this.target.getUUID()) && dinosaur.isTerritorial() && (dinosaur.isFood(this.target.getItemInHand(InteractionHand.MAIN_HAND)) || dinosaur.isFood(this.target.getItemInHand(InteractionHand.OFF_HAND))) && !dinosaur.isTame() && !dinosaur.isVehicle()) {
 						return true;
 					}
 				}

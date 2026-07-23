@@ -35,4 +35,6 @@ Sleep Cycle: Crepuscular
 
 
 
-Behavior: Investigation underway!
+Behavior: As an early mammaliaform, 
+Kayentatherium produces milk, and 
+can be milked with a bucket.

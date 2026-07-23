@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Tuojiangosaur
 
 public class TuojiangosaurusEyeLayer extends RenderLayer<Tuojiangosaurus, EntityModel<Tuojiangosaurus>> {
 		
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tuojiangosaurus/tuojiangosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tuojiangosaurus/tuojiangosaurus_eyeglow.png"));
 	private final RenderLayerParent<Tuojiangosaurus, EntityModel<Tuojiangosaurus>> tuojiangosaurusRenderer;
 	
 	public TuojiangosaurusEyeLayer(RenderLayerParent<Tuojiangosaurus, EntityModel<Tuojiangosaurus>> rendererIn) {

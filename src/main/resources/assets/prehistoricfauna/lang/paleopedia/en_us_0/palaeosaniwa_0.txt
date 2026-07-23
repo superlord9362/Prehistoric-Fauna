@@ -6,7 +6,7 @@ Reptile
 Diet: Carnivore
 
 Breeding Item: Small Raw 
-Ornithischian
+Ornithopod
 
 Max Health: 15
 

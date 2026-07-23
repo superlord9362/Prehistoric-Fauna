@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -186,9 +191,14 @@ public class Dilong extends DinosaurEntity {
 			return InteractionResult.SUCCESS;
 		}
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DILONG.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.DILONG.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DILONG.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dilong_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.dilong_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

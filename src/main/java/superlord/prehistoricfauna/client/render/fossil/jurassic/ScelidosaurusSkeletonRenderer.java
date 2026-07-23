@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.ScelidosaurusSke
 
 public class ScelidosaurusSkeletonRenderer extends MobRenderer<ScelidosaurusSkeleton, EntityModel<ScelidosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/scelidosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/scelidosaurus_skeleton.png");
     private static ScelidosaurusSkeletonModel IDLE;
     private static ScelidosaurusSkeletonDashingModel DASHING;
     private static ScelidosaurusSkeletonGrazingModel GRAZING;
@@ -37,19 +37,14 @@ public class ScelidosaurusSkeletonRenderer extends MobRenderer<ScelidosaurusSkel
 	}
 	
 	protected void scale(ScelidosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isDashing()) {
-			model = DASHING;
-		} else if (entityIn.isWalking()) {
-			model = WALKING;
-		} else if (entityIn.isGrazing()) {
-			model = GRAZING;
-		} else if (entityIn.isReaching()) {
-			model = REACHING;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "WALKING" -> WALKING;
+		case "GRAZING" -> GRAZING;
+		case "REACHING" -> REACHING;
+		case "DASHING" -> DASHING;
+		case "SLEEPING" -> SLEEPING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

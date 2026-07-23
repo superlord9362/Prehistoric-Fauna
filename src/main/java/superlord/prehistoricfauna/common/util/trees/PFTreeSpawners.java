@@ -534,5 +534,25 @@ public class PFTreeSpawners {
 			}
 		}
 	}
+	
+	public static class Baiera extends TreeSpawner {
+		@Nullable
+		public ResourceKey<ConfiguredFeature<?, ?>> getTreeFeature(RandomSource random) {
+			int number = random.nextInt(6);
+			if (number == 0) {
+				return PFConfiguredFeatures.BAIERA_TREE_1;
+			} else if (number == 1) {
+				return PFConfiguredFeatures.BAIERA_TREE_2;
+			} else if (number == 2) {
+				return PFConfiguredFeatures.BAIERA_TREE_3;
+			} else if (number == 3) {
+				return PFConfiguredFeatures.BAIERA_TREE_4;
+			} else if (number == 4) {
+				return PFConfiguredFeatures.BAIERA_TREE_5;
+			} else {
+				return PFConfiguredFeatures.BAIERA_TREE_6;
+			}
+		}
+	}
 
 }

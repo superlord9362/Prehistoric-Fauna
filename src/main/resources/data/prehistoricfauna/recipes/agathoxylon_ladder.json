@@ -1,83 +1,37 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
-		{
-			"conditions": [
-				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "woodworks"
-						},
-						{
-							"type": "woodworks:config",
-							"value": "wooden_ladders"
-						}
-					]
-				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"category": "misc",
-				"group": "wooden_ladder",
-				"pattern": [
-					"S S",
-					"SXS",
-					"S S"
-				],
-				"key": {
-					"S": {
-						"tag": "forge:rods/wooden"
-				    },
-				    "X": {
-						"item": "prehistoricfauna:agathoxylon_planks"
-				    }
-				},
-				"result": {
-					"item": "prehistoricfauna:agathoxylon_ladder",
-					"count": 4
-				}
-			}
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_ladder",
+	"pattern": [		
+		"S S",
+		"SXS",
+		"S S"
+	],
+	"key": {
+		"X": {
+			"item": "prehistoricfauna:agathoxylon_planks"
 		},
+		"S": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_ladder",
+		"count": 4
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "quark"
-						},
-						{
-							"type": "quark:flag",
-							"flag": "variant_bookshelves"
-						}
-					]
-				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"category": "misc",
-				"group": "wooden_ladder",
-				"pattern": [
-					"S S",
-					"SXS",
-					"S S"
-				],
-				"key": {
-					"S": {
-						"tag": "forge:rods/wooden"
-					},
-					"X": {
-						"item": "prehistoricfauna:agathoxylon_planks"
-					}
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
 				},
-				"result": {
-					"item": "prehistoricfauna:agathoxylon_ladder",
-					"count": 4
+				{
+					"type": "woodworks:config",
+					"value": "wooden_ladders"
 				}
-			}
+			]
 		}
 	]
 }

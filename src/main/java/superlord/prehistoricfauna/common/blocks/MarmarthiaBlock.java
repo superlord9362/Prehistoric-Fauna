@@ -154,7 +154,7 @@ public class MarmarthiaBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	public boolean isValidBonemealTarget(LevelReader p_52258_, BlockPos p_52259_, BlockState state, boolean p_52261_) {
-		return state.getValue(GROWTH) < 2;
+	    return state.getValue(GROWTH) < 2 || state.getValue(BERRIES) < 2;
 	}
 
 	public boolean isBonemealSuccess(Level p_52268_, RandomSource p_52269_, BlockPos p_52270_, BlockState p_52271_) {
@@ -162,8 +162,30 @@ public class MarmarthiaBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
-		int i = Math.min(2, state.getValue(GROWTH) + 1);
-		worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(i)), 2);
+	    int growth = state.getValue(GROWTH);
+	    int berries = state.getValue(BERRIES);
+
+	    if (getNumMarmarthiaBlocksBelow(worldIn, pos) == 0) {
+	        if (growth == 0) {
+	            worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(1)), 2);
+	            worldIn.setBlock(pos.above(), state.setValue(GROWTH, Integer.valueOf(1)).setValue(LAYER, 1), 2);
+	            return;
+	        } else if (growth == 1) {
+	            worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(2)), 2);
+	            worldIn.setBlock(pos.above(), state.setValue(GROWTH, Integer.valueOf(2)).setValue(LAYER, 1), 2);
+	            worldIn.setBlock(pos.above(2), state.setValue(GROWTH, Integer.valueOf(2)).setValue(LAYER, 2), 2);
+	            worldIn.setBlock(pos.above(3), state.setValue(GROWTH, Integer.valueOf(2)).setValue(LAYER, 3), 2);
+	            return;
+	        }
+	    }
+
+	    if (growth == 2 && berries < 2) {
+	        worldIn.setBlock(pos, state.setValue(BERRIES, Integer.valueOf(berries + 1)), 2);
+	        return;
+	    }
+
+	    int i = Math.min(2, growth + 1);
+	    worldIn.setBlock(pos, state.setValue(GROWTH, Integer.valueOf(i)), 2);
 	}
 
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {

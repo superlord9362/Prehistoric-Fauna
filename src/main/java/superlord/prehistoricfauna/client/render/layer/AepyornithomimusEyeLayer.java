@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornitho
 
 public class AepyornithomimusEyeLayer extends RenderLayer<Aepyornithomimus, AepyornithomimusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/aepyornithomimus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/aepyornithomimus_eyeglow.png"));
 	private final RenderLayerParent<Aepyornithomimus, AepyornithomimusModel> aepyornithomimusRenderer;
 	
 	public AepyornithomimusEyeLayer(RenderLayerParent<Aepyornithomimus, AepyornithomimusModel> rendererIn) {

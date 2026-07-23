@@ -172,8 +172,8 @@ public class VelociraptorModel extends EntityModel<Velociraptor> {
 		}
 		if (entity.isInWater()) {
 			this.Body.y = 18;
-			this.ThighLeft.y = 17F;
-			this.ThighRight.y = 17F;
+			this.ThighLeft.y = 18.5F;
+			this.ThighRight.y = 18.5F;
 			this.Body.xRot = -0.25F;
 			this.Tail.xRot = 0.25F;
 			this.Neck.xRot = 0.25F;

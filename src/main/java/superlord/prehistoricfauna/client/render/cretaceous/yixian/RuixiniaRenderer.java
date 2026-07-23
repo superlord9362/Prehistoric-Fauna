@@ -13,19 +13,19 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.RuixiniaModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Ruixinia;
 
 public class RuixiniaRenderer extends MobRenderer<Ruixinia, EntityModel<Ruixinia>> {
-	private static final ResourceLocation RUIXINIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/ruixinia.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/melanistic.png");
-	private static final ResourceLocation RUIXINIA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/ruixinia_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/melanistic_sleeping.png");
+	private static final ResourceLocation RUIXINIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/ruixinia.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/melanistic.png");
+	private static final ResourceLocation RUIXINIA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/ruixinia_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/melanistic_sleeping.png");
 
-	private static final ResourceLocation RUIXINIA_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/ruixinia_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/melanistic_baby.png");
-	private static final ResourceLocation RUIXINIA_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/ruixinia_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ruixinia/melanistic_baby_sleeping.png");
+	private static final ResourceLocation RUIXINIA_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/ruixinia_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/melanistic_baby.png");
+	private static final ResourceLocation RUIXINIA_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/ruixinia_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ruixinia/melanistic_baby_sleeping.png");
 
 	private static RuixiniaModel RUIXINIA_MODEL;
 	private static RuixiniaBabyModel BABY_MODEL;

@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.triassic.chinle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -114,6 +119,7 @@ public class Postosuchus extends DinosaurEntity {
 			this.setTerritorial(true);
 		}
 		this.setCarnivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
@@ -121,9 +127,14 @@ public class Postosuchus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.POSTOSUCHUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.POSTOSUCHUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.POSTOSUCHUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.postosuchus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.postosuchus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

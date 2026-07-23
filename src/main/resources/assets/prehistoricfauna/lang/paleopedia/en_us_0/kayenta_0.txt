@@ -9,33 +9,31 @@ ago
 Animals: 
 -Dinosaurs:
 --Dilophosaurus
+--Kayentavenator
 --Megapnosaurus
 --Scelidosaurus
 --Scutellosaurus
 --Sarahsaurus
 
+-Turtles:
+--Kayentachelys
+
 -Crocodilians:
 --Calsoyasuchus
-
 
 -Synapsids:
 --Kayentatherium
 
+-Bugs:
+--Diplichnites
+--Octopodichnus
+--Paleohelcura
+
 -Fish:
 --Ceratodus
 --Potamoceratodus
+--Toarcibatis
+
 Plants: 
 -Water Plants:
 --Algae
-
--Land Plants:
---Clathropteris
---Dead Osmundacaulis
---Horsetails
---Laurozamites
---Otozamites
-
--Trees:
---Araucaria
---Brachyphyllum
---Zamites

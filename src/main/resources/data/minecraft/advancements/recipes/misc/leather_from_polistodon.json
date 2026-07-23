@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:leather_from_polistodon"
+    ]
+  },
+  "criteria": {
+    "has_hide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:polistodon_hide"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:leather_from_polistodon"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hide",
+      "has_the_recipe"
+    ]
+  ]
+}

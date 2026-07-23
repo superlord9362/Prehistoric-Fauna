@@ -28,6 +28,18 @@
         ]
       }
     },
+    "toarcibatis": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:toarcibatis_bucket"
+          	]
+          }
+        ]
+      }
+    },
 	"gar": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -123,6 +135,150 @@
 				}
 			]
 		}
+	},
+	"harenaichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:harenaichthys_bucket"
+					]
+				}
+			]
+		}
+	},
+	"acipenser": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:acipenser_bucket"
+					]
+				}
+			]
+		}
+	},
+	"lonchidion": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:lonchidion_bucket"
+					]
+				}
+			]
+		}
+	},
+	"melvius": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:melvius_bucket"
+					]
+				}
+			]
+		}
+	},
+	"parapsephurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:parapsephurus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"protopsephurus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:protopsephurus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"sinamia": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:sinamia_bucket"
+					]
+				}
+			]
+		}
+	},
+	"yanosteus": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:yanosteus_bucket"
+					]
+				}
+			]
+		}
+	},
+	"chungkingichthys": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:chungkingichthys_bucket"
+					]
+				}
+			]
+		}
+	},
+	"lepidotes": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:lepidotes_bucket"
+					]
+				}
+			]
+		}
+	},
+	"morrolepis": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:morrolepis_bucket"
+					]
+				}
+			]
+		}
+	},
+	"ophiopsis": {
+		"trigger": "minecraft:inventory_changed",
+		"conditions": {
+			"items": [
+				{
+					"items": [
+						"prehistoricfauna:ophiopsis_bucket"
+					]
+				}
+			]
+		}
 	}
   },
   "requirements": [
@@ -135,7 +291,20 @@
 		"chinlea",
 		"arganodus",
 		"mooreodontus",
-		"saurichthys"
+		"saurichthys",
+		"harenaichthys",
+		"acipenser",
+		"lonchidion",
+		"melvius",
+		"parapsephurus",
+		"protopsephurus",
+		"sinamia",
+		"yanosteus",
+		"chungkingichthys",
+		"morrolepis",
+		"ophiopsis",
+		"lepidotes",
+		"toarcibatis"
     ]
   ]
 }

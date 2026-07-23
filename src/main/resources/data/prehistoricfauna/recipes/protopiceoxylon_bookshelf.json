@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "building",
+	"group": "wooden_bookshelf",
+	"pattern": [		
 		"###",
 		"XXX",
 		"###"
@@ -18,8 +20,17 @@
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "varian_bookshelves"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_bookshelves"
+				}
+			]
 		}
 	]
 }

@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaur
 
 public class TyrannosaurusJuvenileEyeLayer extends RenderLayer<Tyrannosaurus, EntityModel<Tyrannosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tyrannosaurus/tyrannosaurusrexjuv_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tyrannosaurus/tyrannosaurusrexjuv_eyeglow.png"));
 	private final RenderLayerParent<Tyrannosaurus, EntityModel<Tyrannosaurus>> tyrannosaurusRenderer;
 	
 	public TyrannosaurusJuvenileEyeLayer(RenderLayerParent<Tyrannosaurus, EntityModel<Tyrannosaurus>> rendererIn) {

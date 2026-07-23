@@ -211,6 +211,13 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_6 = registerConfiguredFeature("configured_frenelopsis_tree_6");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_7 = registerConfiguredFeature("configured_frenelopsis_tree_7");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FRENELOPSIS_TREE_8 = registerConfiguredFeature("configured_frenelopsis_tree_8");
+	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_1 = registerConfiguredFeature("configured_baiera_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_2 = registerConfiguredFeature("configured_baiera_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_3 = registerConfiguredFeature("configured_baiera_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_4 = registerConfiguredFeature("configured_baiera_tree_4");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_5 = registerConfiguredFeature("configured_baiera_tree_5");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREE_6 = registerConfiguredFeature("configured_baiera_tree_6");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TAXUS_TREE_1 = registerConfiguredFeature("configured_dead_taxus_tree_1");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TAXUS_TREE_2 = registerConfiguredFeature("configured_dead_taxus_tree_2");
@@ -319,10 +326,10 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PTILOPHYLLUM_TREE = registerConfiguredFeature("configured_ptilophyllum_tree");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_TREE = registerConfiguredFeature("configured_petrified_tree");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> JOHNSTONIA = registerConfiguredFeature("congigured_johnstonia");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DICROIDIUM = registerConfiguredFeature("congigured_dicroidium");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> JOHNSTONIA = registerConfiguredFeature("configured_johnstonia");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DICROIDIUM = registerConfiguredFeature("configured_dicroidium");
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> NEOCALAMITES = registerConfiguredFeature("congigured_neocalamites");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> NEOCALAMITES = registerConfiguredFeature("configured_neocalamites");
 	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HERMANOPHYTON = registerConfiguredFeature("configured_hermanophyton");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NILSSONIA = registerConfiguredFeature("configured_nilssonia");
@@ -346,13 +353,14 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DAYVAULTIA = registerConfiguredFeature("configured_dayvaultia");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZAMIOPHYLLUM = registerConfiguredFeature("configured_zamiophyllum");
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> CLAY_DISK = registerConfiguredFeature("congigured_clay_disk");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> GRAVEL_DISK = registerConfiguredFeature("congigured_gravel_disk");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> MUD_DISK = registerConfiguredFeature("congigured_mud_disk");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PACKED_MUD_DISK = registerConfiguredFeature("congigured_packed_mud_disk");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> TUFF_DISK = registerConfiguredFeature("congigured_tuff_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CLAY_DISK = registerConfiguredFeature("configured_clay_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> GRAVEL_DISK = registerConfiguredFeature("configured_gravel_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> MUD_DISK = registerConfiguredFeature("configured_mud_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PACKED_MUD_DISK = registerConfiguredFeature("configured_packed_mud_disk");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TUFF_DISK = registerConfiguredFeature("configured_tuff_disk");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_SILT = registerConfiguredFeature("disk_silt");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_DISK = registerConfiguredFeature("ash_disk");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CALLIANTHUS = registerConfiguredFeature("configured_callianthus");
 	
@@ -397,6 +405,7 @@ public class PFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PODOZAMITES_TREES = registerConfiguredFeature("podozamites_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_PODOZAMITES_TREES = registerConfiguredFeature("dead_podozamites_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PROTOPICEOXYLON_TREES = registerConfiguredFeature("protopiceoxylon_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BAIERA_TREES = registerConfiguredFeature("baiera_trees");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CUPRESSINOCLADUS_TREES = registerConfiguredFeature("cupressinocladus_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ELATIDES_TREES = registerConfiguredFeature("elatides_trees");
@@ -576,6 +585,13 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_7, PFFeatures.FRENELOPSIS_TREE_7.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(17).setMaxHeight(20).build());
 		FeatureUtils.register(bootstapContext, FRENELOPSIS_TREE_8, PFFeatures.FRENELOPSIS_TREE_8.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.FRENELOPSIS_LOG.get()).setLeavesBlock(PFBlocks.FRENELOPSIS_LEAVES.get()).setMinHeight(21).setMaxHeight(24).build());
 		
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_1, PFFeatures.BAIERA_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(1).setMaxHeight(2).build());
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_2, PFFeatures.BAIERA_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(1).setMaxHeight(2).build());
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_3, PFFeatures.BAIERA_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(1).setMaxHeight(3).build());
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_4, PFFeatures.BAIERA_TREE_4.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(1).setMaxHeight(3).build());
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_5, PFFeatures.BAIERA_TREE_5.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(1).setMaxHeight(3).build());
+		FeatureUtils.register(bootstapContext, BAIERA_TREE_6, PFFeatures.BAIERA_TREE_6.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.BAIERA_LOG.get()).setLeavesBlock(PFBlocks.BAIERA_LEAVES.get()).setMinHeight(3).setMaxHeight(7).build());
+
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_1, PFFeatures.TAXUS_TREE_1.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(5).setMaxHeight(8).build());
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_2, PFFeatures.TAXUS_TREE_2.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(4).setMaxHeight(7).build());
 		FeatureUtils.register(bootstapContext, DEAD_TAXUS_TREE_3, PFFeatures.TAXUS_TREE_3.get(), new PFTreeConfig.Builder().setTrunkBlock(PFBlocks.STRIPPED_TAXUS_LOG.get()).setLeavesBlock(Blocks.AIR).setMinHeight(8).setMaxHeight(11).build());
@@ -726,6 +742,7 @@ public class PFConfiguredFeatures {
 
 		FeatureUtils.register(bootstapContext, DISK_SILT, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(PFBlocks.SILT.get()), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, PFBlocks.LOAM.get(), PFBlocks.PACKED_LOAM.get(), PFBlocks.MOSSY_DIRT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.PODZOL, Blocks.SAND)), UniformInt.of(8, 8), 4));
 		FeatureUtils.register(bootstapContext, MUD_DISK, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.MUD), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, PFBlocks.LOAM.get(), PFBlocks.PACKED_LOAM.get(), PFBlocks.MOSSY_DIRT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.PODZOL, Blocks.SAND)), UniformInt.of(1, 3), 1));
+		FeatureUtils.register(bootstapContext, ASH_DISK, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(PFBlocks.ASH_BLOCK.get()), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, PFBlocks.LOAM.get(), PFBlocks.PACKED_LOAM.get(), PFBlocks.MOSSY_DIRT.get(), PFBlocks.SILT.get(), PFBlocks.HARDENED_SILT.get(), Blocks.PODZOL, Blocks.SAND)), UniformInt.of(1, 3), 1));
 
 		FeatureUtils.register(bootstapContext, CALLIANTHUS, PFFeatures.CALLIANTHUS.get(), new JohnstoniaConfig(3));
 
@@ -769,6 +786,7 @@ public class PFConfiguredFeatures {
 		FeatureUtils.register(bootstapContext, PODOZAMITES_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_1), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_2), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_3), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_4), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_5), 0.1667F)), holderGetter.getOrThrow(PFPlacedFeatures.PODOZAMITES_TREE_6)));
 		FeatureUtils.register(bootstapContext, DEAD_PODOZAMITES_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_1), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_2), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_3), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_4), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_5), 0.1667F)), holderGetter.getOrThrow(PFPlacedFeatures.DEAD_PODOZAMITES_TREE_6)));
 		FeatureUtils.register(bootstapContext, PROTOPICEOXYLON_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_1_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_2_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_3_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_4_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_5_CHECKED), 0.1429F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_6_CHECKED), 0.1429F)), holderGetter.getOrThrow(PFPlacedFeatures.PROTOPICEOXYLON_TREE_7_CHECKED)));
+		FeatureUtils.register(bootstapContext, BAIERA_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_1), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_2), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_3), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_4), 0.1667F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_5), 0.1667F)), holderGetter.getOrThrow(PFPlacedFeatures.BAIERA_TREE_6)));
 
 		FeatureUtils.register(bootstapContext, CUPRESSINOCLADUS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_1), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_2), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_3), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_4), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_5), 0.1666F)), holderGetter.getOrThrow(PFPlacedFeatures.CUPRESSINOCLADUS_TREE_6)));
 		FeatureUtils.register(bootstapContext, PHOENICOPSIS_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_1), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_2), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_3), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_4), 0.1666F), new WeightedPlacedFeature(holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_5), 0.1666F)), holderGetter.getOrThrow(PFPlacedFeatures.PHOENICOPSIS_TREE_6)));

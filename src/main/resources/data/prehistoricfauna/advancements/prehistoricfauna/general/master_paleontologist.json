@@ -498,6 +498,114 @@
 					}
 				]
 			}
+		},
+		"liaoningosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:liaoningosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"liaoningosaurus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:liaoningosaurus_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"brachiosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:brachiosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"chuandongocoelurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:chuandongocoelurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"kayentavenator_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:kayentavenator_skull"
+						]
+					}
+				]
+			}
+		},
+		"kayentavenator_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:kayentavenator_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"chuandongocoelurus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:chuandongocoelurus_skeleton"
+						]
+					}
+				]
+			}
+		},
+		"yangchuanosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:yangchuanosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"yangchuanosaurus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"condition": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:yangchuanosaurus_skeleton"
+						]
+					}
+				]
+			}
 		}
 	},
 	"requirements": [
@@ -620,6 +728,33 @@
 		],
 		[
 			"anzu_skeleton"
+		],
+		[
+			"liaoningosaurus_skull"
+		],
+		[
+			"liaoningosaurus_skeleton"
+		],
+		[
+			"brachiosaurus_skull"
+		],
+		[
+			"chuandongocoelurus_skull"
+		],
+		[
+			"kayentavenator_skull"
+		],
+		[
+			"kayentavenator_skeleton"
+		],
+		[
+			"chuandongocoelurus_skeleton"
+		],
+		[
+			"yangchuanosaurus_skull"
+		],
+		[
+			"yangchuanosaurus_skeleton"
 		]
   ]
 }

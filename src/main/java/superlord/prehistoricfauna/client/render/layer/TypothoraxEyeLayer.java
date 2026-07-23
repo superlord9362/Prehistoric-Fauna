@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Typothorax;
 
 public class TypothoraxEyeLayer extends RenderLayer<Typothorax, TypothoraxModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/typothorax/typothorax_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/typothorax/typothorax_eyeglow.png"));
 	private final RenderLayerParent<Typothorax, TypothoraxModel> typothoraxRenderer;
 	
 	public TypothoraxEyeLayer(RenderLayerParent<Typothorax, TypothoraxModel> rendererIn) {

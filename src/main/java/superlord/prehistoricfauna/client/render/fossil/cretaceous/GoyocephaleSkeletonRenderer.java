@@ -22,17 +22,17 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.GoyocephaleSke
 
 public class GoyocephaleSkeletonRenderer extends MobRenderer<GoyocephaleSkeleton, EntityModel<GoyocephaleSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/goyocephale_skeleton.png");
-    private static GoyocephaleSkeletonModel IDLE;
-    private static GoyocephaleSkeletonStepModel STEP;
-    private static GoyocephaleSkeletonSleepModel SLEEP;
-    private static GoyocephaleSkeletonFeedingModel FEEDING;
-    private static GoyocephaleSkeletonSitModel SIT;
-    private static GoyocephaleSkeletonDeathModel DEATH;
-    private static GoyocephaleSkeletonHeadbuttTwoModel HEADBUTT_TWO;
-    private static GoyocephaleSkeletonHeadbuttOneModel HEADBUTT_ONE;
-    private static GoyocephaleSkeletonBraceModel BRACE;
-    private static GoyocephaleSkeletonRearModel REAR;
+	private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/goyocephale_skeleton.png");
+	private static GoyocephaleSkeletonModel IDLE;
+	private static GoyocephaleSkeletonStepModel STEP;
+	private static GoyocephaleSkeletonSleepModel SLEEP;
+	private static GoyocephaleSkeletonFeedingModel FEEDING;
+	private static GoyocephaleSkeletonSitModel SIT;
+	private static GoyocephaleSkeletonDeathModel DEATH;
+	private static GoyocephaleSkeletonHeadbuttTwoModel HEADBUTT_TWO;
+	private static GoyocephaleSkeletonHeadbuttOneModel HEADBUTT_ONE;
+	private static GoyocephaleSkeletonBraceModel BRACE;
+	private static GoyocephaleSkeletonRearModel REAR;
 
 	public GoyocephaleSkeletonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GoyocephaleSkeletonModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE_SKELETON)), 0);
@@ -47,35 +47,26 @@ public class GoyocephaleSkeletonRenderer extends MobRenderer<GoyocephaleSkeleton
 		BRACE = new GoyocephaleSkeletonBraceModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE_SKELETON_BRACE));
 		REAR = new GoyocephaleSkeletonRearModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE_SKELETON_REAR));
 	}
-	
+
 	protected void scale(GoyocephaleSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isStep()) {
-			model = STEP;
-		} else if (entityIn.isSleep()) {
-			model = SLEEP;
-		} else if (entityIn.isFeeding()) {
-			model = FEEDING;
-		} else if (entityIn.isSit()) {
-			model = SIT;
-		} else if (entityIn.isDeath()) {
-			model = DEATH;
-		} else if (entityIn.isHeadbuttTwo()) {
-			model = HEADBUTT_TWO;
-		} else if (entityIn.isHeadbuttOne()) {
-			model = HEADBUTT_ONE;
-		} else if (entityIn.isBrace()) {
-			model = BRACE;
-		} else if (entityIn.isRear()) {
-			model = REAR;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "STEP" -> STEP;
+		case "SLEEP" -> SLEEP;
+		case "FEEDING" -> FEEDING;
+		case "SIT" -> SIT;
+		case "DEATH" -> DEATH;
+		case "HEADBUTT_ONE" -> HEADBUTT_ONE;
+		case "HEADBUTT_TWO" -> HEADBUTT_TWO;
+		case "BRACE" -> BRACE;
+		case "REAR" -> REAR;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 
 	@Override
 	public ResourceLocation getTextureLocation(GoyocephaleSkeleton entity) {
-			return SKELETON;
+		return SKELETON;
 	}
 
 }

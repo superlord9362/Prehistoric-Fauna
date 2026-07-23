@@ -1,21 +1,28 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"#"
-	],
-	"key": {
-		"#": {
+	"type": "minecraft:crafting_shapelss",
+	"category": "building",
+	"group": "wooden_slab",
+	"ingredients": [
+		{
 			"item": "prehistoricfauna:brachyphyllum_vertical_slab"
 		}
-	},
+	],
 	"result": {
-		"item": "prehistoricfauna:brachyphyllum_slab",
-		"count": 1
+		"item": "prehistoricfauna:brachyphyllum_slab"
 	},
-  "conditions": [
-    {
-      "type": "prehistoricfauna:quark_flag",
-      "flag": "vertical_slabs"
-    }
-  ]
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

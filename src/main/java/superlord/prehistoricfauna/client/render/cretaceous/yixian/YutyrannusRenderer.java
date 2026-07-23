@@ -16,19 +16,19 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Yutyrannus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class YutyrannusRenderer extends MobRenderer<Yutyrannus, EntityModel<Yutyrannus>> {
-	private static final ResourceLocation YUTYRANNUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/melanistic.png");
-	private static final ResourceLocation YUTYRANNUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/melanistic_sleeping.png");
+	private static final ResourceLocation YUTYRANNUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/yutyrannus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/melanistic.png");
+	private static final ResourceLocation YUTYRANNUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/yutyrannus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/melanistic_sleeping.png");
 
-	private static final ResourceLocation YUTYRANNUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/melanistic_baby.png");
-	private static final ResourceLocation YUTYRANNUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/yutyrannus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yutyrannus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation YUTYRANNUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/yutyrannus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/melanistic_baby.png");
+	private static final ResourceLocation YUTYRANNUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/yutyrannus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yutyrannus/melanistic_baby_sleeping.png");
 
 	private static YutyrannusModel YUTYRANNUS_MODEL;
 	private static YutyrannusBabyModel BABY_YUTYRANNUS;

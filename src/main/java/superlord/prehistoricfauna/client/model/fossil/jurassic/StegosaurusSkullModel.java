@@ -13,21 +13,26 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import superlord.prehistoricfauna.common.entity.fossil.jurassic.StegosaurusSkull;
 
+@SuppressWarnings("unused")
 public class StegosaurusSkullModel extends EntityModel<StegosaurusSkull> {
 	private final ModelPart Head;
+	private final ModelPart Jaw;
 
 	public StegosaurusSkullModel(ModelPart root) {
 		this.Head = root.getChild("Head");
+		this.Jaw = this.Head.getChild("Jaw");
 	}
 
-	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition Head = partdefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(93, 0).addBox(-3.5F, -1.5F, -9.0F, 7.0F, 7.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 18.5F, 7.5F));
+		PartDefinition Head = partdefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(91, 0).addBox(-3.5F, -1.5F, -9.0F, 7.0F, 5.0F, 9.0F, new CubeDeformation(0.0F))
+		.texOffs(98, 0).addBox(-3.5F, 2.5F, -9.0F, 7.0F, 0.0F, 9.0F, new CubeDeformation(0.0F))
+		.texOffs(91, 14).addBox(-2.0F, -1.5F, -15.0F, 4.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 18.5F, 6.0F));
 
-		PartDefinition Snout = Head.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(97, 16).addBox(-2.0F, -3.0F, -6.0F, 4.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.5F, -9.0F));
+		PartDefinition Jaw = Head.addOrReplaceChild("Jaw", CubeListBuilder.create().texOffs(91, 24).addBox(-3.0F, 0.0F, -8.0F, 6.0F, 3.0F, 9.0F, new CubeDeformation(0.0F))
+		.texOffs(91, 36).addBox(-2.0F, 0.0F, -14.0F, 4.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 2.5F, -1.0F));
 
 		return LayerDefinition.create(meshdefinition, 256, 148);
 	}
@@ -41,4 +46,5 @@ public class StegosaurusSkullModel extends EntityModel<StegosaurusSkull> {
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
+
 }

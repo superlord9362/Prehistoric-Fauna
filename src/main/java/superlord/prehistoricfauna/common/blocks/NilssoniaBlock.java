@@ -1,9 +1,12 @@
 package superlord.prehistoricfauna.common.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -26,6 +29,7 @@ public class NilssoniaBlock extends Block implements IPlantable, BonemealableBlo
 	protected static final VoxelShape SHAPE = Block.box(7.0D, 0.0D, 7.0D, 9D, 16.0D, 9D);
 	public static final BooleanProperty TOP = BooleanProperty.create("top");
 	public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");
+	protected static final int MAX_HEIGHT = 3;
 
 	public NilssoniaBlock(BlockBehaviour.Properties properties) {
 		super(properties);
@@ -72,12 +76,19 @@ public class NilssoniaBlock extends Block implements IPlantable, BonemealableBlo
 	
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-    	boolean growing = getNumNilssoniaBlocksBelow(world, pos) < random.nextInt(3);
-    	if (world.isEmptyBlock(pos.above()) && canGrow(state) && growing && isTop(state)) {
-    		world.setBlock(pos, PFBlocks.NILSSONIA.get().defaultBlockState().setValue(TOP, false), 2);
-    		world.setBlock(pos.above(), this.defaultBlockState(), 2);
-    	} else if (!growing) world.setBlock(pos, state.setValue(CAN_GROW, false), 2);
-    }
+		if (!isTop(state) || !canGrow(state)) return;
+		int numBelow = this.getNumNilssoniaBlocksBelow(world, pos);
+		if (numBelow >= MAX_HEIGHT - 1) {
+			world.setBlock(pos, state.setValue(CAN_GROW, false), 2);
+			return;
+		}
+		boolean growing = numBelow < random.nextInt(3);
+		if (world.isEmptyBlock(pos.above()) && growing) {
+			this.growTop(world, pos, state);
+		} else if (!growing) {
+			world.setBlock(pos, state.setValue(CAN_GROW, false), 2);
+		}
+	}
 	
 	public boolean canGrow(BlockState state) {
     	return state.getValue(CAN_GROW);
@@ -95,20 +106,40 @@ public class NilssoniaBlock extends Block implements IPlantable, BonemealableBlo
 	public BlockState getPlant(BlockGetter world, BlockPos pos) {
 		return defaultBlockState();
 	}
+
+	@Override
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		super.setPlacedBy(world, pos, state, placer, stack);
+		BlockPos belowPos = pos.below();
+		BlockState below = world.getBlockState(belowPos);
+		if (below.is(this) && below.getValue(TOP)) {
+			world.setBlock(belowPos, below.setValue(TOP, false), 2);
+		}
+	}
     
-    public boolean isValidBonemealTarget(LevelReader p_57325_, BlockPos p_57326_, BlockState p_57327_, boolean p_57328_) {
-		return true;
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+		return isTop(state);
 	}
 
-	public boolean isBonemealSuccess(Level p_57330_, RandomSource p_57331_, BlockPos p_57332_, BlockState p_57333_) {
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 	
 	protected int getNumNilssoniaBlocksBelow(BlockGetter worldIn, BlockPos pos) {
-		int i;
-		for(i = 0; i < 2 && worldIn.getBlockState(pos.below(i + 1)).is(this); ++i) {
+		int i = 0;
+		BlockPos p = pos;
+		while (worldIn.getBlockState(p.below()).is(this)) {
+			p = p.below();
+			i++;
 		}
 		return i;
+	}
+
+	protected void growTop(ServerLevel world, BlockPos pos, BlockState state) {
+		world.setBlock(pos, state.setValue(TOP, false), 2);
+		world.setBlock(pos.above(), this.defaultBlockState(), 2);
 	}
 	
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -116,8 +147,14 @@ public class NilssoniaBlock extends Block implements IPlantable, BonemealableBlo
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_) {
-	      popResource(p_50893_, p_50895_, new ItemStack(this));
+	public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
+		int numBelow = this.getNumNilssoniaBlocksBelow(world, pos);
+		boolean canGrowFurther = canGrow(state) && numBelow < MAX_HEIGHT - 1 && world.isEmptyBlock(pos.above());
+		if (canGrowFurther) {
+			this.growTop(world, pos, state);
+		} else {
+			popResource(world, pos, new ItemStack(this));
+		}
 	}
 	
 }

@@ -18,7 +18,7 @@ chance of being protective, and a
 
 Sleep Cycle: Crepuscular
 
-<image><drawings_ankylosaurus.png 29 4 152 66 21 18 7.25>
+<image><drawings_ankylosaurus.png 29 3 152 66 21 18 7.25>
 
 
 
@@ -34,5 +34,9 @@ Sleep Cycle: Crepuscular
 
 
 
-
-Behavior: Investigation underway!
+Behavior: Chuandongocoelurus can 
+be given a non-food item, and it will 
+attempt to locate an animal that 
+drops it. If no animal can be found, 
+it will return the item, otherwise it 
+will keep it.

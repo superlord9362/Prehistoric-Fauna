@@ -1,3 +1,6 @@
 {
-    "parent": "prehistoricfauna:block/zamites_inventory"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prehistoricfauna:item/zamites_item"
+    }
 }

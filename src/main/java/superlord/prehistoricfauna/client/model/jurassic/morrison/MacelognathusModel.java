@@ -53,34 +53,34 @@ public class MacelognathusModel extends EntityModel<Macelognathus> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition Root = partdefinition.addOrReplaceChild("Root", CubeListBuilder.create(), PartPose.offset(0.5F, 24.0F, 0.0F));
+		PartDefinition Root = partdefinition.addOrReplaceChild("Root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition Body = Root.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(19, 3).addBox(-1.5F, -1.5F, -1.0F, 3.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, -5.5F, -3.0F, 0.1745F, 0.0F, 0.0F));
+		PartDefinition Body = Root.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(19, 3).addBox(-1.5F, -1.5F, -1.0F, 3.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -5.5F, -3.0F, 0.1745F, 0.0F, 0.0F));
 
 		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(10, 1).addBox(-1.0F, -1.0F, -4.0F, 2.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.25F, 0.0F, -0.1745F, 0.0F, 0.0F));
 
 		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(1, 4).addBox(-1.0F, -1.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
-				.texOffs(1, 12).addBox(-0.5F, -1.0F, -5.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, -4.0F));
+		.texOffs(1, 12).addBox(-0.5F, -1.0F, -5.0F, 1.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, -4.0F));
 
 		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(22, 14).addBox(-0.5F, -1.075F, 0.0F, 1.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.4F, 5.0F));
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(22, 16).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.1F, 8.5F, -0.2618F, 0.0F, 0.0F));
 
-		PartDefinition RightLeg = Root.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(19, 14).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, -5.0F, 2.75F));
+		PartDefinition RightLeg = Root.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(19, 14).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, -5.0F, 2.75F));
 
-		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(17, 20).addBox(-0.5F, 0.0F, -2.0F, 1.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 0.0F));
+		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(17, 20).addBox(-0.5F, 0.0F, -2.0F, 2.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 0.0F));
 
-		PartDefinition RightArm = Root.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(14, 14).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, -4.0F, -3.0F));
+		PartDefinition RightArm = Root.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(14, 14).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, -4.0F, -3.0F));
 
-		PartDefinition RightHand = RightArm.addOrReplaceChild("RightHand", CubeListBuilder.create().texOffs(13, 19).addBox(-0.5F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 0.0F));
+		PartDefinition RightHand = RightArm.addOrReplaceChild("RightHand", CubeListBuilder.create().texOffs(12, 18).addBox(-0.5F, 0.0F, -2.0F, 2.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 0.0F));
 
-		PartDefinition LeftArm = Root.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(14, 14).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.5F, -4.0F, -3.0F));
+		PartDefinition LeftLeg = Root.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(19, 14).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, -5.0F, 2.75F));
 
-		PartDefinition LeftHand = LeftArm.addOrReplaceChild("LeftHand", CubeListBuilder.create().texOffs(13, 19).mirror().addBox(-0.5F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 4.0F, 0.0F));
+		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(17, 20).mirror().addBox(-1.5F, 0.0F, -2.0F, 2.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 5.0F, 0.0F));
 
-		PartDefinition LeftLeg = Root.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(19, 14).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.5F, -5.0F, 2.75F));
+		PartDefinition LeftArm = Root.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(14, 14).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, -4.0F, -3.0F));
 
-		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(17, 20).mirror().addBox(-0.5F, 0.0F, -2.0F, 1.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 5.0F, 0.0F));
+		PartDefinition LeftHand = LeftArm.addOrReplaceChild("LeftHand", CubeListBuilder.create().texOffs(12, 18).mirror().addBox(-1.5F, 0.0F, -2.0F, 2.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 4.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 48, 48);
 	}
@@ -91,6 +91,7 @@ public class MacelognathusModel extends EntityModel<Macelognathus> {
 		float degree = 1.0f;
 		float partialTick = ageInTicks - entity.tickCount;
 		float sleepProgress = entity.getSleepProgress(partialTick);
+		float sitProgress = entity.getSitProgress(partialTick);
 		resetModel();
 		if (entity.isAsleep()) {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
@@ -119,6 +120,36 @@ public class MacelognathusModel extends EntityModel<Macelognathus> {
 				this.RightArm.yRot = Mth.lerp(sleepProgress, 0, -0.4363F);
 				this.RightHand.xRot = Mth.lerp(sleepProgress, 0, 1.5708F);
 			} else sleepPose();
+		} else if (entity.isSitting() || entity.isTameSitting()) {
+			if (sitProgress != 0 && entity.getEntityData().get(Macelognathus.SIT_TICK) > 0) {
+				this.Body.y = Mth.lerp(sitProgress, -5.5F, -1.5F);
+				this.RightLeg.y = Mth.lerp(sitProgress, -5, 0);
+				this.LeftLeg.y = Mth.lerp(sitProgress, -5, 0);
+				this.LeftArm.y = Mth.lerp(sitProgress, -4, 0);
+				this.RightArm.y = Mth.lerp(sitProgress, -4, 0);
+				this.Body.xRot = Mth.lerp(sitProgress, 0.1745F, 0);
+				this.Neck.xRot = Mth.lerp(sitProgress, -0.1745F, 0);
+				this.RightLeg.xRot = Mth.lerp(sitProgress, 0, -1.5708F);
+				this.RightLeg.yRot = Mth.lerp(sitProgress, 0, -0.48F);
+				this.RightFoot.xRot = Mth.lerp(sitProgress, 0, 1.5708F);
+				this.LeftLeg.xRot = Mth.lerp(sitProgress, 0, -1.5708F);
+				this.LeftLeg.yRot = Mth.lerp(sitProgress, 0, 0.48F);
+				this.LeftFoot.xRot = Mth.lerp(sitProgress, 0, 1.5708F);
+				this.LeftArm.xRot = Mth.lerp(sitProgress, 0, -1.5708F);
+				this.LeftArm.yRot = Mth.lerp(sitProgress, 0, 0.4363F);
+				this.LeftHand.xRot = Mth.lerp(sitProgress, 0, 1.5708F);
+				this.RightArm.xRot = Mth.lerp(sitProgress, 0, -1.5708F);
+				this.RightArm.yRot = Mth.lerp(sitProgress, 0, -0.4363F);
+				this.RightHand.xRot = Mth.lerp(sitProgress, 0, 1.5708F);
+			} else  {
+				sitPose();
+				this.Neck.xRot = headPitch * ((float)Math.PI / 180F);
+			}
+			this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+			this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+			this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+			this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5)));
+			this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) - 0.2618F;
 		} else {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.Body.y = Mth.lerp(sleepProgress, -1.5F, -5.5F);
@@ -145,7 +176,32 @@ public class MacelognathusModel extends EntityModel<Macelognathus> {
 				this.RightArm.xRot = Mth.lerp(sleepProgress, -1.5708F, 0);
 				this.RightArm.yRot = Mth.lerp(sleepProgress, -0.4363F, 0);
 				this.RightHand.xRot = Mth.lerp(sleepProgress, 1.5708F, 0);
-
+			} else if (sitProgress != 0 && entity.getEntityData().get(Macelognathus.SIT_TICK) > 0) {
+				this.Body.y = Mth.lerp(sitProgress, -1.5F, -5.5F);
+				this.RightLeg.y = Mth.lerp(sitProgress, 0, -5);
+				this.LeftLeg.y = Mth.lerp(sitProgress, 0, -5);
+				this.LeftArm.y = Mth.lerp(sitProgress, 0, -4);
+				this.RightArm.y = Mth.lerp(sitProgress, 0, -4);
+				this.Body.xRot = Mth.lerp(sitProgress, 0, 0.1745F);
+				this.Neck.xRot = Mth.lerp(sitProgress, 0, -0.1745F);
+				this.RightLeg.xRot = Mth.lerp(sitProgress, -1.5708F, 0);
+				this.RightLeg.yRot = Mth.lerp(sitProgress, -0.48F, 0);
+				this.RightFoot.xRot = Mth.lerp(sitProgress, 1.5708F, 0);
+				this.LeftLeg.xRot = Mth.lerp(sitProgress, -1.5708F, 0);
+				this.LeftLeg.yRot = Mth.lerp(sitProgress, 0.48F, 0);
+				this.LeftFoot.xRot = Mth.lerp(sitProgress, 1.5708F, 0);
+				this.LeftArm.xRot = Mth.lerp(sitProgress, -1.5708F, 0);
+				this.LeftArm.yRot = Mth.lerp(sitProgress, 0.4363F, 0);
+				this.LeftHand.xRot = Mth.lerp(sitProgress, 1.5708F, 0);
+				this.RightArm.xRot = Mth.lerp(sitProgress, -1.5708F, 0);
+				this.RightArm.yRot = Mth.lerp(sitProgress, -0.4363F, 0);
+				this.RightHand.xRot = Mth.lerp(sitProgress, 1.5708F, 0);
+				this.Neck.xRot = headPitch * ((float)Math.PI / 180F) - 0.1745F;
+				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
+				this.Tail1.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+				this.Tail2.yRot = (-0.12F * Mth.sin(0.2F * ageInTicks / 5));
+				this.Tail1.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5)));
+				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) - 0.2618F;
 			} else {
 				this.Neck.xRot = headPitch * ((float)Math.PI / 180F) - 0.1745F;
 				this.Neck.yRot = netHeadYaw * ((float)Math.PI / 180F);
@@ -208,6 +264,27 @@ public class MacelognathusModel extends EntityModel<Macelognathus> {
 		this.Tail1.yRot = -0.3054F;
 		this.Tail2.xRot = 0.0436F;
 		this.Tail2.yRot = -0.2618F;
+		this.RightLeg.xRot = -1.5708F;
+		this.RightLeg.yRot = -0.48F;
+		this.RightFoot.xRot = 1.5708F;
+		this.LeftLeg.xRot = -1.5708F;
+		this.LeftLeg.yRot = 0.48F;
+		this.LeftFoot.xRot = 1.5708F;
+		this.LeftArm.xRot = -1.5708F;
+		this.LeftArm.yRot = 0.4363F;
+		this.LeftHand.xRot = 1.5708F;
+		this.RightArm.xRot = -1.5708F;
+		this.RightArm.yRot = -0.4363F;
+		this.RightHand.xRot = 1.5708F;
+	}
+	
+	public void sitPose() {
+		this.Body.y = -1.5F;
+		this.RightLeg.y = 0;
+		this.LeftLeg.y = 0;
+		this.LeftArm.y = 0;
+		this.RightArm.y = 0;
+		this.Body.xRot = 0;
 		this.RightLeg.xRot = -1.5708F;
 		this.RightLeg.yRot = -0.48F;
 		this.RightFoot.xRot = 1.5708F;

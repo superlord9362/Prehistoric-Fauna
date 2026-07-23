@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.CretaraneusMode
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Cretaraneus;
 
 public class CretaraneusRenderer extends MobRenderer<Cretaraneus, CretaraneusModel> {
-	private static final ResourceLocation CRETARANEUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cretaraneus.png");
+	private static final ResourceLocation CRETARANEUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/cretaraneus.png");
 
 	public CretaraneusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CretaraneusModel(renderManagerIn.bakeLayer(ClientEvents.CRETARANEUS)), 0F);

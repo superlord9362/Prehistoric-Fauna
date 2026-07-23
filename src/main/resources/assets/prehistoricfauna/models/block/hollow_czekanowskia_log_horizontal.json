@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/czekanowskia_log_top",
+		"side": "prehistoricfauna:block/czekanowskia_log",
+		"inside": "prehistoricfauna:block/stripped_czekanowskia_log"
+	}
+}

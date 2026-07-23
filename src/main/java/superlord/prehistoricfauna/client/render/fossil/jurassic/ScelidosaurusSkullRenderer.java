@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.ScelidosaurusSku
 
 public class ScelidosaurusSkullRenderer extends MobRenderer<ScelidosaurusSkull, ScelidosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/scelidosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/scelidosaurus_skeleton.png");
 
 	public ScelidosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ScelidosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.SCELIDOSAURUS_SKULL)), 0);

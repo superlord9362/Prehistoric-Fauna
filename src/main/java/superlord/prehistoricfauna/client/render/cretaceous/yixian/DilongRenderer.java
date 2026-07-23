@@ -12,12 +12,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.DilongModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dilong;
 
 public class DilongRenderer extends MobRenderer<Dilong, DilongModel> {
-	private static final ResourceLocation DILONG = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/dilong.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/melanistic.png");
-	private static final ResourceLocation DILONG_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/dilong_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilong/melanistic_sleeping.png");
+	private static final ResourceLocation DILONG = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/dilong.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/melanistic.png");
+	private static final ResourceLocation DILONG_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/dilong_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilong/melanistic_sleeping.png");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DilongRenderer(EntityRendererProvider.Context renderManagerIn) {

@@ -2,6 +2,7 @@ package superlord.prehistoricfauna.common.entity.goal;
 
 import java.util.function.Predicate;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +27,7 @@ public class ProtectBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
 		} else {
 			if (super.canUse()) {
 				for(DinosaurEntity baby : dinosaur.level().getEntitiesOfClass(DinosaurEntity.class, dinosaur.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
-					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame() || !dinosaur.isVehicle()) {
+					if (!dinosaur.trusts(this.target.getUUID()) && (dinosaur.isFood(this.target.getItemInHand(InteractionHand.MAIN_HAND)) || dinosaur.isFood(this.target.getItemInHand(InteractionHand.OFF_HAND))) && (dinosaur.isProtective() || dinosaur.isTerritorial() || dinosaur.isOpportunist() || dinosaur.isAggressive()) && !dinosaur.isTame() || !dinosaur.isVehicle()) {
 						if (this.target instanceof DinosaurEntity meanDinosaur) {
 							if (meanDinosaur.getBoundingBox().getSize() < baby.getBoundingBox().getSize() * 2 && meanDinosaur.isCarnivorous() && !dinosaur.isCarnivorous() && meanDinosaur != baby) {
 								if (baby.isBaby() && meanDinosaur != baby) {

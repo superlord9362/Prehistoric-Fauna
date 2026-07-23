@@ -96,7 +96,7 @@ public class WeltrichiaBlock extends Block implements BonemealableBlock  {
 	}
 
 	public BlockState updateShape(BlockState p_58143_, Direction p_58144_, BlockState p_58145_, LevelAccessor p_58146_, BlockPos p_58147_, BlockPos p_58148_) {
-		return p_58144_.getOpposite() == p_58143_.getValue(FACING) && !p_58143_.canSurvive(p_58146_, p_58147_) ? Blocks.AIR.defaultBlockState() : p_58143_;
+	    return !p_58143_.canSurvive(p_58146_, p_58147_) ? Blocks.AIR.defaultBlockState() : p_58143_;
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_58150_) {

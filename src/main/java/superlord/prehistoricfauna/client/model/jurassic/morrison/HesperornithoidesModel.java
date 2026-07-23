@@ -23,6 +23,7 @@ public class HesperornithoidesModel extends EntityModel<Hesperornithoides> {
 	private final ModelPart LeftWing;
 	private final ModelPart Head;
 	private final ModelPart Fluff;
+	private final ModelPart Snoot;
 	private final ModelPart Tail;
 
 	public HesperornithoidesModel(ModelPart root) {
@@ -31,6 +32,7 @@ public class HesperornithoidesModel extends EntityModel<Hesperornithoides> {
 		this.LeftLeg = Body.getChild("LeftLeg");
 		this.Head = Body.getChild("Head");
 		this.Fluff = Head.getChild("Fluff");
+		this.Snoot = Head.getChild("Snoot");
 		this.Tail = Body.getChild("Tail");
 		this.LeftWing = Body.getChild("LeftWing");
 		this.RightWing = Body.getChild("RightWing");
@@ -167,6 +169,7 @@ public class HesperornithoidesModel extends EntityModel<Hesperornithoides> {
 		this.Fluff.y = -4;
 		this.Fluff.z = -1;
 		this.Fluff.xRot = 0;
+		this.Snoot.y = -3.995F;
 	}
 
 	public void sleepPose() {

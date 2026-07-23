@@ -70,7 +70,7 @@
       "prehistoricfauna:placed_fallen_metasequoia_log"
     ]
   ],
-  "has_precipitation": false,
+  "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
     "ambient": [
@@ -117,7 +117,7 @@
         "type": "prehistoricfauna:telmasaurus",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 2
+        "weight": 4
       },
       {
         "type": "prehistoricfauna:pinacosaurus",

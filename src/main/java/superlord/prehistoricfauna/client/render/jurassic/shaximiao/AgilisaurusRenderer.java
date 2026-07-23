@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Agilisaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class AgilisaurusRenderer extends MobRenderer<Agilisaurus, AgilisaurusModel> {
-	private static final ResourceLocation AGILISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/agilisaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/melanistic.png");
-	private static final ResourceLocation AGILISAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/agilisaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/agilisaurus/melanistic_sleeping.png");
+	private static final ResourceLocation AGILISAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/agilisaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/melanistic.png");
+	private static final ResourceLocation AGILISAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/agilisaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/agilisaurus/melanistic_sleeping.png");
 
 	public AgilisaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AgilisaurusModel(renderManagerIn.bakeLayer(ClientEvents.AGILISAURUS)), 0.325F);

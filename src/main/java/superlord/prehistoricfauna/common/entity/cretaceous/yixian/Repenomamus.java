@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -111,9 +116,14 @@ public class Repenomamus extends BurrowingDinosaur {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.REPENOMAMUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.REPENOMAMUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.REPENOMAMUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.repenomamus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.repenomamus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -213,7 +223,7 @@ public class Repenomamus extends BurrowingDinosaur {
 			super.tick();
 			if (!this.repenomamus.isInWater() && this.isReachedTarget()) {
 				if (this.repenomamus.isBirthing < 1) {
-					this.repenomamus.setBirthing(true);
+					this.repenomamus.setBirthing(1);
 				} else if (this.repenomamus.isBirthing > 200) {
 					Level level = this.repenomamus.level();
 					int amount = level.random.nextInt(4) + 1;
@@ -224,7 +234,7 @@ public class Repenomamus extends BurrowingDinosaur {
 						level.addFreshEntity(baby);
 					}
 					this.repenomamus.setHasBaby(false);
-					this.repenomamus.setBirthing(false);
+					this.repenomamus.setBirthing(0);
 					this.repenomamus.setInLoveTime(600);
 				}
 

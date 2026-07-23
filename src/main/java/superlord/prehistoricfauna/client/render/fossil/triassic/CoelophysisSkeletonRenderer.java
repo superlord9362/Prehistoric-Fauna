@@ -19,7 +19,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.CoelophysisSkele
 
 public class CoelophysisSkeletonRenderer extends MobRenderer<CoelophysisSkeleton, EntityModel<CoelophysisSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/coelophysis_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/coelophysis_skeleton.png");
     private static CoelophysisSkeletonModel IDLE;
     private static CoelophysisSkeletonSaunterModel SAUNTER;
     private static CoelophysisSkeletonSeizeModel SEIZE;
@@ -40,21 +40,15 @@ public class CoelophysisSkeletonRenderer extends MobRenderer<CoelophysisSkeleton
 	}
 	
 	protected void scale(CoelophysisSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isSauntering()) {
-			model = SAUNTER;
-		} else if (entityIn.isSeizing()) {
-			model = SEIZE;
-		} else if (entityIn.isSlain()) {
-			model = SLAIN;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else if (entityIn.isSlumped()) {
-			model = SLUMP;
-		} else if (entityIn.isStriding()) {
-			model = STRIDE;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "SAUNTERING" -> SAUNTER;
+		case "SEIZING" -> SEIZE;
+		case "STRIDING" -> STRIDE;
+		case "SLEEPING" -> SLEEPING;
+		case "SLUMPED" -> SLUMP;
+		case "SLAIN" -> SLAIN;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

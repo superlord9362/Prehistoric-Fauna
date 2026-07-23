@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.BrachiosaurusSku
 
 public class BrachiosaurusSkullRenderer extends MobRenderer<BrachiosaurusSkull, BrachiosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/brachiosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/brachiosaurus_skeleton.png");
 
 	public BrachiosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BrachiosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.BRACHIOSAURUS_SKULL)), 0);

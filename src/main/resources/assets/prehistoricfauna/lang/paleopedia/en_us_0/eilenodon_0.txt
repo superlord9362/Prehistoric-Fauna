@@ -34,4 +34,5 @@ Sleep Cycle: Nocturnal
 
 
 
-Behavior: Investigation underway!
+Behavior: Eilenodon can be found 
+basking in the sun.

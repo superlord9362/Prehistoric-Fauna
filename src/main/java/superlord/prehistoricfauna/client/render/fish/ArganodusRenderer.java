@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Arganodus;
 
 public class ArganodusRenderer extends MobRenderer<Arganodus, ArganodusModel> {
 
-	private static final ResourceLocation ARGANODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/arganodus.png");
+	private static final ResourceLocation ARGANODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/arganodus.png");
 
 	public ArganodusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ArganodusModel(renderManagerIn.bakeLayer(ClientEvents.ARGANODUS)), 0);

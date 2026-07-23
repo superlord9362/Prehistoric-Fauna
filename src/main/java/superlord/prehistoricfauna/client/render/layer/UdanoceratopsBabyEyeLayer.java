@@ -19,8 +19,8 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Udanocerato
 
 public class UdanoceratopsBabyEyeLayer extends RenderLayer<Udanoceratops, EntityModel<Udanoceratops>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_baby_eyeglow.png"));
-	private static final RenderType TEXTURE_SNIFFER = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/udanoceratops_baby_eyeglow.png"));
+	private static final RenderType TEXTURE_SNIFFER = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/sniffer_eyeglow.png"));
 	private final RenderLayerParent<Udanoceratops, EntityModel<Udanoceratops>> udanoceratopsRenderer;
 	
 	public UdanoceratopsBabyEyeLayer(RenderLayerParent<Udanoceratops, EntityModel<Udanoceratops>> rendererIn) {

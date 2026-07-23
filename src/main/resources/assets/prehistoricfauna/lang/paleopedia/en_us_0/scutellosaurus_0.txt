@@ -1,7 +1,7 @@
 Found In: Kayenta
 
-Drops: 0-2 Osteoderms, 1 Small Raw 
-Thyreophoran
+Drops: 0-2 Small Osteoderms, 1 
+Small Raw Thyreophoran
 
 Diet: Herbivore
 
@@ -34,4 +34,6 @@ Sleep Cycle: Crepuscular
 
 
 
-Behavior: Investigation underway!
+Behavior: Scutellosaurus will find 
+and follow herbivores larger than 
+itself for protection.

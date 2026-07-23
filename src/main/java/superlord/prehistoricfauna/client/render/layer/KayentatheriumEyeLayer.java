@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Kayentatherium;
 
 public class KayentatheriumEyeLayer extends RenderLayer<Kayentatherium, KayentatheriumModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/kayentatherium/kayentatherium_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/kayentatherium/kayentatherium_eyeglow.png"));
 	private final RenderLayerParent<Kayentatherium, KayentatheriumModel> kayentatheriumRenderer;
 	
 	public KayentatheriumEyeLayer(RenderLayerParent<Kayentatherium, KayentatheriumModel> rendererIn) {

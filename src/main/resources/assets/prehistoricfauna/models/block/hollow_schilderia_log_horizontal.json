@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/schilderia_log_top",
+		"side": "prehistoricfauna:block/schilderia_log",
+		"inside": "prehistoricfauna:block/stripped_schilderia_log"
+	}
+}

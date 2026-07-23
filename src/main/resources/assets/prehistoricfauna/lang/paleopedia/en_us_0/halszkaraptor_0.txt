@@ -7,9 +7,9 @@ Diet: Piscivore
 
 Breeding Item: Harenaichthys
 
-Max Health: 6
+Max Health: 4
 
-Max Hunger: 15
+Max Hunger: 10
 
 Temperaments: Halszkaraptor has 
 an 85% chance of being skittish 

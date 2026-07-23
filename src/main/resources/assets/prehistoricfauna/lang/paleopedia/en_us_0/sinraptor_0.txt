@@ -18,7 +18,7 @@ being protective.
 
 Sleep Cycle: Cathemeral
 
-<image><drawings_ankylosaurus.png 30 3 152 192 23 18 7>
+<image><drawings_ankylosaurus.png 30 3 152 213 23 18 7>
 
 
 
@@ -34,5 +34,9 @@ Sleep Cycle: Cathemeral
 
 
 
-Behavior: Investigation underway!
+Behavior: Sinraptor will slowly 
+circle and stalk its prey before 
+charging in and biting before 
+running away again. These bites 
+will cause bleeding.
 

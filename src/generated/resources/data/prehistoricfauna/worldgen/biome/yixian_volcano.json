@@ -69,7 +69,8 @@
       "prehistoricfauna:placed_rare_schizolepidopsis_trees",
       "prehistoricfauna:placed_dead_taxus_trees",
       "prehistoricfauna:placed_rare_taxus_trees",
-      "prehistoricfauna:placed_ash"
+      "prehistoricfauna:placed_ash",
+      "prehistoricfauna:placed_baiera_trees"
     ]
   ],
   "has_precipitation": false,

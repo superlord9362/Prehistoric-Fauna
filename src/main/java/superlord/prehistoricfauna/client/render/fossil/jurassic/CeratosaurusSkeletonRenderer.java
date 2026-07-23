@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.CeratosaurusSkel
 
 public class CeratosaurusSkeletonRenderer extends MobRenderer<CeratosaurusSkeleton, EntityModel<CeratosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ceratosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/ceratosaurus_skeleton.png");
     private static CeratosaurusSkeletonModel IDLE;
     private static CeratosaurusSkeletonActionModel ACTION;
     private static CeratosaurusSkeletonAlertLeftModel ALERT_LEFT;
@@ -34,17 +34,13 @@ public class CeratosaurusSkeletonRenderer extends MobRenderer<CeratosaurusSkelet
 	}
 	
 	protected void scale(CeratosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isAction()) {
-			model = ACTION;
-		} else if (entityIn.isAlertLeft()) {
-			model = ALERT_LEFT;
-		} else if (entityIn.isAlertRight()) {
-			model = ALERT_RIGHT;
-		} else if (entityIn.isResting()) {
-			model = RESTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "ACTION" -> ACTION;
+		case "RESTING" -> RESTING;
+		case "ALERT_LEFT" -> ALERT_LEFT;
+		case "ALERT_RIGHT" -> ALERT_RIGHT;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

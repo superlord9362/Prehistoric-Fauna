@@ -1,43 +1,36 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_beehive",
+	"pattern": [		
+		"PPP",
+		"HHH",
+		"PPP"
+	],
+	"key": {
+		"P": {
+			"item": "prehistoricfauna:agathoxylon_planks"
+		},
+		"H": {
+			"item": "minecraft:honeycomb"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_beehive"
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "woodworks"
-						},
-						{
-							"type": "woodworks:config",
-							"value": "wooden_beehives"
-						}
-					]
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_beehives"
 				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"category": "misc",
-				"group": "wooden_beehive",
-				"pattern": [
-					"PPP",
-					"HHH",
-					"PPP"
-				]				,
-				  "key": {
-				    "P": {
-				      "item": "prehistoricfauna:agathoxylon_planks"
-				    },
-				    "H": {
-				      "item": "minecraft:honeycomb"
-				    }
-				  },
-				  "result": {
-				    "item": "prehistoricfauna:agathoxylon_beehive"
-				  }
-			}
+			]
 		}
 	]
 }

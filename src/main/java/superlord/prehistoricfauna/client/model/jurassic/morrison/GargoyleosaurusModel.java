@@ -49,10 +49,10 @@ public class GargoyleosaurusModel extends EntityModel<Gargoyleosaurus> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 14.5F, -16.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 14.5F, 3.0F));
 
 		PartDefinition Body = root.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-10.5F, -2.5F, -12.0F, 21.0F, 0.0F, 16.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 16).addBox(-5.5F, -4.5F, -12.0F, 11.0F, 8.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 19.0F));
+		.texOffs(0, 16).addBox(-5.5F, -4.5F, -12.0F, 11.0F, 8.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 0.0F));
 
 		PartDefinition LeftArm = Body.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(54, 60).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, 3.5F, -10.0F));
 
@@ -70,12 +70,12 @@ public class GargoyleosaurusModel extends EntityModel<Gargoyleosaurus> {
 		PartDefinition Head = Neck.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(69, 56).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
 		.texOffs(70, 62).addBox(-1.0F, -1.0F, -4.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, -6.0F));
 
-		PartDefinition LeftThigh = root.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(42, 70).mirror().addBox(-3.0F, -1.5F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, 1.0F, 19.0F));
+		PartDefinition LeftThigh = root.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(42, 70).mirror().addBox(-3.0F, -1.5F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(5.0F, 1.0F, 0.0F));
 
 		PartDefinition LeftLeg = LeftThigh.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(46, 64).mirror().addBox(-1.5F, 3.0F, -1.0F, 3.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
 		.texOffs(42, 57).mirror().addBox(-1.5F, 0.0F, 0.0F, 3.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 4.5F, -1.0F));
 
-		PartDefinition RightThigh = root.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(42, 70).addBox(-1.0F, -1.5F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 1.0F, 19.0F));
+		PartDefinition RightThigh = root.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(42, 70).addBox(-1.0F, -1.5F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 1.0F, 0.0F));
 
 		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(46, 64).addBox(-1.5F, 3.0F, -1.0F, 3.0F, 1.0F, 1.0F, new CubeDeformation(0.0F))
 		.texOffs(42, 57).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 4.5F, -1.0F));
@@ -162,9 +162,9 @@ public class GargoyleosaurusModel extends EntityModel<Gargoyleosaurus> {
 				this.Tail2.xRot = (-Math.abs(-0.05F * Mth.sin(0.1F * ageInTicks / 5))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.15F);
 				this.Neck.xRot = (Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(limbSwing * speed * 0.3F) * degree * 0.1F * limbSwingAmount + 0.15F);
 //				this.Head.xRot = (-Math.abs(-0.025F * Mth.sin(0.1F * ageInTicks / 3))) + (Mth.cos(-1.0F + limbSwing * speed * 0.3F) * degree * 0.15F * limbSwingAmount + 0.05F);
-				this.Body.yRot = attackProgress * leftOrRight * (float)Math.toRadians(-200);
+				this.root.yRot = attackProgress * leftOrRight * (float)Math.toRadians(-200);
 				this.Tail1.zRot = attackProgress * leftOrRight * (float)Math.toRadians(15);
-				this.Body.z = 19.0F + attackProgress * -22;
+				this.root.z = 3.0F + attackProgress * -22;
 				if (entity.isEating()) {
 					this.Neck.xRot = Math.abs(Mth.sin(0.05F * ageInTicks) * 0.5F) + 0.25F;
 					this.Body.xRot = 0.1F;

@@ -12,12 +12,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.TelmasaurusM
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Telmasaurus;
 
 public class TelmasaurusRenderer extends MobRenderer<Telmasaurus, TelmasaurusModel> {
-	private static final ResourceLocation TELMASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/telmasaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/melanistic.png");
-	private static final ResourceLocation TELMASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/telmasaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/telmasaurus/melanistic_sleeping.png");
+	private static final ResourceLocation TELMASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/telmasaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/melanistic.png");
+	private static final ResourceLocation TELMASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/telmasaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/telmasaurus/melanistic_sleeping.png");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public TelmasaurusRenderer(EntityRendererProvider.Context renderManagerIn) {

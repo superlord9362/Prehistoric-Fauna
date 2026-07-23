@@ -1,8 +1,25 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "prehistoricfauna:henostone_brick_slab"
-  },
-  "result": "prehistoricfauna:henostone_brick_vertical_slab",
-  "count": 1
+	"type": "minecraft:stonecutting",
+	"category": "building",
+	"group": "vertical_slab",
+	"ingredient": {
+		"item": "prehistoricfauna:henostone_brick_slab"
+	},
+	"result": "prehistoricfauna:henostone_brick_vertical_slab",
+	"count": 1,
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

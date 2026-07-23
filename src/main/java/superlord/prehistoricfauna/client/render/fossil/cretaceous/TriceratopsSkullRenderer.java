@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TriceratopsSku
 
 public class TriceratopsSkullRenderer extends MobRenderer<TriceratopsSkull, TriceratopsSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/triceratops_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/triceratops_skeleton.png");
 
 	public TriceratopsSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new TriceratopsSkullModel(renderManagerIn.bakeLayer(ClientEvents.TRICERATOPS_SKULL)), 0);

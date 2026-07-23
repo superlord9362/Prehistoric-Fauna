@@ -2,6 +2,8 @@ package superlord.prehistoricfauna.common.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -48,6 +50,14 @@ public class BottledSyrupItem extends Item {
 
 	public InteractionResultHolder<ItemStack> use(Level p_42927_, Player p_42928_, InteractionHand p_42929_) {
 		return ItemUtils.startUsingInstantly(p_42927_, p_42928_, p_42929_);
+	}
+
+	public SoundEvent getDrinkingSound() {
+		return SoundEvents.HONEY_DRINK;
+	}
+
+	public SoundEvent getEatingSound() {
+		return SoundEvents.HONEY_DRINK;
 	}
 
 	@Override

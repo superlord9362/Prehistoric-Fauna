@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "prehistoricfauna:block/baiera_planks",
+        "top": "prehistoricfauna:block/baiera_planks",
+        "side": "prehistoricfauna:block/baiera_planks"
+    }
+}

@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Chuandongocoe
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ChuandongocoelurusRenderer extends MobRenderer<Chuandongocoelurus, ChuandongocoelurusModel> {
-	private static final ResourceLocation CHUANDONGOCOELURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/chuandongocoelurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/melanistic.png");
-	private static final ResourceLocation CHUANDONGOCOELURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/chuandongocoelurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/melanistic_sleeping.png");
+	private static final ResourceLocation CHUANDONGOCOELURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/chuandongocoelurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/melanistic.png");
+	private static final ResourceLocation CHUANDONGOCOELURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/chuandongocoelurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/melanistic_sleeping.png");
 
 	public ChuandongocoelurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ChuandongocoelurusModel(renderManagerIn.bakeLayer(ClientEvents.CHUANDONGOCOELURUS)), 0.5F);

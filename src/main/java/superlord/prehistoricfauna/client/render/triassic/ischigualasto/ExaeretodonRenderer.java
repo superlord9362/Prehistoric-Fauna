@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Exaeretod
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ExaeretodonRenderer extends MobRenderer<Exaeretodon, ExaeretodonModel> {
-	private static final ResourceLocation EXAERETODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/exaeretodon.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/melanistic.png");
-	private static final ResourceLocation EXAERETODON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/exaeretodon_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/exaeretodon/melanistic_sleeping.png");
+	private static final ResourceLocation EXAERETODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/exaeretodon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/melanistic.png");
+	private static final ResourceLocation EXAERETODON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/exaeretodon_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/exaeretodon/melanistic_sleeping.png");
 
 	public ExaeretodonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ExaeretodonModel(renderManagerIn.bakeLayer(ClientEvents.EXAERETODON)), 0.75F);

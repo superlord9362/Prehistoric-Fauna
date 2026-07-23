@@ -34,5 +34,9 @@ Sleep Cycle: Diurnal
 
 
 
-
-Behavior: Investigation underway!
+Behavior: Kayentachelys can dig in 
+blocks, pulling out bugs and some 
+treasures. They can also dig up
+sand balls and mud ball that can
+be crafted into blocks of sand and
+mud.

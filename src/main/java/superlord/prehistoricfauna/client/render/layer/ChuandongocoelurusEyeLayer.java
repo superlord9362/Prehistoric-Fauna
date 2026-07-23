@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Chuandongocoe
 
 public class ChuandongocoelurusEyeLayer extends RenderLayer<Chuandongocoelurus, ChuandongocoelurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chuandongocoelurus/chuandongocoelurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chuandongocoelurus/chuandongocoelurus_eyeglow.png"));
 	private final RenderLayerParent<Chuandongocoelurus, ChuandongocoelurusModel> chuandongocoelurusRenderer;
 	
 	public ChuandongocoelurusEyeLayer(RenderLayerParent<Chuandongocoelurus, ChuandongocoelurusModel> rendererIn) {

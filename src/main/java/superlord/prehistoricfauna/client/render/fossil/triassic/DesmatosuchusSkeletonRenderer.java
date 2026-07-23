@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.DesmatosuchusSke
 
 public class DesmatosuchusSkeletonRenderer extends MobRenderer<DesmatosuchusSkeleton, EntityModel<DesmatosuchusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/desmatosuchus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/desmatosuchus_skeleton.png");
     private static DesmatosuchusSkeletonModel IDLE;
     private static DesmatosuchusSkeletonWalkingLeftModel WALKING_LEFT;
     private static DesmatosuchusSkeletonWalkingRightModel WALKING_RIGHT;
@@ -31,15 +31,12 @@ public class DesmatosuchusSkeletonRenderer extends MobRenderer<DesmatosuchusSkel
 	}
 	
 	protected void scale(DesmatosuchusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isWalkingLeft()) {
-			model = WALKING_LEFT;
-		} else if (entityIn.isWalkingRight()) {
-			model = WALKING_RIGHT;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "WALKING_LEFT" -> WALKING_LEFT;
+		case "WALKING_RIGHT" -> WALKING_RIGHT;
+		case "SLEEPING" -> SLEEPING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

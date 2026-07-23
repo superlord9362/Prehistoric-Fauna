@@ -15,22 +15,27 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "criteria": {
-     "killed_something": {
-      "trigger": "minecraft:player_killed_entity",
-      "conditions": {
-	"entity": {
-          "type": "prehistoricfauna:coelophysis"
-        },
-		"killing_blow": {
-			"is_explosion": true
-		}
+"criteria": {
+  "killed_something": {
+    "trigger": "minecraft:player_killed_entity",
+    "conditions": {
+      "entity": {
+        "type": "prehistoricfauna:coelophysis"
+      },
+      "killing_blow": {
+        "tags": [
+          {
+            "id": "minecraft:is_explosion",
+            "expected": true
+          }
+        ]
       }
     }
-  },
-  "requirements": [
-    [
-      "killed_something"
-    ]
+  }
+},
+"requirements": [
+  [
+    "killed_something"
   ]
+]
 }

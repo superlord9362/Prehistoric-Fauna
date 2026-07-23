@@ -1,9 +1,13 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -21,6 +25,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -56,6 +61,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -106,7 +112,9 @@ public class Velociraptor extends DinosaurEntity {
 	};
 	private static final EntityDataAccessor<Boolean> TAME_SIT = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> TAME_WANDER = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> ARMORED = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> SIT_TICK = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> ARMOR_DAMAGE = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
 	private int maxHunger = 20;
 	private float interestedAngle;
 	private float interestedAngleO;
@@ -133,6 +141,22 @@ public class Velociraptor extends DinosaurEntity {
 
 	private void setTameWandering(boolean isTameWandering) {
 		this.entityData.set(TAME_WANDER, isTameWandering);
+	}
+
+	public boolean isArmored() {
+		return this.entityData.get(ARMORED);
+	}
+
+	private void setArmored(boolean isArmored) {
+		this.entityData.set(ARMORED, isArmored);
+	}
+
+	public int getArmorDamage() {
+		return this.entityData.get(ARMOR_DAMAGE);
+	}
+
+	private void setArmorDamage(int armorDamage) {
+		this.entityData.set(ARMOR_DAMAGE, armorDamage);
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -164,7 +188,9 @@ public class Velociraptor extends DinosaurEntity {
 		this.entityData.define(CLIMBING, (byte)0);
 		this.entityData.define(TAME_SIT, false);
 		this.entityData.define(TAME_WANDER, false);
+		this.entityData.define(ARMORED, false);
 		this.entityData.define(SIT_TICK, 0);
+		this.entityData.define(ARMOR_DAMAGE, 64);
 	}
 
 	protected void registerGoals() {
@@ -186,7 +212,7 @@ public class Velociraptor extends DinosaurEntity {
 		this.goalSelector.addGoal(8, new Velociraptor.FollowGoal(this, 1.25D));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.goalSelector.addGoal(10, new LeapAtTargetGoal(this, 0.4F));
-		this.goalSelector.addGoal(11, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(11, new VelociraptorWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(13, new Velociraptor.SitAndLookGoal());
@@ -221,9 +247,18 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	public void aiStep() {
+		if (this.isSitting() || this.isTameSitting()) {
+			this.getNavigation().stop();
+			this.moveControl.setWantedPosition(this.getX(), this.getY(), this.getZ(), 0);
+			this.setSpeed(0);
+			this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
+		}
 		if (!this.level().isClientSide() && this.isAlive()) {
 			if (this.isSitting() || this.isTameSitting()) {
 				this.getNavigation().stop();
+				this.moveControl.setWantedPosition(this.getX(), this.getY(), this.getZ(), 0);
+				this.setSpeed(0);
+				this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
 			}
 			++this.eatTicks;
 			ItemStack itemstack = this.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -284,7 +319,7 @@ public class Velociraptor extends DinosaurEntity {
 	}
 
 	protected boolean isMovementBlocked() {
-		return this.getHealth() <= 0.0F;
+		return this.getHealth() <= 0.0F || this.isSitting() || this.isAsleep() || this.isTameSitting();
 	}
 
 	public boolean canEquipItem(ItemStack stack) {
@@ -362,8 +397,20 @@ public class Velociraptor extends DinosaurEntity {
 				}
 			}
 		}
+		if (this.isArmored()) {
+			if (dmg.is(DamageTypes.DROWN) || dmg.is(DamageTypes.FREEZE) || dmg.is(DamageTypes.IN_WALL) || dmg.is(DamageTypes.MAGIC) || dmg.is(DamageTypes.INDIRECT_MAGIC) || dmg.is(DamageTypes.THORNS) || dmg.is(DamageTypes.WITHER) || dmg.is(DamageTypes.FELL_OUT_OF_WORLD) || dmg.is(DamageTypes.CRAMMING)) {
+				return super.hurt(dmg, i);
+			} else {
+				if (this.getArmorDamage() - i <= 0) {
+					this.setArmored(false); 
+				}
+				else this.setArmorDamage(this.getArmorDamage() - (int) i);
+				return super.hurt(dmg, 0);
+			}
+		}
 		return super.hurt(dmg, i);
 	}
+	
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("IsSleeping", this.isSleeping());
@@ -371,6 +418,8 @@ public class Velociraptor extends DinosaurEntity {
 		compound.putBoolean("IsCrouching", this.isCrouching());
 		compound.putBoolean("IsTamedSitting", this.isTameSitting());
 		compound.putBoolean("IsTamedWander", this.isTameWandering());
+		compound.putBoolean("IsArmored", this.isArmored());
+		compound.putInt("ArmorDamage", this.getArmorDamage());
 	}
 
 	/**
@@ -383,6 +432,8 @@ public class Velociraptor extends DinosaurEntity {
 		this.setCrouching(compound.getBoolean("IsCrouching"));
 		this.setTameSitting(compound.getBoolean("IsTamedSitting"));
 		this.setTameWandering(compound.getBoolean("IsTamedWander"));
+		this.setArmored(compound.getBoolean("IsArmored"));
+		this.setArmorDamage(compound.getInt("ArmorDamage"));
 	}
 
 	public boolean isSitting() {
@@ -392,7 +443,7 @@ public class Velociraptor extends DinosaurEntity {
 	public void setSitting(boolean p_213466_1_) {
 		this.setVelociraptorFlag(1, p_213466_1_);
 		this.entityData.set(SIT_TICK, 15);
-//		this.setFallingAsleep();
+		//		this.setFallingAsleep();
 	}
 
 	public boolean isStuck() {
@@ -454,6 +505,10 @@ public class Velociraptor extends DinosaurEntity {
 			}
 		}
 
+		if (this.isSitting() || this.isTameSitting()) {
+			this.getNavigation().stop();
+		}
+		
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
@@ -514,7 +569,7 @@ public class Velociraptor extends DinosaurEntity {
 			}
 		}
 	}
-	
+
 	public float getSitProgress(float partialTick) {
 		return prevSitProgress + (sitProgress - prevSitProgress) * partialTick;
 	}
@@ -720,7 +775,7 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			if (!Velociraptor.this.isSleeping() && this.mob.getTarget() == null) {
+			if (!Velociraptor.this.isSleeping() && this.mob.getTarget() == null && !(Velociraptor.this.isSitting() || Velociraptor.this.isTameSitting())) {
 				if (Velociraptor.this.level().isThundering()) {
 					return true;
 				} else if (this.cooldown > 0) {
@@ -739,6 +794,17 @@ public class Velociraptor extends DinosaurEntity {
 		public void start() {
 			Velociraptor.this.func_213499_en();
 			super.start();
+		}
+	}
+
+	protected void dropEquipment() {
+		super.dropEquipment();
+		if (this.isArmored()) {
+			if (!this.level().isClientSide()) {
+				ItemStack armorStack = new ItemStack(PFItems.SMALL_DINOSAUR_ARMOR.get());
+				armorStack.setDamageValue(armorStack.getMaxDamage() - this.getArmorDamage());
+				this.spawnAtLocation(armorStack);
+			}
 		}
 	}
 
@@ -770,7 +836,7 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			if (Velociraptor.this.isSleeping()) {
+			if (Velociraptor.this.isSleeping() || Velociraptor.this.isSitting() || Velociraptor.this.isTameSitting()) {
 				return false;
 			} else {
 				LivingEntity livingentity = Velociraptor.this.getTarget();
@@ -965,7 +1031,7 @@ public class Velociraptor extends DinosaurEntity {
 		}
 
 		public boolean canUse() {
-			return Velociraptor.this.getLastHurtByMob() == null && !Velociraptor.this.isInWater() && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() || Velociraptor.this.isTameSitting();
+			return Velociraptor.this.getLastHurtByMob() == null && !Velociraptor.this.isInWater() && Velociraptor.this.getRandom().nextFloat() < 0.02F && !Velociraptor.this.isSleeping() && Velociraptor.this.getTarget() == null && Velociraptor.this.getNavigation().isDone() && !Velociraptor.this.func_213480_dY() && !Velociraptor.this.isCrouching() || !Velociraptor.this.isTameSitting();
 		}
 
 		public boolean canContinueToUse() {
@@ -1090,9 +1156,14 @@ public class Velociraptor extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.VELOCIRAPTOR.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.VELOCIRAPTOR.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.VELOCIRAPTOR.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.velociraptor_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.velociraptor_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -1102,70 +1173,6 @@ public class Velociraptor extends DinosaurEntity {
 
 		} else {
 			if (this.isTame()) {
-				if (this.getCurrentHunger() < this.maxHunger && (itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER))) {
-					if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
-						if (this.getCurrentHunger() + 2 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 2);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
-						if (this.getCurrentHunger() + 4 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 4);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
-						if (this.getCurrentHunger() + 6 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 6);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
-						if (this.getCurrentHunger() + 8 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 8);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
-						if (this.getCurrentHunger() + 10 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 10);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-					if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
-						if (this.getCurrentHunger() + 12 >= this.maxHunger) {
-							this.setHunger(this.maxHunger);
-						} else {
-							this.setHunger(this.getCurrentHunger() + 12);
-						}
-						if (!player.isCreative()) {
-							itemstack.shrink(1);
-						}
-					}
-				} else {
-					player.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
-				}
 				if (this.getOwner() == player) {
 					if (this.isFood(itemstack)) {
 						if (this.getHealth() < this.getMaxHealth()) {
@@ -1182,6 +1189,22 @@ public class Velociraptor extends DinosaurEntity {
 								}
 							}
 						}
+					} else if (!this.isArmored() && item == PFItems.SMALL_DINOSAUR_ARMOR.get()) {
+						this.setArmored(true);
+						this.setArmorDamage(itemstack.getMaxDamage() - itemstack.getDamageValue());
+						if (!player.isCreative()) {
+							itemstack.shrink(1);
+						}
+					} else if (this.isArmored() && item == Items.SHEARS) {
+						this.setArmored(false);
+						ItemStack armorStack = new ItemStack(PFItems.SMALL_DINOSAUR_ARMOR.get());
+						armorStack.setDamageValue(armorStack.getMaxDamage() - this.getArmorDamage());
+						this.spawnAtLocation(armorStack);
+						if (!player.isCreative()) {
+							itemstack.hurtAndBreak(1, player, (p_41007_) -> {
+								p_41007_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+							});
+						}
 					} else {
 						if (this.isTameSitting()) {
 							this.setTameSitting(false);
@@ -1195,6 +1218,66 @@ public class Velociraptor extends DinosaurEntity {
 							player.displayClientMessage(Component.translatable("entity.prehistoricfauna.velociraptor.sitting"), true);
 						}
 					}
+				} else if ((itemstack.is(PFTags.MEATS_2_HUNGER) || itemstack.is(PFTags.MEATS_4_HUNGER) || itemstack.is(PFTags.MEATS_6_HUNGER) || itemstack.is(PFTags.MEATS_8_HUNGER) || itemstack.is(PFTags.MEATS_10_HUNGER) || itemstack.is(PFTags.MEATS_12_HUNGER))) {
+					if (this.getCurrentHunger() < this.maxHunger) {
+						if (itemstack.is(PFTags.MEATS_2_HUNGER)) {
+							if (this.getCurrentHunger() + 2 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 2);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_4_HUNGER)) {
+							if (this.getCurrentHunger() + 4 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 4);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_6_HUNGER)) {
+							if (this.getCurrentHunger() + 6 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 6);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_8_HUNGER)) {
+							if (this.getCurrentHunger() + 8 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 8);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_10_HUNGER)) {
+							if (this.getCurrentHunger() + 10 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 10);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						} else if (itemstack.is(PFTags.MEATS_12_HUNGER)) {
+							if (this.getCurrentHunger() + 12 >= this.maxHunger) {
+								this.setHunger(this.maxHunger);
+							} else {
+								this.setHunger(this.getCurrentHunger() + 12);
+							}
+							if (!player.isCreative()) {
+								itemstack.shrink(1);
+							}
+						}
+					} else {
+						player.displayClientMessage(Component.translatable("entity.prehistoricfauna.fullHunger"), true);
+					} 
 				}
 			} else {
 				if (this.isFood(itemstack)) {
@@ -1229,6 +1312,28 @@ public class Velociraptor extends DinosaurEntity {
 			return super.canUse() && !Velociraptor.this.isTameSitting() && !Velociraptor.this.isTameWandering();
 		}
 
+	}
+	
+	public class VelociraptorWaterAvoidingRandomStrollGoal extends DinosaurWaterAvoidingRandomStrollGoal {
+		Velociraptor dinosaur;
+
+		public VelociraptorWaterAvoidingRandomStrollGoal(Velociraptor p_25987_, double p_25988_) {
+			super(p_25987_, p_25988_);
+			this.dinosaur = p_25987_;
+		}
+		
+		public boolean canUse() {
+			return super.canUse() && !(dinosaur.isTameSitting() || dinosaur.isSitting());
+		}
+		
+		public boolean canContinueToUse() {
+			return super.canContinueToUse() && !(dinosaur.isTameSitting() || dinosaur.isSitting());
+		}
+		
+		public void tick() {
+			super.tick();
+			if (dinosaur.isTameSitting() || dinosaur.isSitting()) stop();
+		}
 	}
 
 	@Override

@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Poposaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class PoposaurusRenderer extends MobRenderer<Poposaurus, PoposaurusModel> {
-	private static final ResourceLocation POPOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/poposaurus.png");
-	private static final ResourceLocation POPOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/poposaurus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/poposaurus/melanistic_sleeping.png");
+	private static final ResourceLocation POPOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/poposaurus.png");
+	private static final ResourceLocation POPOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/poposaurus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/poposaurus/melanistic_sleeping.png");
 
 	public PoposaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PoposaurusModel(renderManagerIn.bakeLayer(ClientEvents.POPOSAURUS)), 1F);

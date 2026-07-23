@@ -1,0 +1,56 @@
+{
+	"type": "fossil:sifter",
+	"input": {
+		"item": "prehistoricfauna:siltstone_regolith"
+	},
+	"outputs": [
+		{
+			"item": "prehistoricfauna:jurassic_fossil",
+			"weight": 5.0
+		},
+		{
+			"item": "prehistoricfauna:hardened_silt",
+			"weight": 20.0
+		},
+		{
+			"item": "minecraft:bone_meal",
+			"weight": 25.0
+		},
+    	{
+      		"item": "minecraft:gold_nugget",
+      		"weight": 8.0
+   		},
+    	{
+      		"item": "minecraft:iron_nugget",
+      		"weight": 8.0
+    	},
+    	{
+			"item": "prehistoricfauna:monkey_sherd",
+			"weight": 2.0
+		},
+    	{
+			"item": "prehistoricfauna:trilobite_sherd",
+			"weight": 2.0
+		},
+    	{
+			"item": "prehistoricfauna:leaf_sherd",
+			"weight": 2.0
+		},
+    	{
+			"item": "prehistoricfauna:vintage_sherd",
+			"weight": 2.0
+		}
+	],
+	"total": 79.0,
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "fossil"
+				}
+			]
+		}
+	]
+}

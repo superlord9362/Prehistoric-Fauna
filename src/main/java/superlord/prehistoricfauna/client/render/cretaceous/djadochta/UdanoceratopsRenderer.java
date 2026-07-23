@@ -17,21 +17,21 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Udanocerato
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class UdanoceratopsRenderer extends MobRenderer<Udanoceratops, EntityModel<Udanoceratops>> {
-	private static final ResourceLocation UDANOCERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/melanistic.png");
-	private static final ResourceLocation UDANOCERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/melanistic_sleeping.png");
-	private static final ResourceLocation UDANOCERATOPS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/melanistic_baby.png");
-	private static final ResourceLocation UDANOCERATOPS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/udanoceratops_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/melanistic_baby_sleeping.png");
+	private static final ResourceLocation UDANOCERATOPS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/udanoceratops.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/melanistic.png");
+	private static final ResourceLocation UDANOCERATOPS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/udanoceratops_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/melanistic_sleeping.png");
+	private static final ResourceLocation UDANOCERATOPS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/udanoceratops_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/melanistic_baby.png");
+	private static final ResourceLocation UDANOCERATOPS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/udanoceratops_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/melanistic_baby_sleeping.png");
 
-	private static final ResourceLocation SNIFFER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer.png");
-	private static final ResourceLocation SNIFFER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/udanoceratops/sniffer_sleeping.png");
+	private static final ResourceLocation SNIFFER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/sniffer.png");
+	private static final ResourceLocation SNIFFER_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/udanoceratops/sniffer_sleeping.png");
 
 	private static UdanoceratopsModel UDANOCERATOPS_MODEL;
 	private static UdanoceratopsBabyModel BABY_MODEL;

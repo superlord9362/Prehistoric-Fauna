@@ -10,31 +10,29 @@ Jurassic, 156.3-146.8 million years
 ago.
 
 Animals: 
--Dinosaurs
+-Dinosaurs:
+--Alcovasaurus
 --Allosaurus
+--Brachiosaurus
+--Brontosaurus
 --Camarasaurus
+--Camptosaurus
+
 --Ceratosaurus
+--Diplodocus
 --Dryosaurus
+--Gargoyleosaurus
 --Hesperornithoides
 --Stegosaurus
+--Suuwassea
+--Tanycolagreus
+--Torvosaurus
 
--Reptiles
+-Snakes:
+--Diablophis
+
+-Misc. Reptiles:
 --Eilenodon
 
--Bugs
---Dermestid Beetle
-
--Fish
---Ceratodus
---Potamoceratodus
-
-Plants: 
--Land Plants
---Cladophlebis
---Conioptris
---Dead Cycadeoid
---Horsetails
---Osmundacaulis
-
--Trees
---Araucaria
+-Crocodilians:
+--Macelognathus

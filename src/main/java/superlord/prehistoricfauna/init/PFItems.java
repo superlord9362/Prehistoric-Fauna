@@ -1,65 +1,22 @@
 package superlord.prehistoricfauna.init;
 
+import net.minecraft.client.renderer.item.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BannerPatternTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BannerPatternItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BowlFoodItem;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.SignItem;
-import net.minecraft.world.item.StandingAndWallBlockItem;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.entity.PFBoat;
 import superlord.prehistoricfauna.common.entity.PFBoat.PFBoatTypes;
 import superlord.prehistoricfauna.common.entity.PFRaft;
-import superlord.prehistoricfauna.common.items.ArmorMaterialInit;
-import superlord.prehistoricfauna.common.items.BottledBugItem;
-import superlord.prehistoricfauna.common.items.BottledSyrupItem;
-import superlord.prehistoricfauna.common.items.CalciumSupplementItem;
-import superlord.prehistoricfauna.common.items.CobbaniaBlockItem;
-import superlord.prehistoricfauna.common.items.CretaceousTimeTotemItem;
-import superlord.prehistoricfauna.common.items.CustomArmorItem;
-import superlord.prehistoricfauna.common.items.CustomChestplateItem;
-import superlord.prehistoricfauna.common.items.DinosaurEggItem;
-import superlord.prehistoricfauna.common.items.EggHelmetItem;
-import superlord.prehistoricfauna.common.items.FermentedDrinkItem;
-import superlord.prehistoricfauna.common.items.FermentedGinkgoBerryItem;
-import superlord.prehistoricfauna.common.items.FossilItem;
-import superlord.prehistoricfauna.common.items.GarOilItem;
-import superlord.prehistoricfauna.common.items.HorsetailTeaItem;
-import superlord.prehistoricfauna.common.items.JurassicTimeTotemItem;
-import superlord.prehistoricfauna.common.items.LungfishOilItem;
-import superlord.prehistoricfauna.common.items.PFBoatItem;
-import superlord.prehistoricfauna.common.items.PFBucketItem;
-import superlord.prehistoricfauna.common.items.PFChestBoatItem;
-import superlord.prehistoricfauna.common.items.PFHoeItem;
-import superlord.prehistoricfauna.common.items.PFItemTiers;
-import superlord.prehistoricfauna.common.items.PFRaftItem;
-import superlord.prehistoricfauna.common.items.PFSpawnEggItem;
-import superlord.prehistoricfauna.common.items.PaleopaintingItem;
-import superlord.prehistoricfauna.common.items.PaleopediaItem;
-import superlord.prehistoricfauna.common.items.SpawnSkeletonItem;
-import superlord.prehistoricfauna.common.items.TriassicTimeTotemItem;
-import superlord.prehistoricfauna.common.items.TyrannosaurToothSwordItem;
-import superlord.prehistoricfauna.common.items.WallFossilItem;
+import superlord.prehistoricfauna.common.items.*;
 
 public class PFItems {
 
@@ -79,10 +36,13 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> CHISELED_HENOSTONE_PILLAR = BUILDING_REGISTER.register("chiseled_henostone_pillar", () -> new BlockItem(PFBlocks.CHISELED_HENOSTONE_PILLAR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_STAIRS = BUILDING_REGISTER.register("henostone_stairs", () -> new BlockItem(PFBlocks.HENOSTONE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_SLAB = BUILDING_REGISTER.register("henostone_slab", () -> new BlockItem(PFBlocks.HENOSTONE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HENOSTONE_WALL = BUILDING_REGISTER.register("henostone_wall", () -> new BlockItem(PFBlocks.HENOSTONE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_BRICK_STAIRS = BUILDING_REGISTER.register("henostone_brick_stairs", () -> new BlockItem(PFBlocks.HENOSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_BRICK_SLAB = BUILDING_REGISTER.register("henostone_brick_slab", () -> new BlockItem(PFBlocks.HENOSTONE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HENOSTONE_BRICK_WALL = BUILDING_REGISTER.register("henostone_brick_wall", () -> new BlockItem(PFBlocks.HENOSTONE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_STAIRS = BUILDING_REGISTER.register("dark_henostone_brick_stairs", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_SLAB = BUILDING_REGISTER.register("dark_henostone_brick_slab", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_WALL = BUILDING_REGISTER.register("dark_henostone_brick_wall", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HENOSTONE_ORE = BUILDING_REGISTER.register("henostone_ore", () -> new BlockItem(PFBlocks.HENOSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TIME_FRAGMENT_BLOCK = BUILDING_REGISTER.register("time_fragment_block", () -> new BlockItem(PFBlocks.TIME_FRAGMENT_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_LOG = BUILDING_REGISTER.register("metasequoia_log", () -> new BlockItem(PFBlocks.METASEQUOIA_LOG.get(), new Item.Properties()));
@@ -261,6 +221,11 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> FRENELOPSIS_PLANKS = BUILDING_REGISTER.register("frenelopsis_planks", () -> new BlockItem(PFBlocks.FRENELOPSIS_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_STAIRS = BUILDING_REGISTER.register("frenelopsis_stairs", () -> new BlockItem(PFBlocks.FRENELOPSIS_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_SLAB = BUILDING_REGISTER.register("frenelopsis_slab", () -> new BlockItem(PFBlocks.FRENELOPSIS_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_LOG = BUILDING_REGISTER.register("baiera_log", () -> new BlockItem(PFBlocks.BAIERA_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> STRIPPED_BAIERA_LOG = BUILDING_REGISTER.register("stripped_baiera_log", () -> new BlockItem(PFBlocks.STRIPPED_BAIERA_LOG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_PLANKS = BUILDING_REGISTER.register("baiera_planks", () -> new BlockItem(PFBlocks.BAIERA_PLANKS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_STAIRS = BUILDING_REGISTER.register("baiera_stairs", () -> new BlockItem(PFBlocks.BAIERA_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_SLAB = BUILDING_REGISTER.register("baiera_slab", () -> new BlockItem(PFBlocks.BAIERA_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_PLANKS = BUILDING_REGISTER.register("neocalamites_planks", () -> new BlockItem(PFBlocks.NEOCALAMITES_PLANKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_STAIRS = BUILDING_REGISTER.register("neocalamites_stairs", () -> new BlockItem(PFBlocks.NEOCALAMITES_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_SLAB = BUILDING_REGISTER.register("neocalamites_slab", () -> new BlockItem(PFBlocks.NEOCALAMITES_SLAB.get(), new Item.Properties()));
@@ -271,40 +236,49 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> SANDSTONE_REGOLITH = BUILDING_REGISTER.register("sandstone_regolith", () -> new BlockItem(PFBlocks.SANDSTONE_REGOLITH.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_STAIRS = BUILDING_REGISTER.register("sandstone_stairs", () -> new BlockItem(PFBlocks.SANDSTONE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_SLAB = BUILDING_REGISTER.register("sandstone_slab", () -> new BlockItem(PFBlocks.SANDSTONE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SANDSTONE_WALL = BUILDING_REGISTER.register("sandstone_wall", () -> new BlockItem(PFBlocks.SANDSTONE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_FOSSIL = BUILDING_REGISTER.register("sandstone_fossil", () -> new BlockItem(PFBlocks.SANDSTONE_FOSSIL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SMOOTH_SANDSTONE = BUILDING_REGISTER.register("smooth_sandstone", () -> new BlockItem(PFBlocks.SMOOTH_SANDSTONE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SMOOTH_SANDSTONE_WALL = BUILDING_REGISTER.register("smooth_sandstone_wall", () -> new BlockItem(PFBlocks.SMOOTH_SANDSTONE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SANDSTONE = BUILDING_REGISTER.register("polished_sandstone", () -> new BlockItem(PFBlocks.POLISHED_SANDSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SANDSTONE_STAIRS = BUILDING_REGISTER.register("polished_sandstone_stairs", () -> new BlockItem(PFBlocks.POLISHED_SANDSTONE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SANDSTONE_SLAB = BUILDING_REGISTER.register("polished_sandstone_slab", () -> new BlockItem(PFBlocks.POLISHED_SANDSTONE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_BRICKS = BUILDING_REGISTER.register("sandstone_bricks", () -> new BlockItem(PFBlocks.SANDSTONE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_BRICK_STAIRS = BUILDING_REGISTER.register("sandstone_brick_stairs", () -> new BlockItem(PFBlocks.SANDSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SANDSTONE_BRICK_SLAB = BUILDING_REGISTER.register("sandstone_brick_slab", () -> new BlockItem(PFBlocks.SANDSTONE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SANDSTONE_BRICK_WALL = BUILDING_REGISTER.register("sandstone_brick_wall", () -> new BlockItem(PFBlocks.SANDSTONE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHISELED_SANDSTONE = BUILDING_REGISTER.register("chiseled_sandstone", () -> new BlockItem(PFBlocks.CHISELED_SANDSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE = BUILDING_REGISTER.register("siltstone", () -> new BlockItem(PFBlocks.SILTSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_REGOLITH = BUILDING_REGISTER.register("siltstone_regolith", () -> new BlockItem(PFBlocks.SILTSTONE_REGOLITH.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_STAIRS = BUILDING_REGISTER.register("siltstone_stairs", () -> new BlockItem(PFBlocks.SILTSTONE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_SLAB = BUILDING_REGISTER.register("siltstone_slab", () -> new BlockItem(PFBlocks.SILTSTONE_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SILTSTONE_WALL = BUILDING_REGISTER.register("siltstone_wall", () -> new BlockItem(PFBlocks.SILTSTONE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_FOSSIL = BUILDING_REGISTER.register("siltstone_fossil", () -> new BlockItem(PFBlocks.SILTSTONE_FOSSIL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SMOOTH_SILTSTONE = BUILDING_REGISTER.register("smooth_siltstone", () -> new BlockItem(PFBlocks.SMOOTH_SILTSTONE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SMOOTH_SILTSTONE_WALL = BUILDING_REGISTER.register("smooth_siltstone_wall", () -> new BlockItem(PFBlocks.SMOOTH_SILTSTONE_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SILTSTONE = BUILDING_REGISTER.register("polished_siltstone", () -> new BlockItem(PFBlocks.POLISHED_SILTSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SILTSTONE_STAIRS = BUILDING_REGISTER.register("polished_siltstone_stairs", () -> new BlockItem(PFBlocks.POLISHED_SILTSTONE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_SILTSTONE_SLAB = BUILDING_REGISTER.register("polished_siltstone_slab", () -> new BlockItem(PFBlocks.POLISHED_SILTSTONE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_BRICKS = BUILDING_REGISTER.register("siltstone_bricks", () -> new BlockItem(PFBlocks.SILTSTONE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_BRICK_STAIRS = BUILDING_REGISTER.register("siltstone_brick_stairs", () -> new BlockItem(PFBlocks.SILTSTONE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SILTSTONE_BRICK_SLAB = BUILDING_REGISTER.register("siltstone_brick_slab", () -> new BlockItem(PFBlocks.SILTSTONE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SILTSTONE_BRICK_WALL = BUILDING_REGISTER.register("siltstone_brick_wall", () -> new BlockItem(PFBlocks.SILTSTONE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHISELED_SILTSTONE = BUILDING_REGISTER.register("chiseled_siltstone", () -> new BlockItem(PFBlocks.CHISELED_SILTSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK = BUILDING_REGISTER.register("chalk", () -> new BlockItem(PFBlocks.CHALK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_REGOLITH = BUILDING_REGISTER.register("chalk_regolith", () -> new BlockItem(PFBlocks.CHALK_REGOLITH.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_STAIRS = BUILDING_REGISTER.register("chalk_stairs", () -> new BlockItem(PFBlocks.CHALK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_SLAB = BUILDING_REGISTER.register("chalk_slab", () -> new BlockItem(PFBlocks.CHALK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CHALK_WALL = BUILDING_REGISTER.register("chalk_wall", () -> new BlockItem(PFBlocks.CHALK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_FOSSIL = BUILDING_REGISTER.register("chalk_fossil", () -> new BlockItem(PFBlocks.CHALK_FOSSIL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SMOOTH_CHALK = BUILDING_REGISTER.register("smooth_chalk", () -> new BlockItem(PFBlocks.SMOOTH_CHALK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SMOOTH_CHALK_WALL = BUILDING_REGISTER.register("smooth_chalk_wall", () -> new BlockItem(PFBlocks.SMOOTH_CHALK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_CHALK = BUILDING_REGISTER.register("polished_chalk", () -> new BlockItem(PFBlocks.POLISHED_CHALK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_CHALK_STAIRS = BUILDING_REGISTER.register("polished_chalk_stairs", () -> new BlockItem(PFBlocks.POLISHED_CHALK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> POLISHED_CHALK_SLAB = BUILDING_REGISTER.register("polished_chalk_slab", () -> new BlockItem(PFBlocks.POLISHED_CHALK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_BRICKS = BUILDING_REGISTER.register("chalk_bricks", () -> new BlockItem(PFBlocks.CHALK_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_BRICK_STAIRS = BUILDING_REGISTER.register("chalk_brick_stairs", () -> new BlockItem(PFBlocks.CHALK_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHALK_BRICK_SLAB = BUILDING_REGISTER.register("chalk_brick_slab", () -> new BlockItem(PFBlocks.CHALK_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CHALK_BRICK_WALL = BUILDING_REGISTER.register("chalk_brick_wall", () -> new BlockItem(PFBlocks.CHALK_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CHISELED_CHALK = BUILDING_REGISTER.register("chiseled_chalk", () -> new BlockItem(PFBlocks.CHISELED_CHALK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SALT = BUILDING_REGISTER.register("salt", () -> new BlockItem(PFBlocks.SALT.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> MOSSY_DIRT = BUILDING_REGISTER.register("mossy_dirt", () -> new BlockItem(PFBlocks.MOSSY_DIRT.get(), new Item.Properties()));
@@ -318,26 +292,17 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ASH_BRICKS = BUILDING_REGISTER.register("ash_bricks", () -> new BlockItem(PFBlocks.ASH_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ASH_BRICK_STAIRS = BUILDING_REGISTER.register("ash_brick_stairs", () -> new BlockItem(PFBlocks.ASH_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ASH_BRICK_SLAB = BUILDING_REGISTER.register("ash_brick_slab", () -> new BlockItem(PFBlocks.ASH_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ASH_BRICK_WALL = BUILDING_REGISTER.register("ash_brick_wall", () -> new BlockItem(PFBlocks.ASH_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PLANT_FIBER_BLOCK = BUILDING_REGISTER.register("plant_fiber_block", () -> new BlockItem(PFBlocks.PLANT_FIBER_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> THATCH = BUILDING_REGISTER.register("thatch", () -> new BlockItem(PFBlocks.THATCH.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> THATCH_STAIRS = BUILDING_REGISTER.register("thatch_stairs", () -> new BlockItem(PFBlocks.THATCH_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> THATCH_SLAB = BUILDING_REGISTER.register("thatch_slab", () -> new BlockItem(PFBlocks.THATCH_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> THATCH_CARPET = BUILDING_REGISTER.register("thatch_carpet", () -> new BlockItem(PFBlocks.THATCH_CARPET.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SANDSTONE_WALL = BUILDING_REGISTER.register("sandstone_wall", () -> new BlockItem(PFBlocks.SANDSTONE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SMOOTH_SANDSTONE_WALL = BUILDING_REGISTER.register("smooth_sandstone_wall", () -> new BlockItem(PFBlocks.SMOOTH_SANDSTONE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SANDSTONE_BRICK_WALL = BUILDING_REGISTER.register("sandstone_brick_wall", () -> new BlockItem(PFBlocks.SANDSTONE_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SILTSTONE_WALL = BUILDING_REGISTER.register("siltstone_wall", () -> new BlockItem(PFBlocks.SILTSTONE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SMOOTH_SILTSTONE_WALL = BUILDING_REGISTER.register("smooth_siltstone_wall", () -> new BlockItem(PFBlocks.SMOOTH_SILTSTONE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SILTSTONE_BRICK_WALL = BUILDING_REGISTER.register("siltstone_brick_wall", () -> new BlockItem(PFBlocks.SILTSTONE_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CHALK_WALL = BUILDING_REGISTER.register("chalk_wall", () -> new BlockItem(PFBlocks.CHALK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SMOOTH_CHALK_WALL = BUILDING_REGISTER.register("smooth_chalk_wall", () -> new BlockItem(PFBlocks.SMOOTH_CHALK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CHALK_BRICK_WALL = BUILDING_REGISTER.register("chalk_brick_wall", () -> new BlockItem(PFBlocks.CHALK_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HENOSTONE_WALL = BUILDING_REGISTER.register("henostone_wall", () -> new BlockItem(PFBlocks.HENOSTONE_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HENOSTONE_BRICK_WALL = BUILDING_REGISTER.register("henostone_brick_wall", () -> new BlockItem(PFBlocks.HENOSTONE_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> DARK_HENOSTONE_BRICK_WALL = BUILDING_REGISTER.register("dark_henostone_brick_wall", () -> new BlockItem(PFBlocks.DARK_HENOSTONE_BRICK_WALL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ASH_BRICK_WALL = BUILDING_REGISTER.register("ash_brick_wall", () -> new BlockItem(PFBlocks.ASH_BRICK_WALL.get(), new Item.Properties()));
 	//Decoration Blocks
 	public static final RegistryObject<BlockItem> PORTAL_FRAME = DECORATION_REGISTER.register("portal_frame", () -> new BlockItem(PFBlocks.PORTAL_FRAME.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HENOSTONE_TRAP = DECORATION_REGISTER.register("henostone_trap", () -> new BlockItem(PFBlocks.HENOSTONE_TRAP.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HENOSTONE_FIRE_SPITTER = DECORATION_REGISTER.register("henostone_fire_spitter", () -> new BlockItem(PFBlocks.HENOSTONE_FIRE_SPITTER.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HENOSTONE_PITFALL = DECORATION_REGISTER.register("henostone_pitfall", () -> new BlockItem(PFBlocks.HENOSTONE_PITFALL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SMALL_AMMONITE_FOSSIL = DECORATION_REGISTER.register("small_ammonite_fossil", () -> new BlockItem(PFBlocks.SMALL_AMMONITE_FOSSIL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> MEDIUM_AMMONITE_FOSSIL = DECORATION_REGISTER.register("medium_ammonite_fossil", () -> new BlockItem(PFBlocks.MEDIUM_AMMONITE_FOSSIL.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> LARGE_AMMONITE_FOSSIL = DECORATION_REGISTER.register("large_ammonite_fossil", () -> new BlockItem(PFBlocks.LARGE_AMMONITE_FOSSIL.get(), new Item.Properties()));
@@ -371,88 +336,96 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_LEAVES = DECORATION_REGISTER.register("elatides_leaves", () -> new BlockItem(PFBlocks.ELATIDES_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_LEAVES = DECORATION_REGISTER.register("phoenicopsis_leaves", () -> new BlockItem(PFBlocks.PHOENICOPSIS_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_LEAVES = DECORATION_REGISTER.register("frenelopsis_leaves", () -> new BlockItem(PFBlocks.FRENELOPSIS_LEAVES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> METASEQUOIA_SAPLING = DECORATION_REGISTER.register("metasequoia_sapling", () -> new BlockItem(PFBlocks.METASEQUOIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ARAUCARIA_SAPLING = DECORATION_REGISTER.register("araucaria_sapling", () -> new BlockItem(PFBlocks.ARAUCARIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> LIRIODENDRITES_SAPLING = DECORATION_REGISTER.register("liriodendrites_sapling", () -> new BlockItem(PFBlocks.LIRIODENDRITES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PROTOPICEOXYLON_SAPLING = DECORATION_REGISTER.register("protopiceoxylon_sapling", () -> new BlockItem(PFBlocks.PROTOPICEOXYLON_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> MONANTHESIA_SAPLING = DECORATION_REGISTER.register("monanthesia_sapling", () -> new BlockItem(PFBlocks.MONANTHESIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PROTOJUNIPEROXYLON_SAPLING = DECORATION_REGISTER.register("protojuniperoxylon_sapling", () -> new BlockItem(PFBlocks.PROTOJUNIPEROXYLON_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HEIDIPHYLLUM_SAPLING = DECORATION_REGISTER.register("heidiphyllum_sapling", () -> new BlockItem(PFBlocks.HEIDIPHYLLUM_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> GINKGO_SAPLING = DECORATION_REGISTER.register("ginkgo_sapling", () -> new BlockItem(PFBlocks.GINKGO_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TROCHODENDROIDES_SAPLING = DECORATION_REGISTER.register("trochodendroides_sapling", () -> new BlockItem(PFBlocks.TROCHODENDROIDES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_SAPLING = DECORATION_REGISTER.register("brachyphyllum_sapling", () -> new BlockItem(PFBlocks.BRACHYPHYLLUM_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> AGATHOXYLON_SAPLING = DECORATION_REGISTER.register("agathoxylon_sapling", () -> new BlockItem(PFBlocks.AGATHOXYLON_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> WOODWORTHIA_SAPLING = DECORATION_REGISTER.register("woodworthia_sapling", () -> new BlockItem(PFBlocks.WOODWORTHIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SCHILDERIA_SAPLING = DECORATION_REGISTER.register("schilderia_sapling", () -> new BlockItem(PFBlocks.SCHILDERIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> DRYOPHYLLUM_SAPLING = DECORATION_REGISTER.register("dryophyllum_sapling", () -> new BlockItem(PFBlocks.DRYOPHYLLUM_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TAXODIUM_SAPLING = DECORATION_REGISTER.register("taxodium_sapling", () -> new BlockItem(PFBlocks.TAXODIUM_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SABALITES_SAPLING = DECORATION_REGISTER.register("sabalites_sapling", () -> new BlockItem(PFBlocks.SABALITES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PLATANITES_SAPLING = DECORATION_REGISTER.register("platanites_sapling", () -> new BlockItem(PFBlocks.PLATANITES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TAXUS_SAPLING = DECORATION_REGISTER.register("taxus_sapling", () -> new BlockItem(PFBlocks.TAXUS_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CZEKANOWSKIA_SAPLING = DECORATION_REGISTER.register("czekanowskia_sapling", () -> new BlockItem(PFBlocks.CZEKANOWSKIA_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SCHIZOLEPIDOPSIS_SAPLING = DECORATION_REGISTER.register("schizolepidopsis_sapling", () -> new BlockItem(PFBlocks.SCHIZOLEPIDOPSIS_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PODOZAMITES_SAPLING = DECORATION_REGISTER.register("podozamites_sapling", () -> new BlockItem(PFBlocks.PODOZAMITES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CUPRESSINOCLADUS_SAPLING = DECORATION_REGISTER.register("cupressinocladus_sapling", () -> new BlockItem(PFBlocks.CUPRESSINOCLADUS_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ELATIDES_SAPLING = DECORATION_REGISTER.register("elatides_sapling", () -> new BlockItem(PFBlocks.ELATIDES_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PHOENICOPSIS_SAPLING = DECORATION_REGISTER.register("phoenicopsis_sapling", () -> new BlockItem(PFBlocks.PHOENICOPSIS_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> FRENELOPSIS_SAPLING = DECORATION_REGISTER.register("frenelopsis_sapling", () -> new BlockItem(PFBlocks.FRENELOPSIS_SAPLING.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HORSETAIL = DECORATION_REGISTER.register("horsetail", () -> new BlockItem(PFBlocks.HORSETAIL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_HORSETAIL = DECORATION_REGISTER.register("tall_horsetail", () -> new BlockItem(PFBlocks.TALL_HORSETAIL.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> OSMUNDA = DECORATION_REGISTER.register("osmunda", () -> new BlockItem(PFBlocks.OSMUNDA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_OSMUNDA = DECORATION_REGISTER.register("tall_osmunda", () -> new BlockItem(PFBlocks.TALL_OSMUNDA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CLUBMOSS = DECORATION_REGISTER.register("clubmoss", () -> new BlockItem(PFBlocks.CLUBMOSS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> LIVERWORT = DECORATION_REGISTER.register("liverwort", () -> new BlockItem(PFBlocks.LIVERWORT.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CONIOPTERIS = DECORATION_REGISTER.register("coniopteris", () -> new BlockItem(PFBlocks.CONIOPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> OSMUNDACAULIS = DECORATION_REGISTER.register("osmundacaulis", () -> new BlockItem(PFBlocks.OSMUNDACAULIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_OSMUNDACAULIS = DECORATION_REGISTER.register("tall_osmundacaulis", () -> new BlockItem(PFBlocks.TALL_OSMUNDACAULIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> DICROIDIUM = DECORATION_REGISTER.register("dicroidium", () -> new BlockItem(PFBlocks.DICROIDIUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> JOHNSTONIA = DECORATION_REGISTER.register("johnstonia", () -> new BlockItem(PFBlocks.JOHNSTONIA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CLADOPHLEBIS = DECORATION_REGISTER.register("cladophlebis", () -> new BlockItem(PFBlocks.CLADOPHLEBIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SCYTOPHYLLUM = DECORATION_REGISTER.register("scytophyllum", () -> new BlockItem(PFBlocks.SCYTOPHYLLUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> MICHELILLOA = DECORATION_REGISTER.register("michelilloa", () -> new BlockItem(PFBlocks.MICHELILLOA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> DEAD_OSMUNDACAULIS = DECORATION_REGISTER.register("dead_osmundacaulis", () -> new BlockItem(PFBlocks.DEAD_OSMUNDACAULIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> OTOZAMITES = DECORATION_REGISTER.register("otozamites", () -> new BlockItem(PFBlocks.OTOZAMITES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_OTOZAMITES = DECORATION_REGISTER.register("tall_otozamites", () -> new BlockItem(PFBlocks.TALL_OTOZAMITES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> LAUROZAMITES = DECORATION_REGISTER.register("laurozamites", () -> new BlockItem(PFBlocks.LAUROZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_LEAVES = DECORATION_REGISTER.register("baiera_leaves", () -> new BlockItem(PFBlocks.BAIERA_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> METASEQUOIA_SAPLING = DECORATION_REGISTER.register("metasequoia_sapling", () -> new AncientPlantItem(PFBlocks.METASEQUOIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ARAUCARIA_SAPLING = DECORATION_REGISTER.register("araucaria_sapling", () -> new AncientPlantItem(PFBlocks.ARAUCARIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> LIRIODENDRITES_SAPLING = DECORATION_REGISTER.register("liriodendrites_sapling", () -> new AncientPlantItem(PFBlocks.LIRIODENDRITES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PROTOPICEOXYLON_SAPLING = DECORATION_REGISTER.register("protopiceoxylon_sapling", () -> new AncientPlantItem(PFBlocks.PROTOPICEOXYLON_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> MONANTHESIA_SAPLING = DECORATION_REGISTER.register("monanthesia_sapling", () -> new AncientPlantItem(PFBlocks.MONANTHESIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PROTOJUNIPEROXYLON_SAPLING = DECORATION_REGISTER.register("protojuniperoxylon_sapling", () -> new AncientPlantItem(PFBlocks.PROTOJUNIPEROXYLON_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HEIDIPHYLLUM_SAPLING = DECORATION_REGISTER.register("heidiphyllum_sapling", () -> new AncientPlantItem(PFBlocks.HEIDIPHYLLUM_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> GINKGO_SAPLING = DECORATION_REGISTER.register("ginkgo_sapling", () -> new AncientPlantItem(PFBlocks.GINKGO_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TROCHODENDROIDES_SAPLING = DECORATION_REGISTER.register("trochodendroides_sapling", () -> new AncientPlantItem(PFBlocks.TROCHODENDROIDES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BRACHYPHYLLUM_SAPLING = DECORATION_REGISTER.register("brachyphyllum_sapling", () -> new AncientPlantItem(PFBlocks.BRACHYPHYLLUM_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> AGATHOXYLON_SAPLING = DECORATION_REGISTER.register("agathoxylon_sapling", () -> new AncientPlantItem(PFBlocks.AGATHOXYLON_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> WOODWORTHIA_SAPLING = DECORATION_REGISTER.register("woodworthia_sapling", () -> new AncientPlantItem(PFBlocks.WOODWORTHIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SCHILDERIA_SAPLING = DECORATION_REGISTER.register("schilderia_sapling", () -> new AncientPlantItem(PFBlocks.SCHILDERIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DRYOPHYLLUM_SAPLING = DECORATION_REGISTER.register("dryophyllum_sapling", () -> new AncientPlantItem(PFBlocks.DRYOPHYLLUM_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TAXODIUM_SAPLING = DECORATION_REGISTER.register("taxodium_sapling", () -> new AncientPlantItem(PFBlocks.TAXODIUM_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SABALITES_SAPLING = DECORATION_REGISTER.register("sabalites_sapling", () -> new AncientPlantItem(PFBlocks.SABALITES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PLATANITES_SAPLING = DECORATION_REGISTER.register("platanites_sapling", () -> new AncientPlantItem(PFBlocks.PLATANITES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TAXUS_SAPLING = DECORATION_REGISTER.register("taxus_sapling", () -> new AncientPlantItem(PFBlocks.TAXUS_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CZEKANOWSKIA_SAPLING = DECORATION_REGISTER.register("czekanowskia_sapling", () -> new AncientPlantItem(PFBlocks.CZEKANOWSKIA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SCHIZOLEPIDOPSIS_SAPLING = DECORATION_REGISTER.register("schizolepidopsis_sapling", () -> new AncientPlantItem(PFBlocks.SCHIZOLEPIDOPSIS_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PODOZAMITES_SAPLING = DECORATION_REGISTER.register("podozamites_sapling", () -> new AncientPlantItem(PFBlocks.PODOZAMITES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CUPRESSINOCLADUS_SAPLING = DECORATION_REGISTER.register("cupressinocladus_sapling", () -> new AncientPlantItem(PFBlocks.CUPRESSINOCLADUS_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ELATIDES_SAPLING = DECORATION_REGISTER.register("elatides_sapling", () -> new AncientPlantItem(PFBlocks.ELATIDES_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PHOENICOPSIS_SAPLING = DECORATION_REGISTER.register("phoenicopsis_sapling", () -> new AncientPlantItem(PFBlocks.PHOENICOPSIS_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> FRENELOPSIS_SAPLING = DECORATION_REGISTER.register("frenelopsis_sapling", () -> new AncientPlantItem(PFBlocks.FRENELOPSIS_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_SAPLING = DECORATION_REGISTER.register("baiera_sapling", () -> new AncientPlantItem(PFBlocks.BAIERA_SAPLING.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HORSETAIL = DECORATION_REGISTER.register("horsetail", () -> new AncientPlantItem(PFBlocks.HORSETAIL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_HORSETAIL = DECORATION_REGISTER.register("tall_horsetail", () -> new AncientPlantItem(PFBlocks.TALL_HORSETAIL.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> OSMUNDA = DECORATION_REGISTER.register("osmunda", () -> new AncientPlantItem(PFBlocks.OSMUNDA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_OSMUNDA = DECORATION_REGISTER.register("tall_osmunda", () -> new AncientPlantItem(PFBlocks.TALL_OSMUNDA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CLUBMOSS = DECORATION_REGISTER.register("clubmoss", () -> new AncientPlantItem(PFBlocks.CLUBMOSS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> LIVERWORT = DECORATION_REGISTER.register("liverwort", () -> new AncientPlantItem(PFBlocks.LIVERWORT.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CONIOPTERIS = DECORATION_REGISTER.register("coniopteris", () -> new AncientPlantItem(PFBlocks.CONIOPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> OSMUNDACAULIS = DECORATION_REGISTER.register("osmundacaulis", () -> new AncientPlantItem(PFBlocks.OSMUNDACAULIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_OSMUNDACAULIS = DECORATION_REGISTER.register("tall_osmundacaulis", () -> new AncientPlantItem(PFBlocks.TALL_OSMUNDACAULIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DICROIDIUM = DECORATION_REGISTER.register("dicroidium", () -> new AncientPlantItem(PFBlocks.DICROIDIUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> JOHNSTONIA = DECORATION_REGISTER.register("johnstonia", () -> new AncientPlantItem(PFBlocks.JOHNSTONIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CLADOPHLEBIS = DECORATION_REGISTER.register("cladophlebis", () -> new AncientPlantItem(PFBlocks.CLADOPHLEBIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SCYTOPHYLLUM = DECORATION_REGISTER.register("scytophyllum", () -> new AncientPlantItem(PFBlocks.SCYTOPHYLLUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> MICHELILLOA = DECORATION_REGISTER.register("michelilloa", () -> new AncientPlantItem(PFBlocks.MICHELILLOA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DEAD_OSMUNDACAULIS = DECORATION_REGISTER.register("dead_osmundacaulis", () -> new AncientPlantItem(PFBlocks.DEAD_OSMUNDACAULIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> OTOZAMITES = DECORATION_REGISTER.register("otozamites", () -> new AncientPlantItem(PFBlocks.OTOZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_OTOZAMITES = DECORATION_REGISTER.register("tall_otozamites", () -> new AncientPlantItem(PFBlocks.TALL_OTOZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> LAUROZAMITES = DECORATION_REGISTER.register("laurozamites", () -> new AncientPlantItem(PFBlocks.LAUROZAMITES.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> MONANTHESIA_FROND = DECORATION_REGISTER.register("monanthesia_fronds", () -> new BlockItem(PFBlocks.MONANTHESIA_FROND.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> CLATHROPTERIS = DECORATION_REGISTER.register("clathropteris", () -> new BlockItem(PFBlocks.CLATHROPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PHLEBOPTERIS = DECORATION_REGISTER.register("phlebopteris", () -> new BlockItem(PFBlocks.PHLEBOPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> NEOCALAMITES = DECORATION_REGISTER.register("neocalamites", () -> new BlockItem(PFBlocks.NEOCALAMITES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HUMULUS = DECORATION_REGISTER.register("humulus", () -> new BlockItem(PFBlocks.HUMULUS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> BISONIA = DECORATION_REGISTER.register("bisonia", () -> new BlockItem(PFBlocks.BISONIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> CLATHROPTERIS = DECORATION_REGISTER.register("clathropteris", () -> new AncientPlantItem(PFBlocks.CLATHROPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PHLEBOPTERIS = DECORATION_REGISTER.register("phlebopteris", () -> new AncientPlantItem(PFBlocks.PHLEBOPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> NEOCALAMITES = DECORATION_REGISTER.register("neocalamites", () -> new AncientPlantItem(PFBlocks.NEOCALAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HUMULUS = DECORATION_REGISTER.register("humulus", () -> new AncientPlantItem(PFBlocks.HUMULUS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BISONIA = DECORATION_REGISTER.register("bisonia", () -> new AncientPlantItem(PFBlocks.BISONIA.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> AZOLLA = DECORATION_REGISTER.register("azolla", () -> new CobbaniaBlockItem(PFBlocks.AZOLLA.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> COBBANIA = DECORATION_REGISTER.register("cobbania", () -> new CobbaniaBlockItem(PFBlocks.COBBANIA.get(), new Item.Properties()));
-	public static final RegistryObject<ItemNameBlockItem> NELUMBO = DECORATION_REGISTER.register("nelumbo", () -> new ItemNameBlockItem(PFBlocks.NELUMBO_ROOTS.get(), new Item.Properties()));
-	public static final RegistryObject<ItemNameBlockItem> QUEREUXIA = DECORATION_REGISTER.register("quereuxia", () -> new ItemNameBlockItem(PFBlocks.QUEREUXIA_STEM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ZINGIBEROPSIS = DECORATION_REGISTER.register("zingiberopsis", () -> new BlockItem(PFBlocks.ZINGIBEROPSIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PURPLE_ZINGIBEROPSIS = DECORATION_REGISTER.register("purple_zingiberopsis", () -> new BlockItem(PFBlocks.PURPLE_ZINGIBEROPSIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ARCHAEFRUCTUS = DECORATION_REGISTER.register("archaefructus", () -> new BlockItem(PFBlocks.ARCHAEFRUCTUS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_ARCHAEFRUCTUS = DECORATION_REGISTER.register("tall_archaefructus", () -> new BlockItem(PFBlocks.TALL_ARCHAEFRUCTUS.get(), new Item.Properties()));
+	public static final RegistryObject<ItemNameBlockItem> NELUMBO = DECORATION_REGISTER.register("nelumbo", () -> new AncientPlantItemNameBlockItem(PFBlocks.NELUMBO_ROOTS.get(), new Item.Properties()));
+	public static final RegistryObject<ItemNameBlockItem> QUEREUXIA = DECORATION_REGISTER.register("quereuxia", () -> new AncientPlantItemNameBlockItem(PFBlocks.QUEREUXIA_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ZINGIBEROPSIS = DECORATION_REGISTER.register("zingiberopsis", () -> new AncientPlantItem(PFBlocks.ZINGIBEROPSIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PURPLE_ZINGIBEROPSIS = DECORATION_REGISTER.register("purple_zingiberopsis", () -> new AncientPlantItem(PFBlocks.PURPLE_ZINGIBEROPSIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ARCHAEFRUCTUS = DECORATION_REGISTER.register("archaefructus", () -> new AncientPlantItem(PFBlocks.ARCHAEFRUCTUS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_ARCHAEFRUCTUS = DECORATION_REGISTER.register("tall_archaefructus", () -> new AncientPlantItem(PFBlocks.TALL_ARCHAEFRUCTUS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CALLIANTHUS = DECORATION_REGISTER.register("callianthus", () -> new CobbaniaBlockItem(PFBlocks.CALLIANTHUS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> RUFFORDIA = DECORATION_REGISTER.register("ruffordia", () -> new BlockItem(PFBlocks.RUFFORDIA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> LEEFRUCTUS = DECORATION_REGISTER.register("leefructus", () -> new BlockItem(PFBlocks.LEEFRUCTUS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> EPHEDRA = DECORATION_REGISTER.register("ephedra", () -> new BlockItem(PFBlocks.EPHEDRA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> NOTHODICHOCARPUM = DECORATION_REGISTER.register("nothodichocarpum", () -> new BlockItem(PFBlocks.NOTHODICHOCARPUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PTEROPHYLLUM = DECORATION_REGISTER.register("pterophyllum", () -> new BlockItem(PFBlocks.PTEROPHYLLUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_PTEROPHYLLUM = DECORATION_REGISTER.register("tall_pterophyllum", () -> new BlockItem(PFBlocks.TALL_PTEROPHYLLUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ANOMOZAMITES = DECORATION_REGISTER.register("anomozamites", () -> new BlockItem(PFBlocks.ANOMOZAMITES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_ANOMOZAMITES = DECORATION_REGISTER.register("tall_anomozamites", () -> new BlockItem(PFBlocks.TALL_ANOMOZAMITES.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ONYCHIOPSIS = DECORATION_REGISTER.register("onychiopsis", () -> new BlockItem(PFBlocks.ONYCHIOPSIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TAENIOPTERIS = DECORATION_REGISTER.register("taeniopteris", () -> new BlockItem(PFBlocks.TAENIOPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> TALL_TAENIOPTERIS = DECORATION_REGISTER.register("tall_taeniopteris", () -> new BlockItem(PFBlocks.TALL_TAENIOPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> SPHENOPTERIS = DECORATION_REGISTER.register("sphenopteris", () -> new BlockItem(PFBlocks.SPHENOPTERIS.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> DAYVAULTIA = DECORATION_REGISTER.register("dayvaultia", () -> new BlockItem(PFBlocks.DAYVAULTIA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ZAMIOPHYLLUM = DECORATION_REGISTER.register("zamiophyllum", () -> new BlockItem(PFBlocks.ZAMIOPHYLLUM.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> NILSSONIA = DECORATION_REGISTER.register("nilssonia", () -> new BlockItem(PFBlocks.NILSSONIA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> WELTRICHIA = DECORATION_REGISTER.register("weltrichia", () -> new BlockItem(PFBlocks.WELTRICHIA.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ZAMITES = DECORATION_REGISTER.register("zamites", () -> new BlockItem(PFBlocks.ZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> RUFFORDIA = DECORATION_REGISTER.register("ruffordia", () -> new AncientPlantItem(PFBlocks.RUFFORDIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> LEEFRUCTUS = DECORATION_REGISTER.register("leefructus", () -> new AncientPlantItem(PFBlocks.LEEFRUCTUS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> EPHEDRA = DECORATION_REGISTER.register("ephedra", () -> new AncientPlantItem(PFBlocks.EPHEDRA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> NOTHODICHOCARPUM = DECORATION_REGISTER.register("nothodichocarpum", () -> new AncientPlantItem(PFBlocks.NOTHODICHOCARPUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PTEROPHYLLUM = DECORATION_REGISTER.register("pterophyllum", () -> new AncientPlantItem(PFBlocks.PTEROPHYLLUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_PTEROPHYLLUM = DECORATION_REGISTER.register("tall_pterophyllum", () -> new AncientPlantItem(PFBlocks.TALL_PTEROPHYLLUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ANOMOZAMITES = DECORATION_REGISTER.register("anomozamites", () -> new AncientPlantItem(PFBlocks.ANOMOZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_ANOMOZAMITES = DECORATION_REGISTER.register("tall_anomozamites", () -> new AncientPlantItem(PFBlocks.TALL_ANOMOZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ONYCHIOPSIS = DECORATION_REGISTER.register("onychiopsis", () -> new AncientPlantItem(PFBlocks.ONYCHIOPSIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TAENIOPTERIS = DECORATION_REGISTER.register("taeniopteris", () -> new AncientPlantItem(PFBlocks.TAENIOPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> TALL_TAENIOPTERIS = DECORATION_REGISTER.register("tall_taeniopteris", () -> new AncientPlantItem(PFBlocks.TALL_TAENIOPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SPHENOPTERIS = DECORATION_REGISTER.register("sphenopteris", () -> new AncientPlantItem(PFBlocks.SPHENOPTERIS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DAYVAULTIA = DECORATION_REGISTER.register("dayvaultia", () -> new AncientPlantItem(PFBlocks.DAYVAULTIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ZAMIOPHYLLUM = DECORATION_REGISTER.register("zamiophyllum", () -> new AncientPlantItem(PFBlocks.ZAMIOPHYLLUM.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> NILSSONIA = DECORATION_REGISTER.register("nilssonia", () -> new AncientPlantItem(PFBlocks.NILSSONIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> WELTRICHIA = DECORATION_REGISTER.register("weltrichia", () -> new AncientPlantItem(PFBlocks.WELTRICHIA.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ZAMITES = DECORATION_REGISTER.register("zamites", () -> new AncientPlantItem(PFBlocks.ZAMITES.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PTILOPHYLLUM_WOOD = DECORATION_REGISTER.register("ptilophyllum_wood", () -> new BlockItem(PFBlocks.PTILOPHYLLUM_WOOD.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> PTILOPHYLLUM_BASE = DECORATION_REGISTER.register("ptilophyllum_base", () -> new AncientPlantItem(PFBlocks.PTILOPHYLLUM_BASE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HERMANOPHYTON_WOOD = DECORATION_REGISTER.register("hermanophyton_stem", () -> new BlockItem(PFBlocks.HERMANOPHYTON.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> HERMANOPHYTON_CROWN = DECORATION_REGISTER.register("hermanophyton_crown", () -> new AncientPlantItem(PFBlocks.HERMANOPHYTON_TOP.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TAXODIUM_KNEE = DECORATION_REGISTER.register("taxodium_knee", () -> new BlockItem(PFBlocks.TAXODIUM_KNEE.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> MOSS_CARPET = DECORATION_REGISTER.register("moss_carpet", () -> new BlockItem(PFBlocks.MOSS_CARPET.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ASH = DECORATION_REGISTER.register("ash", () -> new BlockItem(PFBlocks.ASH.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ALGAE_CARPET = DECORATION_REGISTER.register("algae_carpet", () -> new BlockItem(PFBlocks.ALGAE_CARPET.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> STONEWORTS = DECORATION_REGISTER.register("stoneworts", () -> new BlockItem(PFBlocks.STONEWORTS.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FIDDLEHEAD_FERN = DECORATION_REGISTER.register("fiddlehead_fern", () -> new BlockItem(PFBlocks.FIDDLEHEAD_FERN.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TALL_FIDDLEHEAD_FERN = DECORATION_REGISTER.register("tall_fiddlehead_fern", () -> new BlockItem(PFBlocks.TALL_FIDDLEHEAD_FERN.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ALGAE_CARPET = DECORATION_REGISTER.register("algae_carpet", () -> new AncientPlantItem(PFBlocks.ALGAE_CARPET.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> STONEWORTS = DECORATION_REGISTER.register("stoneworts", () -> new AncientPlantItem(PFBlocks.STONEWORTS.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> MOSS_CARPET = DECORATION_REGISTER.register("moss_carpet", () -> new AncientPlantItem(PFBlocks.MOSS_CARPET.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> MOSS_BLOCK = DECORATION_REGISTER.register("moss_block", () -> new BlockItem(PFBlocks.MOSS_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ASH = DECORATION_REGISTER.register("ash", () -> new BlockItem(PFBlocks.ASH.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> ASH_BLOCK = DECORATION_REGISTER.register("ash_block", () -> new BlockItem(PFBlocks.ASH_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item> METASEQUOIA_SIGN = DECORATION_REGISTER.register("metasequoia_sign", () -> new SignItem(new Item.Properties().stacksTo(16), PFBlocks.METASEQUOIA_SIGN.get(), PFBlocks.METASEQUOIA_WALL_SIGN.get()));
 	public static final RegistryObject<Item> METASEQUOIA_HANGING_SIGN = DECORATION_REGISTER.register("metasequoia_hanging_sign", () -> new HangingSignItem(PFBlocks.METASEQUOIA_HANGING_SIGN.get(), PFBlocks.METASEQUOIA_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item> ARAUCARIA_SIGN = DECORATION_REGISTER.register("araucaria_sign", () -> new SignItem(new Item.Properties().stacksTo(16), PFBlocks.ARAUCARIA_SIGN.get(), PFBlocks.ARAUCARIA_WALL_SIGN.get()));
@@ -503,6 +476,8 @@ public class PFItems {
 	public static final RegistryObject<Item> PHOENICOPSIS_HANGING_SIGN = DECORATION_REGISTER.register("phoenicopsis_hanging_sign", () -> new HangingSignItem(PFBlocks.PHOENICOPSIS_HANGING_SIGN.get(), PFBlocks.PHOENICOPSIS_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item> FRENELOPSIS_SIGN = DECORATION_REGISTER.register("frenelopsis_sign", () -> new SignItem(new Item.Properties().stacksTo(16), PFBlocks.FRENELOPSIS_SIGN.get(), PFBlocks.FRENELOPSIS_WALL_SIGN.get()));
 	public static final RegistryObject<Item> FRENELOPSIS_HANGING_SIGN = DECORATION_REGISTER.register("frenelopsis_hanging_sign", () -> new HangingSignItem(PFBlocks.FRENELOPSIS_HANGING_SIGN.get(), PFBlocks.FRENELOPSIS_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item> BAIERA_SIGN = DECORATION_REGISTER.register("baiera_sign", () -> new SignItem(new Item.Properties().stacksTo(16), PFBlocks.BAIERA_SIGN.get(), PFBlocks.BAIERA_WALL_SIGN.get()));
+	public static final RegistryObject<Item> BAIERA_HANGING_SIGN = DECORATION_REGISTER.register("baiera_hanging_sign", () -> new HangingSignItem(PFBlocks.BAIERA_HANGING_SIGN.get(), PFBlocks.BAIERA_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item> NEOCALAMITES_SIGN = DECORATION_REGISTER.register("neocalamites_sign", () -> new SignItem(new Item.Properties().stacksTo(16), PFBlocks.NEOCALAMITES_SIGN.get(), PFBlocks.NEOCALAMITES_WALL_SIGN.get()));
 	public static final RegistryObject<Item> NEOCALAMITES_HANGING_SIGN = DECORATION_REGISTER.register("neocalamites_hanging_sign", () -> new HangingSignItem(PFBlocks.NEOCALAMITES_HANGING_SIGN.get(), PFBlocks.NEOCALAMITES_HANGING_WALL_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<BlockItem> METASEQUOIA_DOOR = DECORATION_REGISTER.register("metasequoia_door", () -> new BlockItem(PFBlocks.METASEQUOIA_DOOR.get(), new Item.Properties()));
@@ -530,6 +505,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_DOOR = DECORATION_REGISTER.register("elatides_door", () -> new BlockItem(PFBlocks.ELATIDES_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_DOOR = DECORATION_REGISTER.register("phoenicopsis_door", () -> new BlockItem(PFBlocks.PHOENICOPSIS_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_DOOR = DECORATION_REGISTER.register("frenelopsis_door", () -> new BlockItem(PFBlocks.FRENELOPSIS_DOOR.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_DOOR = DECORATION_REGISTER.register("baiera_door", () -> new BlockItem(PFBlocks.BAIERA_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_DOOR = DECORATION_REGISTER.register("neocalamites_door", () -> new BlockItem(PFBlocks.NEOCALAMITES_DOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_TRAPDOOR = DECORATION_REGISTER.register("metasequoia_trapdoor", () -> new BlockItem(PFBlocks.METASEQUOIA_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ARAUCARIA_TRAPDOOR = DECORATION_REGISTER.register("araucaria_trapdoor", () -> new BlockItem(PFBlocks.ARAUCARIA_TRAPDOOR.get(), new Item.Properties()));
@@ -556,6 +532,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_TRAPDOOR = DECORATION_REGISTER.register("elatides_trapdoor", () -> new BlockItem(PFBlocks.ELATIDES_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_TRAPDOOR = DECORATION_REGISTER.register("phoenicopsis_trapdoor", () -> new BlockItem(PFBlocks.PHOENICOPSIS_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_TRAPDOOR = DECORATION_REGISTER.register("frenelopsis_trapdoor", () -> new BlockItem(PFBlocks.FRENELOPSIS_TRAPDOOR.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_TRAPDOOR = DECORATION_REGISTER.register("baiera_trapdoor", () -> new BlockItem(PFBlocks.BAIERA_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_TRAPDOOR = DECORATION_REGISTER.register("neocalamites_trapdoor", () -> new BlockItem(PFBlocks.NEOCALAMITES_TRAPDOOR.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_FENCE = DECORATION_REGISTER.register("metasequoia_fence", () -> new BlockItem(PFBlocks.METASEQUOIA_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ARAUCARIA_FENCE = DECORATION_REGISTER.register("araucaria_fence", () -> new BlockItem(PFBlocks.ARAUCARIA_FENCE.get(), new Item.Properties()));
@@ -582,6 +559,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_FENCE = DECORATION_REGISTER.register("elatides_fence", () -> new BlockItem(PFBlocks.ELATIDES_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_FENCE = DECORATION_REGISTER.register("phoenicopsis_fence", () -> new BlockItem(PFBlocks.PHOENICOPSIS_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_FENCE = DECORATION_REGISTER.register("frenelopsis_fence", () -> new BlockItem(PFBlocks.FRENELOPSIS_FENCE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_FENCE = DECORATION_REGISTER.register("baiera_fence", () -> new BlockItem(PFBlocks.BAIERA_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_FENCE = DECORATION_REGISTER.register("neocalamites_fence", () -> new BlockItem(PFBlocks.NEOCALAMITES_FENCE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_FENCE_GATE = DECORATION_REGISTER.register("metasequoia_fence_gate", () -> new BlockItem(PFBlocks.METASEQUOIA_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ARAUCARIA_FENCE_GATE = DECORATION_REGISTER.register("araucaria_fence_gate", () -> new BlockItem(PFBlocks.ARAUCARIA_FENCE_GATE.get(), new Item.Properties()));
@@ -608,6 +586,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_FENCE_GATE = DECORATION_REGISTER.register("elatides_fence_gate", () -> new BlockItem(PFBlocks.ELATIDES_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_FENCE_GATE = DECORATION_REGISTER.register("phoenicopsis_fence_gate", () -> new BlockItem(PFBlocks.PHOENICOPSIS_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_FENCE_GATE = DECORATION_REGISTER.register("frenelopsis_fence_gate", () -> new BlockItem(PFBlocks.FRENELOPSIS_FENCE_GATE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_FENCE_GATE = DECORATION_REGISTER.register("baiera_fence_gate", () -> new BlockItem(PFBlocks.BAIERA_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_FENCE_GATE = DECORATION_REGISTER.register("neocalamites_fence_gate", () -> new BlockItem(PFBlocks.NEOCALAMITES_FENCE_GATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_BUTTON = DECORATION_REGISTER.register("metasequoia_button", () -> new BlockItem(PFBlocks.METASEQUOIA_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ARAUCARIA_BUTTON = DECORATION_REGISTER.register("araucaria_button", () -> new BlockItem(PFBlocks.ARAUCARIA_BUTTON.get(), new Item.Properties()));
@@ -634,6 +613,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_BUTTON = DECORATION_REGISTER.register("elatides_button", () -> new BlockItem(PFBlocks.ELATIDES_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_BUTTON = DECORATION_REGISTER.register("phoenicopsis_button", () -> new BlockItem(PFBlocks.PHOENICOPSIS_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_BUTTON = DECORATION_REGISTER.register("frenelopsis_button", () -> new BlockItem(PFBlocks.FRENELOPSIS_BUTTON.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_BUTTON = DECORATION_REGISTER.register("baiera_button", () -> new BlockItem(PFBlocks.BAIERA_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_BUTTON = DECORATION_REGISTER.register("neocalamites_button", () -> new BlockItem(PFBlocks.NEOCALAMITES_BUTTON.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> METASEQUOIA_PRESSURE_PLATE = DECORATION_REGISTER.register("metasequoia_pressure_plate", () -> new BlockItem(PFBlocks.METASEQUOIA_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ARAUCARIA_PRESSURE_PLATE = DECORATION_REGISTER.register("araucaria_pressure_plate", () -> new BlockItem(PFBlocks.ARAUCARIA_PRESSURE_PLATE.get(), new Item.Properties()));
@@ -660,14 +640,8 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> ELATIDES_PRESSURE_PLATE = DECORATION_REGISTER.register("elatides_pressure_plate", () -> new BlockItem(PFBlocks.ELATIDES_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PHOENICOPSIS_PRESSURE_PLATE = DECORATION_REGISTER.register("phoenicopsis_pressure_plate", () -> new BlockItem(PFBlocks.PHOENICOPSIS_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> FRENELOPSIS_PRESSURE_PLATE = DECORATION_REGISTER.register("frenelopsis_pressure_plate", () -> new BlockItem(PFBlocks.FRENELOPSIS_PRESSURE_PLATE.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BAIERA_PRESSURE_PLATE = DECORATION_REGISTER.register("baiera_pressure_plate", () -> new BlockItem(PFBlocks.BAIERA_PRESSURE_PLATE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> NEOCALAMITES_PRESSURE_PLATE = DECORATION_REGISTER.register("neocalamites_pressure_plate", () -> new BlockItem(PFBlocks.NEOCALAMITES_PRESSURE_PLATE.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PTILOPHYLLUM_WOOD = DECORATION_REGISTER.register("ptilophyllum_wood", () -> new BlockItem(PFBlocks.PTILOPHYLLUM_WOOD.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> PTILOPHYLLUM_BASE = DECORATION_REGISTER.register("ptilophyllum_base", () -> new BlockItem(PFBlocks.PTILOPHYLLUM_BASE.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HERMANOPHYTON_WOOD = DECORATION_REGISTER.register("hermanophyton_stem", () -> new BlockItem(PFBlocks.HERMANOPHYTON.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HERMANOPHYTON_CROWN = DECORATION_REGISTER.register("hermanophyton_crown", () -> new BlockItem(PFBlocks.HERMANOPHYTON_TOP.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> MOSS_BLOCK = DECORATION_REGISTER.register("moss_block", () -> new BlockItem(PFBlocks.MOSS_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> ASH_BLOCK = DECORATION_REGISTER.register("ash_block", () -> new BlockItem(PFBlocks.ASH_BLOCK.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> HENOSTONE_TRAP = DECORATION_REGISTER.register("henostone_trap", () -> new BlockItem(PFBlocks.HENOSTONE_TRAP.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PALEONTOLOGY_TABLE = DECORATION_REGISTER.register("paleontology_table", () -> new BlockItem(PFBlocks.PALEONTOLOGY_TABLE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> PALEOSCRIBE = DECORATION_REGISTER.register("paleoscribe", () -> new BlockItem(PFBlocks.PALEOSCRIBE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> OAK_FEEDER = DECORATION_REGISTER.register("feeder", () -> new BlockItem(PFBlocks.OAK_FEEDER.get(), new Item.Properties()));
@@ -723,7 +697,7 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> CALSOYASUCHUS_EGG = DECORATION_REGISTER.register("calsoyasuchus_egg", () -> new DinosaurEggItem(PFBlocks.CALSOYASUCHUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DILOPHOSAURUS_EGG = DECORATION_REGISTER.register("dilophosaurus_egg", () -> new DinosaurEggItem(PFBlocks.DILOPHOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> KAYENTACHELYS_EGG = DECORATION_REGISTER.register("kayentachelys_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTACHELYS_EGG.get(), new Item.Properties()));
-	public static final RegistryObject<BlockItem> KAYENTASUCHUS_EGG = DECORATION_REGISTER.register("kayentasuchus_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTASUCHUS_EGG.get(), new Item.Properties()));
+	//	public static final RegistryObject<BlockItem> KAYENTASUCHUS_EGG = DECORATION_REGISTER.register("kayentasuchus_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTASUCHUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> KAYENTATHERIUM_EGG = DECORATION_REGISTER.register("kayentatherium_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTATHERIUM_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> KAYENTAVENATOR_EGG = DECORATION_REGISTER.register("kayentavenator_egg", () -> new DinosaurEggItem(PFBlocks.KAYENTAVENATOR_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> MEGAPNOSAURUS_EGG = DECORATION_REGISTER.register("megapnosaurus_egg", () -> new DinosaurEggItem(PFBlocks.MEGAPNOSAURUS_EGG.get(), new Item.Properties()));
@@ -732,16 +706,20 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> SCUTELLOSAURUS_EGG = DECORATION_REGISTER.register("scutellosaurus_egg", () -> new DinosaurEggItem(PFBlocks.SCUTELLOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ALCOVASAURUS_EGG = DECORATION_REGISTER.register("alcovasaurus_egg", () -> new DinosaurEggItem(PFBlocks.ALCOVASAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ALLOSAURUS_EGG = DECORATION_REGISTER.register("allosaurus_egg", () -> new DinosaurEggItem(PFBlocks.ALLOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BRACHIOSAURUS_EGG = DECORATION_REGISTER.register("brachiosaurus_egg", () -> new DinosaurEggItem(PFBlocks.BRACHIOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> BRONTOSAURUS_EGG = DECORATION_REGISTER.register("brontosaurus_egg", () -> new DinosaurEggItem(PFBlocks.BRONTOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CAMARASAURUS_EGG = DECORATION_REGISTER.register("camarasaurus_egg", () -> new DinosaurEggItem(PFBlocks.CAMARASAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CAMPTOSAURUS_EGG = DECORATION_REGISTER.register("camptosaurus_egg", () -> new DinosaurEggItem(PFBlocks.CAMPTOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> CERATOSAURUS_EGG = DECORATION_REGISTER.register("ceratosaurus_egg", () -> new DinosaurEggItem(PFBlocks.CERATOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DIABLOPHIS_EGG = DECORATION_REGISTER.register("diablophis_egg", () -> new DinosaurEggItem(PFBlocks.DIABLOPHIS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> DIPLODOCUS_EGG = DECORATION_REGISTER.register("diplodocus_egg", () -> new DinosaurEggItem(PFBlocks.DIPLODOCUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> DRYOSAURUS_EGG = DECORATION_REGISTER.register("dryosaurus_egg", () -> new DinosaurEggItem(PFBlocks.DRYOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> EILENODON_EGG = DECORATION_REGISTER.register("eilenodon_egg", () -> new DinosaurEggItem(PFBlocks.EILENODON_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> GARGOYLEOSAURUS_EGG = DECORATION_REGISTER.register("gargoyleosaurus_egg", () -> new DinosaurEggItem(PFBlocks.GARGOYLEOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HESPERORNITHOIDES_EGG = DECORATION_REGISTER.register("hesperornithoides_egg", () -> new DinosaurEggItem(PFBlocks.HESPERORNITHOIDES_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> MACELOGNATHUS_EGG = DECORATION_REGISTER.register("macelognathus_egg", () -> new DinosaurEggItem(PFBlocks.MACELOGNATHUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> STEGOSAURUS_EGG = DECORATION_REGISTER.register("stegosaurus_egg", () -> new DinosaurEggItem(PFBlocks.STEGOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> SUUWASSEA_EGG = DECORATION_REGISTER.register("suuwassea_egg", () -> new DinosaurEggItem(PFBlocks.SUUWASSEA_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TANYCOLAGREUS_EGG = DECORATION_REGISTER.register("tanycolagreus_egg", () -> new DinosaurEggItem(PFBlocks.TANYCOLAGREUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TORVOSAURUS_EGG = DECORATION_REGISTER.register("torvosaurus_egg", () -> new DinosaurEggItem(PFBlocks.TORVOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> ABROSAURUS_EGG = DECORATION_REGISTER.register("abrosaurus_egg", () -> new DinosaurEggItem(PFBlocks.ABROSAURUS_EGG.get(), new Item.Properties()));
@@ -750,6 +728,9 @@ public class PFItems {
 	public static final RegistryObject<BlockItem> CHUANDONGOCOELURUS_EGG = DECORATION_REGISTER.register("chuandongocoelurus_egg", () -> new DinosaurEggItem(PFBlocks.CHUANDONGOCOELURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> GIGANTSPINOSAURUS_EGG = DECORATION_REGISTER.register("gigantspinosaurus_egg", () -> new DinosaurEggItem(PFBlocks.GIGANTSPINOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> HUAYANGOSAURUS_EGG = DECORATION_REGISTER.register("huayangosaurus_egg", () -> new DinosaurEggItem(PFBlocks.HUAYANGOSAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> MAMENCHISAURUS_EGG = DECORATION_REGISTER.register("mamenchisaurus_egg", () -> new DinosaurEggItem(PFBlocks.MAMENCHISAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> OMEISAURUS_EGG = DECORATION_REGISTER.register("omeisaurus_egg", () -> new DinosaurEggItem(PFBlocks.OMEISAURUS_EGG.get(), new Item.Properties()));
+	public static final RegistryObject<BlockItem> POLISTODON_EGG = DECORATION_REGISTER.register("polistodon_egg", () -> new DinosaurEggItem(PFBlocks.POLISTODON_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SHUNOSAURUS_EGG = DECORATION_REGISTER.register("shunosaurus_egg", () -> new DinosaurEggItem(PFBlocks.SHUNOSAURUS_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> SINRAPTOR_EGG = DECORATION_REGISTER.register("sinraptor_egg", () -> new DinosaurEggItem(PFBlocks.SINRAPTOR_EGG.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> TUOJIANGOSAURUS_EGG = DECORATION_REGISTER.register("tuojiangosaurus_egg", () -> new DinosaurEggItem(PFBlocks.TUOJIANGOSAURUS_EGG.get(), new Item.Properties()));
@@ -851,7 +832,7 @@ public class PFItems {
 	public static final RegistryObject<Item> DILOPHOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dilophosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DILOPHOSAURUS, 0x896329, 0x86121B, new Item.Properties()));
 	public static final RegistryObject<Item> DIPLICHNITES_SPAWN_EGG = SPAWN_EGG_REGISTER.register("diplichnites_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DIPLICHNITES, 0x2F273D, 0xDC382B, new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTACHELYS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentachelys_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTACHELYS, 0x4F2B21, 0xB7972C, new Item.Properties()));
-	public static final RegistryObject<Item> KAYENTASUCHUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentasuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTASUCHUS, 0x8E513E, 0x3D2925, new Item.Properties()));
+	//	public static final RegistryObject<Item> KAYENTASUCHUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentasuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTASUCHUS, 0x8E513E, 0x3D2925, new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTATHERIUM_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentatherium_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTATHERIUM, 0x513D34, 0xA59E8B, new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTAVENATOR_SPAWN_EGG = SPAWN_EGG_REGISTER.register("kayentavenator_spawn_egg", () -> new PFSpawnEggItem(PFEntities.KAYENTAVENATOR, 0x061A13, 0xAF892F, new Item.Properties()));
 	public static final RegistryObject<Item> MEGAPNOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("megapnosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MEGAPNOSAURUS, 0x4C3028, 0x22242D, new Item.Properties()));
@@ -860,14 +841,18 @@ public class PFItems {
 	public static final RegistryObject<Item> SARAHSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sarahsaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SARAHSAURUS, 0x8C6547, 0x512123, new Item.Properties()));
 	public static final RegistryObject<Item> SCELIDOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("scelidosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCELIDOSAURUS, 0x4C190E, 0x221713, new Item.Properties()));
 	public static final RegistryObject<Item> SCUTELLOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("scutellosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SCUTELLOSAURUS, 0xCAD51C, 0x6A5942, new Item.Properties()));
+	public static final RegistryObject<Item> TOARCIBATIS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("toarcibatis_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TOARCIBATIS, 0x914c2e, 0x351a2f, new Item.Properties()));
 	public static final RegistryObject<Item> ALCOVASAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("alcovasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ALCOVASAURUS, 0xDDD6C5, 0x912729, new Item.Properties()));
 	public static final RegistryObject<Item> ALLOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("allosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ALLOSAURUS, 0x8E8B45, 0x89462C, new Item.Properties()));
+	public static final RegistryObject<Item> BRACHIOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("brachiosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BRACHIOSAURUS, 0x3F2E39, 0x778C7D, new Item.Properties()));
+	public static final RegistryObject<Item> BRONTOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("brontosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.BRONTOSAURUS, 0x333447, 0xA19CA3, new Item.Properties()));
 	public static final RegistryObject<Item> CAMARASAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("camarasaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAMARASAURUS, 0x7E5E2D, 0x7E311C, new Item.Properties()));
 	public static final RegistryObject<Item> CAMPTOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("camptosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAMPTOSAURUS, 0xA9925D, 0xDBAC31, new Item.Properties()));
 	public static final RegistryObject<Item> CERATODUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("ceratodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CERATODUS, 0x3A3822, 0x969373, new Item.Properties()));
 	public static final RegistryObject<Item> CERATOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("ceratosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CERATOSAURUS, 0x352217, 0x4385B6, new Item.Properties()));
 	public static final RegistryObject<Item> CYLINDRICUM_SPAWN_EGG = SPAWN_EGG_REGISTER.register("cylindricum_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CYLINDRICUM, 0x09354F, 0x1E8D22, new Item.Properties()));
 	public static final RegistryObject<Item> DIABLOPHIS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("diablophis_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DIABLOPHIS, 0xC15F40, 0x5E3C2B, new Item.Properties()));
+	public static final RegistryObject<Item> DIPLODOCUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("diplodocus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DIPLODOCUS, 0x703530, 0xB2A467, new Item.Properties()));
 	public static final RegistryObject<Item> DRYOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("dryosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.DRYOSAURUS, 0x8E6746, 0x629698, new Item.Properties()));
 	public static final RegistryObject<Item> EILENODON_SPAWN_EGG = SPAWN_EGG_REGISTER.register("eilenodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.EILENODON, 0xA57B48, 0x84A36A, new Item.Properties()));
 	public static final RegistryObject<Item> EOPOLIS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("eopolis_spawn_egg", () -> new PFSpawnEggItem(PFEntities.EOPOLIS, 0xEECAB1, 0xF1AA8A, new Item.Properties()));
@@ -879,6 +864,7 @@ public class PFItems {
 	public static final RegistryObject<Item> PARAPLEURITES_SPAWN_EGG = SPAWN_EGG_REGISTER.register("parapleurites_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PARAPLEURITES, 0x598E33, 0xA68927, new Item.Properties()));
 	public static final RegistryObject<Item> POTAMOCERATODUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("potamoceratodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POTAMOCERATODUS, 0x302418, 0xAF621A, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("stegosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.STEGOSAURUS, 0xB0A047, 0x875D2A, new Item.Properties()));
+	public static final RegistryObject<Item> SUUWASSEA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("suuwassea_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SUUWASSEA, 0x997168, 0x9B4F56, new Item.Properties()));
 	public static final RegistryObject<Item> TANYCOLAGREUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("tanycolagreus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TANYCOLAGREUS, 0x737539, 0xD2C9C0, new Item.Properties()));
 	public static final RegistryObject<Item> TORVOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("torvosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TORVOSAURUS, 0x8C8680, 0x8C4E46, new Item.Properties()));
 	public static final RegistryObject<Item> ABOILUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("aboilus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ABOILUS, 0xC1AD9C, 0x85A2A2, new Item.Properties()));
@@ -891,7 +877,10 @@ public class PFItems {
 	public static final RegistryObject<Item> GIGANTSPINOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("gigantspinosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.GIGANTSPINOSAURUS, 0x8A4531, 0xBFB7B1, new Item.Properties()));
 	public static final RegistryObject<Item> HUAYANGOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("huayangosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HUAYANGOSAURUS, 0x5A5245, 0xA57645, new Item.Properties()));
 	public static final RegistryObject<Item> LEPIDOTES_SPAWN_EGG = SPAWN_EGG_REGISTER.register("lepidotes_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LEPIDOTES, 0x9D756B, 0xA07533, new Item.Properties()));
+	public static final RegistryObject<Item> MAMENCHISAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("mamenchisaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MAMENCHISAURUS, 0x6B291C, 0x8AADAB, new Item.Properties()));
 	public static final RegistryObject<Item> MESOFORFICULA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("mesoforficula_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MESOFORFICULA, 0x292021, 0xBFAC89, new Item.Properties()));
+	public static final RegistryObject<Item> OMEISAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("omeisaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.OMEISAURUS, 0x657A71, 0x9E1F1F, new Item.Properties()));
+	public static final RegistryObject<Item> POLISTODON_SPAWN_EGG = SPAWN_EGG_REGISTER.register("polistodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POLISTODON, 0x54433e, 0x302a29, new Item.Properties()));
 	public static final RegistryObject<Item> RHIPIDOBLATTINA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("rhipidoblattina_spawn_egg", () -> new PFSpawnEggItem(PFEntities.RHIPIDOBLATTINA, 0x493125, 0xC69E77, new Item.Properties()));
 	public static final RegistryObject<Item> SHUNOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("shunosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SHUNOSAURUS, 0x4B614A, 0x2A676D, new Item.Properties()));
 	public static final RegistryObject<Item> SINRAPTOR_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sinraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SINRAPTOR, 0x7B7B72, 0x9D5EA2, new Item.Properties()));
@@ -918,6 +907,7 @@ public class PFItems {
 	public static final RegistryObject<Item> SILLOSUCHUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sillosuchus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SILLOSUCHUS, 0x2F2E27, 0x58301B, new Item.Properties()));
 	public static final RegistryObject<Item> HENOS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("time_guardian_spawn_egg", () -> new PFSpawnEggItem(PFEntities.HENOS, 0x55735F, 0x3B4B45, new Item.Properties()));
 	public static final RegistryObject<Item> CORRUPTED_THEROPOD_SPAWN_EGG = SPAWN_EGG_REGISTER.register("corrupted_theropod_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CORRUPTED_THEROPOD, 0x382826, 0x315144, new Item.Properties()));
+	public static final RegistryObject<Item> PYRINOS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("pyrinos_spawn_egg", () -> new PFSpawnEggItem(PFEntities.PYRINOS, 0x5F8D6B, 0xF67014, new Item.Properties()));
 	public static final RegistryObject<Item> CAVE_SENTINEL_SPAWN_EGG = SPAWN_EGG_REGISTER.register("trilobite_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CAVE_SENTINEL,  0x4C785D, 0x4AEE7D, new Item.Properties()));
 	public static final RegistryObject<Item> LAND_SENTINEL_SPAWN_EGG = SPAWN_EGG_REGISTER.register("land_sentinel_spawn_egg", () -> new PFSpawnEggItem(PFEntities.LAND_SENTINEL,  0x638B6D, 0x31413B, new Item.Properties()));
 
@@ -935,12 +925,15 @@ public class PFItems {
 	public static final RegistryObject<Item> PSITTACOSAURUS_SKULL = SKELETON_REGISTER.register("psittacosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.PSITTACOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> YUTYRANNUS_SKULL = SKELETON_REGISTER.register("yutyrannus_skull", () -> new SpawnSkeletonItem(PFEntities.YUTYRANNUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> DILOPHOSAURUS_SKULL = SKELETON_REGISTER.register("dilophosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> KAYENTAVENATOR_SKULL = SKELETON_REGISTER.register("kayentavenator_skull", () -> new SpawnSkeletonItem(PFEntities.KAYENTAVENATOR_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> SARAHSAURUS_SKULL = SKELETON_REGISTER.register("sarahsaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> SCELIDOSAURUS_SKULL = SKELETON_REGISTER.register("scelidosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> ALLOSAURUS_SKULL = SKELETON_REGISTER.register("allosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> BRACHIOSAURUS_SKULL = SKELETON_REGISTER.register("brachiosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.BRACHIOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> CERATOSAURUS_SKULL = SKELETON_REGISTER.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKULL = SKELETON_REGISTER.register("stegosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKULL = SKELETON_REGISTER.register("chuandongocoelurus_skull", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKULL = SKELETON_REGISTER.register("yangchuanosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKULL = SKELETON_REGISTER.register("coelophysis_skull", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SKULL = SKELETON_REGISTER.register("desmatosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> POSTOSUCHUS_SKULL = SKELETON_REGISTER.register("postosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.POSTOSUCHUS_SKULL, new Item.Properties()));
@@ -961,11 +954,14 @@ public class PFItems {
 	public static final RegistryObject<Item> PSITTACOSAURUS_SKELETON = SKELETON_REGISTER.register("psittacosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.PSITTACOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> YUTYRANNUS_SKELETON = SKELETON_REGISTER.register("yutyrannus_skeleton", () -> new SpawnSkeletonItem(PFEntities.YUTYRANNUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> DILOPHOSAURUS_SKELETON = SKELETON_REGISTER.register("dilophosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DILOPHOSAURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> KAYENTAVENATOR_SKELETON = SKELETON_REGISTER.register("kayentavenator_skeleton", () -> new SpawnSkeletonItem(PFEntities.KAYENTAVENATOR_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> SARAHSAURUS_SKELETON = SKELETON_REGISTER.register("sarahsaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SARAHSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> SCELIDOSAURUS_SKELETON = SKELETON_REGISTER.register("scelidosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SCELIDOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> ALLOSAURUS_SKELETON = SKELETON_REGISTER.register("allosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.ALLOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> CERATOSAURUS_SKELETON = SKELETON_REGISTER.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKELETON = SKELETON_REGISTER.register("stegosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKELETON = SKELETON_REGISTER.register("chuandongocoelurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKELETON = SKELETON_REGISTER.register("yangchuanosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKELETON = SKELETON_REGISTER.register("coelophysis_skeleton", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SKELETON = SKELETON_REGISTER.register("desmatosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> POSTOSUCHUS_SKELETON = SKELETON_REGISTER.register("postosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.POSTOSUCHUS_SKELETON, new Item.Properties()));
@@ -977,10 +973,10 @@ public class PFItems {
 	public static final RegistryObject<Item> PALEOPAINTING = REGISTER.register("paleopainting", () -> new PaleopaintingItem(new Item.Properties()));
 	public static final RegistryObject<Item> WALL_FOSSIL = REGISTER.register("wall_fossil", () -> new WallFossilItem(new Item.Properties()));
 	public static final RegistryObject<Item> TIME_TOTEM = REGISTER.register("time_totem", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
-	public static final RegistryObject<Item> TIME_GEM_SHARD = REGISTER.register("time_gem_shard", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CRETACEOUS_KEY_FRAGMENT = REGISTER.register("cretaceous_key_fragment", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties()));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties()));
@@ -999,26 +995,40 @@ public class PFItems {
 	public static final RegistryObject<Item> TAIL_CLUB = REGISTER.register("tail_club", () -> new SwordItem(PFItemTiers.ANKYLOSAURUS, 4, -3.5F, new Item.Properties().stacksTo(1).durability(6)));
 	public static final RegistryObject<Item> ANKYLOSAURUS_SCUTE = REGISTER.register("ankylosaurus_scute", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> THYREOPHORAN_SCUTE = REGISTER.register("thyreophoran_scute", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SMALL_OSTEODERM = REGISTER.register("small_osteoderm", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> DILOPHOSAURUS_CREST = REGISTER.register("dilophosaurus_crest", () -> new DilophosaurusCrestItem(new Item.Properties()));
 	public static final RegistryObject<Item> CERATOPSIAN_HORN = REGISTER.register("ceratopsian_horn", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> THAGOMIZERS = REGISTER.register("thagomizer", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SPIKE = REGISTER.register("desmatosuchus_spike", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> GIGANTSPINOSAURUS_SPIKE = REGISTER.register("gigantspinosaurus_spike", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SPIKY_SPINE = REGISTER.register("spiky_spine", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DROMAEOSAUR_CLAW = REGISTER.register("dromaeosaur_claw", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> DIDELPHODON_HIDE = REGISTER.register("didelphodon_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EXAERETODON_HIDE = REGISTER.register("exaeretodon_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> KAYENTATHERIUM_HIDE = REGISTER.register("kayentatherium_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> REPENOMAMUS_HIDE = REGISTER.register("repenomamus_hide", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> POLISTODON_HIDE = REGISTER.register("polistodon_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ANKYLOSAURUS_HELMET = REGISTER.register("ankylosaurus_helmet", () -> new CustomArmorItem(ArmorMaterialInit.ANKYLOSAURUS, ArmorItem.Type.HELMET, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_CHESTPLACE = REGISTER.register("desmatosuchus_chestplate", () -> new CustomChestplateItem(ArmorMaterialInit.DESMATOSUCHUS, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
 	public static final RegistryObject<Item> EGG_HELMET = REGISTER.register("eggshell_helmet", () -> new EggHelmetItem(ArmorMaterialInit.EGG, ArmorItem.Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_TRICERATOPS_ARMOR = REGISTER.register("iron_triceratops_armor", () -> new TriceratopsArmorItem(5, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> GOLD_TRICERATOPS_ARMOR = REGISTER.register("gold_triceratops_armor", () -> new TriceratopsArmorItem(7, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> DIAMOND_TRICERATOPS_ARMOR = REGISTER.register("diamond_triceratops_armor", () -> new TriceratopsArmorItem(11, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> NETHERITE_TRICERATOPS_ARMOR = REGISTER.register("netherite_triceratops_armor", () -> new TriceratopsArmorItem(11, new Item.Properties().stacksTo(1).fireResistant()));
+	public static final RegistryObject<Item> SMALL_DINOSAUR_ARMOR = REGISTER.register("small_dinosaur_armor", () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
 	public static final RegistryObject<Item> TYRANNOSAUR_TOOTH_SWORD = REGISTER.register("tyrannosaur_tooth_sword", () -> new TyrannosaurToothSwordItem(PFItemTiers.TYRANNOSAURUS, 3, -2.4F, new Item.Properties()));
 	public static final RegistryObject<Item> THAGOMIZER_PICKAXE = REGISTER.register("thagomizer_pickaxe", () -> new PickaxeItem(PFItemTiers.THAGOMIZER, 2, -2.8F, new Item.Properties()));
 	public static final RegistryObject<Item> DROMAEOSAUR_CLAW_SCYTHE = REGISTER.register("dromaeosaur_claw_scythe", () -> new PFHoeItem(PFItemTiers.DAKOTARAPTOR, new Item.Properties()));
-	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new Item(new Item.Properties().durability(250)));
+	public static final RegistryObject<Item> STEGOSAUR_SCYTHE = REGISTER.register("stegosaur_scythe", () -> new StegosaurScytheItem(PFItemTiers.THAGOMIZER, new Item.Properties()));
+	public static final RegistryObject<SpikyJavelinItem> SPIKY_JAVELIN = REGISTER.register("spiky_javelin", () -> new SpikyJavelinItem(new Item.Properties().defaultDurability(250)));
+	public static final RegistryObject<Item> GEOLOGY_HAMMER = REGISTER.register("geological_hammer", () -> new GeologicalHammerItem(1, 1, Tiers.IRON, PFTags.MINEABLE_WITH_HAMMER, new Item.Properties().durability(250)));
 	public static final RegistryObject<Item> CLADOPHLEBIS_STICK = REGISTER.register("cladophlebis_stick", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PTILOPHYLLUM_FRONDS = REGISTER.register("ptilophyllum_fronds", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> PLANT_FIBER = REGISTER.register("plant_fiber", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> MOSS_BALL = REGISTER.register("moss_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> ASH_BALL = REGISTER.register("ash_ball", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MUD_BALL = REGISTER.register("mud_ball", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SAND_BALL = REGISTER.register("sand_ball", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EGGSHELLS = REGISTER.register("eggshells", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EGGSHELL_POWDER = REGISTER.register("eggshell_powder", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CLUBMOSS_POWDER = REGISTER.register("clubmoss_powder", () -> new Item(new Item.Properties()));
@@ -1073,6 +1083,8 @@ public class PFItems {
 	public static final RegistryObject<PFChestBoatItem> PHOENICOPSIS_CHEST_BOAT = REGISTER.register("phoenicopsis_chest_boat", () -> new PFChestBoatItem(PFBoatTypes.PHOENICOPSIS, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<PFBoatItem> FRENELOPSIS_BOAT = REGISTER.register("frenelopsis_boat", () -> new PFBoatItem(PFBoat.PFBoatTypes.FRENELOPSIS, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<PFChestBoatItem> FRENELOPSIS_CHEST_BOAT = REGISTER.register("frenelopsis_chest_boat", () -> new PFChestBoatItem(PFBoatTypes.FRENELOPSIS, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<PFRaftItem> BAIERA_BOAT = REGISTER.register("baiera_boat", () -> new PFRaftItem(PFRaft.PFRaftTypes.BAIERA, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<PFChestBoatItem> BAIERA_CHEST_BOAT = REGISTER.register("baiera_chest_boat", () -> new PFChestBoatItem(PFBoatTypes.BAIERA, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<PFRaftItem> NEOCALAMITES_BOAT = REGISTER.register("neocalamites_boat", () -> new PFRaftItem(PFRaft.PFRaftTypes.NEOCALAMITES, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<PFChestBoatItem> NEOCALAMITES_CHEST_BOAT = REGISTER.register("neocalamites_chest_boat", () -> new PFChestBoatItem(PFBoatTypes.NEOCALAMITES, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> HARENAICHTHYS_BUCKET = REGISTER.register("harenaichthys_bucket", () -> new PFBucketItem(PFEntities.HARENAICHTHYS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
@@ -1092,6 +1104,7 @@ public class PFItems {
 	public static final RegistryObject<Item> MORROLEPIS_BUCKET = REGISTER.register("morrolepis_bucket", () -> new PFBucketItem(PFEntities.MORROLEPIS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> OPHIOPSIS_BUCKET = REGISTER.register("ophiopsis_bucket", () -> new PFBucketItem(PFEntities.OPHIOPSIS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> POTAMOCERATODUS_BUCKET = REGISTER.register("potamoceratodus_bucket", () -> new PFBucketItem(PFEntities.POTAMOCERATODUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> TOARCIBATIS_BUCKET = REGISTER.register("toarcibatis_bucket", () -> new PFBucketItem(PFEntities.TOARCIBATIS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> ARGANODUS_BUCKET = REGISTER.register("arganodus_bucket", () -> new PFBucketItem(PFEntities.ARGANODUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> CHINLEA_BUCKET = REGISTER.register("chinlea_bucket", () -> new PFBucketItem(PFEntities.CHINLEA, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MOOREODONTUS_BUCKET = REGISTER.register("mooreodontus_bucket", () -> new PFBucketItem(PFEntities.MOOREODONTUS, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
@@ -1112,7 +1125,7 @@ public class PFItems {
 	public static final RegistryObject<Item> BOTTLED_CICADOCORIS = REGISTER.register("bottled_cicadocoris", () -> new BottledBugItem(PFEntities.CICADOCORIS, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BOTTLED_MESOFORFICULA = REGISTER.register("bottled_mesoforficula", () -> new BottledBugItem(PFEntities.MESOFORFICULA, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> BOTTLED_RHIPIDOBLATTINA = REGISTER.register("bottled_rhipidoblattina", () -> new BottledBugItem(PFEntities.RHIPIDOBLATTINA, new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> BOTTLED_SAP = REGISTER.register("bottled_sap", () -> new Item(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_SAP = REGISTER.register("bottled_sap", () -> new Item(new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item> MONKEY_SHERD = REGISTER.register("monkey_sherd", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> HORN_SHERD = REGISTER.register("horn_sherd", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> LEAF_SHERD = REGISTER.register("leaf_sherd", () -> new Item(new Item.Properties()));
@@ -1161,7 +1174,7 @@ public class PFItems {
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> RAW_OYSTER = FOOD_REGISTER.register("raw_oyster", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.01F).build())));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> MARMARTHIA_BERRIES = FOOD_REGISTER.register("marmarthia_berries", () -> new ItemNameBlockItem(PFBlocks.MARMARTHIA.get(), (new Item.Properties()).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(new MobEffectInstance(MobEffects.POISON, 300), 1.0F).build())));
+	public static final RegistryObject<Item> MARMARTHIA_BERRIES = FOOD_REGISTER.register("marmarthia_berries", () -> new AncientPlantItemNameBlockItem(PFBlocks.MARMARTHIA.get(), (new Item.Properties()).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(new MobEffectInstance(MobEffects.POISON, 300), 1.0F).build())));
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> TAXUS_BERRIES = FOOD_REGISTER.register("taxus_berries", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(new MobEffectInstance(MobEffects.POISON, 300), 1.0F).build())));
 	public static final RegistryObject<Item> EPHEDRA_BERRIES = FOOD_REGISTER.register("ephedra_berries", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).build())));
@@ -1171,7 +1184,7 @@ public class PFItems {
 	public static final RegistryObject<Item> FERMENTED_GINKO_BERRY = FOOD_REGISTER.register("fermented_ginkgo_berry", () -> new FermentedGinkgoBerryItem(new Item.Properties()));
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> COOKED_GINKGO_NUTS = FOOD_REGISTER.register("cooked_ginkgo_nuts", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(4).effect(new MobEffectInstance(MobEffects.POISON, 300, 0), 0.3F).build())));
-	public static final RegistryObject<Item> BASSITHECA_BERRIES = FOOD_REGISTER.register("bassitheca_berries", () -> new ItemNameBlockItem(PFBlocks.BASSITHECA.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).build())));
+	public static final RegistryObject<Item> BASSITHECA_BERRIES = FOOD_REGISTER.register("bassitheca_berries", () -> new AncientPlantItemNameBlockItem(PFBlocks.BASSITHECA.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).build())));
 	public static final RegistryObject<Item> CERATODUS = FOOD_REGISTER.register("raw_ceratodus", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
 	public static final RegistryObject<Item> COOKED_CERATODUS = FOOD_REGISTER.register("cooked_ceratodus", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
 	public static final RegistryObject<Item> CYCLURUS = FOOD_REGISTER.register("raw_cyclurus", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
@@ -1210,6 +1223,7 @@ public class PFItems {
 	public static final RegistryObject<Item> MORROLEPIS = FOOD_REGISTER.register("raw_morrolepis", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
 	public static final RegistryObject<Item> OPHIOPSIS = FOOD_REGISTER.register("raw_ophiopsis", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(2).build())));
 	public static final RegistryObject<Item> COOKED_OPHIOPSIS = FOOD_REGISTER.register("cooked_ophiopsis", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.8F).nutrition(6).build())));
+	public static final RegistryObject<Item> TOARCIBATIS = FOOD_REGISTER.register("raw_toarcibatis", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.2F).nutrition(2).build())));
 	@SuppressWarnings("deprecation")
 	public static final RegistryObject<Item> DEAD_MILLIPEDE = FOOD_REGISTER.register("dead_millipede", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).effect(new MobEffectInstance(MobEffects.POISON, 300, 0), 1).build())));
 	public static final RegistryObject<Item> DEAD_BEETLE = FOOD_REGISTER.register("dead_beetle", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
@@ -1218,47 +1232,65 @@ public class PFItems {
 	public static final RegistryObject<Item> DEAD_ROACH = FOOD_REGISTER.register("dead_roach", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	public static final RegistryObject<Item> DEAD_SCORPION = FOOD_REGISTER.register("dead_scorpion", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.1F).nutrition(1).build())));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> FERNY_STEW = FOOD_REGISTER.register("ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 1, 2), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> FERNY_STEW = FOOD_REGISTER.register("ferny_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 1, 2), 1).build()).stacksTo(1)));
 	//	@SuppressWarnings("deprecation")
 	//	public static final RegistryObject<Item> H_CYCAD_STEW = FOOD_REGISTER.register("herbivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6000), 1).build()).stacksTo(1)));
 	//	@SuppressWarnings("deprecation")
 	//	public static final RegistryObject<Item> C_CYCAD_STEW = FOOD_REGISTER.register("carnivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> H_ZAMITES_STEW = FOOD_REGISTER.register("herbivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 6000), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> H_ZAMITES_STEW = FOOD_REGISTER.register("herbivore_zamites_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> C_ZAMITES_STEW = FOOD_REGISTER.register("carnivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 6000), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> C_ZAMITES_STEW = FOOD_REGISTER.register("carnivore_zamites_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 1200), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> CLUBMOSS_STEW = FOOD_REGISTER.register("clubmoss_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> CLUBMOSS_STEW = FOOD_REGISTER.register("clubmoss_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 1200), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> MARCHANITA_STEW = FOOD_REGISTER.register("marchantia_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 6000), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> MARCHANITA_STEW = FOOD_REGISTER.register("marchantia_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 1200), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> SWEET_STEW = FOOD_REGISTER.register("sweet_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 1200), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> SWEET_STEW = FOOD_REGISTER.register("sweet_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 600), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_FERNY_STEW = FOOD_REGISTER.register("strengthened_ferny_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 0, 3), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_FERNY_STEW = FOOD_REGISTER.register("strengthened_ferny_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.HEAL, 0, 3), 1).build()).stacksTo(1)));
 	//	@SuppressWarnings("deprecation")
 	//	public static final RegistryObject<Item> STRENGTHENED_H_CYCAD_STEW = FOOD_REGISTER.register("strengthened_herbivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 6000, 1), 1).build()).stacksTo(1)));
 	//	@SuppressWarnings("deprecation")
 	//	public static final RegistryObject<Item> STRENGTHENED_C_CYCAD_STEW = FOOD_REGISTER.register("strengthened_carnivore_cycad_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000, 1), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_H_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_herbivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 6000, 1), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_H_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_herbivore_zamites_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_C_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_carnivore_zamites_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 6000, 1), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_C_ZAMITES_STEW = FOOD_REGISTER.register("strengthened_carnivore_zamites_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.JUMP, 1200, 1), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_CLUBMOSS_STEW = FOOD_REGISTER.register("strengthened_clubmoss_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000, 1), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_CLUBMOSS_STEW = FOOD_REGISTER.register("strengthened_clubmoss_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 1200, 1), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_MARCHANITA_STEW = FOOD_REGISTER.register("strengthened_marchantia_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 6000, 1), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_MARCHANITA_STEW = FOOD_REGISTER.register("strengthened_marchantia_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.SATURATION, 1200, 1), 1).effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200), 1).build()).stacksTo(1)));
 	@SuppressWarnings("deprecation")
-	public static final RegistryObject<Item> STRENGTHENED_SWEET_STEW = FOOD_REGISTER.register("strengthened_sweet_stew", () -> new BowlFoodItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 1), 1).build()).stacksTo(1)));
-	public static final RegistryObject<Item> HORSETAIL_TEA = FOOD_REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().stacksTo(16)));
-	public static final RegistryObject<Item> BOTTLED_SYRUP = FOOD_REGISTER.register("bottled_syrup", () -> new BottledSyrupItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> STRENGTHENED_SWEET_STEW = FOOD_REGISTER.register("strengthened_sweet_stew", () -> new PFStewItem(new Item.Properties().food(new FoodProperties.Builder().saturationMod(0.6F).nutrition(5).effect(new MobEffectInstance(MobEffects.REGENERATION, 600, 1), 1).build()).stacksTo(1)));
+	public static final RegistryObject<Item> HORSETAIL_TEA = FOOD_REGISTER.register("horsetail_tea", () -> new HorsetailTeaItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> FERMENTED_DRINK = FOOD_REGISTER.register("fermented_drink", () -> new FermentedDrinkItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> BOTTLED_SYRUP = FOOD_REGISTER.register("bottled_syrup", () -> new BottledSyrupItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 	public static final RegistryObject<Item> LUNGFISH_OIL = FOOD_REGISTER.register("lungfish_oil", () -> new LungfishOilItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> GAR_OIL = FOOD_REGISTER.register("gar_oil", () -> new GarOilItem(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> FERMENTED_DRINK = FOOD_REGISTER.register("fermented_drink", () -> new FermentedDrinkItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> CALCIUM_SUPPLEMENT = FOOD_REGISTER.register("calcium_supplement", () -> new CalciumSupplementItem(new Item.Properties().stacksTo(1)));
 
 	private static TagKey<BannerPattern> registerPattern(String name) {
-	      return TagKey.create(Registries.BANNER_PATTERN, new ResourceLocation(PrehistoricFauna.MOD_ID, "pattern_item/" + name));
+		return TagKey.create(Registries.BANNER_PATTERN, new ResourceLocation(PrehistoricFauna.MOD_ID, "pattern_item/" + name));
 
+	}
+
+	public class PFItemProperties extends ItemProperties {
+
+		public static void init() {
+
+		}
+
+		@SuppressWarnings("deprecation")
+		private static void register(Item p_174571_, ResourceLocation p_174572_, ClampedItemPropertyFunction p_174573_) {
+			register(p_174571_, p_174572_, (ItemPropertyFunction) p_174573_);
+		}
+
+		static {
+			register(SPIKY_JAVELIN.get(), new ResourceLocation(PrehistoricFauna.MOD_ID, "pulling"), (p_174630_, p_174631_, p_174632_, p_174633_) -> {
+				return p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F;
+			});
+		}
 	}
 
 }

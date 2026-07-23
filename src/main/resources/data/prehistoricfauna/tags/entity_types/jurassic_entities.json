@@ -23,7 +23,6 @@
 		"prehistoricfauna:ceratodus_cocoon",
 		"prehistoricfauna:potamoceratodus_cocoon",
 		"prehistoricfauna:kayentachelys",
-		"prehistoricfauna:kayentasuchus",
 		"prehistoricfauna:kayentavenator",
 		"prehistoricfauna:diablophis",
 		"prehistoricfauna:macelognathus",
@@ -56,6 +55,13 @@
 		"prehistoricfauna:aboilus",
 		"prehistoricfauna:cicadocoris",
 		"prehistoricfauna:mesoforficula",
-		"prehistoricfauna:rhipidoblattina"
+		"prehistoricfauna:rhipidoblattina",
+		"prehistoricfauna:brachiosaurus",
+		"prehistoricfauna:brontosaurus",
+		"prehistoricfauna:diplodocus",
+		"prehistoricfauna:suuwassea",
+		"prehistoricfauna:omeisaurus",
+		"prehistoricfauna:polistodon",
+		"prehistoricfauna:mamenchisaurus"
 	]
 }

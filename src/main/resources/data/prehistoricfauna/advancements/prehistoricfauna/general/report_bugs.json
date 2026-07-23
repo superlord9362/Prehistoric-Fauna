@@ -1,0 +1,265 @@
+{
+	"parent": "prehistoricfauna:prehistoricfauna/general/warpaholic",
+	"display": {
+		"icon": {
+			"item": "prehistoricfauna:bottled_dermestid_beetle"
+		},
+		"title": {
+			"translate": "advancements.prehistoricfauna.report_bugs.title"
+		},
+		"description": {
+			"translate": "advancements.prehistoricfauna.report_bugs.description"
+		},
+		"frame": "challenge",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"rewards": {
+		"experience": 100
+	},
+	"criteria": {
+		"aboilus": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_aboilus"
+						]
+					}
+				]
+			}
+		},
+		"apoclion": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_apoclion"
+						]
+					}
+				]
+			}
+		},
+		"cephaloleichnites": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_cephaloleichnites"
+						]
+					}
+				]
+			}
+		},
+		"cicadocoris": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_cicadocoris"
+						]
+					}
+				]
+			}
+		},
+		"cretaraneus": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_cretaraneus"
+						]
+					}
+				]
+			}
+		},
+		"cylindricum": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_cylindricum"
+						]
+					}
+				]
+			}
+		},
+		"diplichnites": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_diplichnites"
+						]
+					}
+				]
+			}
+		},
+		"dermestid": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_dermestid_beetle"
+						]
+					}
+				]
+			}
+		},
+		"eopolis": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_eopolis"
+						]
+					}
+				]
+			}
+		},
+		"gobiulus": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_gobiulus"
+						]
+					}
+				]
+			}
+		},
+		"liaonemobius": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_liaonemobius"
+						]
+					}
+				]
+			}
+		},
+		"mesoforficula": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_mesoforficula"
+						]
+					}
+				]
+			}
+		},
+		"octopodichnus": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_octopodichnus"
+						]
+					}
+				]
+			}
+		},
+		"paleohelcura": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_paleohelcura"
+						]
+					}
+				]
+			}
+		},
+		"parapleurites": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_parapleurites"
+						]
+					}
+				]
+			}
+		},
+		"rhipidoblattina": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:bottled_rhipidoblattina"
+						]
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"aboilus"
+		],
+		[
+			"apoclion"
+		],
+		[
+			"cephaloleichnites"
+		],
+		[
+			"cicadocoris"
+		],
+		[
+			"cretaraneus"
+		],
+		[
+			"cylindricum"
+		],
+		[
+			"diplichnites"
+		],
+		[
+			"dermestid"
+		],
+		[
+			"eopolis"
+		],
+		[
+			"gobiulus"
+		],
+		[
+			"liaonemobius"
+		],
+		[
+			"mesoforficula"
+		],
+		[
+			"octopodichnus"
+		],
+		[
+			"paleohelcura"
+		],
+		[
+			"parapleurites"
+		],
+		[
+			"rhipidoblattina"
+		]
+	]
+}

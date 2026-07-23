@@ -12,7 +12,7 @@ public class DinosaurLookAtGoal extends LookAtPlayerGoal {
 		super(entityIn, watchTargetClass, maxDistance);
 		dinosaur = entityIn;
 	}
-	
+
 	public boolean canUse() {
 		return super.canUse() && !dinosaur.isAsleep();
 	}

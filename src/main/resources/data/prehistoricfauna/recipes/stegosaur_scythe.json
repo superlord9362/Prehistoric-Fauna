@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "S",
+    "S"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:gigantspinosaurus_spike"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:stegosaur_scythe",
+    "count": 1
+  }
+}

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Sinosauroptery
 
 public class SinosauropteryxEyeLayer extends RenderLayer<Sinosauropteryx, SinosauropteryxModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinosauropteryx/sinosauropteryx_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinosauropteryx/sinosauropteryx_eyeglow.png"));
 	private final RenderLayerParent<Sinosauropteryx, SinosauropteryxModel> sinosauropteryxRenderer;
 	
 	public SinosauropteryxEyeLayer(RenderLayerParent<Sinosauropteryx, SinosauropteryxModel> rendererIn) {

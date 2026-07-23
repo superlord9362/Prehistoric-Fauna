@@ -9,20 +9,25 @@ import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.cretaceous.yixian.ChangyuraptorModel;
+import superlord.prehistoricfauna.client.render.layer.ChangyuraptorEyeLayer;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Changyuraptor;
+import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ChangyuraptorRenderer extends MobRenderer<Changyuraptor, ChangyuraptorModel> {
-	private static final ResourceLocation CHANGYURAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/changyuraptor.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/melanistic.png");
-	private static final ResourceLocation CHANGYURAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/changyuraptor_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/changyuraptor/melanistic_sleeping.png");
+	private static final ResourceLocation CHANGYURAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/changyuraptor.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/melanistic.png");
+	private static final ResourceLocation CHANGYURAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/changyuraptor_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/changyuraptor/melanistic_sleeping.png");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ChangyuraptorRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ChangyuraptorModel(renderManagerIn.bakeLayer(ClientEvents.CHANGYURAPTOR)), 0.3125F);
 		this.addLayer(new ItemInHandLayer(this, renderManagerIn.getItemInHandRenderer()));
+		if (PrehistoricFaunaConfig.eyeShine) {
+			this.addLayer(new ChangyuraptorEyeLayer(this));
+		}
 	}
 
 	protected void scale(Changyuraptor changyuraptor, PoseStack matrixStackIn, float partialTickTime) {

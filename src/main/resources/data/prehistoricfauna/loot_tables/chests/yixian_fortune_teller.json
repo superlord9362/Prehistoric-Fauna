@@ -1,0 +1,112 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:bone",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:string",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:spider_eye",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:eggshell_powder",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:ash_ball",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [],
+          "name": "prehistoricfauna:repenomamus_hide"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:time_gem_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:dead_hopper",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:dead_spider",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fermented_spider_eye"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:horsetail_tea",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:fermented_drink"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8,
+        "min": 2
+      }
+    }
+  ],
+  "random_sequence": "prehistoricfauna:chests/yixian_fortune_teller"
+}

@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/taxus_log_top",
+		"side": "prehistoricfauna:block/taxus_log",
+		"inside": "prehistoricfauna:block/stripped_taxus_log"
+	}
+}

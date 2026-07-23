@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Yanosteus;
 
 public class YanosteusRenderer extends MobRenderer<Yanosteus, YanosteusModel> {
 
-	private static final ResourceLocation YANOSTEUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/yanosteus.png");
+	private static final ResourceLocation YANOSTEUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/yanosteus.png");
 
 	public YanosteusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new YanosteusModel(renderManagerIn.bakeLayer(ClientEvents.YANOSTEUS)), 0);

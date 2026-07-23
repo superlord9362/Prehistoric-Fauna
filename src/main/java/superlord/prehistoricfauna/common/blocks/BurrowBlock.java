@@ -121,6 +121,19 @@ public class BurrowBlock extends BaseEntityBlock {
 
 		return set;
 	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onRemove(BlockState p_49632_, Level p_49633_, BlockPos p_49634_, BlockState p_49635_, boolean p_49636_) {
+	    if (!p_49632_.is(p_49635_.getBlock())) {
+	        BlockEntity blockentity = p_49633_.getBlockEntity(p_49634_);
+	        if (blockentity instanceof BurrowBlockEntity burrowblockentity) {
+	            burrowblockentity.emptyAllLivingFromBurrow(null, p_49632_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
+	            p_49633_.updateNeighbourForOutputSignal(p_49634_, this);
+	        }
+	    }
+	    super.onRemove(p_49632_, p_49633_, p_49634_, p_49635_, p_49636_);
+	}
 
 	public static byte pack(Collection<Direction> p_221577_) {
 		byte b0 = 0;
@@ -223,7 +236,6 @@ public class BurrowBlock extends BaseEntityBlock {
 				burrowblockentity.emptyAllLivingFromBurrow((Player)null, p_153888_, BurrowBlockEntity.BurrowerReleaseStatus.EMERGENCY);
 			}
 		}
-		System.out.println("Can survive: " + flag);
 		return flag;
 	}
 

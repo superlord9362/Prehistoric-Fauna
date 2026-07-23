@@ -13,25 +13,25 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Megapnosaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class MegapnosaurusRenderer extends MobRenderer<Megapnosaurus, MegapnosaurusModel> {
-	private static final ResourceLocation MEGAPNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic.png");
-	private static final ResourceLocation MEGAPNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/juvenile.png");
-	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_juvenile.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_juvenile.png");
-	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/juvenile_sleeping.png");
-	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_juvenile_sleeping.png");
-	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_juvenile_sleeping.png");
+	private static final ResourceLocation MEGAPNOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/megapnosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic.png");
+	private static final ResourceLocation MEGAPNOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/megapnosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/juvenile.png");
+	private static final ResourceLocation ALBINO_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino_juvenile.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic_juvenile.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/juvenile_sleeping.png");
+	private static final ResourceLocation ALBINO_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino_juvenile_sleeping.png");
+	private static final ResourceLocation MELANISTIC_JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic_juvenile_sleeping.png");
 
-	private static final ResourceLocation MEGAPNOSAURUS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus_s.png");
-	private static final ResourceLocation MEGAPNOSAURUS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/megapnosaurus_s_sleeping.png");
-	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_s.png");
-	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/albino_s_sleeping.png");
-	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_s.png");
-	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/megapnosaurus/melanistic_s_sleeping.png");
+	private static final ResourceLocation MEGAPNOSAURUS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/megapnosaurus_s.png");
+	private static final ResourceLocation MEGAPNOSAURUS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/megapnosaurus_s_sleeping.png");
+	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino_s.png");
+	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/albino_s_sleeping.png");
+	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic_s.png");
+	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/megapnosaurus/melanistic_s_sleeping.png");
 
 	public MegapnosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MegapnosaurusModel(renderManagerIn.bakeLayer(ClientEvents.MEGAPNOSAURUS)), 0.625F);

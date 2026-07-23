@@ -1,0 +1,115 @@
+{
+	"type": "fossil:analyzer",
+	"input": {
+		"item": "prehistoricfauna:cretaceous_fossil"
+	},
+	"outputs": [
+		{
+			"item": "prehistoricfauna:chalk_regolith",
+			"weight": 35.0
+		},
+   		{
+      		"item": "fossil:ankylosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:aquilolamna_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:citipati_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:confuciusornis_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:deinonychus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:gallimimus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:mosasaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:pachycephalosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:pachyrhinosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:parasaurolophus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:protoceratops_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:psittacosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:pteranodon_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:quetzalcoatlus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:sarcosuchus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:spinosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:therizinosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:triceratops_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:tyrannosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:velociraptor_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:alligator_gar_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+      		"item": "fossil:sturgeon_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+			"item": "minecraft:bone_meal",
+			"weight": 50.0
+		}
+	],
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "fossil"
+				}
+			]
+		}
+	]
+}

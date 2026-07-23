@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_chest",
+	"pattern": [		
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:czekanowskia_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:czekanowskia_chest"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "variant_chests"
+				}
+			]
+		}
+	]
+}

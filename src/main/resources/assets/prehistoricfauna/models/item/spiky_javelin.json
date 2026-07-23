@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "prehistoricfauna:item/thagomizer_javelin"
+    },
+    "overrides": [
+		{
+			"predicate": {
+				"prehistoricfauna:pulling": 1
+			},
+			"model": "prehistoricfauna:item/thagomizer_javelin_horizontal"
+		}
+	]
+}

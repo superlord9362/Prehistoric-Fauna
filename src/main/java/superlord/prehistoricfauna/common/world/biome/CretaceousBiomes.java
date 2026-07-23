@@ -337,7 +337,7 @@ public class CretaceousBiomes {
 		if (PrehistoricFaunaConfig.goyocephaleDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.GOYOCEPHALE.get(), PrehistoricFaunaConfig.goyocephaleDjadochtaArroyoSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.kolDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.KOL.get(), PrehistoricFaunaConfig.kolDjadochtaArroyoSpawnWeight, 1, 3));
 		if (PrehistoricFaunaConfig.byronosaurusDjadochtaArroyoSpawnWeight != 0) spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(PFEntities.BYRONOSAURUS.get(), PrehistoricFaunaConfig.byronosaurusDjadochtaArroyoSpawnWeight, 1, 2));
-		return biome(false, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
+		return biome(true, 0x66866b, 0x9c8c67, 0x5F909D, 12638463, 1F, 0.2F, spawnSettings, biomeFeatures);
 	}
 	
 	public static Biome djadochtaAlluvialPlains(HolderGetter<PlacedFeature> placedFeatureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

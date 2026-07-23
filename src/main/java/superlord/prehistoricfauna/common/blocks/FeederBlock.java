@@ -151,6 +151,10 @@ public class FeederBlock extends BaseEntityBlock {
 				world.setBlock(pos, foodState.setValue(INSECT, true), 0);
 				setFoodAmount(getFoodAmount(world, pos) + 10, world, pos);
 				world.getBlockState(pos);
+				if (!player.isCreative()) {
+					stack.shrink(1);
+				}
+				return InteractionResult.sidedSuccess(dynamicShape);
 			}
 			if (stack.is(PFTags.PLANTS_2_HUNGER_ITEM) || stack.is(PFTags.PLANTS_4_HUNGER_ITEM) || stack.is(PFTags.PLANTS_6_HUNGER_ITEM) || stack.is(PFTags.PLANTS_8_HUNGER_ITEM) || stack.is(PFTags.PLANTS_10_HUNGER_ITEM) || stack.is(PFTags.PLANTS_12_HUNGER_ITEM) || stack.is(PFTags.PLANTS_15_HUNGER_ITEM) || stack.is(PFTags.PLANTS_20_HUNGER_ITEM) || stack.is(PFTags.PLANTS_25_HUNGER_ITEM) || stack.is(PFTags.PLANTS_30_HUNGER_ITEM)) {
 				world.setBlock(pos, foodState.setValue(PLANT, true), 0);
@@ -213,7 +217,7 @@ public class FeederBlock extends BaseEntityBlock {
 					}
 					world.getBlockState(pos);
 				}
-
+				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
 			if (hasMeat(currentState) && getFoodAmount(world, pos) != 1001) {
 				if (stack.is(PFTags.MEATS_2_HUNGER)) {

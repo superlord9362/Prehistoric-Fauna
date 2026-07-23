@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.SarahsaurusSkull
 
 public class SarahsaurusSkullRenderer extends MobRenderer<SarahsaurusSkull, SarahsaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/sarahsaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/sarahsaurus_skeleton.png");
 
 	public SarahsaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new SarahsaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.SARAHSAURUS_SKULL)), 0);

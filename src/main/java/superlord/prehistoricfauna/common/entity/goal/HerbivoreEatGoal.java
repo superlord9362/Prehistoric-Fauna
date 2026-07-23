@@ -8,6 +8,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Alcovasaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Gigantspinosaurus;
+import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class HerbivoreEatGoal extends MoveToBlockGoal {
@@ -59,6 +62,10 @@ public class HerbivoreEatGoal extends MoveToBlockGoal {
 	protected void eatBerry() {
 		BlockState blockstate = dinosaur.level().getBlockState(this.blockPos);
 
+		if (blockstate.is(PFTags.FERNS) && dinosaur.getRandom().nextInt() == 0 && (dinosaur instanceof Alcovasaurus || dinosaur instanceof Gigantspinosaurus)) {
+			dinosaur.spawnAtLocation(PFItems.FIDDLEHEAD_SPORES.get());
+		}
+		
 		if (blockstate.is(PFTags.PLANTS_2_HUNGER)) {
 			int hunger = dinosaur.getCurrentHunger();
 			if (hunger + 2 >= dinosaur.maxHunger) {

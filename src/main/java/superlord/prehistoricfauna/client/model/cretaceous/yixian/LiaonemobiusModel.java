@@ -73,34 +73,36 @@ public class LiaonemobiusModel extends EntityModel<Liaonemobius> {
 	public void setupAnim(Liaonemobius entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		float walkSpeed = 3.0f;
 		float walkDegree = 2.0f;
-		this.RightAntenna.xRot = -0.15F * (Mth.sin(0.075F * ageInTicks + 1)) - 0.2618F;
-		this.LeftAntenna.xRot = -0.15F * Mth.sin(0.075F * ageInTicks) - 0.2618F;
+		float jumpPulse = Math.abs(Mth.sin(limbSwing * walkSpeed) * limbSwingAmount);
+		this.RightAntenna.xRot = -0.15F * (Mth.sin(0.075F * ageInTicks + 1)) - 0.2618F - (jumpPulse * 0.3F);
+		this.LeftAntenna.xRot = -0.15F * Mth.sin(0.075F * ageInTicks) - 0.2618F - (jumpPulse * 0.3F);
+		float clampedSwing = Math.min(limbSwingAmount, 0.3F);
 		if (entity.isUpsideDownNavigator) {
-			this.LeftLeg3.zRot = -Math.abs((Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount)) + 1.0036F;
-			this.RightLeg3.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount)) - 1.0036F;
-			this.LeftLeg2.zRot = -Math.abs((Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount)) + 0.1767F;
-			this.RightLeg2.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed + 15) * walkDegree * 0.5F * limbSwingAmount)) - 0.1767F;
-			this.LeftLeg1.zRot = -Math.abs((Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount)) + 0.3927F;
-			this.RightLeg1.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount)) - 0.3927F;
-			this.LeftLeg3.xRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) + 0.7854F;
-			this.RightLeg3.xRot = Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount + 0.7854F;
-			this.LeftLeg2.xRot = -(Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount);
-			this.RightLeg2.xRot = Mth.cos(limbSwing * walkSpeed + 15) * walkDegree * 0.5F * limbSwingAmount;
-			this.LeftLeg1.xRot = -(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
-			this.RightLeg1.xRot = Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount - 0.3927F;
+			this.LeftLeg3.zRot = -(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount) + 1.0036F;
+			this.RightLeg3.zRot = (Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount) - 1.0036F;
+			this.LeftLeg2.zRot = -(Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount) + 0.1767F;
+			this.RightLeg2.zRot = (Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount) - 0.1767F;
+			this.LeftLeg1.zRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) + 0.3927F;
+			this.RightLeg1.zRot = (Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
+			this.LeftLeg3.xRot = -(Mth.cos(limbSwing * walkSpeed) * walkDegree * limbSwingAmount) + 0.7854F;
+			this.RightLeg3.xRot = -(Mth.cos(limbSwing * walkSpeed) * walkDegree * limbSwingAmount) + 0.7854F;
+			this.LeftLeg2.xRot = -(Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.3F * limbSwingAmount);
+			this.RightLeg2.xRot = -(Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.3F * limbSwingAmount);
+			this.LeftLeg1.xRot = (Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
+			this.RightLeg1.xRot = (Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
 		} else {
-			this.LeftLeg3.zRot = Math.abs((Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount)) + 1.0036F;
-			this.RightLeg3.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount)) - 1.0036F;
-			this.LeftLeg2.zRot = Math.abs((Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount)) + 0.3927F;
-			this.RightLeg2.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed + 15) * walkDegree * 0.5F * limbSwingAmount)) - 0.3927F;
-			this.LeftLeg1.zRot = Math.abs((Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount)) + 0.1767F;
-			this.RightLeg1.zRot = Math.abs(-(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount)) - 0.1767F;
-			this.LeftLeg3.xRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) + 0.7854F;
-			this.RightLeg3.xRot = Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount + 0.7854F;
-			this.LeftLeg2.xRot = (Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount);
-			this.RightLeg2.xRot = Mth.cos(limbSwing * walkSpeed + 15) * walkDegree * 0.5F * limbSwingAmount;
-			this.LeftLeg1.xRot = (Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount ) - 0.3927F;
-			this.RightLeg1.xRot = Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount - 0.3927F;
+			this.LeftLeg3.zRot = (Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount) + 1.0036F;
+			this.RightLeg3.zRot = -(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.5F * limbSwingAmount) - 1.0036F;
+			this.LeftLeg2.zRot = (Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount) + 0.3927F;
+			this.RightLeg2.zRot = -(Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
+			this.LeftLeg1.zRot = (Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) + 0.1767F;
+			this.RightLeg1.zRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.1767F;
+			this.LeftLeg3.xRot = Math.min(-(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.4F * clampedSwing) + 0.7854F, 0.7854F);
+			this.RightLeg3.xRot = Math.min(-(Mth.cos(limbSwing * walkSpeed) * walkDegree * 0.4F * clampedSwing) + 0.7854F, 0.7854F);
+			this.LeftLeg2.xRot = (Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.3F * limbSwingAmount);
+			this.RightLeg2.xRot = (Mth.cos(limbSwing * walkSpeed + 5) * walkDegree * 0.3F * limbSwingAmount);
+			this.LeftLeg1.xRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
+			this.RightLeg1.xRot = -(Mth.cos(limbSwing * walkSpeed + 10) * walkDegree * 0.5F * limbSwingAmount) - 0.3927F;
 		}
 	}
 

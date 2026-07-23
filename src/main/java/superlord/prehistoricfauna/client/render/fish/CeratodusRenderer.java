@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Ceratodus;
 
 public class CeratodusRenderer extends MobRenderer<Ceratodus, CeratodusModel> {
 
-	private static final ResourceLocation CERATODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/ceratodus.png");
+	private static final ResourceLocation CERATODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/ceratodus.png");
 
 	public CeratodusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CeratodusModel(renderManagerIn.bakeLayer(ClientEvents.CERATODUS)), 0);

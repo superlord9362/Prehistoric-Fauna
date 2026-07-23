@@ -8,12 +8,20 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
-import superlord.prehistoricfauna.client.model.fossil.cretaceous.*;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonBrowseModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonDeathModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonGrazeModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonReachModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonRearModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonSitModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonSleepModel;
+import superlord.prehistoricfauna.client.model.fossil.cretaceous.DongbeititanSkeletonWalkModel;
 import superlord.prehistoricfauna.common.entity.fossil.cretaceous.DongbeititanSkeleton;
 
 public class DongbeititanSkeletonRenderer extends MobRenderer<DongbeititanSkeleton, EntityModel<DongbeititanSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/dongbeititan_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/dongbeititan_skeleton.png");
     private static DongbeititanSkeletonModel IDLE;
     private static DongbeititanSkeletonWalkModel WALK;
     private static DongbeititanSkeletonRearModel REAR;
@@ -38,25 +46,17 @@ public class DongbeititanSkeletonRenderer extends MobRenderer<DongbeititanSkelet
 	}
 	
 	protected void scale(DongbeititanSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isWalk()) {
-			model = WALK;
-		} else if (entityIn.isRear()) {
-			model = REAR;
-		} else if (entityIn.isBrowse()) {
-			model = BROWSE;
-		} else if (entityIn.isGraze()) {
-			model = GRAZE;
-		} else if (entityIn.isSit()) {
-			model = SIT;
-		} else if (entityIn.isSleep()) {
-			model = SLEEP;
-		} else if (entityIn.isDeath()) {
-			model = DEATH;
-		} else if (entityIn.isReach()) {
-			model = REACH;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "WALK" -> WALK;
+		case "REAR" -> REAR;
+		case "REACH" -> REACH;
+		case "BROWSE" -> BROWSE;
+		case "GRAZE" -> GRAZE;
+		case "SIT" -> SIT;
+		case "SLEEP" -> SLEEP;
+		case "DEATH" -> DEATH;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

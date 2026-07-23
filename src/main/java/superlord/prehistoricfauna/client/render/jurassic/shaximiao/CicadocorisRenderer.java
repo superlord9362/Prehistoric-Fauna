@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.shaximiao.CicadocorisMod
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Cicadocoris;
 
 public class CicadocorisRenderer extends MobRenderer<Cicadocoris, CicadocorisModel<Cicadocoris>> {
-	private static final ResourceLocation CICADOCORIS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cicadocoris.png");
+	private static final ResourceLocation CICADOCORIS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/cicadocoris.png");
 
 	public CicadocorisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CicadocorisModel<>(renderManagerIn.bakeLayer(ClientEvents.CICADOCORIS)), 0F);

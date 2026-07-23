@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "building",
+	"group": "vertical_slab",
+	"pattern": [		
 		"#",
 		"#",
 		"#"
@@ -14,10 +16,19 @@
 		"item": "prehistoricfauna:henostone_brick_vertical_slab",
 		"count": 3
 	},
-  "conditions": [
-    {
-      "type": "prehistoricfauna:quark_flag",
-      "flag": "vertical_slabs"
-    }
-  ]
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

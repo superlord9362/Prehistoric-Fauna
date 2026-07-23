@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Ceratosaurus;
 
 public class CeratosaurusEyeLayer extends RenderLayer<Ceratosaurus, EntityModel<Ceratosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ceratosaurus/ceratosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ceratosaurus/ceratosaurus_eyeglow.png"));
 	private final RenderLayerParent<Ceratosaurus, EntityModel<Ceratosaurus>> ceratosaurusRenderer;
 	
 	public CeratosaurusEyeLayer(RenderLayerParent<Ceratosaurus, EntityModel<Ceratosaurus>> rendererIn) {

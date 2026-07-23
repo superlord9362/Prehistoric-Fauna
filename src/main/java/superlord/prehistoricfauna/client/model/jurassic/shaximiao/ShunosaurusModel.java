@@ -70,27 +70,59 @@ public class ShunosaurusModel extends EntityModel<Shunosaurus> {
 		PartDefinition cube_r3 = Neck2.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(124, 35).addBox(-2.5F, -24.0F, 1.0F, 5.0F, 21.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 9.0F, 0.5F, 1.0036F, 0.0F, 0.0F));
 
 		PartDefinition Head = Neck2.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(56, 142).addBox(-3.0F, -1.0F, -4.0F, 6.0F, 5.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(96, 150).addBox(-2.0F, 1.0F, -9.0F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(150, 146).addBox(-1.5F, -1.0F, -8.0F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -9.3533F, -15.7281F, 0.0873F, 0.0F, 0.0F));
+				.texOffs(96, 150).addBox(-2.0F, 1.0F, -9.0F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F))
+				.texOffs(150, 146).addBox(-1.5F, -1.0F, -8.0F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -9.3533F, -15.7281F, 0.0873F, 0.0F, 0.0F));
 
 		PartDefinition Jaw = Head.addOrReplaceChild("Jaw", CubeListBuilder.create().texOffs(150, 53).addBox(-3.0F, 0.0F, -4.0F, 6.0F, 2.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(150, 139).addBox(-2.0F, 0.0F, -9.0F, 4.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 0.0F));
-
+				.texOffs(150, 139).addBox(-2.0F, 0.0F, -9.0F, 4.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 4.0F, 0.0F));
+		
+		PartDefinition Reigns = Head.addOrReplaceChild("Reigns", CubeListBuilder.create().texOffs(120, 142).addBox(-3.5F, -1.5F, -4.5F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(130, 131).addBox(-2.5F, -1.5F, -7.5F, 5.0F, 8.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		
 		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create(), PartPose.offset(0.0F, -7.1467F, 7.7281F));
 
 		PartDefinition cube_r4 = Tail1.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(0, 65).addBox(-4.5F, -13.0F, -1.0F, 9.0F, 11.0F, 33.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 11.5F, -2.25F, -0.2618F, 0.0F, 0.0F));
 
 		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create(), PartPose.offset(0.0F, 8.0F, 31.0F));
 
+		PartDefinition Saddle = Body.addOrReplaceChild("Saddle", CubeListBuilder.create().texOffs(128, 61).addBox(-10.5F, -23.5F, -1.5F, 21.0F, 24.0F, 43.0F, new CubeDeformation(0.0F))
+				.texOffs(172, 47).addBox(-12.5F, -28.5F, 9.5F, 25.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(172, 34).addBox(-12.5F, -28.5F, 16.5F, 25.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(172, 21).addBox(-12.5F, -28.5F, 23.5F, 25.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(176, 2).addBox(-6.5F, -28.5F, 11.5F, 13.0F, 5.0F, 14.0F, new CubeDeformation(0.0F))
+				.texOffs(154, 128).addBox(-13.5F, -29.5F, 6.5F, 27.0F, 2.0F, 24.0F, new CubeDeformation(0.0F))
+				.texOffs(198, 154).addBox(-13.5F, -38.5F, 6.5F, 27.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(198, 165).addBox(-13.5F, -38.5F, 28.5F, 27.0F, 9.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(126, 134).addBox(11.5F, -38.5F, 8.5F, 2.0F, 9.0F, 20.0F, new CubeDeformation(0.0F))
+				.texOffs(126, 134).mirror().addBox(-13.5F, -38.5F, 8.5F, 2.0F, 9.0F, 20.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(157, 90).addBox(11.0F, -39.5F, 12.5F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(157, 90).addBox(11.0F, -39.5F, 20.5F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(157, 90).mirror().addBox(-14.0F, -39.5F, 12.5F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(157, 90).mirror().addBox(-14.0F, -39.5F, 20.5F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(161, 85).addBox(11.0F, -39.5F, 13.5F, 3.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(161, 85).addBox(11.0F, -39.5F, 21.5F, 3.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(161, 85).mirror().addBox(-14.0F, -39.5F, 13.5F, 3.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(161, 85).mirror().addBox(-14.0F, -39.5F, 21.5F, 3.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(157, 76).addBox(-1.5F, -40.5F, 5.5F, 3.0F, 5.0F, 4.0F, new CubeDeformation(0.0F))
+				.texOffs(157, 76).addBox(-1.5F, -40.5F, 27.5F, 3.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 8.8533F, -35.2719F, -0.1309F, 0.0F, 0.0F));
+
+		PartDefinition Chests = Saddle.addOrReplaceChild("Chests", CubeListBuilder.create().texOffs(213, 92).mirror().addBox(-11.25F, -35.5F, 22.25F, 11.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(213, 71).mirror().addBox(0.25F, -35.5F, 22.25F, 11.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		PartDefinition ChestsLid = Chests.addOrReplaceChild("ChestsLid", CubeListBuilder.create().texOffs(213, 62).addBox(0.25F, -3.0F, -6.0F, 11.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(213, 83).addBox(-11.25F, -3.0F, -6.0F, 11.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(247, 94).addBox(-6.75F, -1.0F, -7.0F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
+				.texOffs(247, 73).addBox(4.75F, -1.0F, -7.0F, 2.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -35.5F, 28.25F));
+
 		PartDefinition cube_r5 = Tail2.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(73, 145).addBox(0.0F, -11.5F, 32.0F, 0.0F, 11.0F, 14.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 141).addBox(-3.0F, -7.5F, 32.0F, 6.0F, 7.0F, 9.0F, new CubeDeformation(0.0F))
-		.texOffs(90, 71).addBox(-2.5F, -7.0F, 5.0F, 5.0F, 6.0F, 27.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 6.0F, -7.0F, -0.0873F, 0.0F, 0.0F));
+				.texOffs(0, 141).addBox(-3.0F, -7.5F, 32.0F, 6.0F, 7.0F, 9.0F, new CubeDeformation(0.0F))
+				.texOffs(90, 71).addBox(-2.5F, -7.0F, 5.0F, 5.0F, 6.0F, 27.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 6.0F, -7.0F, -0.0873F, 0.0F, 0.0F));
 
 		PartDefinition LeftArm = Body.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(124, 0).addBox(-5.0F, -3.0F, -3.0F, 7.0F, 28.0F, 7.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 0).mirror().addBox(-7.0F, 23.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(9.0F, 5.8533F, -28.2719F));
+				.texOffs(0, 0).mirror().addBox(-7.0F, 23.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(9.0F, 5.8533F, -28.2719F));
 
 		PartDefinition RightArm = Body.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(124, 0).mirror().addBox(-2.0F, -3.0F, -3.0F, 7.0F, 28.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(0, 0).addBox(5.0F, 23.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-9.0F, 5.8533F, -28.2719F));
+				.texOffs(0, 0).addBox(5.0F, 23.0F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-9.0F, 5.8533F, -28.2719F));
 
 		PartDefinition LeftThigh = root.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(84, 104).addBox(-4.0F, -4.1467F, -6.2719F, 8.0F, 20.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(9.0F, 0.0F, 0.0F));
 
@@ -104,7 +136,7 @@ public class ShunosaurusModel extends EntityModel<Shunosaurus> {
 
 		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(78, 136).mirror().addBox(-4.0F, 0.0F, -7.0F, 8.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 11.0F, 4.0F));
 
-		return LayerDefinition.create(meshdefinition, 192, 192);
+		return LayerDefinition.create(meshdefinition, 256, 256);
 	}
 
 	@Override
@@ -216,10 +248,10 @@ public class ShunosaurusModel extends EntityModel<Shunosaurus> {
 				if (entity.isInWater()) {
 					this.root.y = 25;
 					this.root.xRot = 0.15F;
-//					this.Tail1.xRot = 0.125F;
-//					this.Tail2.xRot = 0.125F;
-//					this.RightThigh.y = 27;
-//					this.LeftThigh.y = 27;
+					//					this.Tail1.xRot = 0.125F;
+					//					this.Tail2.xRot = 0.125F;
+					//					this.RightThigh.y = 27;
+					//					this.LeftThigh.y = 27;
 					this.RightThigh.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftThigh.xRot = 0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);
 					this.LeftArm.xRot = -0.25F * Mth.sin(0.2F * ageInTicks / 1.5F);

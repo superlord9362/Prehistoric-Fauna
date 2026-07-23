@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:orange_dye_from_nothodichocarpum"
+    ]
+  },
+  "criteria": {
+    "has_dye_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:nothodichocarpum"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:orange_dye_from_nothodichocarpum"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dye_plant",
+      "has_the_recipe"
+    ]
+  ]
+}

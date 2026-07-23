@@ -1,252 +1,53 @@
 package superlord.prehistoricfauna.common.entity.fossil.cretaceous;
 
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
-import superlord.prehistoricfauna.common.entity.PrehistoricEntity;
+import superlord.prehistoricfauna.common.entity.fossil.FossilEntity;
 import superlord.prehistoricfauna.init.PFItems;
 
-public class ProtoceratopsSkeleton extends PrehistoricEntity {
-	private static final EntityDataAccessor<Boolean> DISPLAY = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> LAYING = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> RUNNING = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> PUSHING = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> LOOKING = SynchedEntityData.defineId(ProtoceratopsSkeleton.class, EntityDataSerializers.BOOLEAN);
+public class ProtoceratopsSkeleton extends FossilEntity {
 
-	public boolean isPushableState() {
-		return this.entityData.get(PUSHING);
-	}
+	public enum SkeletonPose {
+		IDLE, DISPLAYING, RUNNING, LAYING, SITTING;
 
-	private void setPushable(boolean isPushable) {
-		this.entityData.set(PUSHING, isPushable);
+		public SkeletonPose next() {
+			SkeletonPose[] values = values();
+			return values[(this.ordinal() + 1) % values.length];
+		}
 	}
 
-	public boolean isLooking() {
-		return this.entityData.get(LOOKING);
-	}
+	@Override
+    protected String defaultPoseName() {
+        return SkeletonPose.IDLE.name();
+    }
 
-	private void setLooking(boolean isLooking) {
-		this.entityData.set(LOOKING, isLooking);
-	}
-
-	public boolean isDisplaying() {
-		return this.entityData.get(DISPLAY);
-	}
-
-	private void setDisplaying(boolean isDisplaying) {
-		this.entityData.set(DISPLAY, isDisplaying);
-	}
-
-	public boolean isLaying() {
-		return this.entityData.get(LAYING);
-	}
-
-	private void setLaying(boolean isLaying) {
-		this.entityData.set(LAYING, isLaying);
-	}
-
-	public boolean isSitting() {
-		return this.entityData.get(SITTING);
-	}
-
-	private void setSitting(boolean isSitting) {
-		this.entityData.set(SITTING, isSitting);
-	}
-
-	public boolean isRunning() {
-		return this.entityData.get(RUNNING);
-	}
-
-	private void setRunning(boolean isRunning) {
-		this.entityData.set(RUNNING, isRunning);
-	}
-
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DISPLAY, false);
-		this.entityData.define(LAYING, false);
-		this.entityData.define(SITTING, false);
-		this.entityData.define(RUNNING, false);
-		this.entityData.define(PUSHING, false);
-		this.entityData.define(LOOKING, false);
-	}
-	public void addAdditionalSaveData(CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putBoolean("IsDisplaying", this.isDisplaying());
-		compound.putBoolean("IsLaying", this.isLaying());
-		compound.putBoolean("IsSitting", this.isSitting());
-		compound.putBoolean("IsRunning", this.isRunning());
-		compound.putBoolean("IsPushable", this.isPushableState());
-		compound.putBoolean("IsLooking", this.isLooking());
-		compound.putFloat("Rotation", this.getYHeadRot());
-	}
-
-	public void readAdditionalSaveData(CompoundTag compound) {
-		super.readAdditionalSaveData(compound); 
-		this.setDisplaying(compound.getBoolean("IsDisplaying"));
-		this.setLaying(compound.getBoolean("IsLaying"));
-		this.setSitting(compound.getBoolean("IsSitting"));
-		this.setRunning(compound.getBoolean("IsRunning"));
-		this.setPushable(compound.getBoolean("IsPushable"));
-		this.setLooking(compound.getBoolean("IsLooking"));
-		this.setYBodyRot(compound.getFloat("Rotation"));
-		this.setYHeadRot(compound.getFloat("Rotation"));
-	}
+    @Override
+    protected String nextPoseName(String current) {
+        try {
+            return SkeletonPose.valueOf(current).next().name();
+        } catch (IllegalArgumentException e) {
+            return SkeletonPose.IDLE.name();
+        }
+    }
 
 	public ProtoceratopsSkeleton(EntityType<? extends ProtoceratopsSkeleton> type, Level worldIn) {
 		super(type, worldIn);
-	}
-
-	protected void registerGoals() {
-		super.registerGoals();
-		this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 8.0F));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
-	protected int getExperiencePoints(Player player) {
-		return 0;
-	}
-
-	public boolean canBreatheUnderwater() {
-		return true;
-	}
-
-	public boolean isPushable() {
-		return this.isPushableState();
-	}
-
-	public InteractionResult mobInteract(Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		if (itemstack.getItem() == PFItems.GEOLOGY_HAMMER.get()) {
-			if (!this.isSleeping() && !this.isLaying() && !this.isSitting() && !this.isDisplaying() && !this.isRunning() && !player.isShiftKeyDown()) {
-				this.setDisplaying(true);
-			} else if (this.isDisplaying() && !player.isShiftKeyDown()) {
-				this.setDisplaying(false);
-				this.setRunning(true);
-			} else if (this.isRunning() && !player.isShiftKeyDown()) {
-				this.setRunning(false);
-				this.setLaying(true);
-			} else if (this.isLaying() && !player.isShiftKeyDown()) {
-				this.setLaying(false);
-				this.setSitting(true);
-			} else if (this.isSitting() && !player.isShiftKeyDown()) {
-				this.setSitting(false);
-			} else if (player.isShiftKeyDown() && !this.isPushableState() && !this.isLooking()) {
-				this.setPushable(true);
-				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.pushable"), true);
-			} else if (player.isShiftKeyDown() && this.isPushableState()) {
-				this.setPushable(false);
-				this.setLooking(true);
-				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.rotating"), true);
-			} else if (player.isShiftKeyDown() && this.isLooking()) {
-				this.setLooking(false);
-				player.displayClientMessage(Component.translatable("entity.prehistoricfauna.skeleton.neutral"), true);
-			}
-		}
-		return super.mobInteract(player, hand);
-	}
-
-	protected void doPush(Entity entityIn) {
-	}
-
-	private void playBrokenSound() {
-		this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.SKELETON_HURT, this.getSoundSource(), 1.0F, 1.0F);
-	}
-
-	private void playParticles() {
-		if (this.level() instanceof ServerLevel) {
-			((ServerLevel)this.level()).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BONE_BLOCK.defaultBlockState()), this.getX(), this.getY(0.6666666666666666D), this.getZ(), 10, (double)(this.getBbWidth() / 4.0F), (double)(this.getBbHeight() / 4.0F), (double)(this.getBbWidth() / 4.0F), 0.05D);
-		}
-	}
-
 	@Override
-	public boolean hurt(DamageSource source, float amount) {
-		if (source.is(DamageTypeTags.IS_EXPLOSION)) {
-			this.playBrokenSound();
-			this.playParticles();
-			this.spawnFossil(source);
-			return super.hurt(source, amount);
-		} 
-		if (source.getDirectEntity() instanceof Player) {
-			this.playBrokenSound();
-			this.playParticles();
-			Player player = (Player)source.getDirectEntity();
-			if (!player.isCreative()) {
-				this.spawnFossil(source);
-			}
-			this.remove(RemovalReason.KILLED);
-			this.gameEvent(GameEvent.ENTITY_DIE);
-			return true;
-		}
-		return false;
-	}
-
-	public boolean canBeHitWithPotion() {
-		return false;
-	}
-
-	public void onKillCommand() {
-		this.kill();
-	}
-
-	private void spawnFossil(DamageSource p_213815_1_) {
+	public void spawnFossil(DamageSource source) {
 		Block.popResource(this.level(), this.blockPosition(), new ItemStack(PFItems.PROTOCERATOPS_SKELETON.get()));
-	}
-
-	static class LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
-
-		ProtoceratopsSkeleton entity;
-
-		public LookAtPlayerGoal(ProtoceratopsSkeleton entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
-			super(entityIn, watchTargetClass, maxDistance);
-			entity = entityIn;
-		}
-
-		public boolean canUse() {
-			if (entity.isLooking()) {
-				return super.canUse();
-			} else {
-				return false;
-			}
-		}
-
-		public boolean canContinueToUse() {
-			return super.canContinueToUse() && entity.isLooking();
-		}
-
-	}
-
-	@Override
-	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		return null;
 	}
 
 	@Override

@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Zhenyuanlong;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ZhenyuanlongRenderer extends MobRenderer<Zhenyuanlong, ZhenyuanlongModel> {
-	private static final ResourceLocation ZHENYUANLONG = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/zhenyuanlong.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/melanistic.png");
-	private static final ResourceLocation ZHENYUANLONG_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/zhenyuanlong_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/melanistic_sleeping.png");
+	private static final ResourceLocation ZHENYUANLONG = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/zhenyuanlong.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/melanistic.png");
+	private static final ResourceLocation ZHENYUANLONG_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/zhenyuanlong_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/melanistic_sleeping.png");
 
 	public ZhenyuanlongRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ZhenyuanlongModel(renderManagerIn.bakeLayer(ClientEvents.ZHENYUANLONG)), 0.375F);

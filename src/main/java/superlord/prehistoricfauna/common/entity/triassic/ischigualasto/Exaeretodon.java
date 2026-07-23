@@ -1,9 +1,12 @@
 package superlord.prehistoricfauna.common.entity.triassic.ischigualasto;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -173,27 +176,28 @@ public class Exaeretodon extends DinosaurEntity {
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
-		if (level().isClientSide()) {
-			return InteractionResult.PASS;
-		} else {
-			ItemStack stack = player.getItemInHand(hand);
-			Item item = stack.getItem();
-			if (item == PFBlocks.MICHELILLOA.get().asItem()) {
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-				this.setDiggingForRoots(true);
+		ItemStack stack = player.getItemInHand(hand);
+		Item item = stack.getItem();
+		if (item == PFBlocks.MICHELILLOA.get().asItem()) {
+			if (!player.isCreative()) {
+				stack.shrink(1);
+			}
+			this.setDiggingForRoots(true);
+			return InteractionResult.SUCCESS;
+		}
+		if (item instanceof PaleopediaItem) {
+			CompoundTag tag = stack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.EXAERETODON.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.EXAERETODON.ordinal()), stack);
+				player.displayClientMessage(Component.translatable("paleopedia.exaeretodon_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.exaeretodon_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
-			if (item instanceof PaleopediaItem) {
-				if (!stack.getTag().contains("Pages", EnumPaleoPages.EXAERETODON.ordinal())) {
-					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.EXAERETODON.ordinal()), stack);
-					player.displayClientMessage(Component.translatable("paleopedia.exaeretodon_added"), true);
-					return InteractionResult.SUCCESS;
-				}
-			}
-			return super.mobInteract(player, hand);
 		}
+		return super.mobInteract(player, hand);
 	}
 
 	public void tick() {

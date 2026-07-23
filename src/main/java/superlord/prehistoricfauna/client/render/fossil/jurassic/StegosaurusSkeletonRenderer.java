@@ -10,19 +10,23 @@ import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.client.ClientEvents;
 import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonActionLeftModel;
 import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonActionRightModel;
+import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonDisplayModel;
 import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonModel;
 import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonRetroModel;
+import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonSittingModel;
 import superlord.prehistoricfauna.client.model.fossil.jurassic.StegosaurusSkeletonSleepingModel;
 import superlord.prehistoricfauna.common.entity.fossil.jurassic.StegosaurusSkeleton;
 
 public class StegosaurusSkeletonRenderer extends MobRenderer<StegosaurusSkeleton, EntityModel<StegosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/stegosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/stegosaurus_skeleton.png");
     private static StegosaurusSkeletonModel IDLE;
     private static StegosaurusSkeletonActionLeftModel ACTION_LEFT;
     private static StegosaurusSkeletonActionRightModel ACTION_RIGHT;
     private static StegosaurusSkeletonSleepingModel SLEEPING;
     private static StegosaurusSkeletonRetroModel RETRO;
+    private static StegosaurusSkeletonDisplayModel DISPLAY;
+    private static StegosaurusSkeletonSittingModel SITTING;
     
 	public StegosaurusSkeletonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new StegosaurusSkeletonModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON)), 0);
@@ -31,20 +35,20 @@ public class StegosaurusSkeletonRenderer extends MobRenderer<StegosaurusSkeleton
 		ACTION_RIGHT = new StegosaurusSkeletonActionRightModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON_ACTION_RIGHT));
 		RETRO = new StegosaurusSkeletonRetroModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON_RETRO));
 		SLEEPING = new StegosaurusSkeletonSleepingModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON_SLEEPING));
+		DISPLAY = new StegosaurusSkeletonDisplayModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON_DISPLAY));
+		SITTING = new StegosaurusSkeletonSittingModel(renderManagerIn.bakeLayer(ClientEvents.STEGOSAURUS_SKELETON_SITTING));
 	}
 	
 	protected void scale(StegosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isActionLeft()) {
-			model = ACTION_LEFT;
-		} else if (entityIn.isActionRight()) {
-			model = ACTION_RIGHT;
-		} else if (entityIn.isClassical()) {
-			model = RETRO;
-		} else if (entityIn.isResting()) {
-			model = SLEEPING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "RETRO" -> RETRO;
+		case "RESTING" -> SLEEPING;
+		case "ACTION_LEFT" -> ACTION_LEFT;
+		case "ACTION_RIGHT" -> ACTION_RIGHT;
+		case "SITTING" -> SITTING;
+		case "DISPLAY" -> DISPLAY;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

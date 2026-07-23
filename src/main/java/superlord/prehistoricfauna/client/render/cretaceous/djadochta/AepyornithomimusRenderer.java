@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Aepyornitho
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class AepyornithomimusRenderer extends MobRenderer<Aepyornithomimus, AepyornithomimusModel> {
-	private static final ResourceLocation AEPYORNITHOMIMUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/aepyornithomimus.png");
-	private static final ResourceLocation AEPYORNITHOMIMUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/aepyornithomimus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/aepyornithomimus/melanistic_sleeping.png");
+	private static final ResourceLocation AEPYORNITHOMIMUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/aepyornithomimus.png");
+	private static final ResourceLocation AEPYORNITHOMIMUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/aepyornithomimus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/aepyornithomimus/melanistic_sleeping.png");
 
 	public AepyornithomimusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AepyornithomimusModel(renderManagerIn.bakeLayer(ClientEvents.AEPYORNITHOMIMUS)), 0.5F);

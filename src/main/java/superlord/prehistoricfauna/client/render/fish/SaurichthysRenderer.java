@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Saurichthys;
 
 public class SaurichthysRenderer extends MobRenderer<Saurichthys, SaurichthysModel> {
 
-	private static final ResourceLocation SAURICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/saurichthys.png");
+	private static final ResourceLocation SAURICHTHYS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/saurichthys.png");
 
 	public SaurichthysRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new SaurichthysModel(renderManagerIn.bakeLayer(ClientEvents.SAURICHTHYS)), 0);

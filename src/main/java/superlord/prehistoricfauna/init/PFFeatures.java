@@ -47,6 +47,12 @@ import superlord.prehistoricfauna.common.feature.trees.araucaria.AraucariaSmallT
 import superlord.prehistoricfauna.common.feature.trees.araucaria.AraucariaSmallTree4;
 import superlord.prehistoricfauna.common.feature.trees.araucaria.AraucariaTree1;
 import superlord.prehistoricfauna.common.feature.trees.araucaria.AraucariaTree2;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree1;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree2;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree3;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree4;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree5;
+import superlord.prehistoricfauna.common.feature.trees.baiera.BaieraTree6;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum1;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum2;
 import superlord.prehistoricfauna.common.feature.trees.brachyphyllum.Brachyphyllum3;
@@ -342,6 +348,13 @@ public class PFFeatures {
     public static final RegistryObject<Frenelopsis6> FRENELOPSIS_TREE_6 = REGISTER.register("frenelopsis_tree_6", () -> new Frenelopsis6(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Frenelopsis7> FRENELOPSIS_TREE_7 = REGISTER.register("frenelopsis_tree_7", () -> new Frenelopsis7(PFTreeConfig.CODEC.stable()));
     public static final RegistryObject<Frenelopsis8> FRENELOPSIS_TREE_8 = REGISTER.register("frenelopsis_tree_8", () -> new Frenelopsis8(PFTreeConfig.CODEC.stable()));
+    
+    public static final RegistryObject<BaieraTree1> BAIERA_TREE_1 = REGISTER.register("baiera_tree_1", () -> new BaieraTree1(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BaieraTree2> BAIERA_TREE_2 = REGISTER.register("baiera_tree_2", () -> new BaieraTree2(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BaieraTree3> BAIERA_TREE_3 = REGISTER.register("baiera_tree_3", () -> new BaieraTree3(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BaieraTree4> BAIERA_TREE_4 = REGISTER.register("baiera_tree_4", () -> new BaieraTree4(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BaieraTree5> BAIERA_TREE_5 = REGISTER.register("baiera_tree_5", () -> new BaieraTree5(PFTreeConfig.CODEC.stable()));
+    public static final RegistryObject<BaieraTree6> BAIERA_TREE_6 = REGISTER.register("baiera_tree_6", () -> new BaieraTree6(PFTreeConfig.CODEC.stable()));
     
     public static final RegistryObject<MonanthesiaBushFeature> MONANTHESIA_BUSH = REGISTER.register("monanthesia_bush", () -> new MonanthesiaBushFeature(JohnstoniaConfig.CODEC.stable()));
     public static final RegistryObject<SabalitesFeature> SABALITES = REGISTER.register("sabalites", () -> new SabalitesFeature(JohnstoniaConfig.CODEC.stable()));

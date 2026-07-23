@@ -1,0 +1,123 @@
+{
+	"name": "prehistoricfauna:settlement/morrison/streets",
+	"fallback": "prehistoricfauna:settlement/morrison/terminators",
+	"elements": [
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_corner_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_corner_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_corner_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 7,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_t_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_t_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_t_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_cross_roads_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_cross_roads_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_cross_roads_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 11,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_straight_1",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 10,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_straight_2",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 12,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_straight_3",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		},
+		{
+			"weight": 9,
+			"element": {
+				"element_type": "minecraft:single_pool_element",
+				"location": "prehistoricfauna:settlement/morrison/streets/morrison_street_straight_4",
+				"processors": "minecraft:empty",
+				"projection": "terrain_matching"
+			}
+		}
+	]
+}

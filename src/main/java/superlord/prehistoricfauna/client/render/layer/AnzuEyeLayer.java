@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Anzu;
 
 public class AnzuEyeLayer extends RenderLayer<Anzu, EntityModel<Anzu>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/anzu/anzu_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/anzu/anzu_eyeglow.png"));
 	private final RenderLayerParent<Anzu, EntityModel<Anzu>> anzuRenderer;
 	
 	public AnzuEyeLayer(RenderLayerParent<Anzu, EntityModel<Anzu>> rendererIn) {

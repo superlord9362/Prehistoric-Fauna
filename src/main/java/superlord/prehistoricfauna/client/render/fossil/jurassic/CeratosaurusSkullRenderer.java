@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.CeratosaurusSkul
 
 public class CeratosaurusSkullRenderer extends MobRenderer<CeratosaurusSkull, CeratosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ceratosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/ceratosaurus_skeleton.png");
 
 	public CeratosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CeratosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.CERATOSAURUS_SKULL)), 0);

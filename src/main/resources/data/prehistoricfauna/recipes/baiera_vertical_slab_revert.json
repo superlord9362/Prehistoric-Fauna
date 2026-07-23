@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shapelss",
+	"category": "building",
+	"group": "wooden_slab",
+	"ingredients": [
+		{
+			"item": "prehistoricfauna:baiera_vertical_slab"
+		}
+	],
+	"result": {
+		"item": "prehistoricfauna:baiera_slab"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
+}

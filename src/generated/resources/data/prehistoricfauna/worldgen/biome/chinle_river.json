@@ -70,7 +70,11 @@
       "prehistoricfauna:placed_otozamites",
       "prehistoricfauna:placed_phlebopteris",
       "prehistoricfauna:placed_stoneworts",
-      "prehistoricfauna:placed_zamites"
+      "prehistoricfauna:placed_zamites",
+      "prehistoricfauna:placed_baiera_trees"
+    ],
+    [
+      "prehistoricfauna:placed_ash_disk"
     ]
   ],
   "has_precipitation": true,

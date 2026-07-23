@@ -1,8 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.hellcreek;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -120,14 +124,19 @@ public class Didelphodon extends BurrowingDinosaur {
 	public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
-			if (item instanceof PaleopediaItem) {
-				if (!itemstack.getTag().contains("Pages", EnumPaleoPages.DIDELPHODON.ordinal())) {
-					EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DIDELPHODON.ordinal()), itemstack);
-					p_230254_1_.displayClientMessage(Component.translatable("paleopedia.didelphodon_added"), true);
-					return InteractionResult.SUCCESS;
-				}
+		if (item instanceof PaleopediaItem) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.DIDELPHODON.ordinal())) {
+				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.DIDELPHODON.ordinal()), itemstack);
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.didelphodon_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.didelphodon_already_added"), true);
+				return InteractionResult.SUCCESS;
 			}
-			if (this.level().isClientSide()) {
+		}
+		if (this.level().isClientSide()) {
 			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame();
 			return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
 		} else {
@@ -157,7 +166,7 @@ public class Didelphodon extends BurrowingDinosaur {
 	public float func_213475_v(float p_213475_1_) {
 		return Mth.lerp(p_213475_1_, this.interestedAngleO, this.interestedAngle) * 0.11F * (float)Math.PI;
 	}
-	
+
 	@Override
 	public void setAge(int age) {
 		super.setAge(age);
@@ -258,7 +267,7 @@ public class Didelphodon extends BurrowingDinosaur {
 			return p_213487_0_.getType().is(PFTags.DIDELPHODON_AVOIDING);
 		}));
 		this.goalSelector.addGoal(0, new Didelphodon.CarryYoungGoal(this, 1.0D));
-//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
+		//		this.goalSelector.addGoal(1, new CrepuscularSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new ShellfishEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.targetSelector.addGoal(0, new CarnivoreHuntGoal(this, LivingEntity.class, 10, 1.75D, true, false, (p_213487_1_) -> {
@@ -421,7 +430,7 @@ public class Didelphodon extends BurrowingDinosaur {
 			super.tick();
 			if (!this.didelphodon.isInWater() && this.isReachedTarget()) {
 				if (this.didelphodon.isBirthing < 1) {
-					this.didelphodon.setBirthing(true);
+					this.didelphodon.setBirthing(1);
 				} else if (this.didelphodon.isBirthing > 200) {
 					Level level = this.didelphodon.level();
 					int amount = level.random.nextInt(4) + 1;
@@ -432,7 +441,7 @@ public class Didelphodon extends BurrowingDinosaur {
 						level.addFreshEntity(baby);
 					}
 					this.didelphodon.setHasBaby(false);
-					this.didelphodon.setBirthing(false);
+					this.didelphodon.setBirthing(0);
 					this.didelphodon.setInLoveTime(600);
 				}
 

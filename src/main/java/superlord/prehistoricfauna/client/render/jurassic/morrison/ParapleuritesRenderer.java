@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.ParapleuritesMo
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Parapleurites;
 
 public class ParapleuritesRenderer extends MobRenderer<Parapleurites, ParapleuritesModel<Parapleurites>> {
-	private static final ResourceLocation PARAPLEURITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/parapleurites.png");
+	private static final ResourceLocation PARAPLEURITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/parapleurites.png");
 
 	public ParapleuritesRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ParapleuritesModel<>(renderManagerIn.bakeLayer(ClientEvents.PARAPLEURITES)), 0F);

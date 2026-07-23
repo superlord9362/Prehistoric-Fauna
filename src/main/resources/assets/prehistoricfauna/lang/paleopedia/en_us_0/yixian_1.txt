@@ -5,10 +5,12 @@
 --Horsetails
 --Leefructus
 --Nothodichocarpum
+--Pterophyllum
 --Ruffordia
 
 -Trees:
 --Araucaria
+--Baiera
 --Brachyphyllum
 --Czekanowskia
 --Ginkgo

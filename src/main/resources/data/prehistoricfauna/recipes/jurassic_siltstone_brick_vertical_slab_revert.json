@@ -1,15 +1,26 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"#"
-	],
-	"key": {
-		"#": {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "prehistoricfauna:siltstone_brick_vertical_slab"
 		}
-	},
+	],
 	"result": {
-		"item": "prehistoricfauna:siltstone_brick_slab",
-		"count": 1
-	}
+		"item": "prehistoricfauna:siltstone_brick_slab"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"flag": "vertical_slabs"
+				}
+			]
+		}
+	]
 }

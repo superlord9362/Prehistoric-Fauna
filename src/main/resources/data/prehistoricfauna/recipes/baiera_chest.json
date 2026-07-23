@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_chest",
+	"pattern": [		
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:baiera_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:baiera_chest"
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_chests"
+				}
+			]
+		}
+	]
+}

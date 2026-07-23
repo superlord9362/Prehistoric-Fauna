@@ -1,7 +1,8 @@
 Found In: Hell Creek
 
 Drops: 2-4 Small Raw 
-Archosauromorph
+Archosauromorph, 0-2
+Small Osteoderms
 
 Diet: Carnivore
 
@@ -16,22 +17,21 @@ an 80% chance of being territorial,
 and a 20% chance of being 
 aggressive.
 
+
+<image><drawings_ankylosaurus.png 30 2 28 67 22 16 7>
+
+
+
+
+
+
+
+
+
+
+
+
 Sleep Cycle: Cathemeral
-
-<image><drawings_ankylosaurus.png 30 4 28 67 22 16 7>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Behavior: Brachychampsa targets 
 turtles and other small animals in 

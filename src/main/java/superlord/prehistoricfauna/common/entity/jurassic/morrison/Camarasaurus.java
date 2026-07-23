@@ -1,10 +1,13 @@
 package superlord.prehistoricfauna.common.entity.jurassic.morrison;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -53,7 +56,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
 import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
@@ -62,6 +64,7 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
@@ -78,7 +81,7 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Camarasaurus extends AgedHerdDinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Camarasaurus.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_HATCHLING = SynchedEntityData.defineId(Camarasaurus.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> IS_SUBADULT = SynchedEntityData.defineId(Camarasaurus.class, EntityDataSerializers.BOOLEAN);
 	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
 	private int maxHunger = 500;
 	private int warningSoundTicks;
@@ -100,15 +103,15 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		} else if (this.isJuvenile()) {
 			return 5.5F;
 		}
-		else return 8.5F;
+		else return 8F;
 	}
 	
-	public boolean isHatchling() {
-		return this.entityData.get(IS_HATCHLING);
+	public boolean isSubadult() {
+		return this.entityData.get(IS_SUBADULT);
 	}
 	
-	public void setHatchling(boolean isHatchling) {
-		this.entityData.set(IS_HATCHLING, isHatchling);
+	public void setSubadult(boolean isSubadult) {
+		this.entityData.set(IS_SUBADULT, isSubadult);
 	}
 	
 	public boolean isJuvenile() {
@@ -152,6 +155,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		this.goalSelector.addGoal(0, new Camarasaurus.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));
+		this.goalSelector.addGoal(0, new HerbivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.CAMARASAURUS_AVOIDING);
 		}));
@@ -161,9 +165,14 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.CAMARASAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.CAMARASAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.CAMARASAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.camarasaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.camarasaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -221,7 +230,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(IS_JUVENILE, false);
-		this.entityData.define(IS_HATCHLING, false);
+		this.entityData.define(IS_SUBADULT, false);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
@@ -246,15 +255,15 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 		super.setAge(age);
 		if (this.getAge() < -48000) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(25);
-			this.setHatchling(true);
 		} else if (this.getAge() >= -48000 && this.getAge() < -24000) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(50);
-			this.setHatchling(false);
+			this.setJuvenile(true);
 		} else if (this.getAge() >= -24000 && this.getAge() < 0) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(100);
-			this.setJuvenile(true);
-		} else if(this.getAge() >= 0) {
 			this.setJuvenile(false);
+			this.setSubadult(true);
+		} else if(this.getAge() >= 0) {
+			this.setSubadult(false);
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200);
 		}
 	}
@@ -271,7 +280,7 @@ public class Camarasaurus extends AgedHerdDinosaurEntity {
 			        BlockPos previousPosition = previousPositions.getOrDefault(this, currentPosition);
 					if (!previousPosition.equals(currentPosition)) {
 						for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1, 0, 1))) {
-							if (!(entity instanceof Edmontosaurus) && entity.getMaxHealth() < 60) {
+							if (!(entity instanceof Camarasaurus) && entity.getMaxHealth() < 60) {
 								entity.hurt(PFDamageSources.causeSauropodTramplingDamage(entity.level().registryAccess(), this), (float) 5.0D);
 							}
 						}

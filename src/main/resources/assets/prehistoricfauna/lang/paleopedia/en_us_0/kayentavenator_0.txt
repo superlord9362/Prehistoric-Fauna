@@ -18,7 +18,7 @@ territorial.
 
 Sleep Cycle: Crepuscular
 
-<image><drawings_ankylosaurus.png 28 3 103 107 22 19 7.5>
+<image><drawings_ankylosaurus.png 28 2 103 107 22 19 7.5>
 
 
 
@@ -35,5 +35,8 @@ Sleep Cycle: Crepuscular
 
 
 
-
-Behavior: Investigation underway!
+Behavior: Kayentavenator sneeze 
+ocassionaly, dropping Slime Balls. 
+They can be forced to sneeze with 
+feathers, although this will make 
+them angry.

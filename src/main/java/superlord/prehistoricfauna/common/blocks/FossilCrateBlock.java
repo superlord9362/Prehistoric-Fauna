@@ -168,6 +168,18 @@ public class FossilCrateBlock extends Block {
 			world.setBlock(pos, PFBlocks.BRACHIOSAURUS_CRATE.get().defaultBlockState(), 2);
 			if (!player.isCreative()) stack.shrink(1);
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.CHUANDONGOCOELURUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.CHUANDONGOCOELURUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.KAYENTAVENATOR_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.KAYENTAVENATOR_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (item == PFItems.YANGCHUANOSAURUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.YANGCHUANOSAURUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			return InteractionResult.PASS;
 		}

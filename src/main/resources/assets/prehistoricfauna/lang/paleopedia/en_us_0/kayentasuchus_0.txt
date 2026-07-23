@@ -33,7 +33,9 @@ Sleep Cycle: Cathemeral
 
 
 
-
-
-
-Behavior: Investigation underway!
+Behavior: Kayentasuchus can be 
+tamed by feeding them Small Raw 
+Thyreophoran. They can also 
+break cobwebs, causing more 
+string to be dropped than if they 
+were broken normally.

@@ -28,7 +28,6 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -52,6 +51,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.common.Tags;
+import superlord.prehistoricfauna.common.entity.goal.BugAvoidGoal;
 import superlord.prehistoricfauna.common.entity.navigation.DirectPathNavigator;
 import superlord.prehistoricfauna.common.entity.navigation.FlightMoveController;
 import superlord.prehistoricfauna.init.PFItems;
@@ -119,9 +119,7 @@ public class Cretaraneus extends Animal {
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, false, (p_213487_1_) -> {
 			return p_213487_1_.getType().is(PFTags.CRETARANEUS_HUNTING);
 		}));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
-			return p_213487_0_.getType().is(PFTags.CRETARANEUS_AVOIDING);
-		}));
+	    this.goalSelector.addGoal(1, new BugAvoidGoal(this, 7F, 1.5D, 1.75D, PFTags.CRETARANEUS_AVOIDING));
 	}
 
 	public int getMaxAir() {

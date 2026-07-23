@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "S",
+    "S"
+  ],
+  "key": {
+    "#": {
+      "item": "prehistoricfauna:spiky_spine"
+    },
+	"S": {
+		"item": "minecraft:stick"
+	}
+  },
+  "result": {
+    "item": "prehistoricfauna:spiky_javelin",
+    "count": 1
+  }
+}

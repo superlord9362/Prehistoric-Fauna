@@ -17,7 +17,6 @@
     "prehistoricfauna:dryophyllum_post",
     "prehistoricfauna:taxodium_post",
     "prehistoricfauna:sabalites_post",
-    "prehistoricfauna:neocalamites_post",
     "prehistoricfauna:platanites_post",
     "prehistoricfauna:taxus_post",
     "prehistoricfauna:czekanowskia_post",
@@ -43,7 +42,6 @@
 	"prehistoricfauna:stripped_dryophyllum_post",
 	"prehistoricfauna:stripped_taxodium_post",
 	"prehistoricfauna:stripped_sabalites_post",
-	"prehistoricfauna:stripped_neocalamites_post",
 	"prehistoricfauna:stripped_platanites_post",
 	"prehistoricfauna:stripped_taxus_post",
 	"prehistoricfauna:stripped_czekanowskia_post",
@@ -52,6 +50,8 @@
 	"prehistoricfauna:stripped_cupressinocladus_post",
 	"prehistoricfauna:stripped_elatides_post",
 	"prehistoricfauna:stripped_phoenicopsis_post",
-	"prehistoricfauna:stripped_frenelopsis_post"
+	"prehistoricfauna:stripped_frenelopsis_post",
+	"prehistoricfauna:baiera_post",
+	"prehistoricfauna:stripped_baiera_post"
   ]
 }

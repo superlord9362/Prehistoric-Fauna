@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Sillosuch
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class SillosuchusRenderer extends MobRenderer<Sillosuchus, EntityModel<Sillosuchus>> {
-	private static final ResourceLocation SILLOSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic.png");
-	private static final ResourceLocation SILLOSUCHUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic_sleeping.png");
-	private static final ResourceLocation SILLOSUCHUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic_baby.png");
-	private static final ResourceLocation SILLOSUCHUS_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/sillosuchus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sillosuchus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation SILLOSUCHUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/sillosuchus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/melanistic.png");
+	private static final ResourceLocation SILLOSUCHUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/sillosuchus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/melanistic_sleeping.png");
+	private static final ResourceLocation SILLOSUCHUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/sillosuchus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/melanistic_baby.png");
+	private static final ResourceLocation SILLOSUCHUS_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/sillosuchus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sillosuchus/melanistic_baby_sleeping.png");
 
 	private static SillosuchusModel SILLOSUCHUS_MODEL;
 	private static SillosuchusBabyModel BABY_SILLOSUCHUS_MODEL;

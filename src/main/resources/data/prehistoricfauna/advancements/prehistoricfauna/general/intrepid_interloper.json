@@ -372,7 +372,7 @@
 				]
 			}
 		},
-		"kayenta_canyon": {
+		"kayenta_canyons": {
 			"trigger": "minecraft:location",
 			"conditions": {
 				"player": [
@@ -381,7 +381,7 @@
 						"entity": "this",
 						"predicate": {
 							"location": {
-								"biome": "prehistoricfauna:kayenta_buttes"
+								"biome": "prehistoricfauna:kayenta_canyons"
 							}
 						}
 					}
@@ -430,6 +430,230 @@
 						"predicate": {
 							"location": {
 								"biome": "prehistoricfauna:morrison_savanna"
+							}
+						}
+					}
+				]
+			}
+		},
+		"kayenta_buttes": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_buttes"
+							}
+						}
+					}
+				]
+			}
+		},
+		"kayenta_dunes": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_dunes"
+							}
+						}
+					}
+				]
+			}
+		},
+		"kayenta_river": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:kayenta_river"
+							}
+						}
+					}
+				]
+			}
+		},
+		"morrison_gallery_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_gallery_forest"
+							}
+						}
+					}
+				]
+			}
+		},
+		"morrison_river": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_river"
+							}
+						}
+					}
+				]
+			}
+		},
+		"morrison_salt_flats": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_salt_flats"
+							}
+						}
+					}
+				]
+			}
+		},
+		"morrison_sparse_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_sparse_forest"
+							}
+						}
+					}
+				]
+			}
+		},
+		"morrison_upland_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:morrison_upland_forest"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_arid_lakes": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_arid_lakes"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_delta_plains": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_delta_plains"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_dry_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_dry_forest"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_gallery_forest": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_gallery_forest"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_lakes": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_lakes"
+							}
+						}
+					}
+				]
+			}
+		},
+		"shaximiao_mountains": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"player": [
+					{
+						"condition": "minecraft:entity_properties",
+						"entity": "this",
+						"predicate": {
+							"location": {
+								"biome": "prehistoricfauna:shaximiao_mountains"
 							}
 						}
 					}
@@ -502,7 +726,7 @@
 			"ischigualasto_river"
 		],
 		[
-			"kayenta_canyon"
+			"kayenta_canyons"
 		],
 		[
 			"kayenta_desert"
@@ -511,10 +735,52 @@
 			"kayenta_dry_forest"
 		],
 		[
+			"kayenta_buttes"
+		],
+		[
+			"kayenta_dunes"
+		],
+		[
+			"kayenta_river"
+		],
+		[
 			"morrison_savanna"
 		],
 		[
 			"chinle_river"
+		],
+		[
+			"morrison_gallery_forest"
+		],
+		[
+			"morrison_river"
+		],
+		[
+			"morrison_salt_flats"
+		],
+		[
+			"morrison_sparse_forest"
+		],
+		[
+			"morrison_upland_forest"
+		],
+		[
+			"shaximiao_arid_lakes"
+		],
+		[
+			"shaximiao_delta_plains"
+		],
+		[
+			"shaximiao_dry_forest"
+		],
+		[
+			"shaximiao_gallery_forest"
+		],
+		[
+			"shaximiao_lakes"
+		],
+		[
+			"shaximiao_mountains"
 		]
 	]
 }

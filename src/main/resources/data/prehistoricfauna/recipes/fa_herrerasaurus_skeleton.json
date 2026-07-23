@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:herrerasaurus_skull"
+    },
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	},
+	{
+		"item": "fossil:fossil_bio"
+	}
+  ],
+  "result": {
+    "item": "prehistoricfauna:herrerasaurus_skeleton"
+  },
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "fossil"
+		}
+	]
+}

@@ -59,6 +59,9 @@
     [],
     [
       "minecraft:glow_lichen"
+    ],
+    [
+      "prehistoricfauna:placed_ash_disk"
     ]
   ],
   "has_precipitation": false,

@@ -32,6 +32,7 @@ import superlord.prehistoricfauna.common.structure.piece.HellCreekHutPieces.Hell
 import superlord.prehistoricfauna.common.structure.piece.IschigualastoHutPieces.IschigualastoHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.KayentaHutPieces.KayentaHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.MorrisonHutPieces.MorrisonHutPiece;
+import superlord.prehistoricfauna.common.structure.piece.ShaximiaoHutPieces.ShaximiaoHutPiece;
 import superlord.prehistoricfauna.common.structure.piece.YixianHutPieces.YixianHutPiece;
 import superlord.prehistoricfauna.common.structure.*;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
@@ -43,6 +44,7 @@ public class PFStructures {
 
 	public static final ResourceKey<Structure> MORRISON_HUT = createKey("morrison_hut");
 	public static final ResourceKey<Structure> KAYENTA_HUT = createKey("kayenta_hut");
+	public static final ResourceKey<Structure> SHAXIMIAO_HUT = createKey("shaximiao_hut");
 
 	public static final ResourceKey<Structure> HELL_CREEK_HUT = createKey("hell_creek_hut");
 	public static final ResourceKey<Structure> DJADOCHTA_HUT = createKey("djadochta_hut");
@@ -55,7 +57,8 @@ public class PFStructures {
 
 		bootstap.register(MORRISON_HUT, new MorrisonHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_MORRISON_HUT), TerrainAdjustment.NONE)));
 		bootstap.register(KAYENTA_HUT, new KayentaHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_KAYENTA_HUT), TerrainAdjustment.NONE)));
-
+		bootstap.register(SHAXIMIAO_HUT, new ShaximiaoHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_SHAXIMIAO_HUT), TerrainAdjustment.NONE)));
+		
 		bootstap.register(HELL_CREEK_HUT, new HellCreekHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_HELL_CREEK_HUT), TerrainAdjustment.NONE)));
 		bootstap.register(DJADOCHTA_HUT, new DjadochtaHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_DJADOCHTA_HUT), TerrainAdjustment.NONE)));
 		bootstap.register(YIXIAN_HUT, new YixianHutStructure(structure(holdergetter.getOrThrow(PFTags.HAS_YIXIAN_HUT), TerrainAdjustment.NONE)));
@@ -78,7 +81,8 @@ public class PFStructures {
 
 	public static final ResourceKey<StructureSet> MORRISON_HUT_STRUCTURE_SET = registerStructureSet("morrison_hut");
 	public static final ResourceKey<StructureSet> KAYENTA_HUT_STRUCTURE_SET = registerStructureSet("kayenta_hut");
-
+	public static final ResourceKey<StructureSet> SHAXIMIAO_HUT_STRUCTURE_SET = registerStructureSet("shaximiao_hut");
+	
 	public static final ResourceKey<StructureSet> HELL_CREEK_HUT_STRUCTURE_SET = registerStructureSet("hell_creek_hut");
 	public static final ResourceKey<StructureSet> DJADOCHTA_HUT_STRUCTURE_SET = registerStructureSet("djadochta_hut");
 	public static final ResourceKey<StructureSet> YIXIAN_HUT_STRUCTURE_SET = registerStructureSet("yixian_hut");
@@ -90,7 +94,8 @@ public class PFStructures {
 
 		bootstap.register(MORRISON_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(MORRISON_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.morrisonHutMaxDistance, PrehistoricFaunaConfig.morrisonHutMinDistance, RandomSpreadType.LINEAR, 612341942)));
 		bootstap.register(KAYENTA_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(KAYENTA_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.kayentaHutMaxDistance, PrehistoricFaunaConfig.kayentaHutMinDistance, RandomSpreadType.LINEAR, 851282139)));
-
+		bootstap.register(SHAXIMIAO_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(SHAXIMIAO_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.shaximiaoHutMaxDistance, PrehistoricFaunaConfig.shaximiaoHutMinDistance, RandomSpreadType.LINEAR, 29491294)));
+		
 		bootstap.register(HELL_CREEK_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(HELL_CREEK_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.hellCreekHutMaxDistance, PrehistoricFaunaConfig.hellCreekHutMinDistance, RandomSpreadType.LINEAR, 6248341)));
 		bootstap.register(DJADOCHTA_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(DJADOCHTA_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.djadochtaHutMaxDistance, PrehistoricFaunaConfig.djadochtaHutMinDistance, RandomSpreadType.LINEAR, 85923812)));
 		bootstap.register(YIXIAN_HUT_STRUCTURE_SET, new StructureSet(List.of(StructureSet.entry(holdergetter.getOrThrow(YIXIAN_HUT))), new RandomSpreadStructurePlacement(PrehistoricFaunaConfig.yixianHutMaxDistance, PrehistoricFaunaConfig.yixianHutMinDistance, RandomSpreadType.LINEAR, 5381239)));
@@ -108,6 +113,7 @@ public class PFStructures {
 
 		RegistryObject<StructureType<MorrisonHutStructure>> MORRISON_HUT = register("morrison_hut", MorrisonHutStructure.CODEC);
 		RegistryObject<StructureType<KayentaHutStructure>> KAYENTA_HUT = register("kayenta_hut", KayentaHutStructure.CODEC);
+		RegistryObject<StructureType<ShaximiaoHutStructure>> SHAXIMIAO_HUT = register("shaximiao_hut", ShaximiaoHutStructure.CODEC);
 
 		RegistryObject<StructureType<HellCreekHutStructure>> HELL_CREEK_HUT = register("hell_creek_hut", HellCreekHutStructure.CODEC);
 		RegistryObject<StructureType<DjadochtaHutStructure>> DJADOCHTA_HUT = register("djadochta_hut", DjadochtaHutStructure.CODEC);
@@ -126,6 +132,7 @@ public class PFStructures {
 
 		RegistryObject<StructurePieceType> MORRISON_HUT = register(MorrisonHutPiece::new, "morrison_hut");
 		RegistryObject<StructurePieceType> KAYENTA_HUT = register(KayentaHutPiece::new, "kayenta_hut");
+		RegistryObject<StructurePieceType> SHAXIMIAO_HUT = register(ShaximiaoHutPiece::new, "shaximiao_hut");
 
 		RegistryObject<StructurePieceType> HELL_CREEK_HUT = register(HellCreekHutPiece::new, "hell_creek_hut");
 		RegistryObject<StructurePieceType> DJADOCHTA_HUT = register(DjadochtaHutPiece::new, "djadochta_hut");

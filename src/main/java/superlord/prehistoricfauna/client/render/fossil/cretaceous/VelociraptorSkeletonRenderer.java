@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.VelociraptorSk
 
 public class VelociraptorSkeletonRenderer extends MobRenderer<VelociraptorSkeleton, EntityModel<VelociraptorSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/velociraptor_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/velociraptor_skeleton.png");
     private static VelociraptorSkeletonModel IDLE;
     private static VelociraptorSkeletonFlashingModel FLASHING;
     private static VelociraptorSkeletonLayFightingModel LAY_FIGHTING;
@@ -37,19 +37,14 @@ public class VelociraptorSkeletonRenderer extends MobRenderer<VelociraptorSkelet
 	}
 	
 	protected void scale(VelociraptorSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isFlashing()) {
-			model = FLASHING;
-		} else if (entityIn.isLayFighting()) {
-			model = LAY_FIGHTING;
-		} else if (entityIn.isRunning()) {
-			model = RUNNING;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else if (entityIn.isStandFighting()) {
-			model = STAND_FIGHTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "FLASHING" -> FLASHING;
+		case "RUNNING" -> RUNNING;
+		case "STAND_FIGHTING" -> STAND_FIGHTING;
+		case "LAY_FIGHTING" -> LAY_FIGHTING;
+		case "SLEEPING" -> SLEEPING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

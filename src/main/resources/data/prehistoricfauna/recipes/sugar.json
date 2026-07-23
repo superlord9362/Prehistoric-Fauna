@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "prehistoricfauna:bottled_syrup"
+    }
+  ],
+  "result": {
+    "item": "minecraft:sugar",
+    "count": 3
+  }
+}

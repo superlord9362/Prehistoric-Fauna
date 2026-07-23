@@ -19,7 +19,7 @@ public class CorruptedTheropodHeadOneLayer extends RenderLayer<CorruptedTheropod
 		super(p_117346_);
 	}
 
-	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/corrupted_theropod/head_one_overlay.png"));
+	private static final RenderType TEXTURE = RenderType.entityCutoutNoCull(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/corrupted_theropod/head_one_overlay.png"));
 
 	@Override
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, CorruptedTheropod corruptedTheropod, float p_116670_, float p_116671_, float p_116672_, float p_116673_, float p_116674_, float p_116675_) {

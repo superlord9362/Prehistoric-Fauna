@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "misc",
+	"group": "wooden_post",
+	"pattern": [		
 		"F",
 		"F",
 		"F"
@@ -16,8 +18,17 @@
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "wooden_posts"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "wooden_posts"
+				}
+			]
 		}
 	]
 }

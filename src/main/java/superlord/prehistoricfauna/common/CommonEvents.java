@@ -2,18 +2,26 @@ package superlord.prehistoricfauna.common;
 
 import com.google.common.collect.ImmutableMap;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.blocks.compat.HollowLogBlock;
 import superlord.prehistoricfauna.common.entity.goal.ZombieDestroyDinosaurEggGoal;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
@@ -76,7 +84,8 @@ public class CommonEvents {
 					.put(PFBlocks.PHOENICOPSIS_LOG.get(), PFBlocks.STRIPPED_PHOENICOPSIS_LOG.get())
 					.put(PFBlocks.PHOENICOPSIS_WOOD.get(), PFBlocks.STRIPPED_PHOENICOPSIS_WOOD.get())
 					.put(PFBlocks.FRENELOPSIS_LOG.get(), PFBlocks.STRIPPED_FRENELOPSIS_LOG.get())
-					.put(PFBlocks.FRENELOPSIS_WOOD.get(), PFBlocks.STRIPPED_FRENELOPSIS_WOOD.get()).build();
+					.put(PFBlocks.FRENELOPSIS_WOOD.get(), PFBlocks.STRIPPED_FRENELOPSIS_WOOD.get())
+					.put(PFBlocks.BAIERA_LOG.get(), PFBlocks.STRIPPED_BAIERA_LOG.get()).build();
 			registerFlammables();
 		});
 	}
@@ -134,6 +143,8 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFBlocks.PHOENICOPSIS_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.FRENELOPSIS_LEAVES.get());
 		compostibleBlocks(0.3F, PFBlocks.FRENELOPSIS_SAPLING.get());
+		compostibleBlocks(0.3F, PFBlocks.BAIERA_LEAVES.get());
+		compostibleBlocks(0.3F, PFBlocks.BAIERA_SAPLING.get());
 		compostibleBlocks(0.3F, PFBlocks.HORSETAIL.get());
 		compostibleBlocks(0.3F, PFItems.TUBER.get());
 		compostibleBlocks(0.3F, PFItems.GINKGO_BERRY.get());
@@ -182,7 +193,6 @@ public class CommonEvents {
 		compostibleBlocks(0.3F, PFItems.FIDDLEHEAD_SPORES.get());
 		compostibleBlocks(0.3F, PFItems.FIDDLEHEAD.get());
 		compostibleBlocks(0.3F, PFBlocks.FIDDLEHEAD_FERN.get());
-		//		compostibleBlocks(0.3F, PFBlocks.ARCHAEAMPHORA.get());
 		compostibleBlocks(0.3F, PFItems.MARMARTHIA_BERRIES.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_HORSETAIL.get());
 		compostibleBlocks(0.5F, PFBlocks.TALL_ARCHAEFRUCTUS.get());
@@ -301,6 +311,11 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.FRENELOPSIS_FENCE.get(), 5, 20);
 		registerFlammable(PFBlocks.FRENELOPSIS_FENCE_GATE.get(), 5, 20);
 		registerFlammable(PFBlocks.FRENELOPSIS_STAIRS.get(), 5, 20);
+		registerFlammable(PFBlocks.BAIERA_PLANKS.get(), 5, 20);
+		registerFlammable(PFBlocks.BAIERA_SLAB.get(), 5, 20);
+		registerFlammable(PFBlocks.BAIERA_FENCE.get(), 5, 20);
+		registerFlammable(PFBlocks.BAIERA_FENCE_GATE.get(), 5, 20);
+		registerFlammable(PFBlocks.BAIERA_STAIRS.get(), 5, 20);
 		registerFlammable(PFBlocks.NEOCALAMITES_FENCE.get(), 5, 20);
 		registerFlammable(PFBlocks.NEOCALAMITES_FENCE_GATE.get(), 5, 20);
 		registerFlammable(PFBlocks.PODOZAMITES_STAIRS.get(), 5, 20);
@@ -426,6 +441,8 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.FRENELOPSIS_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_FRENELOPSIS_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_FRENELOPSIS_WOOD.get(), 5, 5);
+		registerFlammable(PFBlocks.BAIERA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.STRIPPED_BAIERA_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_LOG.get(), 5, 5);
 		registerFlammable(PFBlocks.DRYOPHYLLUM_WOOD.get(), 5, 5);
 		registerFlammable(PFBlocks.STRIPPED_DRYOPHYLLUM_LOG.get(), 5, 5);
@@ -464,6 +481,7 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.ELATIDES_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.PHOENICOPSIS_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.FRENELOPSIS_LEAVES.get(), 30, 60);
+		registerFlammable(PFBlocks.BAIERA_LEAVES.get(), 30, 60);
 		registerFlammable(PFBlocks.CLUBMOSS.get(), 60, 100);
 		registerFlammable(PFBlocks.HORSETAIL.get(), 60, 100);
 		registerFlammable(PFBlocks.OSMUNDA.get(), 60, 100);
@@ -482,7 +500,6 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.TAENIOPTERIS.get(), 60, 100);
 		registerFlammable(PFBlocks.ONYCHIOPSIS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_TAENIOPTERIS.get(), 60, 100);
-		//		registerFlammable(PFBlocks.ARCHAEAMPHORA.get(), 60, 100);
 		registerFlammable(PFBlocks.ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_ARCHAEFRUCTUS.get(), 60, 100);
 		registerFlammable(PFBlocks.TALL_OSMUNDACAULIS.get(), 60, 100);
@@ -504,6 +521,83 @@ public class CommonEvents {
 		registerFlammable(PFBlocks.WELTRICHIA.get(), 60, 20);
 		registerFlammable(PFBlocks.ZAMIOPHYLLUM.get(), 5, 5);
 		registerFlammable(PFBlocks.ZAMITES.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_AGATHOXYLON_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_ARAUCARIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_BRACHYPHYLLUM_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_CUPRESSINOCLADUS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_CZEKANOWSKIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_DRYOPHYLLUM_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_ELATIDES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_FRENELOPSIS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_GINKGO_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_HEIDIPHYLLUM_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_LIRIODENDRITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_METASEQUOIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_MONANTHESIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_PHOENICOPSIS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_PLATANITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_PODOZAMITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_PROTOJUNIPEROXYLON_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_PROTOPICEOXYLON_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_SABALITES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_SCHILDERIA_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_SCHIZOLEPIDOPSIS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_TAXODIUM_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_TAXUS_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_TROCHODENDROIDES_LOG.get(), 5, 5);
+		registerFlammable(PFBlocks.HOLLOW_WOODWORTHIA_LOG.get(), 5, 5);
+	}
+	
+	private static final String TAG_TRYING_TO_CRAWL = "quark:trying_crawl";
+
+	
+	@SubscribeEvent
+	public void playerTick(PlayerTickEvent event) {
+		Player player = event.player;
+		BlockPos playerPos = player.blockPosition();
+		boolean isTrying = player.isVisuallyCrawling() ||
+				(player.isCrouching() && !player.isColliding(playerPos, player.level().getBlockState(playerPos)));
+		boolean wasTrying = player.getPersistentData().getBoolean(TAG_TRYING_TO_CRAWL);
+
+		if(!player.isVisuallyCrawling()) {
+			if(isTrying && !wasTrying) {
+				Direction dir = player.getDirection();
+				Direction opp = dir.getOpposite();
+				if(dir.getAxis() != Axis.Y) {
+					BlockPos pos = playerPos.relative(dir);
+
+					if(!tryClimb(player, opp, playerPos)) // Crawl out
+						if(!tryClimb(player, opp, playerPos.above())) // Crawl out
+							if(!tryClimb(player, dir, pos)) // Crawl into
+								tryClimb(player, dir, pos.above()); // Crawl into
+				}
+			}
+		}
+
+		if(isTrying != wasTrying)
+			player.getPersistentData().putBoolean(TAG_TRYING_TO_CRAWL, isTrying);
+	}
+
+	private boolean tryClimb(Player player, Direction dir, BlockPos pos) {
+		BlockState state = player.level().getBlockState(pos);
+		Block block = state.getBlock();
+
+		if(block instanceof HollowLogBlock crawlSpace) {
+			if(crawlSpace.canCrawl(player.level(), state, pos, dir)) {
+				player.setPose(Pose.SWIMMING);
+				player.setSwimming(true);
+
+				double x = pos.getX() + 0.5 - (dir.getStepX() * 0.3);
+				double y = pos.getY() + 0.13F;
+				double z = pos.getZ() + 0.5 - (dir.getStepZ() * 0.3);
+
+				player.setPos(x, y, z);
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public static void registerFlammable(Block block, int flameOdds, int burnOdds) {
@@ -556,7 +650,7 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CALSOYASUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DILOPHOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTACHELYS_EGG.get(), zombie, 1.0D, 3));
-				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTASUCHUS_EGG.get(), zombie, 1.0D, 3));
+//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTASUCHUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTATHERIUM_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.KAYENTAVENATOR_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MEGAPNOSAURUS_EGG.get(), zombie, 1.0D, 3));
@@ -565,19 +659,19 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SCUTELLOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALCOVASAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.ALLOSAURUS_EGG.get(), zombie, 1.0D, 3));
-//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHIOSAURUS_EGG.get(), zombie, 1.0D, 3));
-//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRACHIOSAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.BRONTOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMARASAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CAMPTOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.CERATOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DIABLOPHIS_EGG.get(), zombie, 1.0D, 3));
-//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DIPLODOCUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DIPLODOCUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.DRYOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.EILENODON_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GARGOYLEOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HESPERORNITHOIDES_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MACELOGNATHUS_EGG.get(), zombie, 1.0D, 3));
-//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MARAAPUNISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SUUWASSEA_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.STEGOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TANYCOLAGREUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TORVOSAURUS_EGG.get(), zombie, 1.0D, 3));
@@ -588,7 +682,8 @@ public class CommonEvents {
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.GIGANTSPINOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.HUAYANGOSAURUS_EGG.get(), zombie, 1.0D, 3));
 //				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.MAMENCHISAURUS_EGG.get(), zombie, 1.0D, 3));
-//				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.OMEISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.OMEISAURUS_EGG.get(), zombie, 1.0D, 3));
+				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.POLISTODON_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SINRAPTOR_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.SHUNOSAURUS_EGG.get(), zombie, 1.0D, 3));
 				zombie.goalSelector.addGoal(4,  new ZombieDestroyDinosaurEggGoal(PFBlocks.TUOJIANGOSAURUS_EGG.get(), zombie, 1.0D, 3));

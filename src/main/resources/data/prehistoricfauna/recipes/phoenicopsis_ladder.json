@@ -1,26 +1,37 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"# #",
-		"#W#",
-		"# #"
+	"category": "misc",
+	"group": "wooden_ladder",
+	"pattern": [		
+		"S S",
+		"SXS",
+		"S S"
 	],
 	"key": {
-		"#": {
-			"item": "minecraft:stick"
+		"X": {
+			"item": "prehistoricfauna:agathoxylon_planks"
 		},
-		"W": {
-			"item": "prehistoricfauna:phoenicopsis_planks"
+		"S": {
+			"tag": "forge:rods/wooden"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:phoenicopsis_ladder",
+		"item": "prehistoricfauna:agathoxylon_ladder",
 		"count": 4
 	},
 	"conditions": [
 		{
- 	     "type": "prehistoricfauna:quark_flag",
-			"flag": "variant_ladders"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_ladders"
+				}
+			]
 		}
 	]
 }

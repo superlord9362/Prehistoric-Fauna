@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -56,6 +61,7 @@ import superlord.prehistoricfauna.init.PFTags;
 
 public class Agilisaurus extends DinosaurEntity {
 	private int maxHunger = 15;
+	private int warningSoundTicks = 200;
 
 	public Agilisaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
@@ -93,9 +99,14 @@ public class Agilisaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.AGILISAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.AGILISAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.AGILISAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.agilisaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.agilisaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -125,6 +136,41 @@ public class Agilisaurus extends DinosaurEntity {
 
 	protected SoundEvent getDeathSound() {
 		return PFSounds.AGILISAURUS_DEATH.get();
+	}
+	
+	public void tick() {
+		super.tick();
+		if (this.warningSoundTicks > 0) {
+			--this.warningSoundTicks;
+		}
+	}
+	
+	public void aiStep() {
+		super.aiStep();
+	    for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(64, 5, 64))) {
+	    	if (entity.getType().is(PFTags.AGILISAURUS_AVOIDING)) {
+	    		float width = entity.getBbWidth();
+	    		if (width >= 1.5F) {
+	    			this.playBigWarningSound();
+	    		} else {
+	    			this.playSmallWarningSound();
+	    		}
+	    	}
+	    }
+	}
+	
+	protected void playSmallWarningSound() {
+		if (this.warningSoundTicks <= 0) {
+			this.playSound(PFSounds.AGILISAURUS_SMALL_WARN.get(), 1.0F, this.getVoicePitch());
+			this.warningSoundTicks = 200;
+		}
+	}
+	
+	protected void playBigWarningSound() {
+		if (this.warningSoundTicks <= 0) {
+			this.playSound(PFSounds.AGILISAURUS_BIG_WARN.get(), 1.0F, this.getVoicePitch());
+			this.warningSoundTicks = 200;
+		}
 	}
 
 	@Override

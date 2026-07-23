@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -103,11 +108,16 @@ public class Bashanosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.BASHANOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.BASHANOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.BASHANOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.bashanosaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			} else return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.bashanosaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
 		}
 		return super.mobInteract(player, hand);
 	}

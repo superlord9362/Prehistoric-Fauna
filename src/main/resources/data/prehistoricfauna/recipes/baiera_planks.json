@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "prehistoricfauna:baiera_logs"
+    }
+  ],
+  "result": {
+    "item": "prehistoricfauna:baiera_planks",
+    "count": 4
+  }
+}

@@ -81,6 +81,16 @@
 				},
 				{
 					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:kayentavenator_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 1.25,
+					"name": "prehistoricfauna:chuandongocoelurus_skull"
+				},
+				{
+					"type": "minecraft:item",
 					"weight": 2.5,
 					"name": "prehistoricfauna:stegosaurus_skull"
 				},

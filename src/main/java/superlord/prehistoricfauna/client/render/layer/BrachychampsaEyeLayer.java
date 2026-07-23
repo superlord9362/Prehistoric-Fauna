@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Brachychamp
 
 public class BrachychampsaEyeLayer extends RenderLayer<Brachychampsa, BrachychampsaModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/brachychampsa_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/brachychampsa_eyeglow.png"));
 	private final RenderLayerParent<Brachychampsa, BrachychampsaModel> brachychampsaRenderer;
 	
 	public BrachychampsaEyeLayer(RenderLayerParent<Brachychampsa, BrachychampsaModel> rendererIn) {

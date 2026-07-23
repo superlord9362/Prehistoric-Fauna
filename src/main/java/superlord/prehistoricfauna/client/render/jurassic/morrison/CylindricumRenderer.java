@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.CylindricumMode
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Cylindricum;
 
 public class CylindricumRenderer extends MobRenderer<Cylindricum, CylindricumModel<Cylindricum>> {
-	private static final ResourceLocation CYLINDRICUM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/cylindricum.png");
+	private static final ResourceLocation CYLINDRICUM_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/cylindricum.png");
 
 	public CylindricumRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CylindricumModel<>(renderManagerIn.bakeLayer(ClientEvents.CYLINDRICUM)), 0F);

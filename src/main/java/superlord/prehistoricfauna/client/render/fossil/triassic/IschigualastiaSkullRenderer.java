@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.IschigualastiaSk
 
 public class IschigualastiaSkullRenderer extends MobRenderer<IschigualastiaSkull, IschigualastiaSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/ischigualastia_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/ischigualastia_skeleton.png");
 
 	public IschigualastiaSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new IschigualastiaSkullModel(renderManagerIn.bakeLayer(ClientEvents.ISCHIGUALASTIA_SKULL)), 0);

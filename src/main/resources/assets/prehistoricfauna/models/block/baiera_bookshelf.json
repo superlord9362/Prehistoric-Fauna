@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "prehistoricfauna:block/baiera_planks",
+		"side": "prehistoricfauna:block/baiera_bookshelf"
+	}
+}

@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.shaximiao.Rhipidoblattin
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Rhipidoblattina;
 
 public class RhipidoblattinaRenderer extends MobRenderer<Rhipidoblattina, RhipidoblattinaModel<Rhipidoblattina>> {
-	private static final ResourceLocation RHIPIDOBLATTINA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/rhipidoblattina.png");
+	private static final ResourceLocation RHIPIDOBLATTINA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/rhipidoblattina.png");
 
 	public RhipidoblattinaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new RhipidoblattinaModel<>(renderManagerIn.bakeLayer(ClientEvents.RHIPIDOBLATTINA)), 0F);

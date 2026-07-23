@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Sinraptor;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class SinraptorRenderer extends MobRenderer<Sinraptor, EntityModel<Sinraptor>> {
-	private static final ResourceLocation SINRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/sinraptor.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/melanistic.png");
-	private static final ResourceLocation SINRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/sinraptor_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/melanistic_sleeping.png");
-	private static final ResourceLocation SINRAPTOR_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/sinraptor_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/melanistic_baby.png");
-	private static final ResourceLocation SINRAPTOR_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/sinraptor_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sinraptor/melanistic_baby_sleeping.png");
+	private static final ResourceLocation SINRAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/sinraptor.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/melanistic.png");
+	private static final ResourceLocation SINRAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/sinraptor_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/melanistic_sleeping.png");
+	private static final ResourceLocation SINRAPTOR_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/sinraptor_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/melanistic_baby.png");
+	private static final ResourceLocation SINRAPTOR_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/sinraptor_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sinraptor/melanistic_baby_sleeping.png");
 
 	private static SinraptorModel SINRAPTOR_MODEL;
 	private static SinraptorBabyModel BABY_SINRAPTOR_MODEL;

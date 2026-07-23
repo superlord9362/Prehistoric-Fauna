@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.ProtoceratopsS
 
 public class ProtoceratopsSkullRenderer extends MobRenderer<ProtoceratopsSkull, ProtoceratopsSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/protoceratops_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/protoceratops_skeleton.png");
 
 	public ProtoceratopsSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ProtoceratopsSkullModel(renderManagerIn.bakeLayer(ClientEvents.PROTOCERATOPS_SKULL)), 0);

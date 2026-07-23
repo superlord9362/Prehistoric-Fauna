@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -26,6 +27,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import superlord.prehistoricfauna.PrehistoricFauna;
+import superlord.prehistoricfauna.common.items.PFHoeItem;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
@@ -82,12 +84,12 @@ public class GeologicalHammerEvents {
 
 	@SubscribeEvent
 	public static void onBlockClicked(RightClickBlock event) {
+		Level world = event.getLevel();
+		BlockPos pos = event.getPos();
+		BlockState state = event.getLevel().getBlockState(event.getPos());
+		Player player = event.getEntity();
 		if (event.getItemStack().getItem() == Items.BONE_MEAL) {
 			boolean flag = false;
-			Level world = event.getLevel();
-			BlockPos pos = event.getPos();
-			BlockState state = event.getLevel().getBlockState(event.getPos());
-			Player player = event.getEntity();
 			if (state.getBlock() == Blocks.DIRT && world.getBlockState(pos.above()).getBlock() == Blocks.AIR) {
 				for(BlockPos blockpos : BlockPos.betweenClosed(event.getPos().offset(-1, -1, -1), event.getPos().offset(1, 1, 1))) {
 					BlockState blockstate = event.getLevel().getBlockState(blockpos);
@@ -104,20 +106,18 @@ public class GeologicalHammerEvents {
 					if (!player.isCreative()) {
 						event.getItemStack().shrink(1);
 					}
+					player.swing(InteractionHand.MAIN_HAND);
 				}
 			}
 		}
 		if (event.getItemStack().getItem() == PFItems.BOTTLED_SAP.get()) {
-			Level world = event.getLevel();
-			BlockPos pos = event.getPos();
-			BlockState state = world.getBlockState(pos);
-			Player player = event.getEntity();
 			if (state.getBlock() == Blocks.BRAIN_CORAL_BLOCK) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_BLOCK.get().defaultBlockState(), 3);
 				if (!player.isCreative()) {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.BUBBLE_CORAL_BLOCK) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_BLOCK.get().defaultBlockState(), 3);
@@ -125,6 +125,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.TUBE_CORAL_BLOCK) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_BLOCK.get().defaultBlockState(), 3);
@@ -132,6 +133,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.FIRE_CORAL_BLOCK) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_BLOCK.get().defaultBlockState(), 3);
@@ -139,6 +141,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.HORN_CORAL_BLOCK) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_BLOCK.get().defaultBlockState(), 3);
@@ -146,14 +149,15 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
-			
 			if (state.getBlock() == Blocks.BRAIN_CORAL) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
 				if (!player.isCreative()) {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.BUBBLE_CORAL) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -161,6 +165,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.TUBE_CORAL) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -168,6 +173,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.FIRE_CORAL) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -175,6 +181,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.HORN_CORAL) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -182,14 +189,15 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
-			
 			if (state.getBlock() == Blocks.BRAIN_CORAL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
 				if (!player.isCreative()) {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.BUBBLE_CORAL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -197,6 +205,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.TUBE_CORAL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -204,6 +213,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.FIRE_CORAL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -211,6 +221,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.HORN_CORAL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)), 3);
@@ -218,14 +229,16 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
-			
+
 			if (state.getBlock() == Blocks.BRAIN_CORAL_WALL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BRAIN_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
 				if (!player.isCreative()) {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.BUBBLE_CORAL_WALL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_BUBBLE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
@@ -233,6 +246,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.TUBE_CORAL_WALL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_TUBE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
@@ -240,6 +254,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.FIRE_CORAL_WALL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_FIRE_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
@@ -247,6 +262,7 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == Blocks.HORN_CORAL_WALL_FAN) {
 				event.getLevel().setBlock(event.getPos(), PFBlocks.COATED_HORN_CORAL_WALL_FAN.get().defaultBlockState().setValue(BaseCoralPlantTypeBlock.WATERLOGGED, state.getValue(BaseCoralPlantTypeBlock.WATERLOGGED)).setValue(BaseCoralWallFanBlock.FACING, state.getValue(BaseCoralWallFanBlock.FACING)), 3);
@@ -254,12 +270,24 @@ public class GeologicalHammerEvents {
 					event.getItemStack().shrink(1);
 					event.getEntity().setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GLASS_BOTTLE));
 				}
+				player.swing(InteractionHand.MAIN_HAND);
+			}
+		}
+		if (event.getItemStack().getItem() instanceof HoeItem || event.getItemStack().getItem() instanceof PFHoeItem || event.getItemStack().getItem() == PFItems.STEGOSAUR_SCYTHE.get()) {
+			if (state.getBlock() == PFBlocks.MOSSY_DIRT.get()) {
+				world.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
+				world.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+				if (!world.isClientSide) {
+					if (!player.isCreative()) {
+						event.getItemStack().hurtAndBreak(1, player, (p_220040_1_) -> {
+							p_220040_1_.broadcastBreakEvent(event.getHand());
+						});
+					}
+				}
+				player.swing(InteractionHand.MAIN_HAND);
 			}
 		}
 		if(event.getItemStack().getItem() == PFItems.GEOLOGY_HAMMER.get() && PrehistoricFaunaConfig.geologyHammerMining == true) {
-			Level world = event.getLevel();
-			BlockPos pos = event.getPos();
-			BlockState state = world.getBlockState(pos);
 			Block block3 = VANILLA_ROCK_SMASHING_MAP.get(state.getBlock());
 			if (state.getBlock() == PFBlocks.SMOOTH_CHALK.get()) {
 				Player entity = event.getEntity();
@@ -276,6 +304,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.CHALK.get()) {
 				Player entity = event.getEntity();
@@ -302,6 +331,7 @@ public class GeologicalHammerEvents {
 						}
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.SILTSTONE.get()) {
 				Player entity = event.getEntity();
@@ -328,6 +358,7 @@ public class GeologicalHammerEvents {
 						}
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.SANDSTONE.get()) {
 				Player entity = event.getEntity();
@@ -354,6 +385,7 @@ public class GeologicalHammerEvents {
 						}
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_CHALK.get()) {
 				Player entity = event.getEntity();
@@ -370,6 +402,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.SMOOTH_SILTSTONE.get()) {
 				Player entity = event.getEntity();
@@ -386,6 +419,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_SILTSTONE.get()) {
 				Player entity = event.getEntity();
@@ -402,6 +436,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.SMOOTH_SANDSTONE.get()) {
 				Player entity = event.getEntity();
@@ -418,6 +453,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.POLISHED_SANDSTONE.get()) {
 				Player entity = event.getEntity();
@@ -434,6 +470,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if (state.getBlock() == PFBlocks.HENOSTONE_BRICKS.get()) {
 				Player entity = event.getEntity();
@@ -450,6 +487,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 			if(block3 != null) {
 				Player entity = event.getEntity();
@@ -466,6 +504,7 @@ public class GeologicalHammerEvents {
 						});
 					}
 				}
+				entity.swing(InteractionHand.MAIN_HAND);
 			}
 		}
 	}

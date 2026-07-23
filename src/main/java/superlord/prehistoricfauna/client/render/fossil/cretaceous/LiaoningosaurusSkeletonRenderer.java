@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.Liaoningosauru
 
 public class LiaoningosaurusSkeletonRenderer extends MobRenderer<LiaoningosaurusSkeleton, EntityModel<LiaoningosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/liaoningosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/liaoningosaurus_skeleton.png");
     private static LiaoningosaurusSkeletonModel IDLE;
     private static LiaoningosaurusSkeletonWalkModel WALK;
     private static LiaoningosaurusSkeletonBraceModel BRACE;
@@ -40,27 +40,18 @@ public class LiaoningosaurusSkeletonRenderer extends MobRenderer<Liaoningosaurus
 	}
 	
 	protected void scale(LiaoningosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isWalk()) {
-			model = WALK;
-		} else if (entityIn.isBrace()) {
-			model = BRACE;
-		} else if (entityIn.isSaunter()) {
-			model = SAUNTER;
-		} else if (entityIn.isGaze()) {
-			model = GAZE;
-		} else if (entityIn.isClobber()) {
-			model = CLOBBER;
-		} else if (entityIn.isDefensive()) {
-			model = DEFENSIVE;
-		} else if (entityIn.isSit()) {
-			model = SIT;
-		} else if (entityIn.isSleep()) {
-			model = SLEEP;
-		} else if (entityIn.isDeath()) {
-			model = DEATH;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "WALK" -> WALK;
+		case "BRACE" -> BRACE;
+		case "SAUNTER" -> SAUNTER;
+		case "GAZE" -> GAZE;
+		case "CLOBBER" -> CLOBBER;
+		case "DEFENSIVE" -> DEFENSIVE;
+		case "SIT" -> SIT;
+		case "SLEEP" -> SLEEP;
+		case "DEATH" -> DEATH;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

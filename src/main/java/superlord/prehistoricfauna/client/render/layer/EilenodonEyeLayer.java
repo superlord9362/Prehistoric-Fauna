@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Eilenodon;
 
 public class EilenodonEyeLayer extends RenderLayer<Eilenodon, EilenodonModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/eilenodon/eilenodon_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/eilenodon/eilenodon_eyeglow.png"));
 	private final RenderLayerParent<Eilenodon, EilenodonModel> eilenodonRenderer;
 	
 	public EilenodonEyeLayer(RenderLayerParent<Eilenodon, EilenodonModel> rendererIn) {

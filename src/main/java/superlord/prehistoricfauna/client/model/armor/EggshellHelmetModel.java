@@ -21,7 +21,7 @@ public class EggshellHelmetModel extends HumanoidModel {
 		PartDefinition partdefinition = meshdefinition.getRoot();
         PartDefinition head = partdefinition.getChild("head");
 
-        head.addOrReplaceChild("Helmet", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));		
+        head.addOrReplaceChild("Helmet", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.1F)), PartPose.offset(0.0F, 0.0F, 0.0F));		
         
         return LayerDefinition.create(meshdefinition, 32, 32);
 	}

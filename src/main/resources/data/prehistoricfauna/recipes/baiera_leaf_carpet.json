@@ -1,0 +1,32 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "leaf_carpet",
+	"pattern": [		
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:baiera_leaves"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:baiera_leaf_carpet",
+		"count": 3
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "leaf_carpet"
+				}
+			]
+		}
+	]
+}

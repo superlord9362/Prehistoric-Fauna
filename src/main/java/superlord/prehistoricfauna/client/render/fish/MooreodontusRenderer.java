@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Mooreodontus;
 
 public class MooreodontusRenderer extends MobRenderer<Mooreodontus, MooreodontusModel> {
 
-	private static final ResourceLocation MOOREODONTUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/mooreodontus.png");
+	private static final ResourceLocation MOOREODONTUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/mooreodontus.png");
 
 	public MooreodontusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new MooreodontusModel(renderManagerIn.bakeLayer(ClientEvents.MOOREODONTUS)), 0);

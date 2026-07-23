@@ -63,7 +63,33 @@
               }
             }
           ],
-          "name": "prehistoricfauna:thyreophoran_scute"
+          "name": "prehistoricfauna:thagomizer"
+        }
+      ]
+    },
+	{
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
+              }
+            }
+          ],
+          "name": "prehistoricfauna:spiky_spine"
         }
       ]
     },
@@ -89,7 +115,7 @@
               }
             }
           ],
-          "name": "prehistoricfauna:thagomizer"
+          "name": "prehistoricfauna:small_osteoderm"
         }
       ]
     }

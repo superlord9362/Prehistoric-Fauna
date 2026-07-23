@@ -6,7 +6,7 @@ Drops: 0-2 Tyrannosaur Teeth,
 Diet: Carnivore
 
 Breeding Item: Large Raw 
-Ornithischian
+Ornithopod
 
 Max Health: 100
 

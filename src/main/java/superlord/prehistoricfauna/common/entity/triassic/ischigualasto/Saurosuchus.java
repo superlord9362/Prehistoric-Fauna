@@ -1,9 +1,13 @@
 package superlord.prehistoricfauna.common.entity.triassic.ischigualasto;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -143,6 +147,7 @@ public class Saurosuchus extends DinosaurEntity {
 			this.setAggressive(true);
 		}
 		this.setCarnivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -211,9 +216,14 @@ public class Saurosuchus extends DinosaurEntity {
 		}
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.SAUROSUCHUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.SAUROSUCHUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.SAUROSUCHUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.saurosuchus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.saurosuchus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

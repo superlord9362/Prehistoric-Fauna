@@ -1,0 +1,194 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3,
+                "min": 1
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "prehistoricfauna:ephedra_berries",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:fermented_ginkgo_berry",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:cooked_ginkgo_nuts",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:small_ammonite_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:medium_ammonite_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:large_ammonite_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_copper",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:saddle",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:paleopainting"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:wall_fossil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flower_pot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:horsetail_tea"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:fermented_drink"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:banner_pattern_claw"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:leaf_sherd"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "prehistoricfauna:time_gem_shard",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_nugget",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_nugget",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sand",
+          "weight": 5
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8,
+        "min": 2
+      }
+    }
+  ],
+  "random_sequence": "prehistoricfauna:chests/djadochta_market_stand"
+}

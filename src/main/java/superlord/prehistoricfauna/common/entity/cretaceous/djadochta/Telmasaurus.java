@@ -1,12 +1,20 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -79,11 +87,20 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Telmasaurus extends BurrowingDinosaur {
+	private static final EntityDataAccessor<Boolean> TONGUE = SynchedEntityData.defineId(Telmasaurus.class, EntityDataSerializers.BOOLEAN);
 
 	public Telmasaurus(EntityType<? extends TamableAnimal> type, Level worldIn) {
 		super(type, worldIn);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
+	}
+
+	public boolean isFlicking() {
+		return this.entityData.get(TONGUE);
+	}
+
+	private void setFlicking(boolean isFlicking) {
+		this.entityData.set(TONGUE, isFlicking);
 	}
 
 	private int maxHunger = 15;
@@ -117,6 +134,14 @@ public class Telmasaurus extends BurrowingDinosaur {
 		super.aiStep();
 		ItemStack stack = this.getMainHandItem();
 		ItemStack newStack = new ItemStack(Items.AIR);
+		
+		if (stack.getItem() == Items.AIR && !this.isAsleep() && !this.isInWater() && this.getRandom().nextInt(500) == 0 && !this.isFlicking()) {
+			this.setFlicking(true);
+		}
+		if (this.isFlicking() && this.getRandom().nextInt(20) == 0) {
+			this.setFlicking(false);
+		}
+		if (this.isFlicking() && (this.isInWater() || this.isAsleep() || stack.getItem() != Items.AIR)) this.setFlicking(false);
 		if (stack.getItem() != Items.AIR) {
 			timer++;
 			if (timer == 600) {
@@ -150,6 +175,11 @@ public class Telmasaurus extends BurrowingDinosaur {
 				this.setItemInHand(InteractionHand.MAIN_HAND, newStack);
 			}
 		}
+	}
+	
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TONGUE, false);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -197,9 +227,14 @@ public class Telmasaurus extends BurrowingDinosaur {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.TELMASAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.TELMASAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.TELMASAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.telmasaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.telmasaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}

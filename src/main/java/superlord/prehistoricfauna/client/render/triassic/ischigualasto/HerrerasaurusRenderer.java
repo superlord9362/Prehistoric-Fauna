@@ -12,14 +12,14 @@ import superlord.prehistoricfauna.client.model.triassic.ischigualasto.Herrerasau
 import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Herrerasaurus;
 
 public class HerrerasaurusRenderer extends MobRenderer<Herrerasaurus, HerrerasaurusModel> {
-	private static final ResourceLocation HERRERASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/herrerasaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/melanistic.png");
-	private static final ResourceLocation HERRERASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/herrerasaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/melanistic_sleeping.png");
-	private static final ResourceLocation ZOO_TYCOON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/herrerasaurus_ztc.png");
-	private static final ResourceLocation ZOO_TYCOON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/herrerasaurus/herrerasaurus_ztc_sleeping.png");
+	private static final ResourceLocation HERRERASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/herrerasaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/melanistic.png");
+	private static final ResourceLocation HERRERASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/herrerasaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ZOO_TYCOON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/herrerasaurus_ztc.png");
+	private static final ResourceLocation ZOO_TYCOON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/herrerasaurus/herrerasaurus_ztc_sleeping.png");
 
 	public HerrerasaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new HerrerasaurusModel(renderManagerIn.bakeLayer(ClientEvents.HERRERASAURUS)), 0.625F);

@@ -54,6 +54,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	public FastNoise noise;
 	private float[][][] terrainShapeSamplePoints;
 	public final CretaceousBiomeSource biomeSource;
+	private long cachedSeed = Long.MIN_VALUE;
 
 	public CretaceousChunkGenerator(CretaceousBiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
 		super(pBiomeSource);
@@ -66,7 +67,15 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 			noise = new FastNoise((int) (seed & 0xFFFFFFFFL));
 			noise.SetNoiseType(FastNoise.NoiseType.Simplex);
 			SurfaceDecorators.setFastNoise(noise);
+	        biomeSource.setSeed(seed);
 		}
+	}
+	
+	private long getOrExtractSeed(RandomState randomState) {
+	    if (cachedSeed == Long.MIN_VALUE) {
+	        cachedSeed = randomState.getOrCreateRandomFactory(new ResourceLocation("seed_extractor")).at(0, 0, 0).nextLong();
+	    }
+	    return cachedSeed;
 	}
 
 	private FastNoise getNoise(long seed) {
@@ -126,7 +135,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState randomState, StructureManager manager, ChunkAccess chunk) {
 		PositionalRandomFactory chunkRandom = randomState.getOrCreateRandomFactory(new ResourceLocation(PrehistoricFauna.MOD_ID, "chunk"));
 		RandomSource random = chunkRandom.at(chunk.getPos().x, 0, chunk.getPos().z);
-		long seed = extractSeedFromRandomState(randomState);
+		long seed = getOrExtractSeed(randomState);
 		initializeNoise(seed);
 		
 		Heightmap[] heightmaps = {chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.OCEAN_FLOOR_WG), chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.WORLD_SURFACE_WG)};
@@ -169,15 +178,9 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 		}
 		return CompletableFuture.completedFuture(chunk);
 	}
-	
-	private long extractSeedFromRandomState(RandomState randomState) {
-        PositionalRandomFactory testRandom = randomState.getOrCreateRandomFactory(new ResourceLocation("seed_extractor"));
-        RandomSource test = testRandom.at(0, 0, 0);
-        return test.nextLong();
-    }
 
 	private boolean shouldHaveFluid(BlockPos pos, RandomState randomState) {
-        long seed = extractSeedFromRandomState(randomState);
+        long seed = getOrExtractSeed(randomState);
         BiomeManager biomeManager = new BiomeManager((CretaceousBiomeSource)this.getBiomeSource(), seed);
 		Holder<Biome> biome = biomeManager.getBiome(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
 		if (pos.getY() < this.getSeaLevel())
@@ -414,7 +417,7 @@ public class CretaceousChunkGenerator extends ChunkGenerator {
 	}
 
 	public void fillNoiseSampleArrays(ChunkAccess chunk, RandomState randomState) {
-        long seed = extractSeedFromRandomState(randomState);
+        long seed = getOrExtractSeed(randomState);
         int hSamplePoints = (int) Math.ceil(16 * 0.3F);
 		int vSamplePoints = (int) Math.ceil(this.getGenDepth() * 0.15F);
 		float hOffset = (16.0F / (float) hSamplePoints);

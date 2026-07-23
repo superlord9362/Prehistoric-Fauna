@@ -84,7 +84,7 @@
           "condition": "minecraft:block_state_property",
           "block": "prehistoricfauna:fiddlehead_crop",
           "properties": {
-            "Age": "7"
+            "age": "7"
           }
         }
       ]

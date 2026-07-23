@@ -24,6 +24,7 @@ public class TelmasaurusModel extends EntityModel<Telmasaurus> implements ArmedM
 	private final ModelPart Body;
 	private final ModelPart Tail;
 	private final ModelPart Head;
+	private final ModelPart Tongue;
 	private final ModelPart Frontlegright;
 	private final ModelPart Frontfootright;
 	private final ModelPart Frontfootleft;
@@ -39,6 +40,7 @@ public class TelmasaurusModel extends EntityModel<Telmasaurus> implements ArmedM
 		this.Backfootleft = Backlegleft.getChild("Backfootleft");
 		this.Body = root.getChild("Body");
 		this.Head = Body.getChild("Head");
+		this.Tongue = Head.getChild("Tongue");
 		this.Tail = Body.getChild("Tail");
 		this.Frontlegright = root.getChild("Frontlegright");
 		this.Frontfootright = Frontlegright.getChild("Frontfootright");
@@ -143,6 +145,10 @@ public class TelmasaurusModel extends EntityModel<Telmasaurus> implements ArmedM
 				this.Backlegright.xRot = Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
 				this.Frontlegleft.xRot = Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
 				this.Frontlegright.xRot = Mth.cos(limbSwing * speed * 0.3F) * degree * 0.5F * limbSwingAmount;
+				if (entity.isFlicking()) {
+					this.Tongue.z = -5.8F;
+					this.Tongue.xRot = 0.5F * Mth.cos(0.75F * ageInTicks);
+				}
 				if (entity.isInWater()) {
 					this.Body.y = 17.2F;
 					this.Backlegright.y  =  18.7F;
@@ -205,6 +211,8 @@ public class TelmasaurusModel extends EntityModel<Telmasaurus> implements ArmedM
 		this.Backfootright.xRot = 0;
 		this.Backfootright.yRot = 0;
 		this.Backfootright.zRot = 0;
+		this.Tongue.z = -2.8F;
+		this.Tongue.xRot = 0;
 	}
 
 	public void sleepPose() {

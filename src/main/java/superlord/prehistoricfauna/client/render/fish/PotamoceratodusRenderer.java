@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Potamoceratodus;
 
 public class PotamoceratodusRenderer extends MobRenderer<Potamoceratodus, PotamoceratodusModel> {
 
-	private static final ResourceLocation POTAMOCERATODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/potamoceratodus.png");
+	private static final ResourceLocation POTAMOCERATODUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/potamoceratodus.png");
 
 	public PotamoceratodusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PotamoceratodusModel(renderManagerIn.bakeLayer(ClientEvents.POTAMOCERATODUS)), 0);

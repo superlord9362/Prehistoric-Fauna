@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.Psittacosaurus
 
 public class PsittacosaurusSkullRenderer extends MobRenderer<PsittacosaurusSkull, PsittacosaurusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/psittacosaurus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/psittacosaurus_skeleton.png");
 
 	public PsittacosaurusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PsittacosaurusSkullModel(renderManagerIn.bakeLayer(ClientEvents.PSITTACOSAURUS_SKULL)), 0);

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Scutellosaurus;
 
 public class ScutellosaurusEyeLayer extends RenderLayer<Scutellosaurus, ScutellosaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/scutellosaurus/scutellosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/scutellosaurus/scutellosaurus_eyeglow.png"));
 	private final RenderLayerParent<Scutellosaurus, ScutellosaurusModel> scutellosaurusRenderer;
 	
 	public ScutellosaurusEyeLayer(RenderLayerParent<Scutellosaurus, ScutellosaurusModel> rendererIn) {

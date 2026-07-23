@@ -132,6 +132,18 @@
         "weight": 3
       },
       {
+        "type": "prehistoricfauna:mamenchisaurus",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 4
+      },
+      {
+        "type": "prehistoricfauna:omeisaurus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
         "type": "prehistoricfauna:sinraptor",
         "maxCount": 2,
         "minCount": 1,

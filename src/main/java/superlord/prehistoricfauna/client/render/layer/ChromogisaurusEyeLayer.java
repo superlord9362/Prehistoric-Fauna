@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Chromogis
 
 public class ChromogisaurusEyeLayer extends RenderLayer<Chromogisaurus, ChromogisaurusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/chromogisaurus/chromogisaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chromogisaurus/chromogisaurus_eyeglow.png"));
 	private final RenderLayerParent<Chromogisaurus, ChromogisaurusModel> chromogisaurusRenderer;
 	
 	public ChromogisaurusEyeLayer(RenderLayerParent<Chromogisaurus, ChromogisaurusModel> rendererIn) {

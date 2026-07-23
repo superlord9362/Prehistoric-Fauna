@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log_horizontal",
+	"textures": {
+		"end": "prehistoricfauna:block/agathoxylon_log_top",
+		"side": "prehistoricfauna:block/agathoxylon_log",
+		"inside": "prehistoricfauna:block/stripped_agathoxylon_log"
+	}
+}

@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Cyclurus;
 
 public class CyclurusRenderer extends MobRenderer<Cyclurus, CyclurusModel> {
 
-	private static final ResourceLocation CYCLURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/cyclurus.png");
+	private static final ResourceLocation CYCLURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/cyclurus.png");
 
 	public CyclurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CyclurusModel(renderManagerIn.bakeLayer(ClientEvents.CYCLURUS)), 0);

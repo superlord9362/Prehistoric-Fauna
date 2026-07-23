@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.fossil.jurassic.AllosaurusSkelet
 
 public class AllosaurusSkeletonRenderer extends MobRenderer<AllosaurusSkeleton, EntityModel<AllosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/allosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/allosaurus_skeleton.png");
     private static AllosaurusSkeletonModel IDLE;
     private static AllosaurusSkeletonRetroModel RETRO;
     private static AllosaurusSkeletonActionLeftModel ACTION_LEFT;
@@ -34,17 +34,13 @@ public class AllosaurusSkeletonRenderer extends MobRenderer<AllosaurusSkeleton, 
 	}
 	
 	protected void scale(AllosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isClassical()) {
-			model = RETRO;
-		} else if (entityIn.isActionLeft()) {
-			model = ACTION_LEFT;
-		} else if (entityIn.isActionRight()) {
-			model = ACTION_RIGHT;
-		} else if (entityIn.isResting()) {
-			model = RESTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "RETRO" -> RETRO;
+		case "RESTING" -> RESTING;
+		case "ACTION_LEFT" -> ACTION_LEFT;
+		case "ACTION_RIGHT" -> ACTION_RIGHT;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

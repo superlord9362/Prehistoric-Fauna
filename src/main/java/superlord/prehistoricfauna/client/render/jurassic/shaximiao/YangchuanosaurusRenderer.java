@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Yangchuanosau
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class YangchuanosaurusRenderer extends MobRenderer<Yangchuanosaurus, EntityModel<Yangchuanosaurus>> {
-	private static final ResourceLocation YANGCHUANOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/yangchuanosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/melanistic.png");
-	private static final ResourceLocation YANGCHUANOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/yangchuanosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation YANGCHUANOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/yangchuanosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/melanistic_baby.png");
-	private static final ResourceLocation YANGCHUANOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/yangchuanosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/yangchuanosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation YANGCHUANOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/yangchuanosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/melanistic.png");
+	private static final ResourceLocation YANGCHUANOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/yangchuanosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation YANGCHUANOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/yangchuanosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/melanistic_baby.png");
+	private static final ResourceLocation YANGCHUANOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/yangchuanosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/yangchuanosaurus/melanistic_baby_sleeping.png");
 
 	private static YangchuanosaurusModel YANGCHUANOSAURUS_MODEL;
 	private static YangchuanosaurusBabyModel BABY_YANGCHUANOSAURUS_MODEL;

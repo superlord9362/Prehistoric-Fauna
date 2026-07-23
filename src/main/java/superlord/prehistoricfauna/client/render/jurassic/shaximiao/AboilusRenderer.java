@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.shaximiao.AboilusModel;
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Aboilus;
 
 public class AboilusRenderer extends MobRenderer<Aboilus, AboilusModel<Aboilus>> {
-	private static final ResourceLocation ABOILUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/aboilus.png");
+	private static final ResourceLocation ABOILUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/aboilus.png");
 
 	public AboilusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AboilusModel<>(renderManagerIn.bakeLayer(ClientEvents.ABOILUS)), 0F);

@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Didelphodon
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DidelphodonRenderer extends MobRenderer<Didelphodon, DidelphodonModel> {
-	private static final ResourceLocation DIDELPHODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/didelphodon.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/melanistic.png");
-	private static final ResourceLocation DIDELPHODON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/didelphodon_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/didelphodon/melanistic_sleeping.png");
+	private static final ResourceLocation DIDELPHODON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/didelphodon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/melanistic.png");
+	private static final ResourceLocation DIDELPHODON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/didelphodon_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/didelphodon/melanistic_sleeping.png");
 
 	public DidelphodonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DidelphodonModel(renderManagerIn.bakeLayer(ClientEvents.DIDELPHODON)), 0.25F);

@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Sinamia;
 
 public class SinamiaRenderer extends MobRenderer<Sinamia, SinamiaModel> {
 
-	private static final ResourceLocation SINAMIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/sinamia.png");
+	private static final ResourceLocation SINAMIA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/sinamia.png");
 
 	public SinamiaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new SinamiaModel(renderManagerIn.bakeLayer(ClientEvents.SINAMIA)), 0);

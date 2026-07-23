@@ -1,0 +1,40 @@
+Found In: Morrison
+
+Drops: 4-6 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Hermanophyton 
+Crown
+
+Max Health: 200
+
+Max Hunger: 500
+
+Temperaments: Brontosaurus has 
+an 85% chance of being protective, 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 33 3 127 64 23 20 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Brontosaurus, due to its 
+large size, crushes many animals 
+smaller than it under its immense 
+weight.

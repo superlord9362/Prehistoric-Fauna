@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Stegosaurus;
 
 public class StegosaurusBabyEyeLayer extends RenderLayer<Stegosaurus, EntityModel<Stegosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/stegosaurus/stegosaurus_baby_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/stegosaurus/stegosaurus_baby_eyeglow.png"));
 	private final RenderLayerParent<Stegosaurus, EntityModel<Stegosaurus>> stegosaurusRenderer;
 	
 	public StegosaurusBabyEyeLayer(RenderLayerParent<Stegosaurus, EntityModel<Stegosaurus>> rendererIn) {

@@ -3,7 +3,7 @@
 	"fallback": "prehistoricfauna:settlement/djadochta/terminators",
 	"elements": [
 		{
-			"weight": 2,
+			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"location": "prehistoricfauna:settlement/djadochta/streets/djadochta_street_corner_1",
@@ -12,7 +12,7 @@
 			}
 		},
 		{
-			"weight": 2,
+			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"location": "prehistoricfauna:settlement/djadochta/streets/djadochta_street_corner_2",
@@ -21,7 +21,7 @@
 			}
 		},
 		{
-			"weight": 2,
+			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"location": "prehistoricfauna:settlement/djadochta/streets/djadochta_street_corner_3",
@@ -39,7 +39,7 @@
 			}
 		},
 		{
-			"weight": 3,
+			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"location": "prehistoricfauna:settlement/djadochta/streets/djadochta_street_t_2",
@@ -48,7 +48,7 @@
 			}
 		},
 		{
-			"weight": 3,
+			"weight": 1,
 			"element": {
 				"element_type": "minecraft:single_pool_element",
 				"location": "prehistoricfauna:settlement/djadochta/streets/djadochta_street_t_3",

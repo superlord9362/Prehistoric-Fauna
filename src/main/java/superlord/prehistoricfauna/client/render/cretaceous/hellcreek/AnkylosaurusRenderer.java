@@ -13,18 +13,18 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Ankylosaurus
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ankylosaurus;
 
 public class AnkylosaurusRenderer extends MobRenderer<Ankylosaurus, EntityModel<Ankylosaurus>>  {
-	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic.png");
-	private static final ResourceLocation ANKYLOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation ANKYLOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic_baby.png");
-	private static final ResourceLocation ANKYLOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/ankylosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ankylosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ANKYLOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/ankylosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/melanistic.png");
+	private static final ResourceLocation ANKYLOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/ankylosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ANKYLOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/ankylosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/melanistic_baby.png");
+	private static final ResourceLocation ANKYLOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/ankylosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ankylosaurus/melanistic_baby_sleeping.png");
 
 	private static AnkylosaurusModel ANKYLOSAURUS_MODEL;
 	private static AnkylosaurusBabyModel BABY_ANKYLOSAURUS_MODEL;

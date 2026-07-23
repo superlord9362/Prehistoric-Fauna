@@ -1,0 +1,39 @@
+Modern Location: Sichuan Province, 
+China, Asia
+
+Time: Bathonian-Tithonian, Jurassic, 
+166.0-143.1 million years ago.
+
+Animals:
+-Dinosaurs:
+--Abrosaurus
+--Agilisaurus
+--Bashanosaurus
+--Chuandongocoelurus
+--Gigantspinosaurus
+--Huayangosaurus
+--Mamenchisaurus
+--Omeisaurus
+--Sinraptor
+--Shunosaurus
+--Tuojiangosaurus
+
+--Yandusaurus
+--Yangchuanosaurus
+
+-Synapsids:
+--Polistodon
+
+-Bugs:
+--Aboilus
+--Cicadocoris
+--Mesoforficula
+--Rhipidoblattina
+
+-Fish:
+--Chungkingichthys
+--Lepidotes
+
+Plants:
+-Water Plants:
+--Algae

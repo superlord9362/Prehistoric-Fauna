@@ -27,7 +27,7 @@ public class PFChestBoatRenderer extends BoatRenderer {
 		modChestBoatResources = Stream.of(PFBoatTypes.values()).collect(ImmutableMap.toImmutableMap((boatType) -> {
 			return boatType;
 		}, (boatType) -> {
-			if (boatType == PFBoatTypes.NEOCALAMITES) {
+			if (boatType == PFBoatTypes.NEOCALAMITES || boatType == PFBoatTypes.BAIERA) {
 				return Pair.of(
 						new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/chest_boat/" + boatType.getName() + ".png"),
 						new ChestRaftModel(renderContext.bakeLayer(

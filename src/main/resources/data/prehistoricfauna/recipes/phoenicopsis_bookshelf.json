@@ -1,25 +1,36 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "building",
+	"group": "wooden_bookshelf",
+	"pattern": [		
 		"###",
 		"XXX",
 		"###"
 	],
 	"key": {
 		"#": {
-			"item": "prehistoricfauna:phoenicopsis_planks"
+			"item": "prehistoricfauna:agathoxylon_planks"
 		},
 		"X": {
 			"item": "minecraft:book"
 		}
 	},
 	"result": {
-		"item": "prehistoricfauna:phoenicopsis_bookshelf"
+		"item": "prehistoricfauna:agathoxylon_bookshelf"
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "variant_bookshelves"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
+				},
+				{
+					"type": "woodworks:config",
+					"value": "wooden_bookshelves"
+				}
+			]
 		}
 	]
 }

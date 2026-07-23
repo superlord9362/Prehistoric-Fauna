@@ -1,6 +1,8 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"category": "misc",
+	"group": "hedge",
+	"pattern": [		
 		"L",
 		"W"
 	],
@@ -18,8 +20,17 @@
 	},
 	"conditions": [
 		{
-			"type": "prehistoricfauna:quark_flag",
-			"flag": "hedges"
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "hedges"
+				}
+			]
 		}
 	]
 }

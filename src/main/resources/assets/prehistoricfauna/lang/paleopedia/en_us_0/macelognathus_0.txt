@@ -34,7 +34,9 @@ Sleep Cycle: Cathemeral
 
 
 
-
-
-Behavior: Investigation underway!
+Behavior: Macelognathus can be 
+tamed by feeding it Coniopteris. 
+Tamed Macelognathus will give gifts 
+to their owners occasionally in 
+the morning.
 

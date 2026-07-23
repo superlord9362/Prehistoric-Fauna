@@ -12,6 +12,9 @@ import superlord.prehistoricfauna.common.entity.CretaceousBossBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.BurrowBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.EopolisMoundBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.FeederBlockEntity;
+import superlord.prehistoricfauna.common.entity.block.HenostoneFireSpitterBlockEntity;
+import superlord.prehistoricfauna.common.entity.block.HenostonePitfallBlockEntity;
+import superlord.prehistoricfauna.common.entity.block.JurassicBossBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PFHangingSignBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PFSignBlockEntity;
 import superlord.prehistoricfauna.common.entity.block.PaleontologyTableBlockEntity;
@@ -52,7 +55,8 @@ public class PFBlockEntities {
 			PFBlocks.CUPRESSINOCLADUS_SIGN.get(), PFBlocks.CUPRESSINOCLADUS_WALL_SIGN.get(),
 			PFBlocks.ELATIDES_SIGN.get(), PFBlocks.ELATIDES_WALL_SIGN.get(),
 			PFBlocks.PHOENICOPSIS_SIGN.get(), PFBlocks.PHOENICOPSIS_WALL_SIGN.get(),
-			PFBlocks.FRENELOPSIS_SIGN.get(), PFBlocks.FRENELOPSIS_WALL_SIGN.get()
+			PFBlocks.FRENELOPSIS_SIGN.get(), PFBlocks.FRENELOPSIS_WALL_SIGN.get(),
+			PFBlocks.BAIERA_SIGN.get(), PFBlocks.BAIERA_WALL_SIGN.get()
 			).build(null));
 	public static final RegistryObject<BlockEntityType<PFHangingSignBlockEntity>> HANGING_SIGN = REGISTER.register("hanging_sign", () -> BlockEntityType.Builder.of(PFHangingSignBlockEntity::new, 
 			PFBlocks.METASEQUOIA_HANGING_SIGN.get(), PFBlocks.METASEQUOIA_HANGING_WALL_SIGN.get(),
@@ -80,7 +84,8 @@ public class PFBlockEntities {
 			PFBlocks.CUPRESSINOCLADUS_HANGING_SIGN.get(), PFBlocks.CUPRESSINOCLADUS_HANGING_WALL_SIGN.get(),
 			PFBlocks.ELATIDES_HANGING_SIGN.get(), PFBlocks.ELATIDES_HANGING_WALL_SIGN.get(),
 			PFBlocks.PHOENICOPSIS_HANGING_SIGN.get(), PFBlocks.PHOENICOPSIS_HANGING_WALL_SIGN.get(),
-			PFBlocks.FRENELOPSIS_HANGING_SIGN.get(), PFBlocks.FRENELOPSIS_HANGING_WALL_SIGN.get()
+			PFBlocks.FRENELOPSIS_HANGING_SIGN.get(), PFBlocks.FRENELOPSIS_HANGING_WALL_SIGN.get(),
+			PFBlocks.BAIERA_HANGING_SIGN.get(), PFBlocks.BAIERA_HANGING_WALL_SIGN.get()
 			).build(null));
     public static final RegistryObject<BlockEntityType<PaleoscribeBlockEntity>> PALEOSCRIBE = REGISTER.register("paleoscribe", () -> BlockEntityType.Builder.of(PaleoscribeBlockEntity::new, PFBlocks.PALEOSCRIBE.get()).build(null));
     public static final RegistryObject<BlockEntityType<PaleontologyTableBlockEntity>> PALEONTOLOGY_TABLE = REGISTER.register("paleontology_table", () -> BlockEntityType.Builder.of(PaleontologyTableBlockEntity::new, PFBlocks.PALEONTOLOGY_TABLE.get()).build(null));
@@ -90,6 +95,9 @@ public class PFBlockEntities {
 	public static final RegistryObject<BlockEntityType<FeederBlockEntity>> FEEDER = REGISTER.register("feeder", () -> BlockEntityType.Builder.of(FeederBlockEntity::new, PFBlocks.OAK_FEEDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BurrowBlockEntity>> BURROW = REGISTER.register("burrow", () -> BlockEntityType.Builder.of(BurrowBlockEntity::new, PFBlocks.BURROW.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CretaceousBossBlockEntity>> CRETACEOUS_BOSS = REGISTER.register("cretaceous_boss", () -> BlockEntityType.Builder.of(CretaceousBossBlockEntity::new, PFBlocks.CRETACEOUS_BOSS_SPAWN.get()).build(null));
+	public static final RegistryObject<BlockEntityType<JurassicBossBlockEntity>> JURASSIC_BOSS = REGISTER.register("jurassic_boss", () -> BlockEntityType.Builder.of(JurassicBossBlockEntity::new, PFBlocks.JURASSIC_BOSS_SPAWN.get()).build(null));
     public static final RegistryObject<BlockEntityType<EopolisMoundBlockEntity>> EOPOLIS_MOUND = REGISTER.register("eopolis_mound", () -> BlockEntityType.Builder.of(EopolisMoundBlockEntity::new, PFBlocks.EOPOLIS_MOUND.get()).build(null));
-	
+	public static final RegistryObject<BlockEntityType<HenostoneFireSpitterBlockEntity>> HENOSTONE_FIRE_SPITTER = REGISTER.register("henostone_fire_spitter", () -> BlockEntityType.Builder.of(HenostoneFireSpitterBlockEntity::new, PFBlocks.HENOSTONE_FIRE_SPITTER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<HenostonePitfallBlockEntity>> HENOSTONE_PITFALL = REGISTER.register("henostone_pitfall", () -> BlockEntityType.Builder.of(HenostonePitfallBlockEntity::new, PFBlocks.HENOSTONE_PITFALL.get()).build(null));
+
 }

@@ -16,7 +16,7 @@ import superlord.prehistoricfauna.common.entity.henos.CaveSentinel;
 
 @OnlyIn(Dist.CLIENT)
 public class CaveSentinelGlowLayer extends AbstractHenosGlowLayer<CaveSentinel, CaveSentinelModel> {
-	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/sentinel/trilobite_sentinel_glow.png"));
+	private static final RenderType RENDER_TYPE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/sentinel/trilobite_sentinel_glow.png"));
 
 	public CaveSentinelGlowLayer(RenderLayerParent<CaveSentinel, CaveSentinelModel> rendererIn) {
 		super(rendererIn);

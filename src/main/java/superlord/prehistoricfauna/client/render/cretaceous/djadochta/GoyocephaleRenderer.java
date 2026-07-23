@@ -12,14 +12,14 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Goyocephale
 
 public class GoyocephaleRenderer extends MobRenderer<Goyocephale, GoyocephaleModel> {
 
-	private static final ResourceLocation GOYOCEPHALE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/goyocephale.png");
-	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/goyocephale_baby.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/melanistic.png");
-	private static final ResourceLocation GOYOCEPHALE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/goyocephale_sleeping.png");
-	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/goyocephale_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/goyocephale/melanistic_sleeping.png");
+	private static final ResourceLocation GOYOCEPHALE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/goyocephale.png");
+	private static final ResourceLocation BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/goyocephale_baby.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/melanistic.png");
+	private static final ResourceLocation GOYOCEPHALE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/goyocephale_sleeping.png");
+	private static final ResourceLocation BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/goyocephale_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/goyocephale/melanistic_sleeping.png");
 	
 	public GoyocephaleRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GoyocephaleModel(renderManagerIn.bakeLayer(ClientEvents.GOYOCEPHALE)), 0.6F);

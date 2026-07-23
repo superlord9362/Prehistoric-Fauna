@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.kayenta.PaleohelcuraMode
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Paleohelcura;
 
 public class PaleohelcuraRenderer extends MobRenderer<Paleohelcura, PaleohelcuraModel<Paleohelcura>> {
-	private static final ResourceLocation PALEOHELCURA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/paleohelcura.png");
+	private static final ResourceLocation PALEOHELCURA_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/paleohelcura.png");
 
 	public PaleohelcuraRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PaleohelcuraModel<>(renderManagerIn.bakeLayer(ClientEvents.PALEOHELCURA)), 0F);

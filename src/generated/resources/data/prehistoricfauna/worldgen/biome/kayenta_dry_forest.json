@@ -150,12 +150,6 @@
         "weight": 8
       },
       {
-        "type": "prehistoricfauna:kayentasuchus",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 4
-      },
-      {
         "type": "prehistoricfauna:kayentavenator",
         "maxCount": 2,
         "minCount": 1,
@@ -187,6 +181,12 @@
       },
       {
         "type": "prehistoricfauna:potamoceratodus",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "prehistoricfauna:toarcibatis",
         "maxCount": 2,
         "minCount": 1,
         "weight": 2

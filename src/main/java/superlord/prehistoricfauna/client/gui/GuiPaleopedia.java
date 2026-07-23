@@ -329,12 +329,14 @@ public class GuiPaleopedia extends Screen {
 			font.drawInBatch(s, 34, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		} else if (this.pageType == EnumPaleoPages.RUIXINIA) {
 			font.drawInBatch(s, 52, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
-		} else if (this.pageType == EnumPaleoPages.SINOSAUROPTERYX || this.pageType == EnumPaleoPages.DJADOCHTA || this.pageType == EnumPaleoPages.THESCELOSAURUS || this.pageType == EnumPaleoPages.GIGANTSPINOSAURUS || this.pageType == EnumPaleoPages.CHUANDONGOCOELURUS || this.pageType == EnumPaleoPages.BASHANOSAURUS || this.pageType == EnumPaleoPages.TANYCOLAGREUS || this.pageType == EnumPaleoPages.KAYENTAVENATOR || this.pageType == EnumPaleoPages.KAYENTASUCHUS || this.pageType == EnumPaleoPages.KAYENTACHELYS) {
+		} else if (this.pageType == EnumPaleoPages.SINOSAUROPTERYX || this.pageType == EnumPaleoPages.DJADOCHTA || this.pageType == EnumPaleoPages.THESCELOSAURUS || this.pageType == EnumPaleoPages.GIGANTSPINOSAURUS || this.pageType == EnumPaleoPages.CHUANDONGOCOELURUS || this.pageType == EnumPaleoPages.BASHANOSAURUS || this.pageType == EnumPaleoPages.TANYCOLAGREUS || this.pageType == EnumPaleoPages.KAYENTAVENATOR || this.pageType == EnumPaleoPages.KAYENTACHELYS) {
 			font.drawInBatch(s, 30, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		} else if (this.pageType == EnumPaleoPages.ZHENYUANLONG || this.pageType == EnumPaleoPages.MACELOGNATHUS) {
 			font.drawInBatch(s, 37, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		} else if (this.pageType == EnumPaleoPages.MORRISON || this.pageType == EnumPaleoPages.YANGCHUANOSAURUS) {
 			font.drawInBatch(s, 24, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+		} else if (this.pageType == EnumPaleoPages.SHAXIMIAO) {
+			font.drawInBatch(s, 22, 8, 0x7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		} else if (this.pageType == EnumPaleoPages.ALLOSAURUS) {
 			font.drawInBatch(s, 43, 8, 0X7A756A, false, ms.pose().last().pose(), ms.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 		} else if (this.pageType == EnumPaleoPages.EILENODON) {

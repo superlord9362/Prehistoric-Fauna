@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Brachychamp
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class BrachychampsaRenderer extends MobRenderer<Brachychampsa, BrachychampsaModel> {
-	private static final ResourceLocation BRACHYCHAMPSA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/brachychampsa.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/melanistic.png");
-	private static final ResourceLocation BRACHYCHAMPSA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/brachychampsa_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/brachychampsa/melanistic_sleeping.png");
+	private static final ResourceLocation BRACHYCHAMPSA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/brachychampsa.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/melanistic.png");
+	private static final ResourceLocation BRACHYCHAMPSA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/brachychampsa_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/brachychampsa/melanistic_sleeping.png");
 
 	public BrachychampsaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BrachychampsaModel(renderManagerIn.bakeLayer(ClientEvents.BRACHYCHAMPSA)), 0.75F);

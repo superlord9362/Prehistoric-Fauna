@@ -1,12 +1,18 @@
 package superlord.prehistoricfauna.common.entity.jurassic.kayenta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -35,6 +41,8 @@ import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -80,7 +88,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 	public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
 		return worldIn.getFluidState(pos.below()).isEmpty() && worldIn.getFluidState(pos).is(FluidTags.WATER) ? 10.0F : super.getWalkTargetValue(pos, worldIn);
 	}
-	
+
 	public void travel(Vec3 travelVector) {
 		if (this.isAlive()) {
 			if (this.isEffectiveAi() && this.isInWater()) {
@@ -148,11 +156,22 @@ public class Kayentatherium extends BurrowingDinosaur {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.KAYENTATHERIUM.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+			final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+			if (!already.contains(EnumPaleoPages.KAYENTATHERIUM.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.KAYENTATHERIUM.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.kayentatherium_added"), true);
 				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.kayentatherium_already_added"), true);
+				return InteractionResult.SUCCESS;
 			}
+		}
+		if (item.equals(Items.BUCKET) && !this.isBaby()) {
+			player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+			ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, Items.MILK_BUCKET.getDefaultInstance());
+			player.setItemInHand(hand, itemstack1);
+			return InteractionResult.sidedSuccess(this.level().isClientSide());
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -253,7 +272,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 		}
 
 	}
-	
+
 	static class KayentatheriumGoToWaterGoal extends MoveToBlockGoal {
 		private static final int GIVE_UP_TICKS = 1200;
 		private final Kayentatherium kayentatherium;
@@ -310,7 +329,7 @@ public class Kayentatherium extends BurrowingDinosaur {
 		}
 
 	}
-	
+
 	static class KayentatheriumRandomStrollGoal extends RandomStrollGoal {
 		private final Kayentatherium kayentatherium;
 

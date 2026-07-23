@@ -1,0 +1,8 @@
+{
+    "parent": "prehistoricfauna:block/vertical_slab",
+    "textures": {
+        "side": "prehistoricfauna:block/baiera_planks",
+        "top": "prehistoricfauna:block/baiera_planks",
+        "bottom": "prehistoricfauna:block/baiera_planks"
+    }
+}

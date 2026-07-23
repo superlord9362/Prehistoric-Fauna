@@ -1,0 +1,37 @@
+Found In: Shaximiao
+
+Drops: 2-5 Large Raw Sauropod
+
+Diet: Herbivore
+
+Breeding Item: Frenelopsis Leaves
+
+Max Health: 100
+
+Max Hunger: 250
+
+Temperaments: Abrosaurus has an 
+85% chance of being protective 
+and a 15% chance of being 
+territorial.
+
+Sleep Cycle: Diurnal
+
+<image><drawings_ankylosaurus.png 33 3 151 1 23 20 6.5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Behavior: Investigation underway!

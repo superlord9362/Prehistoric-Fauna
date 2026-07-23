@@ -1,30 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "prehistoricfauna:cupressinocladus_leaves"
-    }
-  },
-  "result": {
-    "item": "prehistoricfauna:cupressinocladus_leaf_carpet",
-    "count": 3
-  },
-  "conditions": [
-    {
-      "type": "forge:and",
-      "values": [
-        {
-          "type": "forge:mod_loaded",
-          "modid": "quark"
-        },
-        {
-          "type": "prehistoricfauna:quark_flag",
-          "flag": "leaf_carpet"
-        }
-      ]
-    }
-  ]
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "leaf_carpet",
+	"pattern": [		
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:cupressinocladus_leaves"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:cupressinocladus_leaf_carpet",
+		"count": 3
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "leaf_carpet"
+				}
+			]
+		}
+	]
 }

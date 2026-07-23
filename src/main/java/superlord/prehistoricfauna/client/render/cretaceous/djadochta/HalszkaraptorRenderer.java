@@ -12,12 +12,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.djadochta.Halszkarapto
 import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Halszkaraptor;
 
 public class HalszkaraptorRenderer extends MobRenderer<Halszkaraptor, HalszkaraptorModel> {
-	private static final ResourceLocation HALSZKARAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/halszkaraptor.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/melanistic.png");
-	private static final ResourceLocation HALSZKARAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/halszkaraptor_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/halszkaraptor/melanistic_sleeping.png");
+	private static final ResourceLocation HALSZKARAPTOR = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/halszkaraptor.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/melanistic.png");
+	private static final ResourceLocation HALSZKARAPTOR_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/halszkaraptor_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/halszkaraptor/melanistic_sleeping.png");
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HalszkaraptorRenderer(EntityRendererProvider.Context renderManagerIn) {

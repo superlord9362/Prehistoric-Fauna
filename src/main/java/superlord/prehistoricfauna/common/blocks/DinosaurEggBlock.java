@@ -49,7 +49,13 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaur
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Tyrannosaurus;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Dongbeititan;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Brachiosaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Brontosaurus;
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Camarasaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.morrison.Diplodocus;
+import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Abrosaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Mamenchisaurus;
+import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Omeisaurus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 import superlord.prehistoricfauna.init.PFBlocks;
 import superlord.prehistoricfauna.init.PFItems;
@@ -194,9 +200,9 @@ public class DinosaurEggBlock extends Block {
 						for(Player player : dinosaur.level().getEntitiesOfClass(Player.class, dinosaur.getBoundingBox().inflate(8.0D, 8.0D, 8.0D))) {
 							dinosaur.addTrustedUUID(player.getUUID());
 						}
-						if (dinosaur instanceof Camarasaurus) {
+						if (dinosaur instanceof Camarasaurus || dinosaur instanceof Diplodocus || dinosaur instanceof Brontosaurus || dinosaur instanceof Brachiosaurus || dinosaur instanceof Mamenchisaurus) {
 							((Animal)dinosaurEntity).setAge(-72000);
-						} else if (dinosaur instanceof Tyrannosaurus || dinosaur instanceof Edmontosaurus || dinosaur instanceof Dongbeititan) {
+						} else if (dinosaur instanceof Tyrannosaurus || dinosaur instanceof Edmontosaurus || dinosaur instanceof Dongbeititan || dinosaur instanceof Abrosaurus || dinosaur instanceof Omeisaurus) {
 							((Animal)dinosaurEntity).setAge(-48000);
 						} else {
 							((Animal)dinosaurEntity).setAge(-24000);

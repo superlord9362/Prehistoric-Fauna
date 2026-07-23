@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.YutyrannusSkul
 
 public class YutyrannusSkullRenderer extends MobRenderer<YutyrannusSkull, YutyrannusSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/yutyrannus_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/yutyrannus_skeleton.png");
 
 	public YutyrannusSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new YutyrannusSkullModel(renderManagerIn.bakeLayer(ClientEvents.YUTYRANNUS_SKULL)), 0);

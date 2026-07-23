@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Gigantspinosa
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class GigantspinosaurusRenderer extends MobRenderer<Gigantspinosaurus, EntityModel<Gigantspinosaurus>> {
-	private static final ResourceLocation GIGANTSPINOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/gigantspinosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/melanistic.png");
-	private static final ResourceLocation GIGANTSPINOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/gigantspinosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/melanistic_sleeping.png");
-	private static final ResourceLocation GIGANTSPINOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/gigantspinosaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/melanistic_baby.png");
-	private static final ResourceLocation GIGANTSPINOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/gigantspinosaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gigantspinosaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation GIGANTSPINOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/gigantspinosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/melanistic.png");
+	private static final ResourceLocation GIGANTSPINOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/gigantspinosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation GIGANTSPINOSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/gigantspinosaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/melanistic_baby.png");
+	private static final ResourceLocation GIGANTSPINOSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/gigantspinosaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gigantspinosaurus/melanistic_baby_sleeping.png");
 
 	private static GigantspinosaurusModel GIGANTSPINOSAURUS_MODEL;
 	private static GigantspinosaurusBabyModel BABY_GIGANTSPINOSAURUS_MODEL;

@@ -63,17 +63,17 @@ public class ClientProxy extends CommonProxy {
 		}, PFBlocks.CONIOPTERIS.get());
 		blockcolors.register((p_228061_0_, p_228061_1_, p_228061_2_, p_228061_3_) -> {
 			return p_228061_1_ != null && p_228061_2_ != null ? BiomeColors.getAverageFoliageColor(p_228061_1_, p_228061_2_) : FoliageColor.getDefaultColor();
-		}, PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get());
+		}, PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_HEDGE.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_HEDGE.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_HEDGE.get());
 		blockcolors.register((p_228063_0_, p_228063_1_, p_228063_2_, p_228063_3_) -> {
 			return 0x45AF45;
-		}, PFBlocks.ARAUCARIA_LEAVES.get());
+		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.ARAUCARIA_HEDGE.get());
 		blockcolors.register((state, reader, pos, color) -> {
 			return reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColor.getDefaultColor();
-		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get());
+		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get(), PFBlocks.AGATHOXYLON_LEAF_CARPET.get(), PFBlocks.AGATHOXYLON_HEDGE.get());
 		itemcolors.register((p_210235_1_, p_210235_2_) -> {
 			BlockState blockstate = ((BlockItem) p_210235_1_.getItem()).getBlock().defaultBlockState();
 			return blockcolors.getColor(blockstate, (BlockAndTintGetter) null, (BlockPos) null, p_210235_2_);
-		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get());
+		}, PFBlocks.ARAUCARIA_LEAVES.get(), PFBlocks.METASEQUOIA_LEAVES.get(), PFBlocks.CONIOPTERIS.get(), PFBlocks.PROTOPICEOXYLON_LEAVES.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.AGATHOXYLON_LEAVES.get(), PFBlocks.CLADOPHLEBIS.get(), PFBlocks.TAXODIUM_LEAVES.get(), PFBlocks.TAXODIUM_LEAF_CARPET.get(), PFBlocks.TAXODIUM_HEDGE.get(), PFBlocks.ARAUCARIA_LEAF_CARPET.get(), PFBlocks.ARAUCARIA_HEDGE.get(), PFBlocks.METASEQUOIA_LEAF_CARPET.get(), PFBlocks.METASEQUOIA_HEDGE.get(), PFBlocks.PROTOPICEOXYLON_LEAF_CARPET.get(), PFBlocks.PROTOPICEOXYLON_HEDGE.get(), PFBlocks.PROTOJUNIPEROXYLON_LEAF_CARPET.get(), PFBlocks.PROTOJUNIPEROXYLON_HEDGE.get(), PFBlocks.AGATHOXYLON_LEAF_CARPET.get(), PFBlocks.AGATHOXYLON_HEDGE.get());
 
 		RenderType cutoutRenderType = RenderType.cutout();
 		RenderType translucentRenderType = RenderType.translucent();
@@ -212,7 +212,7 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_NEOCALAMITES.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_PHLEBOPTERIS.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_CLATHROPTERIS.get(), cutoutRenderType);
-		ItemBlockRenderTypes.setRenderLayer(PFBlocks.NEOCALAMITES_TOP.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_BAIERA_SAPLING.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_TUBER_BLOCK.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.SMALL_CARVED_TUBER_LIT.get(), cutoutRenderType);
@@ -378,6 +378,21 @@ public class ClientProxy extends CommonProxy {
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_DOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_TRAPDOOR.get(), cutoutRenderType);
 		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ZAMITES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_SAPLING.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_LEAVES.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_DOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_TRAPDOOR.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_LEAF_CARPET.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PLATANITES_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CZEKANOWSKIA_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.CUPRESSINOCLADUS_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.ELATIDES_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.PHOENICOPSIS_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.FRENELOPSIS_LADDER.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_HEDGE.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.BAIERA_LOG.get(), cutoutRenderType);
+		ItemBlockRenderTypes.setRenderLayer(PFBlocks.POTTED_NILSSONIA.get(), cutoutRenderType);
 	}
 	
     public static void setupParticles(RegisterParticleProvidersEvent registry) {

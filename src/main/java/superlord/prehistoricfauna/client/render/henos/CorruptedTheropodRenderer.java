@@ -15,7 +15,7 @@ import superlord.prehistoricfauna.client.render.layer.CorruptedTheropodHeadTwoLa
 import superlord.prehistoricfauna.common.entity.henos.CorruptedTheropod;
 
 public class CorruptedTheropodRenderer extends MobRenderer<CorruptedTheropod, CorruptedTheropodModel> {
-	private static final ResourceLocation CORRUPTED_THEROPOD = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/corrupted_theropod/corrupted_theropod.png");
+	private static final ResourceLocation CORRUPTED_THEROPOD = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/corrupted_theropod/corrupted_theropod.png");
 
 	public CorruptedTheropodRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CorruptedTheropodModel(renderManagerIn.bakeLayer(ClientEvents.CORRUPTED_THEROPOD)), 2F);

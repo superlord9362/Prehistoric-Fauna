@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Desmatosuchus;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class DesmatosuchusRenderer extends MobRenderer<Desmatosuchus, DesmatosuchusModel> {
-	private static final ResourceLocation DESMATOSUCHUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/desmatosuchus.png");
-	private static final ResourceLocation DESMATOSUCHUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/desmatosuchus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/desmatosuchus/melanistic_sleeping.png");
+	private static final ResourceLocation DESMATOSUCHUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/desmatosuchus.png");
+	private static final ResourceLocation DESMATOSUCHUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/desmatosuchus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/desmatosuchus/melanistic_sleeping.png");
 
 	public DesmatosuchusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DesmatosuchusModel(renderManagerIn.bakeLayer(ClientEvents.DESMATOSUCHUS)), 1.25F);

@@ -1,75 +1,33 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_chest",
+	"pattern": [		
+		"###",
+		"# #",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:agathoxylon_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_chest"
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "woodworks"
-						},
-						{
-							"type": "woodworks:config",
-							"value": "wooden_chests"
-						}
-					]
-				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"category": "misc",
-				"group": "wooden_chest",
-				"pattern": [
-					"###",
-					"# #",
-					"###"
-				],
-				"key": {
-					"#": {
-						"item": "prehistoricfauna:agathoxylon_planks"
-				    }
+					"type": "forge:mod_loaded",
+					"modid": "woodworks"
 				},
-				"result": {
-					"item": "prehistoricfauna:agathoxylon_chest"
-				}
-			}
-		},
-		{
-			"conditions": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "quark"
-						},
-						{
-							"type": "quark:flag",
-							"flag": "variant_chests"
-						}
-					]
+					"type": "woodworks:config",
+					"value": "wooden_chests"
 				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"category": "misc",
-				"group": "wooden_chest",
-				"pattern": [
-					"###",
-					"# #",
-					"###"
-				],
-				"key": {
-					"#": {
-						"item": "prehistoricfauna:agathoxylon_planks"
-					}
-				},
-				"result": {
-					"item": "prehistoricfauna:agathoxylon_chest"
-				}
-			}
+			]
 		}
 	]
 }

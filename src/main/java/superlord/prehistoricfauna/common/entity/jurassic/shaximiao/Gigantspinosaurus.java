@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.jurassic.shaximiao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -101,11 +106,21 @@ public class Gigantspinosaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.GIGANTSPINOSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.GIGANTSPINOSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.GIGANTSPINOSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.gigantspinosaurus_added"), true);
 				return InteractionResult.SUCCESS;
-			} else return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.gigantspinosaurus_already_added"), true);
+				return InteractionResult.SUCCESS;
+			}
+		}
+		if (itemstack.is(PFTags.FERNS_ITEMS)) {
+			if (this.getRandom().nextInt() == 0) this.spawnAtLocation(PFItems.FIDDLEHEAD_SPORES.get());
+			if (!player.isCreative()) itemstack.shrink(1);
+			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(player, hand);
 	}
@@ -118,6 +133,7 @@ public class Gigantspinosaurus extends DinosaurEntity {
 			this.setProtective(true);
 		}
 		this.setHerbivorous(true);
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

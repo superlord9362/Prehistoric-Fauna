@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fish.Acipenser;
 
 public class AcipenserRenderer extends MobRenderer<Acipenser, AcipenserModel> {
 
-	private static final ResourceLocation ACIPENSER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/fish/acipenser.png");
+	private static final ResourceLocation ACIPENSER = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/fish/acipenser.png");
 
 	public AcipenserRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AcipenserModel(renderManagerIn.bakeLayer(ClientEvents.ACIPENSER)), 0);

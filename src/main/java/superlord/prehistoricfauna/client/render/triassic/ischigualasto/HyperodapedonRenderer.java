@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.triassic.ischigualasto.Hyperodap
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class HyperodapedonRenderer extends MobRenderer<Hyperodapedon, HyperodapedonModel> {
-	private static final ResourceLocation HYPERODAPEDON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/hyperodapedon.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/melanistic.png");
-	private static final ResourceLocation HYPERODAPEDON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/hyperodapedon_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/hyperodapedon/melanistic_sleeping.png");
+	private static final ResourceLocation HYPERODAPEDON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/hyperodapedon.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/melanistic.png");
+	private static final ResourceLocation HYPERODAPEDON_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/hyperodapedon_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/hyperodapedon/melanistic_sleeping.png");
 
 	public HyperodapedonRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new HyperodapedonModel(renderManagerIn.bakeLayer(ClientEvents.HYPERODAPEDON)), 0.325F);

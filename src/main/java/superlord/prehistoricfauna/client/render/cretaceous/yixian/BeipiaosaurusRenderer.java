@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.BeipiaosaurusMo
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Beipiaosaurus;
 
 public class BeipiaosaurusRenderer extends MobRenderer<Beipiaosaurus, BeipiaosaurusModel> {
-	private static final ResourceLocation BEIPIAOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/beipiaosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/melanistic.png");
-	private static final ResourceLocation BEIPIAOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/beipiaosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/beipiaosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation BEIPIAOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/beipiaosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/melanistic.png");
+	private static final ResourceLocation BEIPIAOSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/beipiaosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/beipiaosaurus/melanistic_sleeping.png");
 
 	public BeipiaosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new BeipiaosaurusModel(renderManagerIn.bakeLayer(ClientEvents.BEIPIAOSAURUS)), 0.4375F);

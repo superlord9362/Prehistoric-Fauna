@@ -14,7 +14,7 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.ApoclionModel;
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Apoclion;
 
 public class ApoclionRenderer extends MobRenderer<Apoclion, ApoclionModel> {
-	private static final ResourceLocation APOCLION_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/apoclion.png");
+	private static final ResourceLocation APOCLION_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/apoclion.png");
 
 	public ApoclionRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ApoclionModel(renderManagerIn.bakeLayer(ClientEvents.APOCLION)), 0F);

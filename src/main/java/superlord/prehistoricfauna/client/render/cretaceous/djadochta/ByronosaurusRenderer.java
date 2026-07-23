@@ -13,12 +13,12 @@ import superlord.prehistoricfauna.common.entity.cretaceous.djadochta.Byronosauru
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class ByronosaurusRenderer extends MobRenderer<Byronosaurus, ByronosaurusModel> {
-	private static final ResourceLocation BYRONOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/byronosaurus.png");
-	private static final ResourceLocation BYRONOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/byronosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/albino.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/melanistic.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/byronosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation BYRONOSAURUS_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/byronosaurus.png");
+	private static final ResourceLocation BYRONOSAURUS_TEXTURE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/byronosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/albino.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/melanistic.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/byronosaurus/melanistic_sleeping.png");
 
 	public ByronosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new ByronosaurusModel(renderManagerIn.bakeLayer(ClientEvents.BYRONOSAURUS)), 0.375F);

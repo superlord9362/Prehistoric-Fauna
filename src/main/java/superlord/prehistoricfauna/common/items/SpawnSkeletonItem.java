@@ -198,32 +198,36 @@ public class SpawnSkeletonItem extends Item {
 	
 	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 		if (stack.getItem() == PFItems.TRICERATOPS_SKELETON.get() || stack.getItem() == PFItems.TRICERATOPS_SKULL.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKELETON.get() || stack.getItem() == PFItems.ANKYLOSAURUS_SKULL.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKELETON.get() || stack.getItem() == PFItems.TYRANNOSAURUS_SKULL.get() || stack.getItem() == PFItems.ANZU_SKELETON.get() || stack.getItem() == PFItems.ANZU_SKULL.get()) {
-			tooltip.add(Component.translatable("hell_creek").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.hell_creek").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		if (stack.getItem() == PFItems.STEGOSAURUS_SKELETON.get() || stack.getItem() == PFItems.STEGOSAURUS_SKULL.get() || stack.getItem() == PFItems.CERATOSAURUS_SKELETON.get() || stack.getItem() == PFItems.CERATOSAURUS_SKULL.get() || stack.getItem() == PFItems.ALLOSAURUS_SKELETON.get() || stack.getItem() == PFItems.ALLOSAURUS_SKULL.get()) {
-			tooltip.add(Component.translatable("morrison").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("jurassic").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.morrison").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.jurassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		if (stack.getItem() == PFItems.ISCHIGUALASTIA_SKELETON.get() || stack.getItem() == PFItems.ISCHIGUALASTIA_SKULL.get() || stack.getItem() == PFItems.HERRERASAURUS_SKELETON.get() || stack.getItem() == PFItems.HERRERASAURUS_SKULL.get() || stack.getItem() == PFItems.SAUROSUCHUS_SKELETON.get() || stack.getItem() == PFItems.SAUROSUCHUS_SKULL.get()) {
-			tooltip.add(Component.translatable("ischigualasto").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("triassic").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.ischigualasto").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.triassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		if (stack.getItem() == PFItems.VELOCIRAPTOR_SKELETON.get() || stack.getItem() == PFItems.VELOCIRAPTOR_SKULL.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKELETON.get() || stack.getItem() == PFItems.PROTOCERATOPS_SKULL.get() || stack.getItem() == PFItems.PLESIOHADROS_SKELETON.get() || stack.getItem() == PFItems.PLESIOHADROS_SKULL.get() || stack.getItem() == PFItems.GOYOCEPHALE_SKELETON.get() || stack.getItem() == PFItems.GOYOCEPHALE_SKULL.get()) {
-			tooltip.add(Component.translatable("djadochta").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.djadochta").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.cretaceous").withStyle(ChatFormatting.DARK_GRAY));
 		}
-		if (stack.getItem() == PFItems.DILOPHOSAURUS_SKELETON.get() || stack.getItem() == PFItems.DILOPHOSAURUS_SKULL.get() || stack.getItem() == PFItems.SARAHSAURUS_SKELETON.get() || stack.getItem() == PFItems.SARAHSAURUS_SKULL.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SKELETON.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SKULL.get()) {
-			tooltip.add(Component.translatable("kayenta").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("jurassic").withStyle(ChatFormatting.DARK_GRAY));
+		if (stack.getItem() == PFItems.DILOPHOSAURUS_SKELETON.get() || stack.getItem() == PFItems.DILOPHOSAURUS_SKULL.get() || stack.getItem() == PFItems.SARAHSAURUS_SKELETON.get() || stack.getItem() == PFItems.SARAHSAURUS_SKULL.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SKELETON.get() || stack.getItem() == PFItems.SCELIDOSAURUS_SKULL.get() || stack.getItem() == PFItems.KAYENTAVENATOR_SKULL.get() || stack.getItem() == PFItems.KAYENTAVENATOR_SKELETON.get()) {
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.kayenta").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.jurassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		if (stack.getItem() == PFItems.DESMATOSUCHUS_SKELETON.get() || stack.getItem() == PFItems.DESMATOSUCHUS_SKULL.get() || stack.getItem() == PFItems.POSTOSUCHUS_SKELETON.get() || stack.getItem() == PFItems.POSTOSUCHUS_SKULL.get() || stack.getItem() == PFItems.COELOPHYSIS_SKELETON.get() || stack.getItem() == PFItems.COELOPHYSIS_SKULL.get()) {
-			tooltip.add(Component.translatable("chinle").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("triassic").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.chinle").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.triassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		if (stack.getItem() == PFItems.PSITTACOSAURUS_SKELETON.get() || stack.getItem() == PFItems.PSITTACOSAURUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKULL.get() || stack.getItem() == PFItems.YUTYRANNUS_SKELETON.get() || stack.getItem() == PFItems.DONGBEITITAN_SKELETON.get() || stack.getItem() == PFItems.DONGBEITITAN_SKULL.get() || stack.getItem() == PFItems.LIAONINGOSAURUS_SKELETON.get() || stack.getItem() == PFItems.LIAONINGOSAURUS_SKULL.get()) {
-			tooltip.add(Component.translatable("yixian").withStyle(ChatFormatting.GRAY));
-			tooltip.add(Component.translatable("cretaceous").withStyle(ChatFormatting.DARK_GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.yixian").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.cretaceous").withStyle(ChatFormatting.DARK_GRAY));
+		}
+		if (stack.getItem() == PFItems.CHUANDONGOCOELURUS_SKULL.get() || stack.getItem() == PFItems.CHUANDONGOCOELURUS_SKELETON.get() || stack.getItem() == PFItems.YANGCHUANOSAURUS_SKULL.get() || stack.getItem() == PFItems.YANGCHUANOSAURUS_SKELETON.get()){
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.shaximiao").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("tooltip.prehistoricfauna.jurassic").withStyle(ChatFormatting.DARK_GRAY));
 		}
 	}
     

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:stegosaur_scythe"
+    ]
+  },
+  "criteria": {
+    "has_drop": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:gigantspinosaurus_spike"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:stegosaur_scythe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_drop",
+      "has_the_recipe"
+    ]
+  ]
+}

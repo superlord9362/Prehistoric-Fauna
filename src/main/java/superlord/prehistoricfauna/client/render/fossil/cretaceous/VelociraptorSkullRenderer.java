@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.VelociraptorSk
 
 public class VelociraptorSkullRenderer extends MobRenderer<VelociraptorSkull, VelociraptorSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/velociraptor_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/velociraptor_skeleton.png");
 
 	public VelociraptorSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new VelociraptorSkullModel(renderManagerIn.bakeLayer(ClientEvents.VELOCIRAPTOR_SKULL)), 0);

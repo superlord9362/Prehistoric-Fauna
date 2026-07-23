@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Triceratops
 
 public class TriceratopsEyeLayer extends RenderLayer<Triceratops, EntityModel<Triceratops>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/triceratops/triceratops_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/triceratops/triceratops_eyeglow.png"));
 	private final RenderLayerParent<Triceratops, EntityModel<Triceratops>> triceratopsRenderer;
 	
 	public TriceratopsEyeLayer(RenderLayerParent<Triceratops, EntityModel<Triceratops>> rendererIn) {

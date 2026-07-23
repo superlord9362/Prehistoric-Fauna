@@ -11,12 +11,12 @@ import superlord.prehistoricfauna.client.model.cretaceous.hellcreek.Palaeosaniwa
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Palaeosaniwa;
 
 public class PalaeosaniwaRenderer extends MobRenderer<Palaeosaniwa, PalaeosaniwaModel> {
-	private static final ResourceLocation PALAEOSANIWA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/palaeosaniwa.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/melanistic.png");
-	private static final ResourceLocation PALAEOSANIWA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/palaeosaniwa_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/palaeosaniwa/melanistic_sleeping.png");
+	private static final ResourceLocation PALAEOSANIWA = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/palaeosaniwa.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/melanistic.png");
+	private static final ResourceLocation PALAEOSANIWA_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/palaeosaniwa_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/palaeosaniwa/melanistic_sleeping.png");
 
 	public PalaeosaniwaRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PalaeosaniwaModel(renderManagerIn.bakeLayer(ClientEvents.PALAEOSANIWA)), 0.5F);

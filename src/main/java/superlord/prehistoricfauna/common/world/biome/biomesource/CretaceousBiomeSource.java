@@ -23,7 +23,7 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 			return null;
 		})).apply(p_48644_, p_48644_.stable(CretaceousBiomeSource::new));
 	});
-	private final FastNoise climateNoise;
+	private final FastNoise timelineNoise, temperatureNoise, hillinessNoise, humidityNoise, caveNoise;
 	private long lastSeed = -1;
 
 	private final Holder<Biome> hellCreekHardwoodForest, hellCreekClearing, hellCreekBluffs, hellCreekRedwoods, hellCreekSwamp, hellCreekRiver, djadochtaDunes, djadochtaArroyo, djadochtaAlluvialPlains, yixianForest, yixianSnowyForest, yixianSnowyMountains, yixianRegrowth, yixianVolcano, yixianLakes, dripstoneCaves, henostoneCaves;
@@ -36,6 +36,20 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 	protected Stream<Holder<Biome>> collectPossibleBiomes() {
 		return Stream.of(this.hellCreekBluffs, this.hellCreekClearing, this.hellCreekHardwoodForest, this.hellCreekRedwoods, this.hellCreekRiver, this.hellCreekSwamp, this.djadochtaAlluvialPlains, this.djadochtaArroyo, this.djadochtaDunes, this.yixianForest, this.yixianLakes, this.yixianRegrowth, this.yixianSnowyForest, this.yixianSnowyMountains, this.yixianVolcano, this.dripstoneCaves, this.henostoneCaves);
 	}
+	
+	public void setSeed(long seed) {
+	    if (lastSeed != seed) {
+	        int s = (int)(seed & 0xFFFFFFFFL);
+	        timelineNoise.SetSeed(s);
+	        temperatureNoise.SetSeed(s + 1);
+	        hillinessNoise.SetSeed(s + 2);
+	        humidityNoise.SetSeed(s + 3);
+	        caveNoise.SetSeed(s + 4);
+	        lastSeed = seed;
+	    }
+	}
+
+	public double noiseValue;
 
 	public CretaceousBiomeSource(Holder<Biome> hellCreekHardwoodForest, Holder<Biome> hellCreekClearing, Holder<Biome> hellCreekBluffs, Holder<Biome> hellCreekRedwoods, Holder<Biome> hellCreekSwamp, Holder<Biome> hellCreekRiver, Holder<Biome> djadochtaDunes, Holder<Biome> djadochtaArroyo, Holder<Biome> djadochtaAlluvialPlains, Holder<Biome> yixianForest, Holder<Biome> yixianSnowyForest, Holder<Biome> yixianSnowyMountains, Holder<Biome> yixianRegrowth, Holder<Biome> yixianVolcano, Holder<Biome> yixianLakes, Holder<Biome> dripstoneCaves, Holder<Biome> henostoneCaves) {
 		this.hellCreekHardwoodForest = hellCreekHardwoodForest;
@@ -55,8 +69,16 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 		this.yixianLakes = yixianLakes;
 		this.dripstoneCaves = dripstoneCaves;
 		this.henostoneCaves = henostoneCaves;
-		this.climateNoise = new FastNoise(0); 
-		this.climateNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.timelineNoise = new FastNoise(0);
+		this.timelineNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.temperatureNoise = new FastNoise(1);
+		this.temperatureNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.hillinessNoise = new FastNoise(2);
+		this.hillinessNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.humidityNoise = new FastNoise(3);
+		this.humidityNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
+		this.caveNoise = new FastNoise(4);
+		this.caveNoise.SetNoiseType(FastNoise.NoiseType.Simplex);
 	}
 
 	@Override
@@ -64,24 +86,24 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 		return CODEC;
 	}
 
-	public double timeLineNoise(int x, int y, int z) { 
-		return getNoise().GetNoise(x * 0.1F, z * 0.1F); 
-	} 
+	public double timeLineNoise(int x, int y, int z) {
+	    return timelineNoise.GetNoise(x * 0.1F, z * 0.1F);
+	}
 
 	public double tempNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.2F, z * 0.2F); 
-	} 
+	    return temperatureNoise.GetNoise(x * 0.2F, z * 0.2F);
+	}
 
 	public double hillinessNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.4F, z * 0.4F);
-	} 
+	    return hillinessNoise.GetNoise(x * 0.4F, z * 0.4F);
+	}
 
-	public double humidityNoise(int x, int y, int z) { 
-		return getNoise().GetNoise(x * 0.7F, z * 0.7F); 
-	} 
+	public double humidityNoise(int x, int y, int z) {
+	    return humidityNoise.GetNoise(x * 0.7F, z * 0.7F);
+	}
 
 	public double caveTimeLineNoise(int x, int y, int z) {
-		return getNoise().GetNoise(x * 0.3F, y * 0.3F, z * 0.3F); 
+	    return caveNoise.GetNoise(x * 0.3F, y * 0.3F, z * 0.3F);
 	}
 
 	public Climate.TargetPoint sampleCustomClimate(int x, int y, int z) {
@@ -102,17 +124,6 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 				climate.temperature(), climate.humidity(), climate.continentalness(),
 				climate.erosion(), climate.depth(), climate.weirdness(), y
 				);
-	} 
-
-	public FastNoise getNoise() {
-		return climateNoise;
-	}
-
-	public void updateNoise(long seed) {
-		if (lastSeed != seed) {
-			climateNoise.SetSeed((int) (seed & 0xFFFFFFFFL));
-			lastSeed = seed;
-		}
 	}
 	
 	private Holder<Biome> selectBiome(float tempNoise, float humidityNoise, float timelineNoise, float hillinessNoise, float depth, float caveTimeLineNoise, int y) {

@@ -1,39 +1,34 @@
 {
-	"type": "forge:conditional",
-	"recipes": [
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "wooden_post",
+	"pattern": [		
+		"F",
+		"F",
+		"F"
+	],
+	"key": {
+		"F": {
+			"item": "prehistoricfauna:agathoxylon_wood"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:agathoxylon_post",
+		"count": 8
+	},
+	"conditions": [
 		{
-			"conditions": [
+			"type": "prehistoricfauna:multiple",
+			"values": [
 				{
-					"type": "forge:and",
-					"values": [
-						{
-							"type": "forge:mod_loaded",
-							"modid": "quark"
-						},
-						{
-							"type": "quark:flag",
-							"flag": "wooden_posts"
-						}
-					]
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "wooden_posts"
 				}
-			],
-			"recipe":  {
-				"type": "minecraft:crafting_shaped",
-				"pattern": [
-					"F",
-					"F",
-					"F"
-				],
-				  "key": {
-				    "F": {
-				      "item": "prehistoricfauna:agathoxylon_wood"
-				    }
-				  },
-				  "result": {
-				    "item": "prehistoricfauna:agathoxylon_post",
-					"count": 8
-				  }
-			}
+			]
 		}
 	]
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "prehistoricfauna:block/baiera_door_bottom",
+    "top": "prehistoricfauna:block/baiera_door_top"
+  }
+}

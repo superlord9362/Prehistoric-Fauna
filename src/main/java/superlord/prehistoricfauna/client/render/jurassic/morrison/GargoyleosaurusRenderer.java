@@ -11,22 +11,22 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.Gargoyleosaurus
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Gargoyleosaurus;
 
 public class GargoyleosaurusRenderer extends MobRenderer<Gargoyleosaurus, GargoyleosaurusModel> {
-	private static final ResourceLocation GARGOYLEOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/gargoyleosaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/melanistic.png");
-	private static final ResourceLocation GARGOYLEOSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/gargoyleosaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/gargoyleosaurus/melanistic_sleeping.png");
+	private static final ResourceLocation GARGOYLEOSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/gargoyleosaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/melanistic.png");
+	private static final ResourceLocation GARGOYLEOSAURUS_SLEEPING_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/gargoyleosaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/gargoyleosaurus/melanistic_sleeping.png");
 
 	public GargoyleosaurusRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new GargoyleosaurusModel(renderManagerIn.bakeLayer(ClientEvents.GARGOYLEOSAURUS)), 0.6875F);
 	}
 
-	protected void scale(Gargoyleosaurus thescelosaurus, PoseStack matrixStackIn, float partialTickTime) {
-		if(thescelosaurus.isBaby()) {
+	protected void scale(Gargoyleosaurus gargoyleosaurus, PoseStack matrixStackIn, float partialTickTime) {
+		if(gargoyleosaurus.isBaby()) {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 		}
-		super.scale(thescelosaurus, matrixStackIn, partialTickTime);
+		super.scale(gargoyleosaurus, matrixStackIn, partialTickTime);
 	}
 
 	@Override

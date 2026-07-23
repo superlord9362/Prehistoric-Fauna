@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log",
+	"textures": {
+		"end": "prehistoricfauna:block/monanthesia_log_top",
+		"side": "prehistoricfauna:block/monanthesia_log",
+		"inside": "prehistoricfauna:block/stripped_monanthesia_log"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"parent": "prehistoricfauna:block/hollow_log",
+	"textures": {
+		"end": "prehistoricfauna:block/dryophyllum_log_top",
+		"side": "prehistoricfauna:block/dryophyllum_log_side",
+		"inside": "prehistoricfauna:block/stripped_dryophyllum_log_side"
+	}
+}

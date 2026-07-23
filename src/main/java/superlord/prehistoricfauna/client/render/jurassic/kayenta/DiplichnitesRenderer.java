@@ -13,7 +13,7 @@ import superlord.prehistoricfauna.client.model.jurassic.kayenta.DiplichnitesMode
 import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Diplichnites;
 
 public class DiplichnitesRenderer extends MobRenderer<Diplichnites, DiplichnitesModel<Diplichnites>> {
-	private static final ResourceLocation DIPLICHNITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/bugs/diplichnites.png");
+	private static final ResourceLocation DIPLICHNITES_TEXTURE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/bugs/diplichnites.png");
 
 	public DiplichnitesRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new DiplichnitesModel<>(renderManagerIn.bakeLayer(ClientEvents.DIPLICHNITES)), 0F);

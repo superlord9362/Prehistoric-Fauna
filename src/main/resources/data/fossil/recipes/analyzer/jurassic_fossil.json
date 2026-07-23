@@ -1,0 +1,79 @@
+{
+	"type": "fossil:analyzer",
+	"input": {
+		"item": "prehistoricfauna:jurassic_fossil"
+	},
+	"outputs": [
+		{
+			"item": "prehistoricfauna:siltstone_regolith",
+			"weight": 35.0
+		},
+   		{
+      		"item": "fossil:allosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:brachiosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:ceratosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:compsognathus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:dilophosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:dimorphodon_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:diplodocus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:dryosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:liopleurodon_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:ornitholestes_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:ichthyosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:plesiosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+   		{
+      		"item": "fossil:stegosaurus_dna",
+      		"weight": 0.38461538461538464
+    	},
+    	{
+			"item": "minecraft:bone_meal",
+			"weight": 50.0
+		}
+	],
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "fossil"
+				}
+			]
+		}
+	]
+}

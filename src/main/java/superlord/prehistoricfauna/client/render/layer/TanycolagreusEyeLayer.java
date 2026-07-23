@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Tanycolagreus;
 
 public class TanycolagreusEyeLayer extends RenderLayer<Tanycolagreus, TanycolagreusModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/tanycolagreus/tanycolagreus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/tanycolagreus/tanycolagreus_eyeglow.png"));
 	private final RenderLayerParent<Tanycolagreus, TanycolagreusModel> tanycolagreusRenderer;
 	
 	public TanycolagreusEyeLayer(RenderLayerParent<Tanycolagreus, TanycolagreusModel> rendererIn) {

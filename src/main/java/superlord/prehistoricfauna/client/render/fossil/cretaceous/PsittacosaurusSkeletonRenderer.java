@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.Psittacosaurus
 
 public class PsittacosaurusSkeletonRenderer extends MobRenderer<PsittacosaurusSkeleton, EntityModel<PsittacosaurusSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/psittacosaurus_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/psittacosaurus_skeleton.png");
     private static PsittacosaurusSkeletonModel IDLE;
     private static PsittacosaurusSkeletonLeftModel LEFT;
     private static PsittacosaurusSkeletonMatingModel MATING;
@@ -37,19 +37,14 @@ public class PsittacosaurusSkeletonRenderer extends MobRenderer<PsittacosaurusSk
 	}
 	
 	protected void scale(PsittacosaurusSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isLeft()) {
-			model = LEFT;
-		} else if (entityIn.isMating()) {
-			model = MATING;
-		} else if (entityIn.isSauntering()) {
-			model = SAUNTER;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else if (entityIn.isRunning()) {
-			model = SPRINTING;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "LEFT" -> LEFT;
+		case "MATING" -> MATING;
+		case "SAUNTERING" -> SAUNTER;
+		case "SITTING" -> SITTING;
+		case "RUNNING" -> SPRINTING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

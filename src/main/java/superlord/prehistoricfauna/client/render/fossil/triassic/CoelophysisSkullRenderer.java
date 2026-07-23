@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.triassic.CoelophysisSkull
 
 public class CoelophysisSkullRenderer extends MobRenderer<CoelophysisSkull, CoelophysisSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/coelophysis_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/coelophysis_skeleton.png");
 
 	public CoelophysisSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CoelophysisSkullModel(renderManagerIn.bakeLayer(ClientEvents.COELOPHYSIS_SKULL)), 0);

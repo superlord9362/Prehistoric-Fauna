@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "prehistoricfauna:block/baiera_slab" },
+        "type=top": { "model": "prehistoricfauna:block/baiera_slab_top" },
+        "type=double": { "model": "prehistoricfauna:block/baiera_planks" }
+    }
+}

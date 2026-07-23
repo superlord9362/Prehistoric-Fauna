@@ -11,9 +11,9 @@ Max Health: 60
 
 Max Hunger: 150
 
-Temperaments: Alcovasaurus has an 
-80% chance of being territorial, a 
-15% chance of being protective, 
+Temperaments: Alcovasaurus has 
+an 80% chance of being territorial, 
+a 15% chance of being protective, 
 and a 5% chance of being 
 aggressive.
 
@@ -36,4 +36,7 @@ aggressive.
 
 Sleep Cycle: Diurnal
 
-Behavior: Investigation underway!
+Behavior: Alcovasaurus can snip 
+spores off of ferns, which can be 
+planted and grown into Fiddlehead 
+Ferns.

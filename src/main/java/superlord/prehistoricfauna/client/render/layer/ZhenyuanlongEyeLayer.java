@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Zhenyuanlong;
 
 public class ZhenyuanlongEyeLayer extends RenderLayer<Zhenyuanlong, ZhenyuanlongModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/zhenyuanlong/zhenyuanlong_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/zhenyuanlong/zhenyuanlong_eyeglow.png"));
 	private final RenderLayerParent<Zhenyuanlong, ZhenyuanlongModel> zhenyuanlongRenderer;
 	
 	public ZhenyuanlongEyeLayer(RenderLayerParent<Zhenyuanlong, ZhenyuanlongModel> rendererIn) {

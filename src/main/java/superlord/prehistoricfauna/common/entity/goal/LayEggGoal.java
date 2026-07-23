@@ -33,13 +33,13 @@ public class LayEggGoal  extends MoveToBlockGoal {
 		BlockPos blockpos = new BlockPos(this.dinosaur.blockPosition());
 		if (this.isReachedTarget()) {
 			if (this.dinosaur.isBirthing < 1) {
-				this.dinosaur.setBirthing(true);
+				this.dinosaur.setBirthing(1);
 			} else if (this.dinosaur.isBirthing > 200) {
 				Level world = this.dinosaur.level();
 				world.playSound((Player)null, blockpos, SoundEvents.TURTLE_LAY_EGG, SoundSource.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F);
 				world.setBlock(this.blockPos.above(), dinosaur.getEggBlock(world, blockpos), 3);
 				this.dinosaur.setHasBaby(false);
-				this.dinosaur.setBirthing(false);
+				this.dinosaur.setBirthing(0);
 				this.dinosaur.setInLoveTime(600);
 			}
 			if (this.dinosaur.isBirthing()) {

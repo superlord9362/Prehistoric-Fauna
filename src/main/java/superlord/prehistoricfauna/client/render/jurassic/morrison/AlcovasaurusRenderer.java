@@ -13,18 +13,18 @@ import superlord.prehistoricfauna.client.model.jurassic.morrison.AlcovasaurusMod
 import superlord.prehistoricfauna.common.entity.jurassic.morrison.Alcovasaurus;
 
 public class AlcovasaurusRenderer extends MobRenderer<Alcovasaurus, EntityModel<Alcovasaurus>> {
-	private static final ResourceLocation ALCOVASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/alcovasaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/melanistic.png");
-	private static final ResourceLocation ALCOVASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/alcovasaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/melanistic_sleeping.png");
-	private static final ResourceLocation ALCOVASAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/alcovasaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/melanistic_baby.png");
-	private static final ResourceLocation ALCOVASAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/alcovasaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/alcovasaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ALCOVASAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/alcovasaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/melanistic.png");
+	private static final ResourceLocation ALCOVASAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/alcovasaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/melanistic_sleeping.png");
+	private static final ResourceLocation ALCOVASAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/alcovasaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/melanistic_baby.png");
+	private static final ResourceLocation ALCOVASAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/alcovasaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/alcovasaurus/melanistic_baby_sleeping.png");
 
 	private static AlcovasaurusModel ALCOVASAURUS_MODEL;
 	private static AlcovasaurusBabyModel ALCOVASAURUS_BABY_MODEL;

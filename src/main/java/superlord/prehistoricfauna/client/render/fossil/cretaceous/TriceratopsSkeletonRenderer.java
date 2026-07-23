@@ -19,7 +19,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.TriceratopsSke
 
 public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeleton, EntityModel<TriceratopsSkeleton>> {
 
-    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/triceratops_skeleton.png");
+    private static final ResourceLocation SKELETON = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/triceratops_skeleton.png");
     private static TriceratopsSkeletonModel IDLE;
     private static TriceratopsSkeletonChargingModel CHARGING;
     private static TriceratopsSkeletonRetroModel RETRO;
@@ -40,21 +40,15 @@ public class TriceratopsSkeletonRenderer extends MobRenderer<TriceratopsSkeleton
 	}
 	
 	protected void scale(TriceratopsSkeleton entityIn, PoseStack matrixStackIn, float partialTickTime) {
-		if (entityIn.isCharging()) {
-			model = CHARGING;
-		} else if (entityIn.isClassical()) {
-			model = RETRO;
-		} else if (entityIn.isSleeping()) {
-			model = SLEEPING;
-		} else if (entityIn.isSitting()) {
-			model = SITTING;
-		} else if (entityIn.isActionLeft()) {
-			model = ACTION_LEFT;
-		} else if (entityIn.isActionRight()) {
-			model = ACTION_RIGHT;
-		} else {
-			model = IDLE;
-		}
+		model = switch (entityIn.getPoseName()) {
+		case "CHARGING" -> CHARGING;
+		case "CLASSICAL" -> RETRO;
+		case "ACTION_LEFT" -> ACTION_LEFT;
+		case "ACTION_RIGHT" -> ACTION_RIGHT;
+		case "SLEEPING" -> SLEEPING;
+		case "SITTING" -> SITTING;
+		default -> IDLE;
+		};
 		super.scale(entityIn, matrixStackIn, partialTickTime);
 	}
 

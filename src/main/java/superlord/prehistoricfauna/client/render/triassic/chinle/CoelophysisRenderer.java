@@ -13,21 +13,21 @@ import superlord.prehistoricfauna.common.entity.triassic.chinle.Coelophysis;
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class CoelophysisRenderer extends MobRenderer<Coelophysis, CoelophysisModel> {
-	private static final ResourceLocation COELOPHYSIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic.png");
-	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile.png");
-	private static final ResourceLocation COELOPHYSIS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_sleeping.png");
-	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/juvenile_sleeping.png");
+	private static final ResourceLocation COELOPHYSIS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/coelophysis.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/melanistic.png");
+	private static final ResourceLocation JUVENILE = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/juvenile.png");
+	private static final ResourceLocation COELOPHYSIS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/coelophysis_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/melanistic_sleeping.png");
+	private static final ResourceLocation JUVENILE_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/juvenile_sleeping.png");
 
-	private static final ResourceLocation COELOPHYSIS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_s.png");
-	private static final ResourceLocation COELOPHYSIS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/coelophysis_s_sleeping.png");
-	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_s.png");
-	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/albino_s_sleeping.png");
-	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_s.png");
-	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/coelophysis/melanistic_s_sleeping.png");
+	private static final ResourceLocation COELOPHYSIS_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/coelophysis_s.png");
+	private static final ResourceLocation COELOPHYSIS_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/coelophysis_s_sleeping.png");
+	private static final ResourceLocation ALBINO_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/albino_s.png");
+	private static final ResourceLocation ALBINO_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/albino_s_sleeping.png");
+	private static final ResourceLocation MELANISTIC_S = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/melanistic_s.png");
+	private static final ResourceLocation MELANISTIC_S_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/coelophysis/melanistic_s_sleeping.png");
 	
 	public CoelophysisRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new CoelophysisModel(renderManagerIn.bakeLayer(ClientEvents.COELOPHYSIS)), 0.75F);

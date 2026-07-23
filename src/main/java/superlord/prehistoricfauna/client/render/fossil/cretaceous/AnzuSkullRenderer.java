@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.AnzuSkull;
 
 public class AnzuSkullRenderer extends MobRenderer<AnzuSkull, AnzuSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/anzu_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/anzu_skeleton.png");
 
 	public AnzuSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new AnzuSkullModel(renderManagerIn.bakeLayer(ClientEvents.ANZU_SKULL)), 0);

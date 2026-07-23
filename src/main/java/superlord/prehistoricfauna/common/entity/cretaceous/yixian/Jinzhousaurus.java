@@ -1,6 +1,12 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.yixian;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -22,6 +28,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -43,7 +50,6 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.SapBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -66,11 +72,15 @@ import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
 public class Jinzhousaurus extends DinosaurEntity {
+	private static final EntityDataAccessor<Boolean> BIPEDAL = SynchedEntityData.defineId(Jinzhousaurus.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> BIPEDAL_TICK = SynchedEntityData.defineId(Jinzhousaurus.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Boolean> SCRATCHING = SynchedEntityData.defineId(Jinzhousaurus.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 100;
 	private int warningSoundTicks;
 	int scratchTick = 3000;
-
+	private float bipedalProgress = 0.0F;
+	private float prevBipedalProgress = 0.0F;
+	
 	public Jinzhousaurus(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.375F);
@@ -81,6 +91,15 @@ public class Jinzhousaurus extends DinosaurEntity {
 		Jinzhousaurus entity = new Jinzhousaurus(PFEntities.JINZHOUSAURUS.get(), this.level());
 		entity.finalizeSpawn(p_241840_1_, this.level().getCurrentDifficultyAt(new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ())), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
 		return entity;
+	}
+
+	public boolean isBipedal() {
+		return this.entityData.get(BIPEDAL);
+	}
+
+	private void setBipedal(boolean isBipedal) {
+		this.entityData.set(BIPEDAL_TICK, 15);
+		this.entityData.set(BIPEDAL, isBipedal);
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -107,7 +126,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(3, new DinosaurTerritorialAttackGoal(this));
-		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
+		this.goalSelector.addGoal(8, new BipedalAvoidEntityGoal(this, this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.JINZHOUSAURUS_AVOIDING);
 		}));
 	}
@@ -116,9 +135,14 @@ public class Jinzhousaurus extends DinosaurEntity {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.JINZHOUSAURUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.JINZHOUSAURUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.JINZHOUSAURUS.ordinal()), itemstack);
 				player.displayClientMessage(Component.translatable("paleopedia.jinzhousaurus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				player.displayClientMessage(Component.translatable("paleopedia.jinzhousaurus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -165,16 +189,20 @@ public class Jinzhousaurus extends DinosaurEntity {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(SCRATCHING, false);
+		this.entityData.define(BIPEDAL, false);
+		this.entityData.define(BIPEDAL_TICK, 0);
 	}
 
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Scratching", this.isScratching());
+		compound.putBoolean("IsBipedal", this.isBipedal());
 	}
 
 	public void setAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setScratching(compound.getBoolean("Scratching"));
+		this.setBipedal(compound.getBoolean("IsBipedal"));
 	}
 
 	protected void playWarningSound() {
@@ -189,6 +217,21 @@ public class Jinzhousaurus extends DinosaurEntity {
 		if (this.warningSoundTicks > 0) {
 			--this.warningSoundTicks;
 		}
+		prevBipedalProgress = bipedalProgress;
+		if (this.entityData.get(BIPEDAL_TICK) > 0) {
+			this.entityData.set(BIPEDAL_TICK, this.entityData.get(BIPEDAL_TICK) - 1);
+			if (bipedalProgress < 1.0F) {
+				bipedalProgress = Math.min(bipedalProgress + 0.1F, 1.0F);
+			}
+		} else {
+			if (bipedalProgress > 0F) {
+				bipedalProgress = Math.max(bipedalProgress - 0.2F, 0.0F);
+			}
+		}
+	}
+	
+	public float getBipedalProgress(float partialTick) {
+		return prevBipedalProgress + (bipedalProgress - prevBipedalProgress) * partialTick;
 	}
 
 	public void aiStep() {
@@ -303,7 +346,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 		}
 
 		public double acceptedDistance() {
-			return 2.0D;
+			return 3.0D;
 		}
 
 		public boolean shouldMove() {
@@ -331,6 +374,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 			}
 			super.tick();
 		}
+		
 		public void causeSap() {
 			if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(Jinzhousaurus.this.level(), Jinzhousaurus.this)) {
 				if (level().getBlockState(this.blockPos.relative(Jinzhousaurus.this.getDirection().getOpposite())).isAir()) {
@@ -340,6 +384,65 @@ public class Jinzhousaurus extends DinosaurEntity {
 			}
 		}
 
+	}
+	
+	@SuppressWarnings("rawtypes")
+	class BipedalAvoidEntityGoal extends AvoidEntityGoal {
+		Jinzhousaurus jinzhousaurus;
+
+		@SuppressWarnings("unchecked")
+		public BipedalAvoidEntityGoal(Jinzhousaurus jinzhousaurus, PathfinderMob entityIn, Class classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn, Predicate<LivingEntity> predicate) {
+			super(entityIn, classToAvoidIn, avoidDistanceIn, farSpeedIn, nearSpeedIn, predicate);
+			this.jinzhousaurus = jinzhousaurus;
+		}
+
+		public void start() {
+			super.start();
+			jinzhousaurus.setBipedal(true);
+		}
+		
+		public void tick() {
+			super.tick();
+			if (!jinzhousaurus.isBipedal()) {
+				jinzhousaurus.setBipedal(true);
+			}
+		}
+
+		public void stop() {
+			jinzhousaurus.setBipedal(false);
+			super.stop();
+		}
+
+	}
+	
+	public class BabyPanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+		Jinzhousaurus dinosaur;
+		
+		public BabyPanicGoal(Jinzhousaurus dinosaur) {
+			super(dinosaur, 2.0D);
+			this.dinosaur = dinosaur;
+		}
+
+		public boolean canUse() {
+			return !dinosaur.isBaby() && !dinosaur.isOnFire() ? false : super.canUse();
+		}
+		
+		public void start() {
+			super.start();
+			dinosaur.setBipedal(true);
+		}
+		
+		public void tick() {
+			super.tick();
+			if (!dinosaur.isBipedal()) {
+				dinosaur.setBipedal(true);
+			}
+		}
+
+		public void stop() {
+			dinosaur.setBipedal(false);
+			super.stop();
+		}
 	}
 
 }

@@ -17,7 +17,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.morrison.Diablophis;
 
 public class DiablophisEyeLayer extends RenderLayer<Diablophis, DiablophisModel> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/diablophis/diablophis_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/diablophis/diablophis_eyeglow.png"));
 	private final RenderLayerParent<Diablophis, DiablophisModel> diablophisRenderer;
 	
 	public DiablophisEyeLayer(RenderLayerParent<Diablophis, DiablophisModel> rendererIn) {

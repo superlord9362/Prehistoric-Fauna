@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "building",
+	"group": "vertical_planks",
+	"pattern": [		
+		"#",
+		"#",
+		"#"
+	],
+	"key": {
+		"#": {
+			"item": "prehistoricfauna:neocalamites_planks"
+		}
+	},
+	"result": {
+		"item": "prehistoricfauna:neocalamites_vertical_planks",
+		"count": 3
+	},
+	"conditions": [
+		{
+			"type": "prehistoricfauna:multiple",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "quark"
+				},
+				{
+					"type": "quark:flag",
+					"value": "vertical_planks"
+				}
+			]
+		}
+	]
+}

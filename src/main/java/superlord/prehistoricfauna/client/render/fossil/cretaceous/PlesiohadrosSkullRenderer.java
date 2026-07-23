@@ -10,7 +10,7 @@ import superlord.prehistoricfauna.common.entity.fossil.cretaceous.PlesiohadrosSk
 
 public class PlesiohadrosSkullRenderer extends MobRenderer<PlesiohadrosSkull, PlesiohadrosSkullModel> {
 
-    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/skeleton/plesiohadros_skeleton.png");
+    private static final ResourceLocation SKULL = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/skeleton/plesiohadros_skeleton.png");
 
 	public PlesiohadrosSkullRenderer(EntityRendererProvider.Context renderManagerIn) {
 		super(renderManagerIn, new PlesiohadrosSkullModel(renderManagerIn.bakeLayer(ClientEvents.PLESIOHADROS_SKULL)), 0);

@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": [],
+  "biomes": "#minecraft:is_overworld",
   "features": [
     "prehistoricfauna:placed_fossilized_chalk",
     "prehistoricfauna:placed_fossilized_sandstone",

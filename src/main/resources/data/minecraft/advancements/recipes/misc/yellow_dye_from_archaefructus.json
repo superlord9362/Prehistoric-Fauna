@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prehistoricfauna:yellow_dye_from_archaefructus"
+    ]
+  },
+  "criteria": {
+    "has_dye_plant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+				"prehistoricfauna:archaefructus"
+          	]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prehistoricfauna:yellow_dye_from_archaefructus"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dye_plant",
+      "has_the_recipe"
+    ]
+  ]
+}

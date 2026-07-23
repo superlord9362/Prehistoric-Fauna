@@ -13,19 +13,19 @@ import superlord.prehistoricfauna.client.model.cretaceous.yixian.JinzhousaurusMo
 import superlord.prehistoricfauna.common.entity.cretaceous.yixian.Jinzhousaurus;
 
 public class JinzhousaurusRenderer extends MobRenderer<Jinzhousaurus, EntityModel<Jinzhousaurus>> {
-	private static final ResourceLocation JINZHOUSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/jinzhousaurus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/melanistic.png");
-	private static final ResourceLocation JINZHOUSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/jinzhousaurus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/melanistic_sleeping.png");
+	private static final ResourceLocation JINZHOUSAURUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/jinzhousaurus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/melanistic.png");
+	private static final ResourceLocation JINZHOUSAURUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/jinzhousaurus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/melanistic_sleeping.png");
 
-	private static final ResourceLocation JINZHOUSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/jinzhousaurus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/melanistic_baby.png");
-	private static final ResourceLocation JINZHOUSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/jinzhousaurus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/jinzhousaurus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation JINZHOUSAURUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/jinzhousaurus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/melanistic_baby.png");
+	private static final ResourceLocation JINZHOUSAURUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/jinzhousaurus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/jinzhousaurus/melanistic_baby_sleeping.png");
 
 	public JinzhousaurusModel JINZHOUSAURUS_MODEL;
 	public JinzhousaurusBabyModel JINZHOUSAURUS_BABY_MODEL;

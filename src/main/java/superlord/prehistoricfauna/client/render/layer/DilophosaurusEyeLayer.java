@@ -18,7 +18,7 @@ import superlord.prehistoricfauna.common.entity.jurassic.kayenta.Dilophosaurus;
 
 public class DilophosaurusEyeLayer extends RenderLayer<Dilophosaurus, EntityModel<Dilophosaurus>> {
 	
-	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/dilophosaurus/dilophosaurus_eyeglow.png"));
+	private static final RenderType TEXTURE = RenderType.eyes(new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/dilophosaurus/dilophosaurus_eyeglow.png"));
 	private final RenderLayerParent<Dilophosaurus, EntityModel<Dilophosaurus>> dilophosaurusRenderer;
 	
 	public DilophosaurusEyeLayer(RenderLayerParent<Dilophosaurus, EntityModel<Dilophosaurus>> rendererIn) {

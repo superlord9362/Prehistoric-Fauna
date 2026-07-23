@@ -1,6 +1,11 @@
 package superlord.prehistoricfauna.common.entity.cretaceous.djadochta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.primitives.Ints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -134,9 +139,14 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
 		Item item = itemstack.getItem();
 		if (item instanceof PaleopediaItem) {
-			if (!itemstack.getTag().contains("Pages", EnumPaleoPages.AEPYORNITHOMIMUS.ordinal())) {
+			CompoundTag tag = itemstack.getTag();
+            final List<Integer> already = new ArrayList<>(Ints.asList(tag.getIntArray("Pages")));
+            if (!already.contains(EnumPaleoPages.AEPYORNITHOMIMUS.ordinal())) {
 				EnumPaleoPages.addPage(EnumPaleoPages.fromInt(EnumPaleoPages.AEPYORNITHOMIMUS.ordinal()), itemstack);
 				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.aepyornithomimus_added"), true);
+				return InteractionResult.SUCCESS;
+			} else {
+				p_230254_1_.displayClientMessage(Component.translatable("paleopedia.aepyornithomimus_already_added"), true);
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -190,6 +200,7 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		} else {
 			this.setPassive(true);
 		}
+		this.setCathemeral(true);
 		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

@@ -16,18 +16,18 @@ import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Ornithomimu
 import superlord.prehistoricfauna.config.PrehistoricFaunaConfig;
 
 public class OrnithomimusRenderer extends MobRenderer<Ornithomimus, EntityModel<Ornithomimus>> {
-	private static final ResourceLocation ORNITHOMIMUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus.png");
-	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/albino.png");
-	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/melanistic.png");
-	private static final ResourceLocation ORNITHOMIMUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus_sleeping.png");
-	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/albino_sleeping.png");
-	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/melanistic_sleeping.png");
-	private static final ResourceLocation ORNITHOMIMUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus_baby.png");
-	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/albino_baby.png");
-	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/melanistic_baby.png");
-	private static final ResourceLocation ORNITHOMIMUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/ornithomimus_baby_sleeping.png");
-	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/albino_baby_sleeping.png");
-	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entities/ornithomimus/melanistic_baby_sleeping.png");
+	private static final ResourceLocation ORNITHOMIMUS = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/ornithomimus.png");
+	private static final ResourceLocation ALBINO = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/albino.png");
+	private static final ResourceLocation MELANISTIC = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/melanistic.png");
+	private static final ResourceLocation ORNITHOMIMUS_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/ornithomimus_sleeping.png");
+	private static final ResourceLocation ALBINO_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/albino_sleeping.png");
+	private static final ResourceLocation MELANISTIC_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/melanistic_sleeping.png");
+	private static final ResourceLocation ORNITHOMIMUS_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/ornithomimus_baby.png");
+	private static final ResourceLocation ALBINO_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/albino_baby.png");
+	private static final ResourceLocation MELANISTIC_BABY = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/melanistic_baby.png");
+	private static final ResourceLocation ORNITHOMIMUS_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/ornithomimus_baby_sleeping.png");
+	private static final ResourceLocation ALBINO_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/albino_baby_sleeping.png");
+	private static final ResourceLocation MELANISTIC_BABY_SLEEPING = new ResourceLocation(PrehistoricFauna.MOD_ID, "textures/entity/ornithomimus/melanistic_baby_sleeping.png");
 
 	OrnithomimusModel ORNITHOMIMUS_MODEL;
 	OrnithomimusBabyModel BABY_MODEL;

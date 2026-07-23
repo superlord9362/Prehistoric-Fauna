@@ -24,7 +24,7 @@ public class PFRenderTypes extends RenderType {
     }
 	
     public static RenderType getBossGlint() {
-        return create("henos_glint", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, false, false, RenderType.CompositeState.builder().setTextureState(new TextureStateShard(new ResourceLocation("prehistoricfauna:textures/entities/henos/henos_healing.png"), true, false)).setWriteMaskState(COLOR_DEPTH_WRITE).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setLightmapState(LIGHTMAP).setCullState(CULL).setShaderState(RENDERTYPE_ARMOR_ENTITY_GLINT_SHADER).setOverlayState(OVERLAY).createCompositeState(false));
+        return create("henos_glint", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, false, false, RenderType.CompositeState.builder().setTextureState(new TextureStateShard(new ResourceLocation("prehistoricfauna:textures/entity/henos/henos_healing.png"), true, false)).setWriteMaskState(COLOR_DEPTH_WRITE).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setLightmapState(LIGHTMAP).setCullState(CULL).setShaderState(RENDERTYPE_ARMOR_ENTITY_GLINT_SHADER).setOverlayState(OVERLAY).createCompositeState(false));
     }
     public static RenderType getBossBeam(ResourceLocation locationIn) {
     	TextureStateShard lvt_1_1_ = new TextureStateShard(locationIn, false, false);
