@@ -134,6 +134,7 @@ public class ClientEvents {
 	public static ModelLayerLocation CERATOSAURUS_SKULL = createLayer("ceratosaurus_skull");
 	public static ModelLayerLocation STEGOSAURUS_SKULL = createLayer("stegosaurus_skull");
 	public static ModelLayerLocation CHUANDONGOCOELURUS_SKULL = createLayer("chuandongocoelurus_skull");
+	public static ModelLayerLocation SHUNOSAURUS_SKULL = createLayer("shunosaurus_skull");
 	public static ModelLayerLocation YANGCHUANOSAURUS_SKULL = createLayer("yangchuanosaurus_skull");
 	public static ModelLayerLocation COELOPHYSIS_SKULL = createLayer("coelophysis_skull");
 	public static ModelLayerLocation DESMATOSUCHUS_SKULL = createLayer("desmatosuchus_skull");
@@ -323,6 +324,15 @@ public class ClientEvents {
 	public static ModelLayerLocation YANGCHUANOSAURUS_SKELETON_STARGAZING = createLayer("yangchuanosuarus_skeleton_stargazing");
 	public static ModelLayerLocation YANGCHUANOSAURUS_SKELETON_SLEEPING = createLayer("yangchuanosuarus_skeleton_sleeping");
 	public static ModelLayerLocation YANGCHUANOSAURUS_SKELETON_DEAD = createLayer("yangchuanosuarus_skeleton_dead");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON = createLayer("shunosaurus_skeleton");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_WALK = createLayer("shunosaurus_skeleton_walk");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_REAR = createLayer("shunosaurus_skeleton_rear");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_BROWSE = createLayer("shunosaurus_skeleton_browse");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_GRAZE = createLayer("shunosaurus_skeleton_graze");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_SIT = createLayer("shunosaurus_skeleton_sit");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_SLEEP = createLayer("shunosaurus_skeleton_sleep");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_DEATH = createLayer("shunosaurus_skeleton_death");
+	public static ModelLayerLocation SHUNOSAURUS_SKELETON_REACH = createLayer("shunosaurus_skeleton_reach");
 	
 	//Hell Creek
 	public static ModelLayerLocation ANKYLOSAURUS = createLayer("ankylosaurus");
@@ -603,6 +613,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.CHUANDONGOCOELURUS_SKULL.get(), ChuandongocoelurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHUANDONGOCOELURUS_SKELETON.get(), ChuandongocoelurusSkeletonRenderer::new);
 		event.registerEntityRenderer(PFEntities.YANGCHUANOSAURUS_SKELETON.get(), YangchuanosaurusSkeletonRenderer::new);
+		event.registerEntityRenderer(PFEntities.SHUNOSAURUS_SKELETON.get(), ShunosaurusSkeletonRenderer::new);
+		event.registerEntityRenderer(PFEntities.SHUNOSAURUS_SKULL.get(), ShunosaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.ARGANODUS.get(), ArganodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CERATODUS.get(), CeratodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHINLEA.get(), ChinleaRenderer::new);
@@ -1007,6 +1019,17 @@ public class ClientEvents {
 		event.registerLayerDefinition(YANGCHUANOSAURUS_SKELETON_SLEEPING, YangchuanosaurusSkeletonSleepingModel::createBodyLayer);
 		event.registerLayerDefinition(YANGCHUANOSAURUS_SKELETON_DEAD, YangchuanosaurusSkeletonDeadModel::createBodyLayer);
 		event.registerLayerDefinition(YANGCHUANOSAURUS_SKULL, YangchuanosaurusSkullModel::createBodyLayer);
+		//Shunosaurus Skeleton and Skull
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON, ShunosaurusSkeletonModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_WALK, ShunosaurusSkeletonWalkModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_REAR, ShunosaurusSkeletonRearModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_REACH, ShunosaurusSkeletonReachModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_BROWSE, ShunosaurusSkeletonBrowseModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_GRAZE, ShunosaurusSkeletonGrazeModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_SIT, ShunosaurusSkeletonSitModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_SLEEP, ShunosaurusSkeletonSleepModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_DEATH, ShunosaurusSkeletonDeadModel::createBodyLayer);
+		event.registerLayerDefinition(SHUNOSAURUS_SKULL, ShunosaurusSkullModel::createBodyLayer);
 		//Fish
 		event.registerLayerDefinition(ACIPENSER, AcipenserModel::createBodyLayer);
 		event.registerLayerDefinition(ARGANODUS, ArganodusModel::createBodyLayer);

@@ -1,7 +1,6 @@
 package superlord.prehistoricfauna.common.world.chunkgen;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -14,6 +13,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NaturalSpawner;
@@ -30,10 +30,12 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.PositionalRandomFactory;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.blending.Blender;
+import superlord.prehistoricfauna.PrehistoricFauna;
 import superlord.prehistoricfauna.common.util.FastNoise;
 import superlord.prehistoricfauna.common.world.biome.biomesource.PrehistoricBiomeSource;
 import superlord.prehistoricfauna.common.world.biome.surfacedecorators.SurfaceDecorators;
@@ -47,40 +49,33 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 			.apply(codec, codec.stable(PrehistoricChunkGenerator::new)));
 
 	protected final Holder<NoiseGeneratorSettings> settings;
-	private static Random random = new Random();
-	private static long seed = 0;
-	public static FastNoise noise;
+	public FastNoise noise;
+	private long cachedSeed = Long.MIN_VALUE;
 
 	private float[][][] terrainShapeSamplePoints;
 	
 	private PrehistoricBiomeSource biomeSource;
 
 	public PrehistoricChunkGenerator(PrehistoricBiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings) {
-		this(pBiomeSource, settings, getOrCreateSeed());
-		this.biomeSource = pBiomeSource;
-	}
-
-	public PrehistoricChunkGenerator(PrehistoricBiomeSource pBiomeSource, Holder<NoiseGeneratorSettings> settings, long seed) {
 		super(pBiomeSource);
 		this.settings = settings;
-		seed = random.nextLong();
-		noise = new FastNoise((int) seed);
-		noise.SetNoiseType(FastNoise.NoiseType.Simplex);
-		initializeNoise(seed);
 		this.biomeSource = pBiomeSource;
 	}
 
 	public void initializeNoise(long seed) {
-		int seedBits = (int)(seed >> 32);
-		if (noise.GetSeed() != seedBits) {
-			noise.SetSeed(seedBits);
-		}
-		SurfaceDecorators.setFastNoise(noise);
+		if (noise == null) {
+	        noise = new FastNoise((int) (seed & 0xFFFFFFFFL));
+	        noise.SetNoiseType(FastNoise.NoiseType.Simplex);
+	        SurfaceDecorators.setFastNoise(noise);
+	        biomeSource.setSeed(seed);
+	    }
 	}
 
-	public final static long getOrCreateSeed() {
-		if (seed == 0) seed = random.nextLong();
-		return seed;
+	private long getOrExtractSeed(RandomState randomState) {
+	    if (cachedSeed == Long.MIN_VALUE) {
+	        cachedSeed = randomState.getOrCreateRandomFactory(new ResourceLocation("seed_extractor")).at(0, 0, 0).nextLong();
+	    }
+	    return cachedSeed;
 	}
 
 	@Override
@@ -149,14 +144,17 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 
 	@Override
 	//where the magic happens
-	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState p_223211_, StructureManager manager, ChunkAccess chunk) {
-		fillNoiseSampleArrays(chunk);
+	public CompletableFuture<ChunkAccess> fillFromNoise(Executor executor, Blender blender, RandomState randomState, StructureManager manager, ChunkAccess chunk) {
+		PositionalRandomFactory chunkRandom = randomState.getOrCreateRandomFactory(new ResourceLocation(PrehistoricFauna.MOD_ID, "chunk"));
+		RandomSource random = chunkRandom.at(chunk.getPos().x, 0, chunk.getPos().z);
+		long seed = getOrExtractSeed(randomState);
+		initializeNoise(seed);
+		fillNoiseSampleArrays(chunk, randomState);
 		Heightmap[] heightmaps = {chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.OCEAN_FLOOR_WG), chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.WORLD_SURFACE_WG)};
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
 				for (int y = this.getMaxY(); y >= this.getMinY(); y--) {
-					Random random = new Random();
 					pos.set(x, y, z);
 					float sample = sampleDensityFromArray(terrainShapeSamplePoints, x, y, z);
 
@@ -178,7 +176,7 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 						if (y <= this.getMinY() + random.nextInt(4)) {
 							state = Blocks.BEDROCK.defaultBlockState();
 						} else if (y < this.getSeaLevel()) {
-							state = getAirAtPos(chunk, x + chunk.getPos().getMinBlockX(), y, z + chunk.getPos().getMinBlockZ());
+							state = getAirAtPos(chunk, x + chunk.getPos().getMinBlockX(), y, z + chunk.getPos().getMinBlockZ(), randomState);
 						} else state =  Blocks.AIR.defaultBlockState();
 					}
 					for (Heightmap heightmap : heightmaps) {
@@ -192,34 +190,30 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 		return CompletableFuture.completedFuture(chunk);
 	}
 
-	private boolean shouldHaveFluid(BlockPos pos) {
+	private boolean shouldHaveFluid(BlockPos pos, RandomState randomState) {
+        long seed = getOrExtractSeed(randomState);
 		BiomeManager biomeManager = new BiomeManager(biomeSource, seed);
 		Holder<Biome> biome = biomeManager.getBiome(pos);
 		if (pos.getY() <= this.getSeaLevel())
-			return (biome.is(PFBiomes.ISCHIGUALASTO_RIVER) || biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.CHINLE_SWAMP) || biome.is(PFBiomes.KAYENTA_RIVER) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.YIXIAN_LAKES) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
+			return (biome.is(PFBiomes.ISCHIGUALASTO_RIVER) || biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.CHINLE_SWAMP) || biome.is(PFBiomes.KAYENTA_RIVER) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.YIXIAN_LAKES) || biome.is(PFBiomes.MORRISON_RIVER) || biome.is(PFBiomes.SHAXIMIAO_ARID_LAKES) || biome.is(PFBiomes.SHAXIMIAO_DELTA_PLAINS) || biome.is(PFBiomes.SHAXIMIAO_LAKES) || noise.GetNoise(pos.getX() * 0.8F, pos.getY(), pos.getZ() * 0.8F) > 0.7);
 		return false;
 	}
 
-	private BlockState getAirAtPos(ChunkAccess chunk, int x, int y, int z) {
+	private BlockState getAirAtPos(ChunkAccess chunk, int x, int y, int z, RandomState randomState) {
 		BlockPos pos = new BlockPos(x, y, z);
-		if (shouldHaveFluid(pos)) {
-			if (!shouldHaveFluid(new BlockPos(x + 1, y + 0, z + 0)) ||
-					!shouldHaveFluid(new BlockPos(x + 0, y + 0, z + 1)) ||
-					!shouldHaveFluid(new BlockPos(x - 1, y + 0, z + 0)) ||
-					!shouldHaveFluid(new BlockPos(x + 0, y + 0, z - 1)) ||
-					!shouldHaveFluid(new BlockPos(x + 0, y - 1, z  + 0))) 
-				return Blocks.STONE.defaultBlockState();
+		if (shouldHaveFluid(pos, randomState)) {
+			if (!shouldHaveFluid(new BlockPos(x + 1, y + 0, z + 0), randomState) || !shouldHaveFluid(new BlockPos(x + 0, y + 0, z + 1), randomState) || !shouldHaveFluid(new BlockPos(x - 1, y + 0, z + 0), randomState) || !shouldHaveFluid(new BlockPos(x + 0, y + 0, z - 1), randomState) || !shouldHaveFluid(new BlockPos(x + 0, y - 1, z + 0), randomState)) return Blocks.STONE.defaultBlockState();
 			return Blocks.WATER.defaultBlockState();
 		}
 		return Blocks.AIR.defaultBlockState();
 	}
 
-	private float sampleDensity(float x, float y, float z) {
+	private float sampleDensity(float x, float y, float z, long seed) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
 		BiomeManager biomeManager = new BiomeManager(biomeSource, seed);
 		Holder<Biome> biome = biomeManager.getBiome(new BlockPos((int) x, (int) y, (int) z));
-		float baseDensity = calculateBaseDensity(x, y, z, biome);
+		float baseDensity = calculateBaseDensity(x, y, z, biome, seed);
 		int blendRadius = 16;
 		int blendStep = 4;
 		float blendedDensity = baseDensity;
@@ -245,7 +239,7 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 					double distToLowCornerSqr = mutableBlockPos.distToLowCornerSqr(x, y, z);
 
 					if (distToLowCornerSqr < Mth.square(blendRadius)) {
-						float nearbyDensity = calculateBaseDensity(nx, y, nz, nearbyBiome);
+						float nearbyDensity = calculateBaseDensity(nx, y, nz, nearbyBiome, seed);
 
 						double delta = distToLowCornerSqr / Mth.square(blendRadius);
 						blendedDensity += blendSmoothstep((float) delta, nearbyDensity, baseDensity);
@@ -290,18 +284,25 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 		sample -= 2;
 		return sample;
 	}
+	
+	private FastNoise getNoise(long seed) {
+		if (noise == null) {
+			initializeNoise(seed);
+		}
+		return noise;
+	}
 
-	public float calculateBaseDensity(float x, float y, float z, Holder<Biome> biome) {
+	public float calculateBaseDensity(float x, float y, float z, Holder<Biome> biome, long seed) {
 		int seaLevel = this.settings.value().seaLevel();
 		if (y > seaLevel) y = y + 3;
 
 		float frequency1 = 0.3F;
-		float sample = noise.GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
-
+		float sample = getNoise(seed).GetNoise(x * frequency1, y * frequency1 * 0.8F, z * frequency1);
 		float floor = -0.2F;
 		float smoothness = 0.001F;
 		float h = Mth.clamp(0.5F + 0.5F * (sample - floor) / smoothness, 0.0F, 1.0F);
 		sample = Mth.lerp(sample, floor, h) - smoothness * h * (1.0F - h);
+		float riverFrequency = 0.1F;
 		float bigRockFrequency = 0.4F;
 		float rockNoise = noise.GetNoise(x * bigRockFrequency, (y * frequency1) + 512, z * bigRockFrequency);
 		float bigRockNoise = Mth.sqrt(sample * sample + rockNoise * rockNoise);
@@ -309,55 +310,50 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 		float bigRockStrength = 0.2F;
 		bigRockNoise *= bigRockStrength;
 		bigRockNoise += (1F - bigRockStrength);
-
-		float hugeCliffFrequency = 0.1F;
-		float hugeCliffNoise = noise.GetNoise(x * hugeCliffFrequency, 2834, z * hugeCliffFrequency);
-		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 5;
-		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
-		hugeCliffWobble *= 1.5F;
-
-		float lumpFrequency = 4.3F;
-		float cliffLumpiness = noise.GetNoise(x * lumpFrequency, y * lumpFrequency * 0.8F, z * lumpFrequency);
-		cliffLumpiness *= hugeCliffWobble * 0.1F;
-
-		float riverFrequency = 0.1F;
-		float riverNoise = noise.GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
+		float riverNoise = getNoise(seed).GetNoise((float) x * riverFrequency, 0, (float) z * riverFrequency);
 		riverNoise = (1.0F - riverNoise * riverNoise);
 		riverNoise *= (y - seaLevel);
 		float flatsFrequency = 3F;
-		float flatsNoise = noise.GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
+		float flatsNoise = getNoise(seed).GetNoise((float) x * flatsFrequency, 0, (float) z * flatsFrequency);
 		flatsNoise = (1.0F - flatsNoise * flatsNoise);
 		flatsNoise *= (y - seaLevel);
-
+		float deltaFrequency = 0.1F;
+		float deltaNoise = getNoise(seed).GetNoise((float) x * deltaFrequency, 0, (float) z * deltaFrequency);
+		deltaNoise = (1.0F - deltaNoise * deltaNoise);
+		deltaNoise *= (y - seaLevel);
 		float bigHillRockFrequency = 0.4F;
-		float hillRockNoise = noise.GetNoise(x * bigHillRockFrequency, (y * frequency1) + 512, z * bigHillRockFrequency);
+		float hillRockNoise = getNoise(seed).GetNoise(x * bigHillRockFrequency, (y * frequency1) + 512, z * bigHillRockFrequency);
 		float bigHillRockNoise = Mth.sqrt(sample * sample + hillRockNoise * hillRockNoise);
 		bigHillRockNoise = (sample < 0 || hillRockNoise < 0) ? 1 : bigHillRockNoise;
 		float bigHillRockStrength = 0.2F;
 		bigHillRockNoise *= bigHillRockStrength;
 		bigHillRockNoise += (1F - bigHillRockStrength);
-
+		float hugeCliffFrequency = 0.1F;
+		float hugeCliffNoise = noise.GetNoise(x * hugeCliffFrequency, 2834, z * hugeCliffFrequency);
+		hugeCliffNoise = (float) Mth.clamp(Math.pow(1.3 * hugeCliffNoise, 12), 0, 1) * 5;
+		float hugeCliffWobble = -0.5F * Mth.cos(2F * Mth.PI * hugeCliffNoise) + 0.5F;
+		hugeCliffWobble *= 1.5F;
+		float lumpFrequency = 4.3F;
+		float cliffLumpiness = noise.GetNoise(x * lumpFrequency, y * lumpFrequency * 0.8F, z * lumpFrequency);
+		cliffLumpiness *= hugeCliffWobble * 0.1F;
 		float hillFrequency = 0.1F;
-		float hillNoise = noise.GetNoise(x * hillFrequency, 2834, z * hillFrequency);
+		float hillNoise = getNoise(seed).GetNoise(x * hillFrequency, 2834, z * hillFrequency);
 		hillNoise = (float) Mth.clamp(Math.pow(1.3 * hillNoise, 12), 0, 1) * 0.4F;
 		float hillWobble = -0.5F * Mth.cos(2F * Mth.PI * hillNoise) + 0.5F;
 		hillWobble *= 1.5F;
-
 		float hillLumpFrequency = 4.3F;
-		float hillLumpiness = noise.GetNoise(x * hillLumpFrequency, y * hillLumpFrequency * 1.8F, z * hillLumpFrequency);
+		float hillLumpiness = getNoise(seed).GetNoise(x * hillLumpFrequency, y * hillLumpFrequency * 1.8F, z * hillLumpFrequency);
 		hillLumpiness *= hillWobble * 0.1F;
-
+		float lakeFrequency = 1.5F;
+		float lakeNoise = getNoise(seed).GetNoise((float) x * lakeFrequency, 0, (float) z * lakeFrequency);
+		lakeNoise = (1.5F - lakeNoise * lakeNoise);
+		lakeNoise *= (y - seaLevel + 0.05) * 0.7;
 		float swampFrequency = 1.5F;
 		float swampNoise = noise.GetNoise((float) x * swampFrequency, 0, (float) z * swampFrequency);
 		swampNoise = (1.5F - swampNoise * swampNoise);
 		swampNoise *= (y - seaLevel + 0.55) * 1.1;
-
-		float lakeFrequency = 1.5F;
-		float lakeNoise = noise.GetNoise((float) x * lakeFrequency, 0, (float) z * lakeFrequency);
-		lakeNoise = (1.5F - lakeNoise * lakeNoise);
-		lakeNoise *= (y - seaLevel + 0.05) * 0.7;
-
-		if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS) || biome.is(PFBiomes.DJADOCHTA_DUNES) || biome.is(PFBiomes.HELL_CREEK_BLUFFS)) {
+		
+		if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS) || biome.is(PFBiomes.DJADOCHTA_DUNES) || biome.is(PFBiomes.HELL_CREEK_BLUFFS) || biome.is(PFBiomes.MORRISON_UPLAND_FOREST) || biome.is(PFBiomes.SHAXIMIAO_MOUNTAINS) || biome.is(PFBiomes.KAYENTA_DUNES)) {
 			sample += hillLumpiness;
 		}
 		if (biome.is(PFBiomes.CHINLE_WOODED_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_SNOWY_MOUNTAINS) || biome.is(PFBiomes.YIXIAN_VOLCANO) || biome.is(PFBiomes.YIXIAN_REGROWTH) || biome.is(PFBiomes.YIXIAN_SNOWY_FOREST)) {
@@ -369,13 +365,43 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 		sample += Mth.abs(noise.GetNoise(x * frequency3, y * frequency3, z * frequency3) * 0.05F);
 		sample -= 0.15F;
 
-		if (biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER) || biome.is(PFBiomes.KAYENTA_RIVER) || biome.is(PFBiomes.HELL_CREEK_RIVER)) {
+		if (biome.is(PFBiomes.CHINLE_RIVER) || biome.is(PFBiomes.ISCHIGUALASTO_RIVER) || biome.is(PFBiomes.KAYENTA_RIVER) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.MORRISON_RIVER)) {
 			sample -= riverNoise;
 			sample *= 8;
 			sample -= 22;
 		}
-		if (biome.is(PFBiomes.ISCHIGUALASTO_CLEARING) || biome.is(PFBiomes.ISCHIGUALASTO_FOREST) || biome.is(PFBiomes.CHINLE_FLATS) || biome.is(PFBiomes.KAYENTA_DRY_FOREST) || biome.is(PFBiomes.KAYENTA_BUTTES) || biome.is(PFBiomes.KAYENTA_DESERT) || biome.is(PFBiomes.MORRISON_SAVANNA) || biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST) || biome.is(PFBiomes.HELL_CREEK_CLEARING) || biome.is(PFBiomes.YIXIAN_FOREST) || biome.is(PFBiomes.DJADOCHTA_ARROYO) || biome.is(PFBiomes.HELL_CREEK_REDWOODS) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS)) {
+		if (biome.is(PFBiomes.ISCHIGUALASTO_CLEARING) || biome.is(PFBiomes.ISCHIGUALASTO_FOREST) || biome.is(PFBiomes.CHINLE_FLATS) || biome.is(PFBiomes.KAYENTA_DRY_FOREST) || biome.is(PFBiomes.KAYENTA_BUTTES) || biome.is(PFBiomes.KAYENTA_DESERT) || biome.is(PFBiomes.MORRISON_SAVANNA) || biome.is(PFBiomes.HELL_CREEK_HARDWOOD_FOREST) || biome.is(PFBiomes.HELL_CREEK_CLEARING) || biome.is(PFBiomes.YIXIAN_FOREST) || biome.is(PFBiomes.DJADOCHTA_ARROYO) || biome.is(PFBiomes.HELL_CREEK_REDWOODS) || biome.is(PFBiomes.HELL_CREEK_SWAMP) || biome.is(PFBiomes.HELL_CREEK_RIVER) || biome.is(PFBiomes.DJADOCHTA_ALLUVIAL_PLAINS) || biome.is(PFBiomes.KAYENTA_CANYONS) || biome.is(PFBiomes.MORRISON_SPARSE_FOREST) || biome.is(PFBiomes.MORRISON_GALLERY_FOREST) || biome.is(PFBiomes.SHAXIMIAO_DRY_FOREST) || biome.is(PFBiomes.SHAXIMIAO_GALLERY_FOREST)) {
 			sample -= flatsNoise;
+		}
+		if (biome.is(PFBiomes.MORRISON_SALT_FLATS)) {
+			sample -= flatsNoise * 20;
+		}
+		if (biome.is(PFBiomes.MORRISON_UPLAND_FOREST) || biome.is(PFBiomes.SHAXIMIAO_MOUNTAINS)) {
+			sample *= 1.6F;
+			sample += 2.4;
+			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1)) * 1.4;
+			sample *= 0.2F;
+		}
+		if(biome.is(PFBiomes.SHAXIMIAO_DELTA_PLAINS)) {
+			sample -= deltaNoise * 0.3;
+			sample *= 2.2;
+			sample -= 1;
+		}
+		if (biome.is(PFBiomes.KAYENTA_DUNES)) {
+			sample *= 1.6F;
+			sample += 0.4;
+			sample -= (y - this.settings.value().seaLevel() - hillNoise * 64) / (16.0F / bigHillRockNoise * (hillWobble + 1)) * 1.2;
+			sample *= 0.1F;
+		}
+		if (biome.is(PFBiomes.SHAXIMIAO_LAKES)) {
+			sample -= lakeNoise;
+			sample *= 6.3F;
+			sample -= 6.5F;
+		}
+		if (biome.is(PFBiomes.SHAXIMIAO_ARID_LAKES)) {
+			sample -= lakeNoise;
+			sample *= 6.3F;
+			sample -= 5F;
 		}
 		if (biome.is(PFBiomes.ISCHIGUALASTO_HILLS)) {
 			sample *= 1.6F;
@@ -439,7 +465,8 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 	}
 
 
-	public void fillNoiseSampleArrays(ChunkAccess chunk) {
+	public void fillNoiseSampleArrays(ChunkAccess chunk, RandomState randomState) {
+        long seed = getOrExtractSeed(randomState);
 		int hSamplePoints = (int) Math.ceil(16 * 0.3F);
 		int vSamplePoints = (int) Math.ceil(this.getGenDepth() * 0.15F);
 		float hOffset = (16.0F / (float) hSamplePoints);
@@ -458,7 +485,7 @@ public class PrehistoricChunkGenerator extends ChunkGenerator {
 					float z = cZ + chunk.getPos().getMinBlockZ();
 					float y = cY + chunk.getMinBuildHeight();
 
-					terrainShapeSamplePoints[sX][sY][sZ] = sampleDensity(x, y, z);
+					terrainShapeSamplePoints[sX][sY][sZ] = sampleDensity(x, y, z, seed);
 				}
 			}
 		}

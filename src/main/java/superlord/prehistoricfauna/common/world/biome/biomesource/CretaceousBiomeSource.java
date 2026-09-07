@@ -107,12 +107,11 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 	}
 
 	public Climate.TargetPoint sampleCustomClimate(int x, int y, int z) {
-		// Use your existing noise functions to generate climate-like parameters
 		float temperature = (float) tempNoise(x, y, z);
 		float humidity = (float) humidityNoise(x, y, z);
 		float continentalness = (float) timeLineNoise(x, y, z);
 		float erosion = (float) hillinessNoise(x, y, z);
-		float depth = ((float) y / 256.0f) * 2.0f - 1.0f; // Map y level to depth
+		float depth = ((float) y / 256.0f) * 2.0f - 1.0f;
 		float weirdness = (float) caveTimeLineNoise(x, y, z);
 		return Climate.target(temperature, humidity, continentalness, erosion, depth, weirdness);
 	}
@@ -120,10 +119,7 @@ public class CretaceousBiomeSource extends BiomeSource implements NoiseBiomeSour
 	@Override 
 	public Holder<Biome> getNoiseBiome(int x, int y, int z, Sampler sampler) { 
 		Climate.TargetPoint climate = sampleCustomClimate(x, y, z);
-		return selectBiome(
-				climate.temperature(), climate.humidity(), climate.continentalness(),
-				climate.erosion(), climate.depth(), climate.weirdness(), y
-				);
+		return selectBiome(climate.temperature(), climate.humidity(), climate.continentalness(), climate.erosion(), climate.depth(), climate.weirdness(), y);
 	}
 	
 	private Holder<Biome> selectBiome(float tempNoise, float humidityNoise, float timelineNoise, float hillinessNoise, float depth, float caveTimeLineNoise, int y) {

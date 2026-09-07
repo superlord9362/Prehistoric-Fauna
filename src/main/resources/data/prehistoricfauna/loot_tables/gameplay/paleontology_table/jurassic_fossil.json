@@ -98,6 +98,11 @@
 					"type": "minecraft:item",
 					"weight": 2.5,
 					"name": "prehistoricfauna:scelidosaurus_skull"
+				},
+				{
+					"type": "minecraft:item",
+					"weight": 2.5,
+					"name": "prehistoricfauna:shunosaurus_skull"
 				}
 			]
 		}

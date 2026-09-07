@@ -26,7 +26,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "hollow_logs"
+					"flag": "hollow_logs"
 				}
 			]
 		}

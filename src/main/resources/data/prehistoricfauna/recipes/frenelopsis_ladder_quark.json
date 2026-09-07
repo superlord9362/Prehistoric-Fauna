@@ -29,7 +29,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "variant_ladders"
+					"flag": "variant_ladders"
 				}
 			]
 		}

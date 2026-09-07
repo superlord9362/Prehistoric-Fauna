@@ -1027,11 +1027,6 @@ public class CorruptedTheropod extends Animal {
 		if (!isAwake()) {
 			setDeltaMovement(0, getDeltaMovement().y, 0);
 			yRot = yRotO;
-			//			if (this.getHealth() < this.getMaxHealth()) {
-			//				if ((this.getHealth() + 2) > this.getMaxHealth()) {
-			//					this.setHealth(this.getMaxHealth());
-			//				} else this.setHealth(this.getHealth() + 2);
-			//			}
 		}
 		if (allHeadAttackCooldown > 0) {
 			allHeadAttackCooldown--;

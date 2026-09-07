@@ -880,12 +880,12 @@ public class PFItems {
 	public static final RegistryObject<Item> MAMENCHISAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("mamenchisaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MAMENCHISAURUS, 0x6B291C, 0x8AADAB, new Item.Properties()));
 	public static final RegistryObject<Item> MESOFORFICULA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("mesoforficula_spawn_egg", () -> new PFSpawnEggItem(PFEntities.MESOFORFICULA, 0x292021, 0xBFAC89, new Item.Properties()));
 	public static final RegistryObject<Item> OMEISAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("omeisaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.OMEISAURUS, 0x657A71, 0x9E1F1F, new Item.Properties()));
-	public static final RegistryObject<Item> POLISTODON_SPAWN_EGG = SPAWN_EGG_REGISTER.register("polistodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POLISTODON, 0x54433e, 0x302a29, new Item.Properties()));
+	public static final RegistryObject<Item> POLISTODON_SPAWN_EGG = SPAWN_EGG_REGISTER.register("polistodon_spawn_egg", () -> new PFSpawnEggItem(PFEntities.POLISTODON, 0x664C29, 0x8C795F, new Item.Properties()));
 	public static final RegistryObject<Item> RHIPIDOBLATTINA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("rhipidoblattina_spawn_egg", () -> new PFSpawnEggItem(PFEntities.RHIPIDOBLATTINA, 0x493125, 0xC69E77, new Item.Properties()));
 	public static final RegistryObject<Item> SHUNOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("shunosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SHUNOSAURUS, 0x4B614A, 0x2A676D, new Item.Properties()));
 	public static final RegistryObject<Item> SINRAPTOR_SPAWN_EGG = SPAWN_EGG_REGISTER.register("sinraptor_spawn_egg", () -> new PFSpawnEggItem(PFEntities.SINRAPTOR, 0x7B7B72, 0x9D5EA2, new Item.Properties()));
 	public static final RegistryObject<Item> TUOJIANGOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("tuojiangosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.TUOJIANGOSAURUS, 0x505B24, 0x383354, new Item.Properties()));
-	public static final RegistryObject<Item> YANDUSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("yandusaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YANDUSAURUS, 0x91523F, 0x9C3C24, new Item.Properties()));
+	public static final RegistryObject<Item> YANDUSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("yandusaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YANDUSAURUS, 0x4E5645, 0xA8373B, new Item.Properties()));
 	public static final RegistryObject<Item> YANGCHUANOSAURUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("yangchuanosaurus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.YANGCHUANOSAURUS, 0x3E4C25, 0x68858A, new Item.Properties()));
 	public static final RegistryObject<Item> ARGANODUS_SPAWN_EGG = SPAWN_EGG_REGISTER.register("arganodus_spawn_egg", () -> new PFSpawnEggItem(PFEntities.ARGANODUS, 0x212638, 0x936B63, new Item.Properties()));
 	public static final RegistryObject<Item> CHINLEA_SPAWN_EGG = SPAWN_EGG_REGISTER.register("chinlea_spawn_egg", () -> new PFSpawnEggItem(PFEntities.CHINLEA, 0x657A4B, 0x965951, new Item.Properties()));
@@ -933,6 +933,7 @@ public class PFItems {
 	public static final RegistryObject<Item> CERATOSAURUS_SKULL = SKELETON_REGISTER.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKULL = SKELETON_REGISTER.register("stegosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKULL = SKELETON_REGISTER.register("chuandongocoelurus_skull", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> SHUNOSAURUS_SKULL = SKELETON_REGISTER.register("shunosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SHUNOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKULL = SKELETON_REGISTER.register("yangchuanosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKULL = SKELETON_REGISTER.register("coelophysis_skull", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SKULL = SKELETON_REGISTER.register("desmatosuchus_skull", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKULL, new Item.Properties()));
@@ -961,6 +962,7 @@ public class PFItems {
 	public static final RegistryObject<Item> CERATOSAURUS_SKELETON = SKELETON_REGISTER.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKELETON = SKELETON_REGISTER.register("stegosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKELETON = SKELETON_REGISTER.register("chuandongocoelurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> SHUNOSAURUS_SKELETON = SKELETON_REGISTER.register("shunosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SHUNOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKELETON = SKELETON_REGISTER.register("yangchuanosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKELETON = SKELETON_REGISTER.register("coelophysis_skeleton", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> DESMATOSUCHUS_SKELETON = SKELETON_REGISTER.register("desmatosuchus_skeleton", () -> new SpawnSkeletonItem(PFEntities.DESMATOSUCHUS_SKELETON, new Item.Properties()));

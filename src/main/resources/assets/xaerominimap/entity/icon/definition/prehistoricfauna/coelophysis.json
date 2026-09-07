@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"prehistoricfauna:textures/entity/coelophysis/coelophysis_s.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"prehistoricfauna:textures/entity/coelophysis/coelophysis_s_sleeping.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"prehistoricfauna:textures/entity/coelophysis/albino_s.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"prehistoricfauna:textures/entity/coelophysis/albino_s_sleeping.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"prehistoricfauna:textures/entity/coelophysis/melanistic_s.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"prehistoricfauna:textures/entity/coelophysis/melanistic_s_sleeping.png": "sprite:prehistoricfauna/coelophysis_scaled.png",
+		"default": "sprite:prehistoricfauna/coelophysis.png"
+	}
+}

@@ -24,7 +24,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "leaf_carpet"
+					"flag": "leaf_carpet"
 				}
 			]
 		}

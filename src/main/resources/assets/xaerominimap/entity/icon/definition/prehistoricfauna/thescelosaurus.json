@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"prehistoricfauna:textures/entity/thescelosaurus/thescelosaurus_s.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"prehistoricfauna:textures/entity/thescelosaurus/thescelosaurus_s_sleeping.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"prehistoricfauna:textures/entity/thescelosaurus/albino_s.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"prehistoricfauna:textures/entity/thescelosaurus/albino_s_sleeping.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"prehistoricfauna:textures/entity/thescelosaurus/melanistic_s.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"prehistoricfauna:textures/entity/thescelosaurus/melanistic_s_sleeping.png": "sprite:prehistoricfauna/thescelosaurus_scaled.png",
+		"default": "sprite:prehistoricfauna/thescelosaurus.png"
+	}
+}

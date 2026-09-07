@@ -28,7 +28,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "variant_bookshelves"
+					"flag": "variant_bookshelves"
 				}
 			]
 		}

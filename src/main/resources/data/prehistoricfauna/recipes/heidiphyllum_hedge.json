@@ -28,7 +28,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "hedges"
+					"flag": "hedges"
 				}
 			]
 		}

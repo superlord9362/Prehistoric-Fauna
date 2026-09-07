@@ -21,6 +21,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,11 +44,43 @@ import superlord.prehistoricfauna.init.PFSounds;
 
 public class Pyrinos extends Animal {
 
-	private static final EntityDataAccessor<Boolean> DATA_FLYING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> DATA_BREATHING_FIRE = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FIRE_BREATHING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> WING_PUSHING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> TAIL_JABBING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> GLIDE_SHOOTING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FLAME_CHARGING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FLAME_BLASTING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FLY_STARTING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> FLY_STOPPING = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> GRAB_PHASE = SynchedEntityData.defineId(Pyrinos.class, EntityDataSerializers.INT);
+
+	private static final int GRAB_NONE = 0;
+	private static final int GRAB_SEEKING = 1;
+	private static final int GRAB_LIFTING = 2;
+	private static final int GRAB_DROPPING = 3;
+
+	private static final int FLYSTART_DURATION = 30;
+	private static final int FLYSTOP_DURATION = 20;
 
 	public float ridingXZ;
 	public float ridingY = 1F;
+
+	public final AnimationState idleAnimationState = new AnimationState();
+	public final AnimationState flappingAnimationState = new AnimationState();
+	public final AnimationState meleeAttackAnimationState = new AnimationState();
+	public final AnimationState shootAnimationState = new AnimationState();
+	public final AnimationState inhaleAnimationState = new AnimationState();
+	public final AnimationState blastAnimationState = new AnimationState();
+	public final AnimationState flystartAnimationState = new AnimationState();
+	public final AnimationState flystopAnimationState = new AnimationState();
+	public final AnimationState flyflapAnimationState = new AnimationState();
+	public final AnimationState grabstartAnimationState = new AnimationState();
+	public final AnimationState grabAnimationState = new AnimationState();
+	public final AnimationState grabendAnimationState = new AnimationState();
+
+	private int flyTransitionTicks;
+	private int flyflapTicksRemaining;
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.GREEN, BossEvent.BossBarOverlay.PROGRESS));
 
@@ -70,24 +103,121 @@ public class Pyrinos extends Animal {
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_FLYING, false);
-		this.entityData.define(DATA_BREATHING_FIRE, false);
+		this.entityData.define(FLYING, false);
+		this.entityData.define(FIRE_BREATHING, false);
+		this.entityData.define(WING_PUSHING, false);
+		this.entityData.define(TAIL_JABBING, false);
+		this.entityData.define(GLIDE_SHOOTING, false);
+		this.entityData.define(FLAME_CHARGING, false);
+		this.entityData.define(FLAME_BLASTING, false);
+		this.entityData.define(FLY_STARTING, false);
+		this.entityData.define(FLY_STOPPING, false);
+		this.entityData.define(GRAB_PHASE, GRAB_NONE);
 	}
 
 	public boolean isPyrinosFlying() {
-		return this.entityData.get(DATA_FLYING);
+		return this.entityData.get(FLYING);
 	}
 
 	public void setPyrinosFlying(boolean flying) {
-		this.entityData.set(DATA_FLYING, flying);
+		this.entityData.set(FLYING, flying);
 	}
 
 	public boolean isBreathingFire() {
-		return this.entityData.get(DATA_BREATHING_FIRE);
+		return this.entityData.get(FIRE_BREATHING);
 	}
 
 	public void setBreathingFire(boolean breathing) {
-		this.entityData.set(DATA_BREATHING_FIRE, breathing);
+		this.entityData.set(FIRE_BREATHING, breathing);
+	}
+
+	public boolean isFlappingWings() {
+		return this.entityData.get(WING_PUSHING);
+	}
+
+	public void setFlappingWings(boolean isFlappingWings) {
+		this.entityData.set(WING_PUSHING, isFlappingWings);
+	}
+
+	public boolean isTailJabbing() {
+		return this.entityData.get(TAIL_JABBING);
+	}
+
+	public void setTailJabbing(boolean jabbing) {
+		this.entityData.set(TAIL_JABBING, jabbing);
+	}
+
+	public boolean isGlideShooting() {
+		return this.entityData.get(GLIDE_SHOOTING);
+	}
+
+	public void setGlideShooting(boolean shooting) {
+		this.entityData.set(GLIDE_SHOOTING, shooting);
+	}
+
+	public boolean isFlameCharging() {
+		return this.entityData.get(FLAME_CHARGING);
+	}
+
+	public void setFlameCharging(boolean charging) {
+		this.entityData.set(FLAME_CHARGING, charging);
+	}
+
+	public boolean isFlameBlasting() {
+		return this.entityData.get(FLAME_BLASTING);
+	}
+
+	public void setFlameBlasting(boolean blasting) {
+		this.entityData.set(FLAME_BLASTING, blasting);
+	}
+
+	public boolean isFlyStarting() {
+		return this.entityData.get(FLY_STARTING);
+	}
+
+	private void setFlyStarting(boolean starting) {
+		this.entityData.set(FLY_STARTING, starting);
+	}
+
+	public boolean isFlyStopping() {
+		return this.entityData.get(FLY_STOPPING);
+	}
+
+	private void setFlyStopping(boolean stopping) {
+		this.entityData.set(FLY_STOPPING, stopping);
+	}
+
+	public int getGrabPhase() {
+		return this.entityData.get(GRAB_PHASE);
+	}
+
+	public void setGrabPhase(int phase) {
+		this.entityData.set(GRAB_PHASE, phase);
+	}
+
+	/**
+	 * All goals should call this instead of {@link #setPyrinosFlying(boolean)} directly.
+	 * Requesting flight true triggers flystart first, then flips the real FLYING flag once
+	 * it finishes; requesting false immediately drops FLYING but triggers flystop, holding
+	 * isNoGravity() true for its duration so the entity doesn't just drop out of the sky.
+	 */
+	public void requestFlyingState(boolean flying) {
+		if (flying) {
+			if (!this.isPyrinosFlying() && !this.isFlyStarting()) {
+				this.setFlyStopping(false);
+				this.setFlyStarting(true);
+				this.flyTransitionTicks = 0;
+			}
+		} else {
+			if (this.isFlyStarting()) {
+				this.setFlyStarting(false);
+			}
+			if (this.isPyrinosFlying() && !this.isFlyStopping()) {
+				this.setPyrinosFlying(false);
+				this.setFlyStopping(true);
+				this.flyTransitionTicks = 0;
+			}
+		}
 	}
 
 	@Override
@@ -114,7 +244,7 @@ public class Pyrinos extends Animal {
 
 	@Override
 	public boolean isNoGravity() {
-		return this.isPyrinosFlying() || super.isNoGravity();
+		return this.isPyrinosFlying() || this.isFlyStarting() || this.isFlyStopping() || super.isNoGravity();
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -148,7 +278,8 @@ public class Pyrinos extends Animal {
 					double dy = this.getY() - target.getY();
 
 					return dx <= 10.0D && dz <= 10.0D && dy >= 0.0D && dy <= 9.0D;
-				}));		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+				}));
+		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 	}
 
 	@Override
@@ -196,6 +327,92 @@ public class Pyrinos extends Animal {
 			}
 		} else {
 			if (this.getTarget() instanceof Player player && player.isCreative()) this.setTarget(null);
+		}
+
+		if (!this.level().isClientSide()) {
+			if (this.isFlyStarting()) {
+				this.flyTransitionTicks++;
+				if (this.flyTransitionTicks >= FLYSTART_DURATION) {
+					this.setFlyStarting(false);
+					this.setPyrinosFlying(true);
+				}
+			} else if (this.isFlyStopping()) {
+				this.flyTransitionTicks++;
+				if (this.flyTransitionTicks >= FLYSTOP_DURATION) {
+					this.setFlyStopping(false);
+				}
+			}
+		}
+
+		if (this.level().isClientSide()) {
+			if (this.isAlive()) {
+				this.idleAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.idleAnimationState.stop();
+			}
+			if (this.isFlappingWings()) {
+				this.flappingAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.flappingAnimationState.stop();
+			}
+			if (this.isTailJabbing()) {
+				this.meleeAttackAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.meleeAttackAnimationState.stop();
+			}
+			if (this.isGlideShooting()) {
+				this.shootAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.shootAnimationState.stop();
+			}
+			if (this.isFlameCharging()) {
+				this.inhaleAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.inhaleAnimationState.stop();
+			}
+			if (this.isFlameBlasting()) {
+				this.blastAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.blastAnimationState.stop();
+			}
+			if (this.isFlyStarting()) {
+				this.flystartAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.flystartAnimationState.stop();
+			}
+			if (this.isFlyStopping()) {
+				this.flystopAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.flystopAnimationState.stop();
+			}
+
+			int grabPhase = this.getGrabPhase();
+			if (grabPhase == GRAB_SEEKING) {
+				this.grabstartAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.grabstartAnimationState.stop();
+			}
+			if (grabPhase == GRAB_LIFTING) {
+				this.grabAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.grabAnimationState.stop();
+			}
+			if (grabPhase == GRAB_DROPPING) {
+				this.grabendAnimationState.startIfStopped(this.tickCount);
+			} else {
+				this.grabendAnimationState.stop();
+			}
+
+			if (this.isPyrinosFlying() && !this.flyflapAnimationState.isStarted() && this.random.nextInt(400) == 0) {
+				this.flyflapAnimationState.start(this.tickCount);
+				this.flyflapTicksRemaining = 80;
+			}
+			if (this.flyflapTicksRemaining > 0) {
+				this.flyflapTicksRemaining--;
+				if (this.flyflapTicksRemaining == 0) {
+					this.flyflapAnimationState.stop();
+				}
+			}
 		}
 	}
 
@@ -279,14 +496,16 @@ public class Pyrinos extends Animal {
 
 		@Override
 		public void start() {
-			pyrinos.setPyrinosFlying(true);
+			pyrinos.requestFlyingState(true);
+			pyrinos.setGlideShooting(true);
 			ticksRunning = 0;
 			angle = 0;
 		}
 
 		@Override
 		public void stop() {
-			pyrinos.setPyrinosFlying(false);
+			pyrinos.requestFlyingState(false);
+			pyrinos.setGlideShooting(false);
 			pyrinos.setBreathingFire(false);
 			pyrinos.setDeltaMovement(pyrinos.getDeltaMovement().multiply(0.2, 1.0, 0.2));
 			cooldown = 200;
@@ -384,6 +603,7 @@ public class Pyrinos extends Animal {
 		public void start() {
 			state = State.SEEKING;
 			safetyTimer = 0;
+			pyrinos.setGrabPhase(GRAB_SEEKING);
 		}
 
 		@Override
@@ -392,7 +612,8 @@ public class Pyrinos extends Animal {
 			if (target instanceof Player player && player.isPassenger() && player.getVehicle() == pyrinos) {
 				player.stopRiding();
 			}
-			pyrinos.setPyrinosFlying(false);
+			pyrinos.requestFlyingState(false);
+			pyrinos.setGrabPhase(GRAB_NONE);
 			cooldown = 300;
 		}
 
@@ -411,16 +632,18 @@ public class Pyrinos extends Animal {
 							.add(toPlayer.normalize().scale(0.3D)));
 				} else {
 					player.startRiding(pyrinos, true);
-					pyrinos.setPyrinosFlying(true);
+					pyrinos.requestFlyingState(true);
 					grabStartY = pyrinos.getY();
-					liftTarget = 5.0D + pyrinos.getRandom().nextDouble() * 2.0D; // 5-7 blocks
+					liftTarget = 5.0D + pyrinos.getRandom().nextDouble() * 2.0D;
 					state = State.LIFTING;
+					pyrinos.setGrabPhase(GRAB_LIFTING);
 				}
 			}
 			case LIFTING -> {
 				pyrinos.setDeltaMovement(pyrinos.getDeltaMovement().x * 0.9D, 0.32D, pyrinos.getDeltaMovement().z * 0.9D);
 				if (pyrinos.getY() - grabStartY >= liftTarget) {
 					state = State.DROPPING;
+					pyrinos.setGrabPhase(GRAB_DROPPING);
 				}
 			}
 			case DROPPING -> {
@@ -439,7 +662,7 @@ public class Pyrinos extends Animal {
 		private int beamTicks;
 		private int cooldown;
 
-		private static final int CHARGE_DURATION = 60; // 3s
+		private static final int CHARGE_DURATION = 60;
 		private static final int BEAM_DURATION = 30;
 		private static final double RANGE = 10.0D;
 
@@ -469,11 +692,15 @@ public class Pyrinos extends Animal {
 		public void start() {
 			chargeTicks = 0;
 			beamTicks = 0;
+			pyrinos.setFlameCharging(true);
+			pyrinos.setFlameBlasting(false);
 		}
 
 		@Override
 		public void stop() {
 			pyrinos.setBreathingFire(false);
+			pyrinos.setFlameCharging(false);
+			pyrinos.setFlameBlasting(false);
 			cooldown = 160;
 		}
 
@@ -490,6 +717,11 @@ public class Pyrinos extends Animal {
 					serverLevel.sendParticles(ParticleTypes.SMOKE, mouth.x, mouth.y, mouth.z, 6, 0.1, 0.1, 0.1, 0.01);
 				}
 				return;
+			}
+
+			if (pyrinos.isFlameCharging()) {
+				pyrinos.setFlameCharging(false);
+				pyrinos.setFlameBlasting(true);
 			}
 
 			pyrinos.setBreathingFire(true);
@@ -524,8 +756,23 @@ public class Pyrinos extends Animal {
 
 
 	public class PyrinosTailJabGoal extends MeleeAttackGoal {
+		private final Pyrinos pyrinos;
+
 		public PyrinosTailJabGoal(Pyrinos pyrinos) {
 			super(pyrinos, 1.0D, false);
+			this.pyrinos = pyrinos;
+		}
+
+		@Override
+		public void start() {
+			super.start();
+			pyrinos.setTailJabbing(true);
+		}
+
+		@Override
+		public void stop() {
+			super.stop();
+			pyrinos.setTailJabbing(false);
 		}
 	}
 
@@ -534,6 +781,9 @@ public class Pyrinos extends Animal {
 		private final Pyrinos pyrinos;
 		private int cooldown;
 		private boolean triggered;
+		private int animationTicks;
+
+		private static final int ANIMATION_DURATION = 40;
 
 		public PyrinosWingPushGoal(Pyrinos pyrinos) {
 			this.pyrinos = pyrinos;
@@ -553,30 +803,37 @@ public class Pyrinos extends Animal {
 
 		@Override
 		public boolean canContinueToUse() {
-			return !triggered;
+			return animationTicks < ANIMATION_DURATION;
 		}
 
 		@Override
 		public void start() {
 			triggered = false;
+			animationTicks = 0;
+			pyrinos.setFlappingWings(true);
 		}
 
 		@Override
 		public void tick() {
+			animationTicks++;
+
 			LivingEntity target = pyrinos.getTarget();
 			if (target == null) return;
 
-			Vec3 push = target.position().subtract(pyrinos.position()).normalize().scale(2.2D);
-			target.setDeltaMovement(push.x, 0.4D, push.z);
-			target.hurtMarked = true;
+			if (!triggered) {
+				Vec3 push = target.position().subtract(pyrinos.position()).normalize().scale(2.2D);
+				target.setDeltaMovement(push.x, 0.4D, push.z);
+				target.hurtMarked = true;
 
-			pyrinos.clearRecentHits();
-			triggered = true;
+				pyrinos.clearRecentHits();
+				triggered = true;
+			}
 		}
 
 		@Override
 		public void stop() {
 			cooldown = 60;
+			pyrinos.setFlappingWings(false);
 		}
 	}
 }

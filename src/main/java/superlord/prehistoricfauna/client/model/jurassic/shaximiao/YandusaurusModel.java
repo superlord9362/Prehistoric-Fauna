@@ -16,34 +16,34 @@ import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.jurassic.shaximiao.Yandusaurus;
 
 public class YandusaurusModel extends EntityModel<Yandusaurus> {
-	private final ModelPart root;
+	private final ModelPart Root;
 	private final ModelPart Body;
-	private final ModelPart Neck;
 	private final ModelPart Tail1;
 	private final ModelPart Tail2;
-	private final ModelPart RightArm;
+	private final ModelPart Neck;
 	private final ModelPart LeftArm;
-	private final ModelPart RightThigh;
-	private final ModelPart RightLeg;
-	private final ModelPart RightFoot;
+	private final ModelPart RightArm;
 	private final ModelPart LeftThigh;
 	private final ModelPart LeftLeg;
 	private final ModelPart LeftFoot;
+	private final ModelPart RightThigh;
+	private final ModelPart RightLeg;
+	private final ModelPart RightFoot;
 
 	public YandusaurusModel(ModelPart root) {
-		this.root = root.getChild("root");
-		this.Body = this.root.getChild("Body");
-		this.Neck = this.Body.getChild("Neck");
+		this.Root = root.getChild("Root");
+		this.Body = this.Root.getChild("Body");
 		this.Tail1 = this.Body.getChild("Tail1");
 		this.Tail2 = this.Tail1.getChild("Tail2");
-		this.RightArm = this.Body.getChild("RightArm");
+		this.Neck = this.Body.getChild("Neck");
 		this.LeftArm = this.Body.getChild("LeftArm");
-		this.RightThigh = this.root.getChild("RightThigh");
-		this.RightLeg = this.RightThigh.getChild("RightLeg");
-		this.RightFoot = this.RightLeg.getChild("RightFoot");
-		this.LeftThigh = this.root.getChild("LeftThigh");
+		this.RightArm = this.Body.getChild("RightArm");
+		this.LeftThigh = this.Root.getChild("LeftThigh");
 		this.LeftLeg = this.LeftThigh.getChild("LeftLeg");
 		this.LeftFoot = this.LeftLeg.getChild("LeftFoot");
+		this.RightThigh = this.Root.getChild("RightThigh");
+		this.RightLeg = this.RightThigh.getChild("RightLeg");
+		this.RightFoot = this.RightLeg.getChild("RightFoot");
 	}
 
 	@SuppressWarnings("unused")
@@ -51,45 +51,43 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, -5.0F));
+		PartDefinition Root = partdefinition.addOrReplaceChild("Root", CubeListBuilder.create(), PartPose.offset(0.0F, 11.0F, 1.5F));
 
-		PartDefinition Body = root.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(3, 0).addBox(-4.0F, -5.0F, -12.0F, 8.0F, 8.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -13.0F, 4.0F));
+		PartDefinition Body = Root.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(10, 0).addBox(-3.0F, -5.0F, -12.5F, 6.0F, 8.0F, 17.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(20, 25).addBox(-2.0F, -8.0F, -3.0F, 4.0F, 11.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(14, 32).mirror().addBox(0.0F, -4.0F, -4.0F, 0.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(35, 5).addBox(-1.5F, -10.0F, -3.975F, 3.0F, 5.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(49, 14).addBox(-1.0F, -7.0F, -6.0F, 2.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(49, 19).addBox(-2.0F, -8.0F, -4.0F, 4.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, -12.0F));
+		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(0, 40).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 5.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.95F, 3.5F));
 
-		PartDefinition cube_r1 = Neck.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(14, 32).mirror().addBox(0.0F, -2.0F, -1.0F, 0.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.5F, -1.0F, -3.0F, 0.0F, -0.3054F, 0.0F));
+		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(20, 41).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 3.0F, 20.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.925F, 14.0F));
 
-		PartDefinition cube_r2 = Neck.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(14, 32).addBox(0.0F, -2.0F, -1.0F, 0.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, -1.0F, -3.0F, 0.0F, 0.3054F, 0.0F));
+		PartDefinition Neck = Body.addOrReplaceChild("Neck", CubeListBuilder.create().texOffs(0, 35).addBox(-1.5F, -5.0F, -3.0F, 3.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 1).addBox(-1.5F, -5.0F, -4.0F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.001F))
+		.texOffs(0, 6).addBox(-1.0F, -4.0F, -6.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.001F))
+		.texOffs(10, 0).addBox(-1.0F, -7.0F, -3.0F, 2.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+		.texOffs(0, 23).addBox(-1.0F, -1.0F, -4.0F, 2.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.0F, -11.5F));
 
-		PartDefinition Tail1 = Body.addOrReplaceChild("Tail1", CubeListBuilder.create().texOffs(34, 23).addBox(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 13.0F, new CubeDeformation(0.0F))
-		.texOffs(46, 0).addBox(0.0F, -5.0F, 1.0F, 0.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -2.0F, 2.0F));
+		PartDefinition LeftArm = Body.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(56, 35).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F))
+		.texOffs(52, 28).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 1.0F, -9.5F));
 
-		PartDefinition Tail2 = Tail1.addOrReplaceChild("Tail2", CubeListBuilder.create().texOffs(0, 24).addBox(-1.0F, -0.975F, 0.0F, 2.0F, 2.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 12.0F));
+		PartDefinition RightArm = Body.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(56, 35).mirror().addBox(-1.0F, -1.0F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
+		.texOffs(52, 28).mirror().addBox(-1.5F, -2.0F, -1.5F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-3.0F, 1.0F, -9.5F));
 
-		PartDefinition RightArm = Body.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(0, 32).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 2.0F, -10.0F));
+		PartDefinition LeftThigh = Root.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(48, 0).addBox(-2.0F, -2.0F, -2.5F, 3.0F, 8.0F, 5.0F, new CubeDeformation(0.0F))
+		.texOffs(52, 41).addBox(0.75F, -0.75F, 2.3F, 0.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 0.0F, 0.0F));
 
-		PartDefinition LeftArm = Body.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(0, 32).mirror().addBox(-1.0F, -1.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-3.5F, 2.0F, -10.0F));
+		PartDefinition LeftLeg = LeftThigh.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(48, 50).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.5F, 6.0F, 2.5F));
 
-		PartDefinition RightThigh = root.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 8.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(34, -3).addBox(1.5F, -2.0F, 3.0F, 0.0F, 7.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, -14.0F, 3.0F));
+		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(45, 57).addBox(-1.5F, 0.0F, -4.0F, 3.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, 0.0F));
 
-		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(34, 26).addBox(-2.0F, 0.0F, 0.0F, 2.0F, 8.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 6.0F, 3.0F));
+		PartDefinition RightThigh = Root.addOrReplaceChild("RightThigh", CubeListBuilder.create().texOffs(48, 0).mirror().addBox(-1.0F, -2.0F, -2.5F, 3.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false)
+		.texOffs(52, 41).addBox(-0.75F, -0.75F, 2.3F, 0.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 0.0F, 0.0F));
 
-		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(47, 10).addBox(-1.5F, 0.0F, -4.0F, 3.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 8.0F, 0.0F));
+		PartDefinition RightLeg = RightThigh.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(48, 50).mirror().addBox(-1.0F, 0.0F, 0.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.5F, 6.0F, 2.5F));
 
-		PartDefinition LeftThigh = root.addOrReplaceChild("LeftThigh", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-2.0F, -2.0F, -2.0F, 4.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(34, -3).mirror().addBox(-1.5F, -2.0F, 3.0F, 0.0F, 7.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-3.0F, -14.0F, 3.0F));
+		PartDefinition RightFoot = RightLeg.addOrReplaceChild("RightFoot", CubeListBuilder.create().texOffs(45, 57).mirror().addBox(-1.5F, 0.0F, -4.0F, 3.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 7.0F, 0.0F));
 
-		PartDefinition LeftLeg = LeftThigh.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(34, 26).mirror().addBox(0.0F, 0.0F, 0.0F, 2.0F, 8.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 6.0F, 3.0F));
-
-		PartDefinition LeftFoot = LeftLeg.addOrReplaceChild("LeftFoot", CubeListBuilder.create().texOffs(47, 10).mirror().addBox(-1.5F, 0.0F, -4.0F, 3.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.0F, 8.0F, 0.0F));
-
-		return LayerDefinition.create(meshdefinition, 68, 42);
+		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
+
 
 	@Override
 	public void setupAnim(Yandusaurus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -100,18 +98,18 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 			if (sleepProgress != 0 && entity.getEntityData().get(DinosaurEntity.SLEEP_TICK) > 0) {
 				this.LeftLeg.xRot = Mth.lerp(sleepProgress, 0, -0.7F);
 				this.LeftThigh.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
-				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, 0.296705972839036F);
-				this.LeftThigh.y = Mth.lerp(sleepProgress, -14, -6.2F);
+				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0, -0.296705972839036F);
+				this.LeftThigh.y = Mth.lerp(sleepProgress, 0, 7.2F);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
 				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 0, 1.5707963267948966F);
-				this.Body.y = Mth.lerp(sleepProgress, -13, -4.5F);
+				this.Body.y = Mth.lerp(sleepProgress, 0, 6.5F);
 				this.Body.xRot = Mth.lerp(sleepProgress, 0, -0.24434609527920614F);
-				this.RightThigh.y = Mth.lerp(sleepProgress, -14, -6.2F);
+				this.RightThigh.y = Mth.lerp(sleepProgress, 0, 7.2F);
 				this.RightThigh.xRot = Mth.lerp(sleepProgress, 0, -0.8726646259971648F);
-				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, -0.296705972839036F);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
-				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.9773843811168246F);
+				this.RightThigh.yRot = Mth.lerp(sleepProgress, 0, 0.296705972839036F);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0, 0.6726646259971648F);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0, 0.6773843811168246F);
 				this.RightLeg.xRot = Mth.lerp(sleepProgress, 0, -0.7F);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, 0, 0.8726646259971648F);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, 0, 0.02853981633974483F);
@@ -125,17 +123,17 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 				this.LeftLeg.xRot = Mth.lerp(sleepProgress, -0.7F, 0);
 				this.LeftThigh.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
 				this.LeftThigh.yRot = Mth.lerp(sleepProgress, 0.296705972839036F, 0);
-				this.LeftThigh.y = Mth.lerp(sleepProgress, -6.2F, -14);
+				this.LeftThigh.y = Mth.lerp(sleepProgress, 7.2F, 0);
 				this.LeftArm.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
 				this.LeftFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
 				this.RightFoot.xRot = Mth.lerp(sleepProgress, 1.5707963267948966F, 0);
-				this.Body.y = Mth.lerp(sleepProgress, -4.5F, -13);
+				this.Body.y = Mth.lerp(sleepProgress, 6.5F, 0);
 				this.Body.xRot = Mth.lerp(sleepProgress, -0.24434609527920614F, 0);
-				this.RightThigh.y = Mth.lerp(sleepProgress, -6.2F, -14);
+				this.RightThigh.y = Mth.lerp(sleepProgress, 7.2F, 0);
 				this.RightThigh.xRot = Mth.lerp(sleepProgress, -0.8726646259971648F, 0);
 				this.RightThigh.yRot = Mth.lerp(sleepProgress, -0.296705972839036F, 0);
-				this.Neck.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
-				this.Neck.yRot = Mth.lerp(sleepProgress, 0.9773843811168246F, 0);
+				this.Neck.xRot = Mth.lerp(sleepProgress, 0.6726646259971648F, 0);
+				this.Neck.yRot = Mth.lerp(sleepProgress, 0.6773843811168246F, 0);
 				this.RightLeg.xRot = Mth.lerp(sleepProgress, -0.7F, 0);
 				this.RightArm.xRot = Mth.lerp(sleepProgress, 0.8726646259971648F, 0);
 				this.Tail1.xRot = Mth.lerp(sleepProgress, 0.02853981633974483F, 0);
@@ -180,16 +178,16 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 
 	public void resetModel() {
 		this.LeftLeg.xRot = 0;
-		this.LeftThigh.y = -14F;
+		this.LeftThigh.y = 0;
 		this.LeftThigh.xRot = 0;
 		this.LeftThigh.yRot = 0;
 		this.LeftArm.z = -10F;
 		this.LeftArm.xRot = 0;
 		this.LeftFoot.xRot = 0;
 		this.RightFoot.xRot = 0;
-		this.Body.y = -13;
+		this.Body.y = 0;
 		this.Body.xRot = 0;
-		this.RightThigh.y = -14;
+		this.RightThigh.y = 0;
 		this.RightThigh.xRot = 0;
 		this.RightThigh.yRot = 0;
 		this.Neck.xRot = 0.0436F;
@@ -209,18 +207,18 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 	public void sleepPose() {
 		this.LeftLeg.xRot = -0.7F;
 		this.LeftThigh.xRot = -0.8726646259971648F;
-		this.LeftThigh.yRot = 0.296705972839036F;
-		this.LeftThigh.y = -6.2F;
+		this.LeftThigh.yRot = -0.296705972839036F;
+		this.LeftThigh.y = 7.2F;
 		this.LeftArm.xRot = 0.8726646259971648F;
 		this.LeftFoot.xRot = 1.5707963267948966F;
 		this.RightFoot.xRot = 1.5707963267948966F;
-		this.Body.y = -4.5F;
+		this.Body.y = 6.5F;
 		this.Body.xRot = -0.24434609527920614F;
-		this.RightThigh.y = -6.2F;
+		this.RightThigh.y = 7.2F;
 		this.RightThigh.xRot = -0.8726646259971648F;
-		this.RightThigh.yRot = -0.296705972839036F;
-		this.Neck.xRot = 0.8726646259971648F;
-		this.Neck.yRot = 0.9773843811168246F;
+		this.RightThigh.yRot = 0.296705972839036F;
+		this.Neck.xRot = 0.6726646259971648F;
+		this.Neck.yRot = 0.6773843811168246F;
 		this.RightLeg.xRot = -0.7F;
 		this.RightArm.xRot = 0.8726646259971648F;
 		this.Tail1.xRot = 0.02853981633974483F;
@@ -232,7 +230,7 @@ public class YandusaurusModel extends EntityModel<Yandusaurus> {
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		Root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 }

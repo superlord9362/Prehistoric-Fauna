@@ -1,0 +1,17 @@
+{
+	"variants": {
+		"prehistoricfauna:textures/entity/dilophosaurus/dilophosaurus_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/dilophosaurus_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/dilophosaurus_baby_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/dilophosaurus_baby_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/albino_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/albino_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/albino_baby_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/albino_baby_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/melanistic_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/melanistic_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/melanistic_baby_feather.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"prehistoricfauna:textures/entity/dilophosaurus/melanistic_baby_feather_sleeping.png": "sprite:prehistoricfauna/dilophosaurus_feathered.png",
+		"default": "sprite:prehistoricfauna/dilophosaurus.png"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"prehistoricfauna:textures/entity/fish/chinle_lonchidion.png": "sprite:prehistoricfauna/lonchidion_chinle.png",
+		"default": "sprite:prehistoricfauna/lonchidion.png"
+	}
+}

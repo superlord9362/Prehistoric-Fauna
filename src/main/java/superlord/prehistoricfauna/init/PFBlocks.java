@@ -815,6 +815,7 @@ public class PFBlocks {
 	public static final RegistryObject<Block> CHUANDONGOCOELURUS_CRATE = REGISTER.register("chuandongocoelurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> KAYENTAVENATOR_CRATE = REGISTER.register("kayentavenator_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	public static final RegistryObject<Block> YANGCHUANOSAURUS_CRATE = REGISTER.register("yangchuanosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
+	public static final RegistryObject<Block> SHUNOSAURUS_CRATE = REGISTER.register("shunosaurus_crate", () -> new CrateBlock(Properties.copy(FOSSIL_CRATE.get())));
 	
 	public static final RegistryObject<Block> CARVED_TUBER = REGISTER.register("carved_tuber", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> CARVED_TUBER_SOUL_LIT = REGISTER.register("carved_tuber_soul_lit", () -> new CarvedTuberBlock(Properties.of().strength(1.0F).sound(SoundType.WOOD).lightLevel((light) -> {

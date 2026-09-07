@@ -27,37 +27,10 @@ public class JurassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	private final Holder<Biome> kayentaDryForest, kayentaButtes, kayentaDesert, kayentaDunes, kayentaCanyons, kayentaRiver, morrisonSavanna, morrisonSaltFlats, morrisonSparseForest, morrisonGalleryForest, morrisonUplandForest, morrisonRiver, shaximiaoDeltaPlains, shaximiaoLakes, shaximiaoGalleryForest, shaximiaoDryForest, shaximiaoMountains, shaximiaoAridLakes, dripstoneCaves, henostoneCaves; 
 
 	public JurassicBiomeSource(HolderGetter<Biome> biome) { 
-		this( 
-				biome.getOrThrow(PFBiomes.KAYENTA_DRY_FOREST), 
-				biome.getOrThrow(PFBiomes.KAYENTA_BUTTES), 
-				biome.getOrThrow(PFBiomes.KAYENTA_DESERT), 
-				biome.getOrThrow(PFBiomes.KAYENTA_DUNES), 
-				biome.getOrThrow(PFBiomes.KAYENTA_CANYONS), 
-				biome.getOrThrow(PFBiomes.KAYENTA_RIVER), 
-				biome.getOrThrow(PFBiomes.MORRISON_SAVANNA), 
-				biome.getOrThrow(PFBiomes.MORRISON_SALT_FLATS), 
-				biome.getOrThrow(PFBiomes.MORRISON_SPARSE_FOREST), 
-				biome.getOrThrow(PFBiomes.MORRISON_GALLERY_FOREST), 
-				biome.getOrThrow(PFBiomes.MORRISON_UPLAND_FOREST), 
-				biome.getOrThrow(PFBiomes.MORRISON_RIVER), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_DELTA_PLAINS), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_LAKES), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_GALLERY_FOREST), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_DRY_FOREST), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_MOUNTAINS), 
-				biome.getOrThrow(PFBiomes.SHAXIMIAO_ARID_LAKES), 
-				biome.getOrThrow(PFBiomes.JURASSIC_DRIPSTONE_CAVE), 
-				biome.getOrThrow(PFBiomes.JURASSIC_HENOSTONE_CAVE) 
-				); 
+		this(biome.getOrThrow(PFBiomes.KAYENTA_DRY_FOREST), biome.getOrThrow(PFBiomes.KAYENTA_BUTTES), biome.getOrThrow(PFBiomes.KAYENTA_DESERT), biome.getOrThrow(PFBiomes.KAYENTA_DUNES), biome.getOrThrow(PFBiomes.KAYENTA_CANYONS), biome.getOrThrow(PFBiomes.KAYENTA_RIVER), biome.getOrThrow(PFBiomes.MORRISON_SAVANNA), biome.getOrThrow(PFBiomes.MORRISON_SALT_FLATS), biome.getOrThrow(PFBiomes.MORRISON_SPARSE_FOREST), biome.getOrThrow(PFBiomes.MORRISON_GALLERY_FOREST), biome.getOrThrow(PFBiomes.MORRISON_UPLAND_FOREST), biome.getOrThrow(PFBiomes.MORRISON_RIVER), biome.getOrThrow(PFBiomes.SHAXIMIAO_DELTA_PLAINS), biome.getOrThrow(PFBiomes.SHAXIMIAO_LAKES), biome.getOrThrow(PFBiomes.SHAXIMIAO_GALLERY_FOREST), biome.getOrThrow(PFBiomes.SHAXIMIAO_DRY_FOREST), biome.getOrThrow(PFBiomes.SHAXIMIAO_MOUNTAINS), biome.getOrThrow(PFBiomes.SHAXIMIAO_ARID_LAKES), biome.getOrThrow(PFBiomes.JURASSIC_DRIPSTONE_CAVE), biome.getOrThrow(PFBiomes.JURASSIC_HENOSTONE_CAVE)); 
 	} 
 
-	public JurassicBiomeSource(Holder<Biome> kayentaDryForest, Holder<Biome> kayentaButtes, 
-			Holder<Biome> kayentaDesert, Holder<Biome> kayentaDunes, Holder<Biome> kayentaCanyons, 
-			Holder<Biome> kayentaRiver, Holder<Biome> morrisonSavanna, Holder<Biome> morrisonSaltFlats, 
-			Holder<Biome> morrisonSparseForest, Holder<Biome> morrisonGalleryForest, Holder<Biome> morrisonUplandForest, 
-			Holder<Biome> morrisonRiver, Holder<Biome> shaximiaoDeltaPlains, Holder<Biome> shaximiaoLakes, 
-			Holder<Biome> shaximiaoGalleryForest, Holder<Biome> shaximiaoDryForest, Holder<Biome> shaximiaoMountains, 
-			Holder<Biome> shaximiaoAridLakes, Holder<Biome> dripstoneCaves, Holder<Biome> henostoneCaves) { 
+	public JurassicBiomeSource(Holder<Biome> kayentaDryForest, Holder<Biome> kayentaButtes, Holder<Biome> kayentaDesert, Holder<Biome> kayentaDunes, Holder<Biome> kayentaCanyons, Holder<Biome> kayentaRiver, Holder<Biome> morrisonSavanna, Holder<Biome> morrisonSaltFlats, Holder<Biome> morrisonSparseForest, Holder<Biome> morrisonGalleryForest, Holder<Biome> morrisonUplandForest, Holder<Biome> morrisonRiver, Holder<Biome> shaximiaoDeltaPlains, Holder<Biome> shaximiaoLakes, Holder<Biome> shaximiaoGalleryForest, Holder<Biome> shaximiaoDryForest, Holder<Biome> shaximiaoMountains, Holder<Biome> shaximiaoAridLakes, Holder<Biome> dripstoneCaves, Holder<Biome> henostoneCaves) { 
 		this.kayentaDryForest = kayentaDryForest;
 		this.kayentaButtes = kayentaButtes;
 		this.kayentaDesert = kayentaDesert;
@@ -135,12 +108,11 @@ public class JurassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	}
 
 	public Climate.TargetPoint sampleCustomClimate(int x, int y, int z) {
-		// Use your existing noise functions to generate climate-like parameters
 		float temperature = (float) tempNoise(x, y, z);
 		float humidity = (float) humidityNoise(x, y, z);
 		float continentalness = (float) timeLineNoise(x, y, z);
 		float erosion = (float) hillinessNoise(x, y, z);
-		float depth = ((float) y / 256.0f) * 2.0f - 1.0f; // Map y level to depth
+		float depth = ((float) y / 256.0f) * 2.0f - 1.0f;
 		float weirdness = (float) caveTimeLineNoise(x, y, z);
 		return Climate.target(temperature, humidity, continentalness, erosion, depth, weirdness);
 	}
@@ -148,10 +120,7 @@ public class JurassicBiomeSource extends BiomeSource implements NoiseBiomeSource
 	@Override 
 	public Holder<Biome> getNoiseBiome(int x, int y, int z, Sampler sampler) { 
 		Climate.TargetPoint climate = sampleCustomClimate(x, y, z);
-		return selectBiome(
-				climate.temperature(), climate.humidity(), climate.continentalness(),
-				climate.erosion(), climate.depth(), climate.weirdness(), y
-				);
+		return selectBiome(climate.temperature(), climate.humidity(), climate.continentalness(), climate.erosion(), climate.depth(), climate.weirdness(), y);
 	} 
 
 	private Holder<Biome> selectBiome(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, int y) {

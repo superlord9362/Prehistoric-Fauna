@@ -180,6 +180,10 @@ public class FossilCrateBlock extends Block {
 			world.setBlock(pos, PFBlocks.YANGCHUANOSAURUS_CRATE.get().defaultBlockState(), 2);
 			if (!player.isCreative()) stack.shrink(1);
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		}else if (item == PFItems.SHUNOSAURUS_SKULL.get()) {
+			world.setBlock(pos, PFBlocks.SHUNOSAURUS_CRATE.get().defaultBlockState(), 2);
+			if (!player.isCreative()) stack.shrink(1);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			return InteractionResult.PASS;
 		}

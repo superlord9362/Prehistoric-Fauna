@@ -25,7 +25,7 @@
 				},
 				{
 					"type": "quark:flag",
-					"value": "variant_chests"
+					"flag": "variant_chests"
 				}
 			]
 		}
