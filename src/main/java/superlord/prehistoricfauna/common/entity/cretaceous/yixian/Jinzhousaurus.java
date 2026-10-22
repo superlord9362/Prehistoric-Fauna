@@ -50,6 +50,8 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.SapBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -108,6 +110,8 @@ public class Jinzhousaurus extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 16, 12, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
@@ -120,7 +124,7 @@ public class Jinzhousaurus extends DinosaurEntity {
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(0, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(1, new Jinzhousaurus.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new Jinzhousaurus.StripLogGoal((double)1.2F, 12, 2));
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));

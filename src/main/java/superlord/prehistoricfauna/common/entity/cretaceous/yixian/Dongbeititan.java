@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -52,10 +54,11 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.cretaceous.hellcreek.Edmontosaurus;
-import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -76,15 +79,15 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Dongbeititan  extends AgedHerdDinosaurEntity {
+public class Dongbeititan  extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Dongbeititan.class, EntityDataSerializers.BOOLEAN);
 	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
 	private int maxHunger = 500;
 	private int warningSoundTicks;
 	private int crushTicks = 0;
 
-	public Dongbeititan(EntityType<? extends AgedHerdDinosaurEntity> p_21803_, Level p_21804_) {
-		super(p_21803_, p_21804_);
+	public Dongbeititan(@NotNull EntityType<Dongbeititan> entityType, Level p_21804_) {
+		super(entityType, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
@@ -95,11 +98,6 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 
 	public void setJuvenile(boolean isJuvenile) {
 		this.entityData.set(IS_JUVENILE, isJuvenile);
-	}
-	
-	@Override
-	public double moveToRange() {
-		return 15;
 	}
 	
 	@Override
@@ -120,9 +118,11 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 48, 10, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Dongbeititan.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(0, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
@@ -130,7 +130,6 @@ public class Dongbeititan  extends AgedHerdDinosaurEntity {
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new AgedFollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new Dongbeititan.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Dongbeititan.NaturalMateGoal(this, 1.0D));

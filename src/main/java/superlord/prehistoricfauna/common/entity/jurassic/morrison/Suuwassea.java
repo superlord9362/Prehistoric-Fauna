@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.google.common.primitives.Ints;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -51,9 +53,10 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -73,7 +76,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Suuwassea extends AgedHerdDinosaurEntity {
+public class Suuwassea extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> EATING_COBBLE = SynchedEntityData.defineId(Suuwassea.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> COBBLE_EATEN = SynchedEntityData.defineId(Suuwassea.class, EntityDataSerializers.INT);
 	private int maxHunger = 200;
@@ -81,8 +84,8 @@ public class Suuwassea extends AgedHerdDinosaurEntity {
 	private int crushTicks = 0;
 	private int gastrolithTicks = 0;
 
-	public Suuwassea(EntityType<? extends AgedHerdDinosaurEntity> p_21803_, Level p_21804_) {
-		super(p_21803_, p_21804_);
+	public Suuwassea(@NotNull EntityType<Suuwassea> entityType, Level p_21804_) {
+		super(entityType, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
 	}
@@ -117,18 +120,14 @@ public class Suuwassea extends AgedHerdDinosaurEntity {
 		}
 	}
 
-	
-	@Override
-	public double moveToRange() {
-		return 10;
-	}
-
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 32, 10, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Suuwassea.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
@@ -136,7 +135,6 @@ public class Suuwassea extends AgedHerdDinosaurEntity {
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new AgedFollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new Suuwassea.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Suuwassea.NaturalMateGoal(this, 1.0D));

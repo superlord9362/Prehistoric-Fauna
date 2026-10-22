@@ -30,7 +30,6 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -44,7 +43,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -93,9 +94,10 @@ public class Pinacosaurus extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 32, 12, 1);
+		this.goalSelector.addGoal(0, new DinosaurHerdBabyPanicGoal(this, herd, 1.5D));
+		this.goalSelector.addGoal(7, herd);
 		this.goalSelector.addGoal(1, new Pinacosaurus.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));

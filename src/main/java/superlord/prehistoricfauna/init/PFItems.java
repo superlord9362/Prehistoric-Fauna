@@ -933,6 +933,7 @@ public class PFItems {
 	public static final RegistryObject<Item> CERATOSAURUS_SKULL = SKELETON_REGISTER.register("ceratosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKULL = SKELETON_REGISTER.register("stegosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKULL = SKELETON_REGISTER.register("chuandongocoelurus_skull", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKULL, new Item.Properties()));
+	public static final RegistryObject<Item> GIGANTSPINOSAURUS_SKULL = SKELETON_REGISTER.register("gigantspinosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.GIGANTSPINOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> SHUNOSAURUS_SKULL = SKELETON_REGISTER.register("shunosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.SHUNOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKULL = SKELETON_REGISTER.register("yangchuanosaurus_skull", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKULL, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKULL = SKELETON_REGISTER.register("coelophysis_skull", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKULL, new Item.Properties()));
@@ -962,6 +963,7 @@ public class PFItems {
 	public static final RegistryObject<Item> CERATOSAURUS_SKELETON = SKELETON_REGISTER.register("ceratosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CERATOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> STEGOSAURUS_SKELETON = SKELETON_REGISTER.register("stegosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.STEGOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> CHUANDONGOCOELURUS_SKELETON = SKELETON_REGISTER.register("chuandongocoelurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.CHUANDONGOCOELURUS_SKELETON, new Item.Properties()));
+	public static final RegistryObject<Item> GIGANTSPINOSAURUS_SKELETON = SKELETON_REGISTER.register("gigantspinosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.GIGANTSPINOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> SHUNOSAURUS_SKELETON = SKELETON_REGISTER.register("shunosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.SHUNOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> YANGCHUANOSAURUS_SKELETON = SKELETON_REGISTER.register("yangchuanosaurus_skeleton", () -> new SpawnSkeletonItem(PFEntities.YANGCHUANOSAURUS_SKELETON, new Item.Properties()));
 	public static final RegistryObject<Item> COELOPHYSIS_SKELETON = SKELETON_REGISTER.register("coelophysis_skeleton", () -> new SpawnSkeletonItem(PFEntities.COELOPHYSIS_SKELETON, new Item.Properties()));
@@ -979,6 +981,7 @@ public class PFItems {
 	public static final RegistryObject<Item> TRIASSIC_TIME_TOTEM = REGISTER.register("triassic_time_totem", () -> new TriassicTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> JURASIC_TIME_TOTEM = REGISTER.register("jurassic_time_totem", () -> new JurassicTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CRETACEOUS_TIME_TOTEM = REGISTER.register("cretaceous_time_totem", () -> new CretaceousTimeTotemItem(new Item.Properties().durability(8).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> JURASSIC_KEY_FRAGMENT = REGISTER.register("jurassic_key_fragment", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> CRETACEOUS_KEY_FRAGMENT = REGISTER.register("cretaceous_key_fragment", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> TRIASSIC_FOSSIL = REGISTER.register("triassic_fossil", () -> new FossilItem(new Item.Properties()));
 	public static final RegistryObject<Item> JURASSIC_FOSSIL = REGISTER.register("jurassic_fossil", () -> new FossilItem(new Item.Properties()));

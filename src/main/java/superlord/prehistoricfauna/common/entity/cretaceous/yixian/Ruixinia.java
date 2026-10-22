@@ -50,9 +50,10 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -72,13 +73,13 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Ruixinia extends AgedHerdDinosaurEntity {
+public class Ruixinia extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Ruixinia.class, EntityDataSerializers.BOOLEAN);
 	private int maxHunger = 150;
 	private int warningSoundTicks;
 	private int crushTicks = 0;
 
-	public Ruixinia(EntityType<? extends AgedHerdDinosaurEntity> p_21803_, Level p_21804_) {
+	public Ruixinia(EntityType<? extends DinosaurEntity> p_21803_, Level p_21804_) {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
@@ -106,18 +107,14 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 		}
 	}
 
-	
-	@Override
-	public double moveToRange() {
-		return 10;
-	}
-
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 48, 10, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Ruixinia.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
@@ -125,7 +122,6 @@ public class Ruixinia extends AgedHerdDinosaurEntity {
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new AgedFollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new Ruixinia.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Ruixinia.NaturalMateGoal(this, 1.0D));

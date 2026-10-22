@@ -120,7 +120,7 @@ public class Scelidosaurus extends DinosaurEntity {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(1, new Scelidosaurus.MeleeAttackGoal());
 		this.targetSelector.addGoal(1, new DinosaurHurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));

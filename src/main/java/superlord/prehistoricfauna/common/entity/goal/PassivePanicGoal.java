@@ -13,7 +13,7 @@ public class PassivePanicGoal extends PanicGoal {
 	}
 	
 	public boolean canUse() {
-		return super.canUse() && dinosaur.isPassive();
+		return super.canUse() && (dinosaur.isPassive() || dinosaur.isSkittish());
 	}
 
 }

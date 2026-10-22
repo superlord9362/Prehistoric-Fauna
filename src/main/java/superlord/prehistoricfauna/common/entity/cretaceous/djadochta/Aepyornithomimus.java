@@ -29,7 +29,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -43,13 +42,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
-import superlord.prehistoricfauna.common.entity.goal.FollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
@@ -64,7 +64,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Aepyornithomimus extends HerdDinosaurEntity {
+public class Aepyornithomimus extends DinosaurEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.of(PFBlocks.COBBANIA.get().asItem());
 	public int maxHunger = 25;
 	private int chewingTick;
@@ -73,11 +73,6 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		super(type, world);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
-	}
-	
-	@Override
-	public double moveToRange() {
-		return 5;
 	}
 
 	public boolean isFood(ItemStack stack) {
@@ -97,8 +92,10 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 16, 12, 1);
+		this.goalSelector.addGoal(0, new DinosaurHerdPanicGoal(this, herd, 1.75F));
+		this.goalSelector.addGoal(9, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
@@ -108,7 +105,6 @@ public class Aepyornithomimus extends HerdDinosaurEntity {
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1.0D));
-		this.goalSelector.addGoal(1, new FollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(1, new CathemeralSleepGoal(this));
 		this.goalSelector.addGoal(1, new UnscheduledSleepingGoal(this));
 		this.goalSelector.addGoal(0, new HerbivoreEatGoal(this, (double)1.2F, 12, 2));

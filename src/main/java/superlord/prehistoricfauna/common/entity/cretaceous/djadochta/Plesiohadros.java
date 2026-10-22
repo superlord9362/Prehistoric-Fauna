@@ -52,8 +52,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -75,7 +76,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Plesiohadros extends HerdDinosaurEntity {
+public class Plesiohadros extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> DEOXIDATED = SynchedEntityData.defineId(Plesiohadros.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Plesiohadros.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Integer> BOOST_TIME = SynchedEntityData.defineId(Plesiohadros.class, EntityDataSerializers.INT);
@@ -88,11 +89,6 @@ public class Plesiohadros extends HerdDinosaurEntity {
 		super(type, worldIn);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
-	}
-	
-	@Override
-	public double moveToRange() {
-		return 10;
 	}
 
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
@@ -128,8 +124,11 @@ public class Plesiohadros extends HerdDinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 16, 12, 1);
+		this.goalSelector.addGoal(1, new DinosaurHerdBabyPanicGoal(this, herd, 1.5D));
+		this.goalSelector.addGoal(7, herd);
 		this.goalSelector.addGoal(1, new Plesiohadros.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));

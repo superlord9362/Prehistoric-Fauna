@@ -91,9 +91,9 @@ public class Udanoceratops extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		this.goalSelector.addGoal(0, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Udanoceratops.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));

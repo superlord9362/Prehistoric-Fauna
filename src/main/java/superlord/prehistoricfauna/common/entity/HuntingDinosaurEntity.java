@@ -64,9 +64,6 @@ public class HuntingDinosaurEntity extends DinosaurEntity {
 		return this.hasFollowers() && this.groupSize < this.getMaxGroupSize();
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	public void tick() {
 		super.tick();
 		if (this.hasFollowers() && this.getRandom().nextInt(200) == 1) {

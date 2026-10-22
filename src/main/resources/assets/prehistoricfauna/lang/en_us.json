@@ -1183,6 +1183,7 @@
 	"block.prehistoricfauna.thatch_stairs": "Thatch Stairs",
 	"item.prehistoricfauna.time_gem_shard": "Time Gem Shard",
 	"item.prehistoricfauna.cretaceous_key_fragment": "Cretaceous Key Fragment",
+	"item.prehistoricfauna.jurassic_key_fragment": "Jurassic Key Fragment",
 	"block.prehistoricfauna.cobbania": "Cobbania",
 	"block.prehistoricfauna.sap": "Sap",
 	
@@ -1600,6 +1601,11 @@
 	"item.prehistoricfauna.shunosaurus_skeleton": "Shunosaurus Skeletal Mount",
 	"entity.prehistoricfauna.shunosaurus_skeleton": "Shunosaurus Skeletal Mount",
 	"block.prehistoricfauna.shunosaurus_crate": "Fossil Crate",
+	"item.prehistoricfauna.gigantspinosaurus_skull": "Gigantspinosaurus Skull",
+	"entity.prehistoricfauna.gigantspinosaurus_skull": "Gigantspinosaurus Skull",
+	"item.prehistoricfauna.gigantspinosaurus_skeleton": "Gigantspinosaurus Skeletal Mount",
+	"entity.prehistoricfauna.gigantspinosaurus_skeleton": "Gigantspinosaurus Skeletal Mount",
+	"block.prehistoricfauna.gigantspinosaurus_crate": "Fossil Crate",
 	
 	"item.prehistoricfauna.thagomizer_pickaxe": "Thagomizer Pickaxe",
 	"item.prehistoricfauna.dromaeosaur_claw_scythe": "Dromaeosaur Claw Scythe",

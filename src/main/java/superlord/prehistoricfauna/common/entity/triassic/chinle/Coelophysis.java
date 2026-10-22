@@ -39,16 +39,16 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.BabyCarnivoreHuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.CarnivoreHuntGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
-import superlord.prehistoricfauna.common.entity.goal.FollowHerdLeaderGoal;
 import superlord.prehistoricfauna.common.entity.goal.HostileCarnivoreGoal;
 import superlord.prehistoricfauna.common.entity.goal.HuntGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
@@ -68,7 +68,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Coelophysis extends HerdDinosaurEntity {
+public class Coelophysis extends DinosaurEntity {
 	private int maxHunger = 25;
 	private int warningSoundTicks;
 
@@ -76,11 +76,6 @@ public class Coelophysis extends HerdDinosaurEntity {
 		super(type, levelIn);
 		super.maxHunger = maxHunger;
 		this.setMaxUpStep(1.375F);
-	}
-	
-	@Override
-	public double moveToRange() {
-		return 5;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -94,6 +89,8 @@ public class Coelophysis extends HerdDinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.targetSelector.addGoal(4, new HuntGoal(this, LivingEntity.class, 10, false, false, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.COELOPHYSIS_HUNTING);
@@ -113,7 +110,6 @@ public class Coelophysis extends HerdDinosaurEntity {
 		this.targetSelector.addGoal(0, new HostileCarnivoreGoal(this, Player.class, false));
 		this.goalSelector.addGoal(0, new CarnivoreEatFromFeederGoal(this, (double)1.2F, 12, 2));
 		this.goalSelector.addGoal(7, new SkittishFleeGoal(this, Player.class, 10F, 1.5D, 1.75D));
-		this.goalSelector.addGoal(1, new FollowHerdLeaderGoal(this));
 		this.targetSelector.addGoal(2, new OpportunistAttackGoal(this, Player.class, true));
 		this.goalSelector.addGoal(8, new AvoidEntityGoal<LivingEntity>(this, LivingEntity.class, 7F, 1.5D, 1.75D, (p_213487_0_) -> {
 			return p_213487_0_.getType().is(PFTags.COELOPHYSIS_AVOIDING);

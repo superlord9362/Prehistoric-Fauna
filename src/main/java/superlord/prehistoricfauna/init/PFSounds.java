@@ -233,6 +233,7 @@ public class PFSounds {
 	public static final RegistryObject<SoundEvent> CERATOSAURUS_HURT = createSoundEvent("ceratosaurus_hurt");
 	public static final RegistryObject<SoundEvent> CERATOSAURUS_WARN = createSoundEvent("ceratosaurus_warn");
 	public static final RegistryObject<SoundEvent> CERATOSAURUS_DEATH = createSoundEvent("ceratosaurus_death");
+	public static final RegistryObject<SoundEvent> CYLINDRICUM_IDLE = createSoundEvent("cylindricum_idle");
 	public static final RegistryObject<SoundEvent> DIABLOPHIS_IDLE = createSoundEvent("diablophis_idle");
 	public static final RegistryObject<SoundEvent> DIABLOPHIS_HURT = createSoundEvent("diablophis_hurt");
 	public static final RegistryObject<SoundEvent> DIABLOPHIS_DEATH = createSoundEvent("diablophis_death");;

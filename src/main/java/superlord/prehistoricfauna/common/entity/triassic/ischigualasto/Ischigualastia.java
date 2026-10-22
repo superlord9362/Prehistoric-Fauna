@@ -50,8 +50,9 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.CathemeralSleepGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -136,9 +137,11 @@ public class Ischigualastia extends DinosaurEntity implements ItemSteerable {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 32, 10, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Ischigualastia.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(PFItems.CLADOPHLEBIS_STICK.get()), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, TEMPTATION_ITEMS, false));

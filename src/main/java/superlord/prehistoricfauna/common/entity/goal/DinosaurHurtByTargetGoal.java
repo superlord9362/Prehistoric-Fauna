@@ -1,6 +1,8 @@
 package superlord.prehistoricfauna.common.entity.goal;
 
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
 
@@ -11,16 +13,13 @@ public class DinosaurHurtByTargetGoal extends HurtByTargetGoal {
 		super(dinosaur);
 		this.dinosaur = dinosaur;
 	}
-	
+
 	public boolean canUse() {
 		if (dinosaur.getLastHurtByMob() != null)  {
-		return super.canUse() && (!dinosaur.isPassive() || !dinosaur.isSkittish()) && (dinosaur.getLastHurtByMob().getHealth() <= (dinosaur.getMaxHealth() * 2));
+			return !this.isHerdMate(dinosaur.getLastHurtByMob()) && super.canUse() && (!dinosaur.isPassive() || !dinosaur.isSkittish()) && (dinosaur.getLastHurtByMob().getHealth() <= (dinosaur.getMaxHealth() * 2));
 		} else return false;
 	}
 
-	/**
-	 * Execute a one shot task or start executing a continuous task
-	 */
 	public void start() {
 		super.start();
 		if (dinosaur.trusts(this.targetMob.getUUID())) {
@@ -38,4 +37,14 @@ public class DinosaurHurtByTargetGoal extends HurtByTargetGoal {
 		}
 
 	}
+
+	private boolean isHerdMate(LivingEntity other) {
+		for (WrappedGoal wrapped : dinosaur.goalSelector.getAvailableGoals()) {
+			if (wrapped.getGoal() instanceof DinosaurHerdGoal herdGoal) {
+				return herdGoal.getHerd().contains(other);
+			}
+		}
+		return false;
+	}
+
 }

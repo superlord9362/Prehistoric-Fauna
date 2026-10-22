@@ -41,9 +41,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
-import superlord.prehistoricfauna.common.entity.HerdDinosaurEntity;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -67,7 +67,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Edmontosaurus extends HerdDinosaurEntity {
+public class Edmontosaurus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Edmontosaurus.class, EntityDataSerializers.BOOLEAN);
 	private int warningSoundTicks = 200;
 	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
@@ -77,11 +77,6 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 		super(p_21803_, p_21804_);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = this.maxHunger;
-	}
-
-	@Override
-	public double moveToRange() {
-		return 15;
 	}
 	
 	@Override
@@ -107,6 +102,9 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 40, 12, 1);
+		this.goalSelector.addGoal(0, new DinosaurHerdBabyPanicGoal(this, herd, 1.5D));
+		this.goalSelector.addGoal(7, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(0, new DinosaurHurtByTargetGoal(this).setAlertOthers(Edmontosaurus.class));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
@@ -115,7 +113,6 @@ public class Edmontosaurus extends HerdDinosaurEntity {
 		this.goalSelector.addGoal(4, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.targetSelector.addGoal(2, new AggressiveTempermentAttackGoal(this));
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));

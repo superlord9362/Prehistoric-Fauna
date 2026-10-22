@@ -606,6 +606,30 @@
 					}
 				]
 			}
+		},
+		"gigantspinosaurus_skull": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:gigantspinosaurus_skull"
+						]
+					}
+				]
+			}
+		},
+		"gigantspinosaurus_skeleton": {
+			"trigger": "minecraft:inventory_changed",
+			"condition": {
+				"items": [
+					{
+						"items": [
+							"prehistoricfauna:gigantspinosaurus_skeleton"
+						]
+					}
+				]
+			}
 		}
 	},
 	"requirements": [
@@ -755,6 +779,12 @@
 		],
 		[
 			"yangchuanosaurus_skeleton"
+		],
+		[
+			"gigantspinosaurus_skull"
+		],
+		[
+			"gigantspinosaurus_skeleton"
 		]
   ]
 }

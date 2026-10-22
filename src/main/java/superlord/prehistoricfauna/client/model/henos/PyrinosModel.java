@@ -218,35 +218,43 @@ public class PyrinosModel extends HierarchicalModel<Pyrinos> {
 	public void setupAnim(Pyrinos entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.pyrothos.getAllParts().forEach(ModelPart::resetPose);
 
-		entity.idleAnimationState.updateTime(ageInTicks, 1.0F);
-		if (entity.isPyrinosFlying()) {
-			entity.idleAnimationState.ifStarted(state ->
-				KeyframeAnimations.animate(this, PyrinosAnimation1.fly, state.getAccumulatedTime(), 1.0F, new Vector3f(1.0F, 1.0F, 1.0F))
-			);
-		} else {
-			float walkWeight = Math.min(limbSwingAmount * 1.0F, 1.0F);
-			float idleWeight = 1.0F - walkWeight;
+		boolean inFlightTransition = entity.isFlyStarting() || entity.isFlyStopping();
+		boolean isBlasting = entity.isFlameBlasting();
 
-			entity.idleAnimationState.ifStarted(state ->
-				KeyframeAnimations.animate(this, PyrinosAnimation1.idle, state.getAccumulatedTime(), idleWeight, new Vector3f(1.0F, 1.0F, 1.0F))
-			);
-			this.animateWalk(PyrinosAnimation1.walk, limbSwing, limbSwingAmount, 4F, 1.0F);
+		if (!inFlightTransition && !isBlasting) {
+			entity.idleAnimationState.updateTime(ageInTicks, 1.0F);
+			if (entity.isPyrinosFlying()) {
+				entity.idleAnimationState.ifStarted(state ->
+					KeyframeAnimations.animate(this, PyrinosAnimation1.fly, state.getAccumulatedTime(), 1.0F, new Vector3f(1.0F, 1.0F, 1.0F))
+				);
+			} else {
+				float walkWeight = Math.min(limbSwingAmount * 1.0F, 1.0F);
+				float idleWeight = 1.0F - walkWeight;
+
+				entity.idleAnimationState.ifStarted(state ->
+					KeyframeAnimations.animate(this, PyrinosAnimation1.idle, state.getAccumulatedTime(), idleWeight, new Vector3f(1.0F, 1.0F, 1.0F))
+				);
+				this.animateWalk(PyrinosAnimation1.walk, limbSwing, limbSwingAmount, 4F, 1.0F);
+			}
 		}
 
 		this.animate(entity.flystartAnimationState, PyrinosAnimation1.flystart, ageInTicks, 1.0F);
 		this.animate(entity.flystopAnimationState, PyrinosAnimations2.flystop, ageInTicks, 1.0F);
 
-		this.animate(entity.flyflapAnimationState, PyrinosAnimations2.flyflap_blend, ageInTicks, 1.0F);
-
-		this.animate(entity.flappingAnimationState, PyrinosAnimation1.flapping, ageInTicks, 1.0F);
-		this.animate(entity.meleeAttackAnimationState, PyrinosAnimation1.meleeAttack, ageInTicks, 1.0F);
-		this.animate(entity.shootAnimationState, PyrinosAnimation1.shoot_blend, ageInTicks, 1.0F);
-		this.animate(entity.inhaleAnimationState, PyrinosAnimation1.inhale_blend, ageInTicks, 1.0F);
-		this.animate(entity.blastAnimationState, PyrinosAnimation1.blast, ageInTicks, 1.0F);
-
-		this.animate(entity.grabstartAnimationState, PyrinosAnimations2.grabstart_blend, ageInTicks, 1.0F);
-		this.animate(entity.grabAnimationState, PyrinosAnimations2.grab_blend, ageInTicks, 1.0F);
-		this.animate(entity.grabendAnimationState, PyrinosAnimations2.grabend_blend, ageInTicks, 1.0F);
+		if (isBlasting) {
+			this.animate(entity.blastAnimationState, PyrinosAnimation1.blast, ageInTicks, 1.0F);	
+		}
+		
+		if (!inFlightTransition) {
+			this.animate(entity.flyflapAnimationState, PyrinosAnimations2.flyflap_blend, ageInTicks, 1.0F);
+			this.animate(entity.flappingAnimationState, PyrinosAnimation1.flapping, ageInTicks, 1.0F);
+			this.animate(entity.meleeAttackAnimationState, PyrinosAnimation1.meleeAttack, ageInTicks, 1.0F);
+			this.animate(entity.shootAnimationState, PyrinosAnimation1.shoot_blend, ageInTicks, 1.0F);
+			this.animate(entity.inhaleAnimationState, PyrinosAnimation1.inhale_blend, ageInTicks, 1.0F);
+			this.animate(entity.grabstartAnimationState, PyrinosAnimations2.grabstart_blend, ageInTicks, 1.0F);
+			this.animate(entity.grabAnimationState, PyrinosAnimations2.grab_blend, ageInTicks, 1.0F);
+			this.animate(entity.grabendAnimationState, PyrinosAnimations2.grabend_blend, ageInTicks, 1.0F);
+		}
 	}
 
 	@Override

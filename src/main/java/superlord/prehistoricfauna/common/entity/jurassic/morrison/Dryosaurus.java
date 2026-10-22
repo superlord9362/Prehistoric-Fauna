@@ -29,7 +29,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -44,6 +43,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdPanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -52,6 +53,7 @@ import superlord.prehistoricfauna.common.entity.goal.DiurnalSleepingGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
+import superlord.prehistoricfauna.common.entity.goal.MixedHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
@@ -91,8 +93,10 @@ public class Dryosaurus extends DinosaurEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new MixedHerdGoal(this, PFTags.DRYOSAURUS_HERDING, 24, 12, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25F));
+		this.goalSelector.addGoal(1, new DinosaurHerdPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));

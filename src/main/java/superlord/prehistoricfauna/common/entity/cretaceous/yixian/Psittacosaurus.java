@@ -38,6 +38,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdPassivePanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -48,7 +51,6 @@ import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
-import superlord.prehistoricfauna.common.entity.goal.PassivePanicGoal;
 import superlord.prehistoricfauna.common.entity.goal.SkittishFleeGoal;
 import superlord.prehistoricfauna.common.entity.goal.UnscheduledSleepingGoal;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
@@ -74,10 +76,12 @@ public class Psittacosaurus extends DinosaurEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 10, 4, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(0, new CareForBabiesGoal(this));
 		this.goalSelector.addGoal(0, new DinosaurHurtByTargetGoal(this));
-		this.goalSelector.addGoal(1, new PassivePanicGoal(this, 1.25F));
+		this.goalSelector.addGoal(1, new DinosaurHerdPassivePanicGoal(this, herd, 1.25F));
 		this.goalSelector.addGoal(0, new DinosaurMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));

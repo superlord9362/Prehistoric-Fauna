@@ -195,12 +195,6 @@ public class Pyrinos extends Animal {
 		this.entityData.set(GRAB_PHASE, phase);
 	}
 
-	/**
-	 * All goals should call this instead of {@link #setPyrinosFlying(boolean)} directly.
-	 * Requesting flight true triggers flystart first, then flips the real FLYING flag once
-	 * it finishes; requesting false immediately drops FLYING but triggers flystop, holding
-	 * isNoGravity() true for its duration so the entity doesn't just drop out of the sky.
-	 */
 	public void requestFlyingState(boolean flying) {
 		if (flying) {
 			if (!this.isPyrinosFlying() && !this.isFlyStarting()) {

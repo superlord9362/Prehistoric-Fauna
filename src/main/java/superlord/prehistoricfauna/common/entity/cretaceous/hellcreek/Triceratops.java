@@ -63,6 +63,7 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RunAroundLikeCrazyGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -87,6 +88,8 @@ import net.minecraft.world.phys.Vec3;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.blocks.FeederBlock;
 import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerdChallengeGoal;
 import superlord.prehistoricfauna.common.items.PaleopediaItem;
 import superlord.prehistoricfauna.common.items.TriceratopsArmorItem;
 import superlord.prehistoricfauna.common.util.EnumPaleoPages;
@@ -334,6 +337,9 @@ public class Triceratops extends AbstractChestedHorse  {
 
 	@Override
 	protected void registerGoals() {
+		DinosaurHerdGoal herd = new DinosaurHerdGoal(this, 32, 6, 1);
+		this.goalSelector.addGoal(0, new HerdChallengeGoal(this, herd));
+		this.goalSelector.addGoal(7, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Triceratops.MeleeAttackGoal());
 		this.goalSelector.addGoal(1, new Triceratops.PanicGoal());
@@ -709,9 +715,6 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	public void tick() {
 		super.tick();
 		prevSleepProgress = sleepProgress;
@@ -972,10 +975,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			super(Triceratops.this, Player.class, 20, true, true, (Predicate<LivingEntity>)null);
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (Triceratops.this.isBaby() && !Triceratops.this.isJuvenile() || Triceratops.this.isTamed()) {
@@ -1009,12 +1008,11 @@ public class Triceratops extends AbstractChestedHorse  {
 		}
 
 		public boolean canUse() {
-			return super.canUse();
+			if (dinosaur.getLastHurtByMob() != null)  {
+				return !this.isHerdMate(dinosaur.getLastHurtByMob()) && super.canUse() && (dinosaur.getLastHurtByMob().getHealth() <= (dinosaur.getMaxHealth() * 2));
+			} else return false;
 		}
-
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
+		
 		public void start() {
 			super.start();
 			if (dinosaur.getTrustedUUIDs() != null) {
@@ -1033,6 +1031,15 @@ public class Triceratops extends AbstractChestedHorse  {
 				super.alertOther(mobIn, targetIn);
 			}
 
+		}
+		
+		private boolean isHerdMate(LivingEntity other) {
+			for (WrappedGoal wrapped : dinosaur.goalSelector.getAvailableGoals()) {
+				if (wrapped.getGoal() instanceof DinosaurHerdGoal herdGoal) {
+					return herdGoal.getHerd().contains(other);
+				}
+			}
+			return false;
 		}
 	}
 
@@ -1083,10 +1090,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			super(Triceratops.this, 2.0D);
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean canUse() {
 			return !Triceratops.this.isBaby() && !Triceratops.this.isOnFire() ? false : super.canUse();
 		}
@@ -1100,24 +1103,14 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.triceratops = triceratops;
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean canUse() {
 			return this.triceratops.hasEgg() ? super.canUse() : false;
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
 		public boolean canContinueToUse() {
 			return super.canContinueToUse() && this.triceratops.hasEgg();
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void tick() {
 			super.tick();
 			BlockPos blockpos = new BlockPos(this.triceratops.blockPosition());
@@ -1141,9 +1134,6 @@ public class Triceratops extends AbstractChestedHorse  {
 
 		}
 
-		/**
-		 * Return true to set given position as destination
-		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			if (!worldIn.isEmptyBlock(pos.above())) {
 				return false;
@@ -1527,17 +1517,11 @@ public class Triceratops extends AbstractChestedHorse  {
 			return this.tryTicks % 100 == 0;
 		}
 
-		/**
-		 * Return true to set given position as destination
-		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
 			return blockstate.is(PFTags.PLANTS_2_HUNGER) || blockstate.is(PFTags.PLANTS_4_HUNGER) || blockstate.is(PFTags.PLANTS_6_HUNGER) || blockstate.is(PFTags.PLANTS_8_HUNGER) || blockstate.is(PFTags.PLANTS_10_HUNGER) || blockstate.is(PFTags.PLANTS_12_HUNGER) || blockstate.is(PFTags.PLANTS_15_HUNGER) || blockstate.is(PFTags.PLANTS_20_HUNGER) || blockstate.is(PFTags.PLANTS_25_HUNGER) || blockstate.is(PFTags.PLANTS_30_HUNGER);
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void tick() {
 			if (this.isReachedTarget()) {
 				if (this.field_220731_g >= 20) {
@@ -1661,10 +1645,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean canUse() {
 			return !Triceratops.this.isSleeping() && super.canUse() && Triceratops.this.getCurrentHunger() < Triceratops.this.getHalfHunger();
 		}
@@ -1675,9 +1655,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			} else return super.canContinueToUse();
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		public void start() {
 			this.field_220731_g = 0;
 			super.start();
@@ -1730,9 +1707,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			return this.tryTicks % 100 == 0;
 		}
 
-		/**
-		 * Return true to set given position as destination
-		 */
 		protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 			BlockState blockstate = worldIn.getBlockState(pos);
 			return blockstate.getBlock() instanceof FeederBlock && blockstate.getValue(FeederBlock.PLANT) == true;
@@ -1772,9 +1746,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			} 
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void tick() {
 			if (this.isReachedTarget()) {
 				if (this.field_220731_g >= 20) {
@@ -1809,10 +1780,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			}
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean canUse() {
 			return !Triceratops.this.isSleeping() && super.canUse() && Triceratops.this.getCurrentHunger() < Triceratops.this.getHalfHunger();
 		}
@@ -1828,9 +1795,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			} else return super.canContinueToUse();
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		public void start() {
 			this.field_220731_g = 0;
 			super.start();
@@ -1845,10 +1809,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.dinosaur = dinosaur;
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		@SuppressWarnings("resource")
 		public boolean canUse() {
 			if (dinosaur.isBaby()) {
@@ -1878,10 +1838,6 @@ public class Triceratops extends AbstractChestedHorse  {
 			this.dinosaur = dinosaur;
 		}
 
-		/**
-		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-		 * method as well.
-		 */
 		public boolean canUse() {
 			if (dinosaur.isBaby()) {
 				return false;

@@ -197,6 +197,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.YUTYRANNUS_SKULL.get(), YutyrannusSkull.createAttributes().build());
 		event.put(PFEntities.PROTOCERATOPS_SKULL.get(), ProtoceratopsSkull.createAttributes().build());
 		event.put(PFEntities.SHUNOSAURUS_SKULL.get(), ShunosaurusSkull.createAttributes().build());
+		event.put(PFEntities.GIGANTSPINOSAURUS_SKULL.get(), GigantspinosaurusSkull.createAttributes().build());
 		event.put(PFEntities.YANGCHUANOSAURUS_SKULL.get(), YangchuanosaurusSkull.createAttributes().build());
 		event.put(PFEntities.ANKYLOSAURUS_SKELETON.get(), AnkylosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.TRICERATOPS_SKELETON.get(), TriceratopsSkeleton.createAttributes().build());
@@ -228,6 +229,7 @@ public class PrehistoricFauna {
 		event.put(PFEntities.KAYENTAVENATOR_SKULL.get(), KayentavenatorSkull.createAttributes().build());
 		event.put(PFEntities.KAYENTAVENATOR_SKELETON.get(), KayentavenatorSkeleton.createAttributes().build());
 		event.put(PFEntities.CHUANDONGOCOELURUS_SKELETON.get(), ChuandongocoelurusSkeleton.createAttributes().build());
+		event.put(PFEntities.GIGANTSPINOSAURUS_SKELETON.get(), GigantspinosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.SHUNOSAURUS_SKELETON.get(), ShunosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.YANGCHUANOSAURUS_SKELETON.get(), YangchuanosaurusSkeleton.createAttributes().build());
 		event.put(PFEntities.HENOS.get(), Henos.createAttributes().build());

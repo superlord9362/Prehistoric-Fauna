@@ -55,9 +55,10 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
-import superlord.prehistoricfauna.common.entity.AgedHerdDinosaurEntity;
-import superlord.prehistoricfauna.common.entity.goal.AgedFollowHerdLeaderGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.DinosaurEntity;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurRandomLookGoal;
@@ -78,7 +79,7 @@ import superlord.prehistoricfauna.init.PFItems;
 import superlord.prehistoricfauna.init.PFSounds;
 import superlord.prehistoricfauna.init.PFTags;
 
-public class Diplodocus extends AgedHerdDinosaurEntity {
+public class Diplodocus extends DinosaurEntity {
 	private static final EntityDataAccessor<Boolean> IS_SUBADULT = SynchedEntityData.defineId(Diplodocus.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> IS_JUVENILE = SynchedEntityData.defineId(Diplodocus.class, EntityDataSerializers.BOOLEAN);
 	private static final Map<LivingEntity, BlockPos> previousPositions = new HashMap<>();
@@ -89,11 +90,6 @@ public class Diplodocus extends AgedHerdDinosaurEntity {
 		super(type, level);
 		this.setMaxUpStep(1.375F);
 		super.maxHunger = maxHunger;
-	}
-	
-	@Override
-	public double moveToRange() {
-		return 20;
 	}
 	
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
@@ -137,9 +133,11 @@ public class Diplodocus extends AgedHerdDinosaurEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 48, 5, 1);
+		this.goalSelector.addGoal(8, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Diplodocus.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
+		this.goalSelector.addGoal(1, new DinosaurHerdBabyPanicGoal(this, herd, 1.5F));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(6, new DinosaurRandomLookGoal(this));
@@ -147,8 +145,6 @@ public class Diplodocus extends AgedHerdDinosaurEntity {
 		this.targetSelector.addGoal(2, new ProtectBabyGoal(this));
 		this.targetSelector.addGoal(2, new DinosaurTerritorialAttackGoal(this));
 		this.goalSelector.addGoal(0, new LayEggGoal(this, 1));
-		this.goalSelector.addGoal(1, new AgedFollowHerdLeaderGoal(this));
-		this.goalSelector.addGoal(1, new AgedFollowHerdLeaderGoal(this));
 		this.goalSelector.addGoal(0, new Diplodocus.MateGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new Diplodocus.NaturalMateGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new DiurnalSleepingGoal(this));

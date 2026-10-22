@@ -275,6 +275,20 @@ public class PFTags {
 	public static final TagKey<EntityType<?>> PALEOHELCURA_AVOIDING = registerEntityTag("paleohelcura_avoiding");
 	public static final TagKey<EntityType<?>> OCTOPODICHNUS_AVOIDING = registerEntityTag("octopodichnus_avoiding");
 	public static final TagKey<EntityType<?>> DIPLICHNITES_AVOIDING = registerEntityTag("diplichnites_avoiding");
+	
+	public static final TagKey<EntityType<?>> SARAHSAURUS_HERDING = registerEntityTag("sarahsaurus_herding");
+	public static final TagKey<EntityType<?>> SCELIDOSAURUS_HERDING = registerEntityTag("scelidosaurus_herding");
+	public static final TagKey<EntityType<?>> SCUTELLOSAURUS_HERDING = registerEntityTag("scutellosaurus_herding");
+	public static final TagKey<EntityType<?>> ALCOVASAURUS_HERDING = registerEntityTag("alcovasaurus_herding");
+	public static final TagKey<EntityType<?>> CAMPTOSAURUS_HERDING = registerEntityTag("camptosaurus_herding");
+	public static final TagKey<EntityType<?>> DRYOSAURUS_HERDING = registerEntityTag("dryosaurus_herding");
+	public static final TagKey<EntityType<?>> STEGOSAURUS_HERDING = registerEntityTag("stegosaurus_herding");
+	public static final TagKey<EntityType<?>> AGILISAURUS_HERDING = registerEntityTag("agilisaurus_herding");
+	public static final TagKey<EntityType<?>> BASHANOSAURUS_HERDING = registerEntityTag("bashanosaurus_herding");
+	public static final TagKey<EntityType<?>> GIGANTSPINOSAURUS_HERDING = registerEntityTag("gigantspinosaurus_herding");
+	public static final TagKey<EntityType<?>> HUAYANGOSAURUS_HERDING = registerEntityTag("huayangosaurus_herding");
+	public static final TagKey<EntityType<?>> TUOJIANGOSAURUS_HERDING = registerEntityTag("tuojiangosaurus_herding");
+	public static final TagKey<EntityType<?>> YANDUSAURUS_HERDING = registerEntityTag("yandusaurus_herding");
 
 	public static final TagKey<EntityType<?>> TRIASSIC_ENTITIES = registerEntityTag("triassic_entities");
 	public static final TagKey<EntityType<?>> JURASSIC_ENTITIES = registerEntityTag("jurassic_entities");

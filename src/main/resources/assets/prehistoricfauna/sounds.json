@@ -4080,11 +4080,11 @@
 		"subtitle": "prehistoricfauna.subtitle.parapleuritesIdle",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle1",
+				"name": "prehistoricfauna:prehistoric/parapleurites/parapleurites_idle1",
 				"stream": true
 			},
 			{
-				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle2",
+				"name": "prehistoricfauna:prehistoric/parapleurites/parapleurites_idle2",
 				"stream": true
 			}
 		]
@@ -4104,11 +4104,11 @@
 		"subtitle": "prehistoricfauna.subtitle.aboilusIdle",
 		"sounds": [
 			{
-				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle1",
+				"name": "prehistoricfauna:prehistoric/aboilus/aboilus_idle1",
 				"stream": true
 			},
 			{
-				"name": "prehistoricfauna:prehistoric/liaonemobius/liaonemobius_idle2",
+				"name": "prehistoricfauna:prehistoric/aboilus/aboilus_idle2",
 				"stream": true
 			}
 		]

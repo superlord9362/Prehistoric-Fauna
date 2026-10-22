@@ -40,7 +40,9 @@ import net.minecraft.world.phys.HitResult;
 import superlord.prehistoricfauna.common.blocks.DinosaurEggBlock;
 import superlord.prehistoricfauna.common.entity.BurrowingDinosaur;
 import superlord.prehistoricfauna.common.entity.goal.AggressiveTempermentAttackGoal;
-import superlord.prehistoricfauna.common.entity.goal.BabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurAgedHerdGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdBabyPanicGoal;
+import superlord.prehistoricfauna.common.entity.goal.DinosaurHerdGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurHurtByTargetGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurLookAtGoal;
 import superlord.prehistoricfauna.common.entity.goal.DinosaurMateGoal;
@@ -49,6 +51,7 @@ import superlord.prehistoricfauna.common.entity.goal.DinosaurTerritorialAttackGo
 import superlord.prehistoricfauna.common.entity.goal.DinosaurWaterAvoidingRandomStrollGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatFromFeederGoal;
 import superlord.prehistoricfauna.common.entity.goal.HerbivoreEatGoal;
+import superlord.prehistoricfauna.common.entity.goal.HerdChallengeGoal;
 import superlord.prehistoricfauna.common.entity.goal.LayEggGoal;
 import superlord.prehistoricfauna.common.entity.goal.NaturalMateGoal;
 import superlord.prehistoricfauna.common.entity.goal.ProtectBabyGoal;
@@ -89,9 +92,12 @@ public class Protoceratops extends BurrowingDinosaur {
 
 	protected void registerGoals() {
 		super.registerGoals();
+		DinosaurHerdGoal herd = new DinosaurAgedHerdGoal(this, 10, 4, 1);
+		this.goalSelector.addGoal(0, new DinosaurHerdBabyPanicGoal(this, herd, 1.5D));
+		this.goalSelector.addGoal(0, new HerdChallengeGoal(this, herd));
+		this.goalSelector.addGoal(7, herd);
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new Protoceratops.MeleeAttackGoal());
-		this.goalSelector.addGoal(1, new BabyPanicGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new DinosaurWaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new DinosaurLookAtGoal(this, Player.class, 6.0F));

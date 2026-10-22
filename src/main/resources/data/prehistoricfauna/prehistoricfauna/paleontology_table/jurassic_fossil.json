@@ -74,6 +74,10 @@
 			"item": "prehistoricfauna:shunosaurus_skull"
 		},
 		{
+			"weight": 1.25,
+			"item": "prehistoricfauna:gigantspinosaurus_skull"
+		},
+		{
 			"weight": 2.5,
 			"item": "prehistoricfauna:stegosaurus_skull"
 		},

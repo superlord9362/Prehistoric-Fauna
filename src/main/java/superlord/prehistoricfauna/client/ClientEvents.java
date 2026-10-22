@@ -134,6 +134,7 @@ public class ClientEvents {
 	public static ModelLayerLocation CERATOSAURUS_SKULL = createLayer("ceratosaurus_skull");
 	public static ModelLayerLocation STEGOSAURUS_SKULL = createLayer("stegosaurus_skull");
 	public static ModelLayerLocation CHUANDONGOCOELURUS_SKULL = createLayer("chuandongocoelurus_skull");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKULL = createLayer("gigantspinosaurus_skull");
 	public static ModelLayerLocation SHUNOSAURUS_SKULL = createLayer("shunosaurus_skull");
 	public static ModelLayerLocation YANGCHUANOSAURUS_SKULL = createLayer("yangchuanosaurus_skull");
 	public static ModelLayerLocation COELOPHYSIS_SKULL = createLayer("coelophysis_skull");
@@ -333,6 +334,14 @@ public class ClientEvents {
 	public static ModelLayerLocation SHUNOSAURUS_SKELETON_SLEEP = createLayer("shunosaurus_skeleton_sleep");
 	public static ModelLayerLocation SHUNOSAURUS_SKELETON_DEATH = createLayer("shunosaurus_skeleton_death");
 	public static ModelLayerLocation SHUNOSAURUS_SKELETON_REACH = createLayer("shunosaurus_skeleton_reach");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON = createLayer("gigantspinosaurus_skeleton");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_EATING = createLayer("gigantspinosaurus_skeleton_eating");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_ATTACK = createLayer("gigantspinosaurus_skeleton_attack");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_WALKING = createLayer("gigantspinosaurus_skeleton_walking");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_RUNNING = createLayer("gigantspinosaurus_skeleton_running");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_SITTING = createLayer("gigantspinosaurus_skeleton_sitting");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_SLEEPING = createLayer("gigantspinosaurus_skeleton_sleeping");
+	public static ModelLayerLocation GIGANTSPINOSAURUS_SKELETON_DEAD = createLayer("gigantspinosaurus_skeleton_dead");
 	
 	//Hell Creek
 	public static ModelLayerLocation ANKYLOSAURUS = createLayer("ankylosaurus");
@@ -615,6 +624,8 @@ public class ClientEvents {
 		event.registerEntityRenderer(PFEntities.YANGCHUANOSAURUS_SKELETON.get(), YangchuanosaurusSkeletonRenderer::new);
 		event.registerEntityRenderer(PFEntities.SHUNOSAURUS_SKELETON.get(), ShunosaurusSkeletonRenderer::new);
 		event.registerEntityRenderer(PFEntities.SHUNOSAURUS_SKULL.get(), ShunosaurusSkullRenderer::new);
+		event.registerEntityRenderer(PFEntities.GIGANTSPINOSAURUS_SKELETON.get(), GigantspinosaurusSkeletonRenderer::new);
+		event.registerEntityRenderer(PFEntities.GIGANTSPINOSAURUS_SKULL.get(), GigantspinosaurusSkullRenderer::new);
 		event.registerEntityRenderer(PFEntities.ARGANODUS.get(), ArganodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CERATODUS.get(), CeratodusRenderer::new);
 		event.registerEntityRenderer(PFEntities.CHINLEA.get(), ChinleaRenderer::new);
@@ -1030,6 +1041,16 @@ public class ClientEvents {
 		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_SLEEP, ShunosaurusSkeletonSleepModel::createBodyLayer);
 		event.registerLayerDefinition(SHUNOSAURUS_SKELETON_DEATH, ShunosaurusSkeletonDeadModel::createBodyLayer);
 		event.registerLayerDefinition(SHUNOSAURUS_SKULL, ShunosaurusSkullModel::createBodyLayer);
+		//Gigantspinosaurus Skeleton and Skull
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON, GigantspinosaurusSkeletonModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_EATING, GigantspinosaurusSkeletonEatingModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_ATTACK, GigantspinosaurusSkeletonAttackingModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_WALKING, GigantspinosaurusSkeletonWalkingModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_RUNNING, GigantspinosaurusSkeletonRunningModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_SITTING, GigantspinosaurusSkeletonSittingModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_SLEEPING, GigantspinosaurusSkeletonSleepingModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKELETON_DEAD, GigantspinosaurusSkeletonDeadModel::createBodyLayer);
+		event.registerLayerDefinition(GIGANTSPINOSAURUS_SKULL, GigantspinosaurusSkullModel::createBodyLayer);
 		//Fish
 		event.registerLayerDefinition(ACIPENSER, AcipenserModel::createBodyLayer);
 		event.registerLayerDefinition(ARGANODUS, ArganodusModel::createBodyLayer);
